@@ -20,8 +20,7 @@ return new class extends Migration
             $table->decimal('price_units');
             $table->decimal('qty');
             $table->decimal('remaining_stock');
-            $table->decimal('price_');
-            $table->decimal('qty');
+            $table->decimal('price');
             $table->string('group');
         });
     }

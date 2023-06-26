@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('m_units_id')->references('id')->on('m_units');
             $table->string('no_faktur');
             $table->timestamp('tgl_faktur');
-            $table->timestamp('tgl_jatuh_tempo');
+            $table->timestamp('tgl_jatuh_tempo')->nullable();
             $table->decimal('grandtotal_pembelian');
             $table->decimal('purchase_price');
         });
