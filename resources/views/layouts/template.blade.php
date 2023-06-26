@@ -9,26 +9,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Hoki Mart !</title>
+    <title>Hoki Mart</title>
 
     <!-- Bootstrap -->
-    <link href="{{asset ('template')}}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset ('template/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="{{asset ('template')}}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{asset ('template/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- NProgress -->
-    <link href="{{asset ('template')}}/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="{{asset ('template/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <!-- iCheck -->
-    <link href="{{asset ('template')}}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="{{asset ('template/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
 
     <!-- bootstrap-progressbar -->
-    <link href="{{asset ('template')}}/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="{{asset ('template/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}"
+        rel="stylesheet">
     <!-- JQVMap -->
-    <link href="{{asset ('template')}}/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <link href="{{asset ('template/vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet" />
     <!-- bootstrap-daterangepicker -->
-    <link href="{{asset ('template')}}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="{{asset ('template/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="{{asset ('template')}}/build/css/custom.min.css" rel="stylesheet">
+    <link href="{{asset ('template/build/css/custom.min.css')}}" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -37,8 +38,12 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><img src="{{ asset('logo.png') }}" alt="logo"><span>Hoki Mart
-                            !</span></a>
+                        <a href="index.html" class="site_title">
+                            <center>
+                                <img src="{{ asset('images/logo_hoki.png') }}" alt="logo" class="img-fluid" width="80%">
+
+                            </center>
+                        </a>
                     </div>
 
                     <div class="clearfix"></div>
