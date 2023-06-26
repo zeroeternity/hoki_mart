@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bank_account', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('suppliers_id');
-            $table->foreign('suppliers_id')->references('id')->on('m_suppliers');
-            $table->string('provider');
-            $table->string('acount_number');
-            $table->string('acount_number');
+            $table->string('group');
         });
     }
 
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('groups');
     }
 };

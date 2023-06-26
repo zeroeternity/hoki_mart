@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_suppliers', function (Blueprint $table) {
+        Schema::create('m_bank_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('email');
+            $table->string('provider');
+            $table->string('acount_number');
+            $table->string('variation');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('m_bank_accounts');
     }
 };
