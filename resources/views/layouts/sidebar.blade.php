@@ -30,7 +30,7 @@
             <li><a href="/">PPH Terhutang</a></li>
             <li><a href="/">Trial Balance</a></li>
             <li><a href="/">Penghitungan Hasil Usaha / PHU</a></li>
-            <li><a href="">Neraca Keuangan</a></li>
+            <li><a href="/">Neraca Keuangan</a></li>
             <li><a href="/">Kertas Kerja Neraca</a></li>
             <li><a href="/">Cash Flow</a></li>
           </ul>
