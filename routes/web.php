@@ -25,9 +25,16 @@ Route::get('/dashboard', function () {
 Route::get('/penjualan', function () {
     return view('penjualan');
 });
+Route::get('/penjualans', function () {
+    return view('penjualans');
+});
 
 Route::get('/pembelian', function () {
     return view('pembelian');
+});
+
+Route::get('/pembelians', function () {
+    return view('pembelians');
 });
 
 Route::get('/bukubesar', function () {

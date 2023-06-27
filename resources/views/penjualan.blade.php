@@ -8,77 +8,70 @@
             <div class="title_left">
                 <h3>Penjualan</h3>
             </div>
-
         </div>
+
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Form Penjualan <small>Nama / id outlet</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a href="/penjualans"><button type="button" class="btn btn-info">Form penjualan</button></a>
+                            </li>
+                          </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NO.Anggota <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Anggota <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="last-name" name="last-name" required="required" class="form-control">
-                                </div>
-                            </div>
                             <div class="form-group row">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Cara Bayar <span class="required">*</span>
-                                </label>
-                                <div class="col-md-1 col-sm-1 ">
-                                    <select class="form-control">
-                                        <option>Cash</option>
-                                        <option>Piutang</option>
-                                    </select>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    <input class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                        <script>
+                                            function timeFunctionLong(input) {
+                                                setTimeout(function() {
+                                                    input.type = 'text';
+                                                }, 60000);
+                                            }
+                                        </script>
+                                    </div>
+                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                <input class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function() {
+                                                input.type = 'text';
+                                                }, 60000);
+                                                }
+                                    </script>
                                 </div>
                             </div>
-
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Piutang <span class="required">*</span>
-                                </label>
-                                <div class="col-md-3 col-sm-3  form-group has-feedback">
-                                    <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Piutang">
-                                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-3 col-sm-3  form-group has-feedback">
-                                    <input type="text" class="form-control" id="inputSuccess3" placeholder="Tanggungan">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="" role="main">
+            <div class="">
+              <div class="page-title">
+                <div class="title_left">
+                  <h3>Users <small>Some examples to get you started</small></h3>
+                </div>
 
-
-        <div class="table-responsive">
-            <table class="table table-striped jambo_table bulk_action">
+                <div class="title_right">
+                  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+                      <table id="datatable-fixed-header" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr class="headings">
                     <th class="column-title">No </th>
@@ -88,13 +81,38 @@
                     <th class="column-title">PPN</th>
                     <th class="column-title">QTY </th>
                     <th class="column-title">Total </th>
+                    <th class="column-title">Detail </th>
                 </tr>
               </thead>
 
               <tbody>
-
+                <tr class="">
+                    <td class=" ">1</td>
+                    <td class=" ">121000040 </td>
+                    <td class=" ">Beras</td>
+                    <td class=" ">KRG</td>
+                    <td class=" ">0</td>
+                    <td class=" ">1</td>
+                    <td class="a-right a-right ">$7.45</td>
+                    <td class=" last"><a href="/invoice"><button type="button" class="btn btn-info">Info</button></a>
+                    </td>
+                  </tr>
+                  <tr class="">
+                    <td class=" ">1</td>
+                    <td class=" ">121000040 </td>
+                    <td class=" ">Beris</td>
+                    <td class=" ">KRG</td>
+                    <td class=" ">0</td>
+                    <td class=" ">1</td>
+                    <td class="a-right a-right ">$7.45</td>
+                    <td class=" last"><a href="/invoice"><button type="button" class="btn btn-info">Info</button></a>
+                    </td>
+                  </tr>
               </tbody>
             </table>
           </div>
+        </div>
+    </div>
+
 
 @endsection
