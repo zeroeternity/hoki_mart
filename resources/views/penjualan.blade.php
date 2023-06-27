@@ -2,7 +2,7 @@
 @section('title', 'dashboard', 'welcome')
 @section('content')
 
-<div class="right_col" role="main">
+<div class="" role="main">
     <div class="">
         <div class="page-title">
             <div class="title_left">
@@ -23,51 +23,43 @@
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NO.Anggota <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input type="text" id="first-name" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Anggota <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input type="text" id="last-name" name="last-name" required="required" class="form-control">
                                 </div>
                             </div>
-                            <div class="item form-group">
-                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input id="middle-name" class="form-control" type="text" name="middle-name">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <div id="gender" class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Male &nbsp;
-                                        </label>
-                                        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female" class="join-btn"> Female
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
+                            <div class="form-group row">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Cara Bayar <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                    <script>
-                                        function timeFunctionLong(input) {
-                                            setTimeout(function() {
-                                                input.type = 'text';
-                                            }, 60000);
-                                        }
-                                    </script>
+                                <div class="col-md-1 col-sm-1 ">
+                                    <select class="form-control">
+                                        <option>Cash</option>
+                                        <option>Piutang</option>
+                                    </select>
                                 </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Piutang <span class="required">*</span>
+                                </label>
+                                <div class="col-md-3 col-sm-3  form-group has-feedback">
+                                    <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Piutang">
+                                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-3 col-sm-3  form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess3" placeholder="Tanggungan">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+
                             </div>
                             <div class="ln_solid"></div>
                             <div class="item form-group">
@@ -83,5 +75,26 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-striped jambo_table bulk_action">
+              <thead>
+                <tr class="headings">
+                    <th class="column-title">No </th>
+                    <th class="column-title">Kode Barang </th>
+                    <th class="column-title">Nama Barang </th>
+                    <th class="column-title">Satuan </th>
+                    <th class="column-title">PPN</th>
+                    <th class="column-title">QTY </th>
+                    <th class="column-title">Total </th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
 
 @endsection

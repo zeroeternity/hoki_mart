@@ -41,7 +41,6 @@
                         <a href="index.html" class="site_title">
                             <center>
                                 <img src="{{ asset('images/logo_hoki.png') }}" alt="logo" class="img-fluid" width="80%">
-
                             </center>
                         </a>
                     </div>
