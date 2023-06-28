@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('m_suplliers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('bank_account_id');
-            $table->foreign('bank_account_id')->references('id')->on('m_bank_accounts');
+            $table->foreignId('bank_account_id')->references('id')->on('m_bank_accounts');
             $table->string('name');
             $table->string('address');
             $table->string('No_rekening');
@@ -24,6 +23,7 @@ return new class extends Migration
             $table->string('no_fax');
             $table->string('email');
             $table->string('status');
+            $table->timestamps();
         });
     }
 

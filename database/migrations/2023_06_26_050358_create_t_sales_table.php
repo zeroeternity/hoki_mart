@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('t_sales', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('stock_id');
-            $table->foreign('stock_id')->references('id')->on('stocks');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('stock_id')->references('id')->on('stocks');
             $table->string('name_user');
             $table->string('name_outlet');
             $table->string('payment_method');
-            $table->decimal('subtotal');
-            $table->decimal('grandtotal');
+            $table->integer('subtotal');
+            $table->integer('grandtotal');
+            $table->timestamps();
         });
     }
 

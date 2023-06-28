@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreignId('group_id')->references('id')->on('groups');
             $table->string('name_units');
             $table->string('unit');
-            $table->decimal('price_units');
-            $table->decimal('qty');
-            $table->decimal('remaining_stock');
-            $table->decimal('price');
+            $table->integer('price_units');
+            $table->integer('qty');
+            $table->integer('remaining_stock');
+            $table->integer('price');
             $table->string('group');
+            $table->timestamps();
         });
     }
 
