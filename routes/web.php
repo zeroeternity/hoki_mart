@@ -37,6 +37,10 @@ Route::get('/pembelians', function () {
     return view('pembelians');
 });
 
+Route::get('/adjustment', function () {
+    return view('adjustment');
+});
+
 Route::get('/bukubesar', function () {
     return view('bukubesar');
 });

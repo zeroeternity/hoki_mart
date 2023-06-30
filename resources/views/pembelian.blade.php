@@ -17,7 +17,7 @@
                     <div class="x_title">
                         <h2>Form pembelian <small>Nama / id outlet</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a href="/pembelians"><button type="button" class="btn btn-info">Form penjualan</button></a>
+                            <li><a href="/pembelians"><button type="button" class="btn btn-info">Form Pembelian</button></a>
                             </li>
                           </ul>
                         <div class="clearfix"></div>
