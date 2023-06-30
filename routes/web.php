@@ -38,20 +38,17 @@ Route::get('/input-sale', function () {
     return view('page.sale.input-sale');
 });
 
-Route::get('/pembelian', function () {
-    return view('pembelian');
+Route::get('/purchase', function () {
+    return view('page.purchase.purchase');
 });
-
-Route::get('/pembelians', function () {
-    return view('pembelians');
+Route::get('/input-purchase', function () {
+    return view('page.purchase.input-purchase');
 });
-
-Route::get('/returpembelian', function () {
-    return view('returpembelian');
+Route::get('/report-purchase', function () {
+    return view('page.purchase.report-purchase');
 });
-
-Route::get('/laporanpembelian', function () {
-    return view('laporanpembelian');
+Route::get('/return-purchase', function () {
+    return view('page.purchase.return-purchase');
 });
 
 Route::get('/adjustment', function () {

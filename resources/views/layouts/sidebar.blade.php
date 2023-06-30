@@ -3,7 +3,7 @@
     <ul class="nav side-menu">
       <li><a><i class="fa fa-upload"></i> Penjualan <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="/penjualan">Penjualan</a></li>
+          <li><a href="/sale">Penjualan</a></li>
           <li><a href="/">Pembelian cicilan</a></li>
           <li><a href="/">Posting jurnal penjualan</a></li>
           <li><a href="/">Posting jurnal penjualan admin</a></li>
@@ -12,9 +12,9 @@
       <li><a><i class="fa fa-download"></i> Pembelian <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="/">Data Suplier</a></li>
-          <li><a href="/pembelian">Pembelian</a></li>
-          <li><a href="/">Retur Pembelian</a></li>
-          <li><a href="/">Lap Pembelian</a></li>
+          <li><a href="/purchase">Pembelian</a></li>
+          <li><a href="/return-purchase">Retur Pembelian</a></li>
+          <li><a href="/report-purchase">Lap Pembelian</a></li>
           <li><a href="/">Lap Retur Pembelian</a></li>
         </ul>
       </li>

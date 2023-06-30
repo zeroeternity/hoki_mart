@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Return Pembelian</h3>
+                <h3>Retur Pembelian</h3>
             </div>
         </div>
 
