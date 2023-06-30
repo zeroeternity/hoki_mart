@@ -37,8 +37,20 @@ Route::get('/pembelians', function () {
     return view('pembelians');
 });
 
+Route::get('/returpembelian', function () {
+    return view('returpembelian');
+});
+
+Route::get('/laporanpembelian', function () {
+    return view('laporanpembelian');
+});
+
 Route::get('/adjustment', function () {
     return view('adjustment');
+});
+
+Route::get('/mutasi', function () {
+    return view('mutasi');
 });
 
 Route::get('/bukubesar', function () {

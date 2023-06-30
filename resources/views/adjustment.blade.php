@@ -68,8 +68,9 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button">New</button>
+                                    <button class="btn btn-info" type="button">Edit</button>
                                     <button class="btn btn-danger" type="reset">Delete</button>
-                                    <button class="btn btn-warning" type="reset">Search</button>
+                                    <button class="btn btn-warning" type="button">Search</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
