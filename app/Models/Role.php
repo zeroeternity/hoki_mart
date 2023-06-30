@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class m_unit extends Model
+class Role extends Model
 {
     use HasFactory;
+    protected $table = 'roles';
+    protected $guarded = [];
 }

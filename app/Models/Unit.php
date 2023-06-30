@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class m_suplliers extends Model
+class Unit extends Model
 {
     use HasFactory;
+    protected $table = 'm_units';
+    protected $guarded = [];
 }

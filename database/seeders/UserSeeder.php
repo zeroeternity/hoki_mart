@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\m_outlet;
-use App\Models\roles;
+use App\Models\Outlet;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     {
         User::insert([
             [
-                'role_id'       => roles::firstWhere(['name' => 'admin'])->id,
-                'outlet_id'     => m_outlet::firstWhere(['name' => 'Hoki Mart'])->id,
+                'role_id'       => Role::firstWhere(['name' => 'admin'])->id,
+                'outlet_id'     => Outlet::firstWhere(['name' => 'Hoki Mart'])->id,
                 'name'          => 'Admin',
                 'email'         => 'admin@taniyuk.com',
                 'phone'         => null,
@@ -27,8 +27,8 @@ class UserSeeder extends Seeder
                 'updated_at'    => now(),
             ],
             [
-                'role_id'       => roles::firstWhere(['name' => 'kasir'])->id,
-                'outlet_id'     => m_outlet::firstWhere(['name' => 'Hoki Mart'])->id,
+                'role_id'       => Role::firstWhere(['name' => 'kasir'])->id,
+                'outlet_id'     => Outlet::firstWhere(['name' => 'Hoki Mart'])->id,
                 'name'          => 'Kasir',
                 'email'         => 'kasir@taniyuk.com',
                 'phone'         => null,
@@ -37,8 +37,8 @@ class UserSeeder extends Seeder
                 'updated_at'    => now(),
             ],
             [
-                'role_id'       => roles::firstWhere(['name' => 'staf'])->id,
-                'outlet_id'     => m_outlet::firstWhere(['name' => 'Hoki Mart'])->id,
+                'role_id'       => Role::firstWhere(['name' => 'staf'])->id,
+                'outlet_id'     => Outlet::firstWhere(['name' => 'Hoki Mart'])->id,
                 'name'          => 'Staf',
                 'email'         => 'staf@taniyuk.com',
                 'phone'         => '085267902954',

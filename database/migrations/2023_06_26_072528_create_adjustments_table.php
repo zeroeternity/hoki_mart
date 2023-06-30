@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('adjusments', function (Blueprint $table) {
+        Schema::create('adjustments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('stock_id')->references('id')->on('stocks');
             $table->foreignId('group_id')->references('id')->on('groups');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('adjusments');
+        Schema::dropIfExists('adjustments');
     }
 };

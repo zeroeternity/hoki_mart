@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class m_bank_account extends Model
+class BackAccount extends Model
 {
     use HasFactory;
+    protected $table = 'm_bank_accounts';
+    protected $guarded = [];
 }

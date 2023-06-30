@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\m_outlet;
+use App\Models\Outlet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +13,7 @@ class OutletSeeder extends Seeder
      */
     public function run(): void
     {
-        m_outlet::create([
+        Outlet::create([
             'name'      => 'Hoki Mart',
             'location'  => 'Shamrock Group',
         ]);
