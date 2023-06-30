@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,15 +39,27 @@ class AuthenticationController extends Controller
         } 
         
         $request->session()->regenerate();
+
+        // Save Log Activity
+        LogActivity::create([
+            'user_id'   => Auth::id(),
+            'state'     => '0',
+        ]);
+
         return redirect()->intended('/dashboard');
     }
 
     public function signup(Request $request)
     {
+        LogActivity::create([
+            'user_id'   => Auth::id(),
+            'state'     => '1',
+        ]);
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('auth');
+        return redirect('/');
     }
 
 }
