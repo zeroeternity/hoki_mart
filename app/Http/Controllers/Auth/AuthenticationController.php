@@ -21,7 +21,7 @@ class AuthenticationController extends Controller
                 'email' => 'required',
                 'password' => 'required'
             ],
-        );       
+        );
         $credential = $request->only('email', 'password');
 
         if (!Auth::attempt($credential)) {
@@ -40,7 +40,7 @@ class AuthenticationController extends Controller
         
         $request->session()->regenerate();
 
-        // Save Log Activity
+        // Save Log Activity Staff Signin
         LogActivity::create([
             'user_id'   => Auth::id(),
             'state'     => '0',
@@ -51,6 +51,7 @@ class AuthenticationController extends Controller
 
     public function signup(Request $request)
     {
+        // Save Log Activity Staff Signup
         LogActivity::create([
             'user_id'   => Auth::id(),
             'state'     => '1',

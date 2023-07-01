@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Purchase\PurchaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,14 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/', 'index')->name('auth');
     Route::post('/signin', 'signin');
     Route::get('/signup', 'signup');
 });
 
+// Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
+// Purchase
+Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase');
+Route::get('/purchase/create', [PurchaseController::class, 'create'])->name('purchase.create');
 
 
 
@@ -38,9 +44,7 @@ Route::get('/input-sale', function () {
     return view('page.sale.input-sale');
 });
 
-Route::get('/purchase', function () {
-    return view('page.purchase.purchase');
-});
+
 Route::get('/input-purchase', function () {
     return view('page.purchase.input-purchase');
 });
