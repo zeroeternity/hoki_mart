@@ -71,7 +71,7 @@
 
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">New</button>
+                                    <button class="btn btn-primary" type="button">Add</button>
                                     <button class="btn btn-info" type="button">Edit</button>
                                     <button class="btn btn-danger" type="reset">Delete</button>
                                     <button class="btn btn-warning" type="button">Search</button>
@@ -96,7 +96,7 @@
                 <div class="col-md-3 col-sm-3 offset-md-1">
                     <a class="btn btn-primary text-white"
                         onclick="addItemPurchase(); return false">
-                        Tambah barang<i class="fa fa-plus px-2"></i></a>
+                        Add<i class="fa fa-plus px-2"></i></a>
                 </div>
                 <div class="card-box table-responsive">
                     <table class="table table-striped table-bordered" style="width:100%">

@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Penjualan</h3>
+                <h3>Data Supllier</h3>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Form Penjualan <small>Nama / id outlet</small></h2>
+                        <h2>Form Supllier <small>Nama / id outlet</small></h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -99,7 +99,7 @@
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">New</button>
+                                    <button class="btn btn-primary" type="button">Add</button>
                                     <button class="btn btn-info" type="button">Edit</button>
                                     <button class="btn btn-danger" type="reset">Delete</button>
                                     <button class="btn btn-warning" type="button">Search</button>
@@ -111,7 +111,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
