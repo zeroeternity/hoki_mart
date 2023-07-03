@@ -38,17 +38,14 @@ Route::get('/purchase/report', [PurchaseController::class, 'report'])->name('pur
 Route::get('/purchase/return', [PurchaseController::class, 'return'])->name('purchase.return');
 Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
 
-<<<<<<< Updated upstream
-
-// Sale
+// sale
 Route::get('/sale', [SaleController::class, 'index'])->name('sale');
 Route::get('/sale/create', [SaleController::class, 'create'])->name('sale.create');
-=======
-// Master Data
+
+// Master Data - Unit
 Route::get('/master-data/unit', [UnitController::class, 'index'])->name('unit');
 Route::post('/master-data/unit/store', [UnitController::class, 'store'])->name('unit.store');
 Route::delete('/master-data/unit/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
->>>>>>> Stashed changes
 
 //warehouse
 Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');

@@ -71,7 +71,7 @@
         var ppn = document.createElement("td");
         var qty = document.createElement("td");
         var total = document.createElement("td");
-        var piurchase_price = document.createElement("td");
+        var purchase_price = document.createElement("td");
         var action = document.createElement("td");
         // make append element
         itemlist.appendChild(row);
@@ -81,7 +81,7 @@
         row.appendChild(ppn);
         row.appendChild(qty);
         row.appendChild(total);
-        row.appendChild(piurchase_price);
+        row.appendChild(purchase_price);
         row.appendChild(action);
         // make element input code
         var input_code = document.createElement("input");
@@ -110,10 +110,10 @@
         input_total.setAttribute("name", "items[" + i + "][total]");
         input_total.setAttribute("class", "form-control");
         // make element input number
-        var input_piurchase_price = document.createElement("input");
-        input_piurchase_price.setAttribute("type", "number");
-        input_piurchase_price.setAttribute("name", "items[" + i + "][piurchase_price]");
-        input_piurchase_price.setAttribute("class", "form-control");
+        var input_purchase_price = document.createElement("input");
+        input_purchase_price.setAttribute("type", "number");
+        input_purchase_price.setAttribute("name", "items[" + i + "][purchase_price]");
+        input_purchase_price.setAttribute("class", "form-control");
         // make element hapus
         var hapus = document.createElement("a");
         // function appendchild
@@ -123,7 +123,7 @@
         ppn.appendChild(input_ppn);
         qty.appendChild(input_qty);
         total.appendChild(input_total);
-        piurchase_price.appendChild(input_piurchase_price);
+        purchase_price.appendChild(input_purchase_price);
         action.appendChild(hapus);
         //hapus inner html 
         hapus.innerHTML =
