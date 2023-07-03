@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('t_sales', function (Blueprint $table) {
+        Schema::create('adjusments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('stock_id');
             $table->foreign('stock_id')->references('id')->on('stocks');
-            $table->string('name_user');
-            $table->string('name_outlet');
-            $table->string('payment_method');
-            $table->decimal('subtotal');
-            $table->decimal('grandtotal');
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->string('name_units');
+            $table->decimal('price_units');
+            $table->decimal('qty_stock');
+            $table->decimal('qty_stock_new');
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('t_sales');
+        Schema::dropIfExists('adjusments');
     }
 };

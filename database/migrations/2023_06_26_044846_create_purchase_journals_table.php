@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('purchase_journals', function (Blueprint $table) {
             $table->id();
-            $table->date('purchasing_date');
+            $table->string('tgl_pembelian');
             $table->string('time_hours');
             $table->string('payment_method');
             $table->string('type');
@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('account_name');
             $table->string('account_description');
             $table->string('variation');
-            $table->integer('total');
-            $table->timestamps();
+            $table->decimal('total');
         });
     }
 

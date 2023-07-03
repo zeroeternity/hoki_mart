@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('log_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->enum('state', ['0', '1'])->default(0)->comment('0 = Clockin, 1 = Logout');
-            $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('state');
+            $table->timestamp('created_at');
         });
     }
 

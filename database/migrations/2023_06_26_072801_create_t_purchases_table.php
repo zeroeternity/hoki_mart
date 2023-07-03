@@ -13,17 +13,21 @@ return new class extends Migration
     {
         Schema::create('t_purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('supllier_id')->references('id')->on('m_suppliers');
-            $table->foreignId('stock_id')->references('id')->on('stocks');
-            $table->foreignId('purchase_journal_id')->references('id')->on('purchase_journals');
-            $table->foreignId('m_units_id')->references('id')->on('m_units');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('supllier_id');
+            $table->foreign('supllier_id')->references('id')->on('m_suplliers');
+            $table->unsignedBigInteger('stock_id');
+            $table->foreign('stock_id')->references('id')->on('stocks');
+            $table->unsignedBigInteger('purchase_journal_id');
+            $table->foreign('purchase_journal_id')->references('id')->on('purchase_journals');
+            $table->unsignedBigInteger('m_units_id');
+            $table->foreign('m_units_id')->references('id')->on('m_units');
             $table->string('no_faktur');
             $table->timestamp('tgl_faktur');
             $table->timestamp('tgl_jatuh_tempo')->nullable();
-            $table->integer('grandtotal_pembelian');
-            $table->integer('purchase_price');
-            $table->timestamps();
+            $table->decimal('grandtotal_pembelian');
+            $table->decimal('purchase_price');
         });
     }
 
