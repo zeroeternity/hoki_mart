@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('acount_number');
             $table->string('variation');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

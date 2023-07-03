@@ -23,11 +23,9 @@
 </div>
 <!-- /menu profile quick info -->
 
-<br />
-
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
   <div class="menu_section">
-    <ul class="nav side-menu">
+    <ul class="nav side-menu ">
       <li><a><i class="fa fa-upload"></i> Penjualan <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('sale') }}">Penjualan</a></li>
@@ -84,7 +82,15 @@
           <li><a href="/">Log Activity</a></li>
         </ul>
       </li>
-      <li><a href="/profiless"><i class="fa fa-user"></i> Profile <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-database"></i> Master Data <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="/">Outler</a></li>
+          <li><a href="{{ route('unit') }}">Unit</a></li>
+          <li><a href="/">Supplier</a></li>
+          <li><a href="/">Bank Account</a></li>
+        </ul>
+      </li>
+      <li><a href="/profiless"><i class="fa fa-user"></i> Profile </a>
 
       </li>
     </ul>
