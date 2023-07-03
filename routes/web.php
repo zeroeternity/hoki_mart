@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
+use App\Http\Controllers\Warehouse\WarehouseController;
+use App\Http\Controllers\Sale\SaleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,39 +31,20 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 
 // Purchase
 Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase');
+Route::get('/purchase/view', [PurchaseController::class, 'view'])->name('purchase.view');
 Route::get('/purchase/create', [PurchaseController::class, 'create'])->name('purchase.create');
+Route::get('/purchase/report', [PurchaseController::class, 'report'])->name('purchase.report');
+Route::get('/purchase/return', [PurchaseController::class, 'return'])->name('purchase.return');
+Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
 
 
+// Sale
+Route::get('/sale', [SaleController::class, 'index'])->name('sale');
+Route::get('/sale/create', [SaleController::class, 'create'])->name('sale.create');
 
-
-
-
-
-Route::get('/sale', function () {
-    return view('page.sale.sale');
-});
-Route::get('/input-sale', function () {
-    return view('page.sale.input-sale');
-});
-
-
-Route::get('/input-purchase', function () {
-    return view('page.purchase.input-purchase');
-});
-Route::get('/report-purchase', function () {
-    return view('page.purchase.report-purchase');
-});
-Route::get('/return-purchase', function () {
-    return view('page.purchase.return-purchase');
-});
-
-Route::get('/adjustment', function () {
-    return view('adjustment');
-});
-
-Route::get('/mutasi', function () {
-    return view('mutasi');
-});
+//warehouse
+Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
+Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
 
 Route::get('/bukubesar', function () {
     return view('bukubesar');

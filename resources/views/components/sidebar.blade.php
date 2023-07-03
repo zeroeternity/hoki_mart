@@ -30,7 +30,7 @@
     <ul class="nav side-menu">
       <li><a><i class="fa fa-upload"></i> Penjualan <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="/sale">Penjualan</a></li>
+          <li><a href="{{ route('sale') }}">Penjualan</a></li>
           <li><a href="/">Pembelian cicilan</a></li>
           <li><a href="/">Posting jurnal penjualan</a></li>
           <li><a href="/">Posting jurnal penjualan admin</a></li>
@@ -38,11 +38,11 @@
       </li>
       <li><a><i class="fa fa-download"></i> Pembelian <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="/">Data Suplier</a></li>
+          <li><a href="{{ route('purchase.view') }}">Data Suplier</a></li>
           <li><a href="{{ route('purchase') }}">Pembelian</a></li>
-          <li><a href="/return-purchase">Retur Pembelian</a></li>
-          <li><a href="/report-purchase">Lap Pembelian</a></li>
-          <li><a href="/">Lap Retur Pembelian</a></li>
+          <li><a href="{{ route('purchase.return') }}">Retur Pembelian</a></li>
+          <li><a href="{{ route('purchase.report') }}">Lap Pembelian</a></li>
+          <li><a href="{{ route('purchase.return_report') }}">Lap Retur Pembelian</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-file-text-o"></i> Akutansi <span class="fa fa-chevron-down"></span></a>
@@ -62,8 +62,8 @@
         <ul class="nav child_menu">
           <li><a href="/">Data Toko / Outlet</a></li>
           <li><a href="/">Data Barang</a></li>
-          <li><a href="/">Mutasi Barang</a></li>
-          <li><a href="/adjustment">Adjust</a></li>
+          <li><a href="{{ route('warehouse.mutation') }}">Mutasi Barang</a></li>
+          <li><a href="{{ route('warehouse.adjust') }}">Adjust</a></li>
           <li><a href="/">Persediaan</a></li>
           <li><a href="/">Kartu Stock Outlet</a></li>
           <li><a href="/">Mutasi</a></li>

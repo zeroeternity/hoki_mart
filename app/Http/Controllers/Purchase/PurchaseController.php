@@ -20,4 +20,24 @@ class PurchaseController extends Controller
     public function store()
     {
     }
+
+    public function return()
+    {
+        return view('page.purchase.return-purchase');
+    }
+
+    public function report()
+    {
+        return view('page.purchase.report-purchase');
+    }
+
+    public function return_report()
+    {
+        return view('page.purchase.return-report-purchase');
+    }
+
+    public function view()
+    {
+        return view('page.purchase.supllier-data');
+    }
 }

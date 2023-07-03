@@ -27,7 +27,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control" required="required" placeholder="">
+                                    <input type="text" class="form-control has-feedback-left" required="required" placeholder="">
                                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>
@@ -66,46 +66,7 @@
                                         onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                                 </div>
                             </div>
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Data Barang</h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <div class="col">
-                                        <a class="btn btn-primary text-white"
-                                            onclick="addItemPurchase(); return false"><i
-                                                class="fa fa-plus px-2"></i>Tambah barang</a>
-                                    </div>
-                                    <div class="card-box table-responsive">
-                                        <table class="table table-striped table-bordered" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Kode Barang</th>
-                                                    <th>Nama Barang</th>
-                                                    <th>Satuan</th>
-                                                    <th>PPN</th>
-                                                    <th>Qty</th>
-                                                    <th>Total</th>
-                                                    <th>Harga Beli</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
 
-                                            <tbody id="itemListPurchase">
-                                                <tr>
-
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="ln_solid"></div>
 
                             <div class="item form-group">
@@ -122,7 +83,46 @@
                 </div>
             </div>
         </div>
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Data Barang</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-3 col-sm-3 offset-md-1">
+                    <a class="btn btn-primary text-white"
+                        onclick="addItemPurchase(); return false">
+                        Tambah barang<i class="fa fa-plus px-2"></i></a>
+                </div>
+                <div class="card-box table-responsive">
+                    <table class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Kode Barang</th>
+                                <th>Nama Barang</th>
+                                <th>Satuan</th>
+                                <th>PPN</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Harga Beli</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
+                        <tbody id="itemListPurchase">
+                            <tr>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
