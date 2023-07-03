@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('adjustments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('stock_id')->references('id')->on('stocks');
             $table->foreignId('group_id')->references('id')->on('groups');
             $table->string('name_units');
-            $table->string('unit');
             $table->integer('price_units');
-            $table->integer('qty');
-            $table->integer('remaining_stock');
-            $table->integer('price');
-            $table->string('group');
+            $table->integer('qty_stock');
+            $table->integer('qty_stock_new');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('adjustments');
     }
 };

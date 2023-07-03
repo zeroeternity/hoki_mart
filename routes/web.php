@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Purchase\PurchaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +17,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+// Auth
+Route::controller(AuthenticationController::class)->group(function () {
+    Route::get('/', 'index')->name('auth');
+    Route::post('/signin', 'signin');
+    Route::get('/signup', 'signup');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Purchase
+Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase');
+Route::get('/purchase/create', [PurchaseController::class, 'create'])->name('purchase.create');
+
+
+
+
+
+
+
+Route::get('/sale', function () {
+    return view('page.sale.sale');
+});
+Route::get('/input-sale', function () {
+    return view('page.sale.input-sale');
 });
 
-Route::get('/penjualan', function () {
-    return view('penjualan');
+
+Route::get('/input-purchase', function () {
+    return view('page.purchase.input-purchase');
+});
+Route::get('/report-purchase', function () {
+    return view('page.purchase.report-purchase');
+});
+Route::get('/return-purchase', function () {
+    return view('page.purchase.return-purchase');
 });
 
-Route::get('/pembelian', function () {
-    return view('pembelian');
+Route::get('/adjustment', function () {
+    return view('adjustment');
+});
+
+Route::get('/mutasi', function () {
+    return view('mutasi');
 });
 
 Route::get('/bukubesar', function () {
@@ -47,5 +80,3 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-require __DIR__.'/auth.php';

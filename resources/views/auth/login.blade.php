@@ -32,7 +32,8 @@
       <div class="animate form login_form">
 
         <section class="login_content">
-          <form>
+          <form method="POST" action="{{ url('signin') }}">
+            @csrf
             <div>
               <img src="{{ asset ('images/logo_hoki.png') }}" class="img-fluid pb-4" alt="logo_hoki">
               <h2>
@@ -40,13 +41,13 @@
               </h2>
             </div>
             <div>
-              <input type="text" class="form-control" placeholder="Email" required="" alt="email" />
+              <input type="text" class="form-control" placeholder="Email" required="" name="email" />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" required="" alt="password" />
+              <input type="password" class="form-control" placeholder="Password" required="" name="password" />
             </div>
             <div>
-              <a class="btn btn-success" type="submit" href="/dashboard">Log in</a>
+              <button class="btn btn-success" type="submit">Log in</button>
             </div>
 
             <div class="clearfix"></div>
@@ -55,9 +56,7 @@
               <p class="change_link">New to site?
                 <a href="/register" class="to_register"> Create Account </a>
               </p>
-
               <div class="clearfix"></div>
-              <br />
             </div>
           </form>
         </section>
