@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\MasterData\BankAcountController;
+use App\Http\Controllers\MasterData\SupplierController;
 use App\Http\Controllers\MasterData\UnitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
@@ -42,14 +44,19 @@ Route::get('/purchase/return_report', [PurchaseController::class, 'return_report
 Route::get('/sale', [SaleController::class, 'index'])->name('sale');
 Route::get('/sale/create', [SaleController::class, 'create'])->name('sale.create');
 
+//warehouse
+Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
+Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
+
 // Master Data - Unit
 Route::get('/master-data/unit', [UnitController::class, 'index'])->name('unit');
 Route::post('/master-data/unit/store', [UnitController::class, 'store'])->name('unit.store');
 Route::delete('/master-data/unit/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
 
-//warehouse
-Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
-Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
+// Master Data - Supplier
+Route::get('/master-data/supplier', [SupplierController::class, 'index'])->name('supplier');
+Route::post('/master-data/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
+Route::delete('/master-data/supplier/destroy/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
 Route::get('/bukubesar', function () {
     return view('bukubesar');
@@ -59,12 +66,10 @@ Route::get('/invoice', function () {
     return view('invoice');
 });
 
-Route::get('/profiless', function () {
-    return view('profiless');
-});
-
+// Profile
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

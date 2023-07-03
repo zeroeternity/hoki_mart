@@ -15,7 +15,7 @@
             @endif
           </a>
           <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="javascript:;"> Profile</a>
+            <a class="dropdown-item" href="{{ route('profile') }}"> Profile</a>
             <a class="dropdown-item" href="/signup"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
           </div>
         </li>
