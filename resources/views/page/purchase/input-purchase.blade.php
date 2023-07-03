@@ -1,4 +1,5 @@
 @extends('layouts.template')
+@section('title', 'dashboard', 'welcome')
 @section('content')
 
 
@@ -124,6 +125,9 @@
         </div>
     </div>
 </div>
+
+<!-- Custom Theme Scripts -->
+<script src="{{asset ('template/appendchild/purchase.js')}}"></script>
 
 
 @endsection
