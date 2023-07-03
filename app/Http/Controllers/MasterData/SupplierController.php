@@ -12,10 +12,45 @@ class SupplierController extends Controller
         $data = [
             'dataSupplier'   => Supplier::orderBy('created_at', 'desc')->get()
         ];
-        return view('page.master-data.supplier', $data);
+        return view('page.master-data.supplier.supplier', $data);
+    }
+
+    public function create(){
+        return view('page.master-data.supplier.input-supplier');
     }
 
     public function store(Request $request){
+        $request->validate([
+            'name'              => 'required|string',
+            'address'           => 'required|string',
+            'account_number'     => 'required|string',
+            'bank_name'         => 'required|string',
+            'npwp'              => 'string',
+            'telephone'         => 'required|numeric',
+            'email'             => 'required|email',
+        ]);
+        
+
+        $name           = $request->name;
+        $address        = $request->address;
+        $account_number = $request->account_number;
+        $bank_name      = $request->bank_name;
+        $npwp           = $request->npwp;
+        $telephone      = $request->telephone;
+        $email          = $request->email;
+
+        $data = new Supplier();
+        $data->name             = $name;
+        $data->address          = $address;
+        $data->account_number   = $account_number;
+        $data->bank_name        = $bank_name;
+        $data->npwp             = $npwp;
+        $data->telephone        = $telephone;
+        $data->email            = $email;
+        $data->state            = '1';
+        $data->save();
+
+        return redirect()->route('supplier');
     }
 
     public function destroy($id)

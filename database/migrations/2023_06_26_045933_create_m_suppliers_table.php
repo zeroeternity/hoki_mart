@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('No_rekening');
-            $table->string('name_bank');
-            $table->string('NPWP');
-            $table->string('no_telepon');
+            $table->string('account_number');
+            $table->string('bank_name');
+            $table->string('npwp')->nullable();
+            $table->string('telephone');
             $table->string('email');
             $table->enum('state', ['0', '1'])->default(0)->comment('0 = Not Active, 1 = Active');
             $table->timestamps();
