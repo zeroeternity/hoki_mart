@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\MasterData\UnitController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Warehouse\WarehouseController;
@@ -37,10 +38,14 @@ Route::get('/purchase/report', [PurchaseController::class, 'report'])->name('pur
 Route::get('/purchase/return', [PurchaseController::class, 'return'])->name('purchase.return');
 Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
 
-
-// Sale
+// sale
 Route::get('/sale', [SaleController::class, 'index'])->name('sale');
 Route::get('/sale/create', [SaleController::class, 'create'])->name('sale.create');
+
+// Master Data - Unit
+Route::get('/master-data/unit', [UnitController::class, 'index'])->name('unit');
+Route::post('/master-data/unit/store', [UnitController::class, 'store'])->name('unit.store');
+Route::delete('/master-data/unit/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
 
 //warehouse
 Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
