@@ -13,16 +13,14 @@ return new class extends Migration
     {
         Schema::create('m_suppliers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bank_account_id')->references('id')->on('m_bank_accounts');
             $table->string('name');
             $table->string('address');
             $table->string('No_rekening');
             $table->string('name_bank');
             $table->string('NPWP');
             $table->string('no_telepon');
-            $table->string('no_fax');
             $table->string('email');
-            $table->string('status');
+            $table->enum('state', ['0', '1'])->default(0)->comment('0 = Not Active, 1 = Active');
             $table->timestamps();
             $table->softDeletes();
 

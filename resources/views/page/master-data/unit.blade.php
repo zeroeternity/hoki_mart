@@ -8,7 +8,6 @@
                 <h3>Master Data Unit</h3>
             </div>
         </div>
-
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
@@ -38,18 +37,13 @@
                 </form>
             </div>
         </div>
-
-
-
         <div class=" " role="main">
             <div class="x_panel">
                 <div class="page-title">
                     <div class="title_left">
                         <h2>Data Unit</h2>
                     </div>
-
                     <div class="title_right">
-
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -61,7 +55,6 @@
                             <th class="column-title">Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         @foreach($dataUnit as $key => $unit)
                         <tr class="">
@@ -84,7 +77,5 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection

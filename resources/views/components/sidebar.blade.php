@@ -84,14 +84,11 @@
       </li>
       <li><a><i class="fa fa-database"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="/">Outler</a></li>
+          <li><a href="/">Outlet</a></li>
           <li><a href="{{ route('unit') }}">Unit</a></li>
-          <li><a href="/">Supplier</a></li>
-          <li><a href="/">Bank Account</a></li>
-        </ul>
-      </li>
-      <li><a href="/profiless"><i class="fa fa-user"></i> Profile </a>
+          <li><a href="{{ route('supplier') }}">Supplier</a></li>
 
+        </ul>
       </li>
     </ul>
   </div>
