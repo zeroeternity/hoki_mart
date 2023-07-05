@@ -27,6 +27,14 @@
                                     <input type="text" class="form-control" required="required" name="name">
                                 </div>
                             </div>
+                            <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >location
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <input type="text" class="form-control" required="required" name="location">
+                                </div>
+                            </div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button type="submit" class="btn btn-success">Simpan</button>
@@ -52,6 +60,7 @@
                         <tr class="headings">
                             <th class="column-title">No</th>
                             <th class="column-title">Outlet</th>
+                            <th class="column-title">Address</th>
                             <th class="column-title">Action</th>
                         </tr>
                     </thead>
@@ -60,6 +69,7 @@
                         <tr class="">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $outlet->name }}</td>
+                            <td>{{ $outlet->location }}</td>
                             <td>
                                 <form action="{{ route('outlet.destroy', $outlet->id) }}" method="POST">
                                     @csrf
