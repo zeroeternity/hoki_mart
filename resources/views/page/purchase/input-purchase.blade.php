@@ -50,7 +50,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
-                                        type="text" readonly="readonly" type="text" onfocus="this.type='date'"
+                                        type="text" required="required" type="text" onfocus="this.type='date'"
                                         onmouseover="this.type='date'" onclick="this.type='date'"
                                         onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                                 </div>
@@ -61,7 +61,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
-                                        type="text" readonly="readonly" type="text" onfocus="this.type='date'"
+                                        type="text" required="required" type="text" onfocus="this.type='date'"
                                         onmouseover="this.type='date'" onclick="this.type='date'"
                                         onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                                 </div>

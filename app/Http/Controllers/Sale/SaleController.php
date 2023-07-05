@@ -17,4 +17,13 @@ class SaleController extends Controller
         return view('page.sale.input-sale');
     }
 
+    public function instalment()
+    {
+        return view('page.sale.sale-instalment');
+    }
+
+    public function create_instalment()
+    {
+        return view('page.sale.input-sale-instalment');
+    }
 }

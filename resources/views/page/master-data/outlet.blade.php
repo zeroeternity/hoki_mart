@@ -5,22 +5,22 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Master Data Unit</h3>
+                <h3>Master Data Outlet</h3>
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
-                <form action="{{ route('unit.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('outlet.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Form Data Unit</h2>
+                            <h2>Form Data Outlet</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Unit
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Outlet
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -41,7 +41,7 @@
             <div class="x_panel">
                 <div class="page-title">
                     <div class="title_left">
-                        <h2>Data Unit</h2>
+                        <h2>Data Outlet</h2>
                     </div>
                     <div class="title_right">
                     </div>
@@ -51,17 +51,17 @@
                     <thead>
                         <tr class="headings">
                             <th class="column-title">No</th>
-                            <th class="column-title">Unit</th>
+                            <th class="column-title">Outlet</th>
                             <th class="column-title">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($dataUnit as $key => $unit)
+                        @foreach($dataOutlet as $key => $outlet)
                         <tr class="">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $unit->name }}</td>
+                            <td>{{ $outlet->name }}</td>
                             <td>
-                                <form action="{{ route('unit.destroy', $unit->id) }}" method="POST">
+                                <form action="{{ route('outlet.destroy', $outlet->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-success">

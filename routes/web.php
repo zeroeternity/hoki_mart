@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\MasterData\BankAcountController;
+use App\Http\Controllers\MasterData\OutletController;
 use App\Http\Controllers\MasterData\SupplierController;
 use App\Http\Controllers\MasterData\UnitController;
 use App\Http\Controllers\ProfileController;
@@ -43,10 +44,17 @@ Route::get('/purchase/return_report', [PurchaseController::class, 'return_report
 // sale
 Route::get('/sale', [SaleController::class, 'index'])->name('sale');
 Route::get('/sale/create', [SaleController::class, 'create'])->name('sale.create');
+Route::get('/sale/instalment', [SaleController::class, 'instalment'])->name('sale.instalment');
+Route::get('/sale/create_instalment', [SaleController::class, 'create_instalment'])->name('sale.create_instalment');
 
 //warehouse
 Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
 Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
+
+// Master Data - Outlet
+Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');
+Route::post('/master-data/outlet/store', [OutletController::class, 'store'])->name('outlet.store');
+Route::delete('/master-data/outlet/destroy/{id}', [OutletController::class, 'destroy'])->name('outlet.destroy');
 
 // Master Data - Unit
 Route::get('/master-data/unit', [UnitController::class, 'index'])->name('unit');

@@ -29,7 +29,7 @@
       <li><a><i class="fa fa-upload"></i> Penjualan <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('sale') }}">Penjualan</a></li>
-          <li><a href="/">Pembelian cicilan</a></li>
+          <li><a href="{{ route('sale.instalment') }}">Penjualan cicilan</a></li>
           <li><a href="/">Posting jurnal penjualan</a></li>
           <li><a href="/">Posting jurnal penjualan admin</a></li>
         </ul>
@@ -84,7 +84,7 @@
       </li>
       <li><a><i class="fa fa-database"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="/">Outlet</a></li>
+          <li><a href="{{ route('outlet') }}">Outlet</a></li>
           <li><a href="{{ route('unit') }}">Unit</a></li>
           <li><a href="{{ route('supplier') }}">Supplier</a></li>
 
