@@ -27,8 +27,14 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control has-feedback-left" required="required" placeholder="">
-                                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                    <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                        name="select_input">
+                                        <option value=""></option>
+                                        @foreach($dataSupplier as $key => $supplier)
+                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -71,10 +77,6 @@
 
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Add</button>
-                                    <button class="btn btn-info" type="button">Edit</button>
-                                    <button class="btn btn-danger" type="reset">Delete</button>
-                                    <button class="btn btn-warning" type="button">Search</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
@@ -93,9 +95,8 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <div class="col-md-3 col-sm-3 offset-md-1">
-                    <a class="btn btn-primary text-white"
-                        onclick="addItemPurchase(); return false">
+                <div class="col-md-3 col-sm-3">
+                    <a class="btn btn-primary text-white" onclick="addItemPurchase(); return false">
                         Add<i class="fa fa-plus px-2"></i></a>
                 </div>
                 <div class="card-box table-responsive">
@@ -115,9 +116,7 @@
 
                         <tbody id="itemListPurchase">
                             <tr>
-
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -125,9 +124,5 @@
         </div>
     </div>
 </div>
-
-<!-- Custom Theme Scripts -->
-<script src="{{asset ('template/appendchild/purchase.js')}}"></script>
-
 
 @endsection

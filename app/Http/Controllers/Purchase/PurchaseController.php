@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Purchase;
 
 use App\Http\Controllers\Controller;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -14,7 +15,10 @@ class PurchaseController extends Controller
 
     public function create()
     {
-        return view('page.purchase.input-purchase');
+        $data = [
+            'dataSupplier'   => Supplier::all(['id', 'name'])
+        ];
+        return view('page.purchase.input-purchase', $data);
     }
 
     public function store()

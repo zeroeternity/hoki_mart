@@ -39,7 +39,10 @@
 <!-- Custom Theme Scripts -->
 <script src="{{asset ('template/build/js/custom.min.js')}}"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
+<!-- Select2 -->
+<script src="{{asset ('template/vendors/select2/js/select2.full.min.js')}}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{asset ('template/vendors/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
 <!-- Datatables -->
 <script src="{{asset ('template/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset ('template/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
@@ -56,6 +59,12 @@
 <script src="{{asset ('template/vendors/jszip/dist/jszip.min.js')}}"></script>
 <script src="{{asset ('template/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
 <script src="{{asset ('template/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+
+{{-- Select 2 --}}
+<script>
+    //Initialize Select2 Elements
+    $('.select2').select2()
+</script>
 
 {{-- Purchase Appendchild JS --}}
 <script>
@@ -92,7 +101,7 @@
         input_name.setAttribute("name", "items[" + i + "][name]");
         input_name.setAttribute("class", "form-control");
         // make element input unit
-        var input_unit = document.createElement("input");
+        var input_unit = document.createElement("select");
         input_unit.setAttribute("name", "items[" + i + "][unit]");
         input_unit.setAttribute("class", "form-control");
         // make element input ppn

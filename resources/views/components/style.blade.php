@@ -19,6 +19,14 @@
 <!-- Custom Theme Style -->
 <link href="{{asset ('template/build/css/custom.min.css')}}" rel="stylesheet">
 
+<!-- Select2 -->
+<link rel="stylesheet" href="{{asset ('template/vendors/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset ('template/vendors/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="{{asset ('template/vendors/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+
+
+
 <!-- Datatables -->
 <link href="{{asset ('template/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset ('template/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
