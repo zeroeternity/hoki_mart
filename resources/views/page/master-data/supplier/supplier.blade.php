@@ -30,13 +30,16 @@
                     <thead>
                         <tr class="headings">
                             <th class="column-title">No</th>
+                            <th class="column-title">Code</th>
                             <th class="column-title">Nama</th>
                             <th class="column-title">Alamat</th>
                             <th class="column-title">No Rekening</th>
+                            <th class="column-title">Nama Pemilik Rekening</th>
                             <th class="column-title">Nama Bank</th>
                             <th class="column-title">NPWP</th>
                             <th class="column-title">No Telepon</th>
                             <th class="column-title">Email</th>
+                            <th class="column-title">Status</th>
                             <th class="column-title">Action</th>
                         </tr>
                     </thead>
@@ -45,15 +48,25 @@
                         @foreach($dataSupplier as $key => $supplier)
                         <tr class="">
                             <td class=" ">{{ $loop->iteration }}</td>
+                            <td class=" ">{{ $supplier->code }} </td>
                             <td class=" ">{{ $supplier->name }} </td>
                             <td class=" ">{{ $supplier->address }}</td>
                             <td class=" ">{{ $supplier->account_number }}</td>
+                            <td class=" ">{{ $supplier->account_owner }}</td>
                             <td class=" ">{{ $supplier->bank_name }}</td>
                             <td class=" ">{{ $supplier->npwp }}</td>
                             <td class=" ">{{ $supplier->telephone }}</td>
                             <td class="">{{ $supplier->email }}</td>
-                            <td class=" last"><a href=""><button type="button" class="btn btn-info">Active</button></a>
+                            <td class="">
+                                @if($supplier->state== '1')
+                                Aktif
+                                @else
+                                Non Aktif
+                                @endif
                             </td>
+                            <td class=" last"><a href=""><button type="button" class="btn btn-info">
+                                        <li class="fa fa-edit"></li>
+                                    </button></a>
                         </tr>
                         @endforeach
                     </tbody>

@@ -103,6 +103,10 @@
         // make element input unit
         var input_unit = document.createElement("select");
         input_unit.setAttribute("name", "items[" + i + "][unit]");
+
+        //TODO: Get Unit from Master Data
+        //TODO: Foreach unit to create Option element and append to items.i.unit
+
         input_unit.setAttribute("class", "form-control");
         // make element input ppn
         var input_ppn = document.createElement("input");

@@ -26,6 +26,14 @@
                         <form action="{{ route('supplier.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Code
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <input type="text" class="form-control" required="required" name="code">
+                                </div>
+                            </div>
+                            <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama
                                     <span class="required">*</span>
                                 </label>
@@ -48,6 +56,15 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <input type="number" class="form-control" required="required" name="account_number">
+                                </div>
+                            </div>
+                            <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pemilik
+                                    Rekening
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <input type="text" class="form-control" required="required" name="account_owner">
                                 </div>
                             </div>
                             <div class="item form-group ">
