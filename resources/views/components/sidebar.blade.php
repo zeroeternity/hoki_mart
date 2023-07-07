@@ -87,7 +87,7 @@
           <li><a href="{{ route('outlet') }}">Outlet</a></li>
           <li><a href="{{ route('unit') }}">Unit</a></li>
           <li><a href="{{ route('supplier') }}">Supplier</a></li>
-
+          <li><a href="{{ route('estate') }}">Estate</a></li>
         </ul>
       </li>
     </ul>

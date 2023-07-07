@@ -23,7 +23,7 @@ class SupplierController extends Controller
         $request->validate([
             'name'              => 'required|string',
             'address'           => 'required|string',
-            'account_number'     => 'required|string',
+            'account_number'    => 'required|string',
             'bank_name'         => 'required|string',
             'npwp'              => 'string',
             'telephone'         => 'required|numeric',

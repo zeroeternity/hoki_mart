@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\MasterData\BankAcountController;
+use App\Http\Controllers\MasterData\EstateController;
 use App\Http\Controllers\MasterData\OutletController;
 use App\Http\Controllers\MasterData\SupplierController;
 use App\Http\Controllers\MasterData\UnitController;
@@ -63,9 +64,19 @@ Route::delete('/master-data/unit/destroy/{id}', [UnitController::class, 'destroy
 
 // Master Data - Supplier
 Route::get('/master-data/supplier', [SupplierController::class, 'index'])->name('supplier');
-Route::get('/master-data/create-supplier', [SupplierController::class, 'create'])->name('supplier.create');
+Route::get('/master-data/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
 Route::post('/master-data/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
 Route::delete('/master-data/supplier/destroy/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+
+// Master Data - Estate
+Route::get('/master-data/estate', [EstateController::class, 'index'])->name('estate');
+Route::get('/master-data/estate/create', [EstateController::class, 'create'])->name('estate.create');
+Route::post('/master-data/estate/store', [EstateController::class, 'store'])->name('estate.store');
+Route::get('/master-data/estate/edit/{id}', [EstateController::class, 'edit'])->name('estate.edit');
+Route::put('/master-data/estate/update', [EstateController::class, 'update'])->name('estate.update');
+Route::delete('/master-data/estate/destroy/{id}', [EstateController::class, 'destroy'])->name('estate.destroy');
+
+
 
 Route::get('/bukubesar', function () {
     return view('bukubesar');
