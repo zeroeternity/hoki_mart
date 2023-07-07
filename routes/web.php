@@ -7,6 +7,7 @@ use App\Http\Controllers\MasterData\EstateController;
 use App\Http\Controllers\MasterData\OutletController;
 use App\Http\Controllers\MasterData\SupplierController;
 use App\Http\Controllers\MasterData\UnitController;
+use App\Http\Controllers\Accountancy\AccountancyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Warehouse\WarehouseController;
@@ -51,6 +52,16 @@ Route::get('/sale/create_instalment', [SaleController::class, 'create_instalment
 //warehouse
 Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
 Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
+Route::get('/warehouse/stock', [WarehouseController::class, 'stock'])->name('warehouse.stock');
+Route::get('/warehouse/stock_outlet', [WarehouseController::class, 'stock_outlet'])->name('warehouse.stock_outlet');
+
+//accountancy
+Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');
+Route::get('/accountancy/ledger', [AccountancyController::class, 'ledger'])->name('accountancy.ledger');
+Route::get('/accountancy/pph', [AccountancyController::class, 'pph'])->name('accountancy.pph');
+Route::get('/accountancy/calculation', [AccountancyController::class, 'calculation'])->name('accountancy.calculation');
+Route::get('/accountancy/balance', [AccountancyController::class, 'balance'])->name('accountancy.balance');
+Route::get('/accountancy/trial', [AccountancyController::class, 'trial'])->name('accountancy.trial');
 
 // Master Data - Outlet
 Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');
