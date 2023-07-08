@@ -58,6 +58,66 @@ class SupplierController extends Controller
         return redirect()->route('supplier');
     }
 
+    public function edit($id){
+        $dataSupplier = Supplier::find($id);
+        $data = [
+            'id'                => $dataSupplier->id,
+            'code'              => $dataSupplier->code,
+            'name'              => $dataSupplier->name,
+            'address'           => $dataSupplier->address,
+            'account_number'    => $dataSupplier->account_number,
+            'account_owner'     => $dataSupplier->account_owner,
+            'bank_name'         => $dataSupplier->bank_name,
+            'npwp'              => $dataSupplier->npwp,
+            'telephone'         => $dataSupplier->telephone,
+            'email'             => $dataSupplier->email,
+            'state'             => $dataSupplier->state,
+        ];
+        return view('page.master-data.supplier.edit-supplier', $data);
+    }
+
+    public function update(request $request)
+    {
+        $request->validate([
+            'code'              => 'required|unique:m_suppliers,code',
+            'name'              => 'required|string',
+            'address'           => 'required|string',
+            'account_number'    => 'required|string',
+            'account_owner'     => 'required|string',
+            'bank_name'         => 'required|string',
+            'npwp'              => 'string',
+            'telephone'         => 'required|numeric',
+            'email'             => 'required|email',
+        ]);
+
+        $id         = $request->id;
+        $code           = $request->code;
+        $name           = $request->name;
+        $address        = $request->address;
+        $account_number = $request->account_number;
+        $account_owner  = $request->account_owner;
+        $bank_name      = $request->bank_name;
+        $npwp           = $request->npwp;
+        $telephone      = $request->telephone;
+        $email          = $request->email;
+        $state          = $request->state;
+
+        $dataSupplier = Supplier::find($id);
+        $dataSupplier->code             = $code;
+        $dataSupplier->name             = $name;
+        $dataSupplier->address          = $address;
+        $dataSupplier->account_number   = $account_number;
+        $dataSupplier->account_owner    = $account_owner;
+        $dataSupplier->bank_name        = $bank_name;
+        $dataSupplier->npwp             = $npwp;
+        $dataSupplier->telephone        = $telephone;
+        $dataSupplier->email            = $email;
+        $dataSupplier->state            = $state;
+        $dataSupplier->save();
+
+        return redirect()->route('supplier');
+    }
+
     public function destroy($id)
     {
     }

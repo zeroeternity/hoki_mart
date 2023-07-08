@@ -77,6 +77,8 @@ Route::delete('/master-data/unit/destroy/{id}', [UnitController::class, 'destroy
 Route::get('/master-data/supplier', [SupplierController::class, 'index'])->name('supplier');
 Route::get('/master-data/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
 Route::post('/master-data/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
+Route::get('/master-data/supplier/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.edit');
+Route::put('/master-data/supplier/update', [SupplierController::class, 'update'])->name('supplier.update');
 Route::delete('/master-data/supplier/destroy/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
 // Master Data - Estate

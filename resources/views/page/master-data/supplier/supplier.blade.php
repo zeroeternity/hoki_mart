@@ -64,7 +64,8 @@
                                 Non Aktif
                                 @endif
                             </td>
-                            <td class=" last"><a href=""><button type="button" class="btn btn-info">
+                            <td class=" last"><a href="{{ route('supplier.edit',[$supplier->id]) }}"><button
+                                        type="button" class="btn btn-info">
                                         <li class="fa fa-edit"></li>
                                     </button></a>
                         </tr>

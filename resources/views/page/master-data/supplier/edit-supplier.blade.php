@@ -18,7 +18,7 @@
                         <h2>Edit Supplier</h2>
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('supplier') }}">Data Supplier</a></li>
-                            <li class="breadcrumb-item active">Tambah Supplier</li>
+                            <li class="breadcrumb-item active">Edit Supplier</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -26,11 +26,25 @@
                         <form action="{{ route('supplier.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Code
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <input type="text" class="form-control
+                                    @error('code')
+                                    is-invalid
+                                @enderror" value="{{ $code }}" required="required" name="code">
+                                </div>
+                            </div>
+                            <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control" required="required" name="name">
+                                    <input type="text" class="form-control
+                                    @error('name')
+                                    is-invalid
+                                @enderror" value="{{ $name }}" required="required" name="name">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -38,7 +52,10 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <textarea class="form-control" rows="3" placeholder="" name="address"></textarea>
+                                    <textarea class="form-control
+                                    @error('address')
+                                    is-invalid
+                                @enderror" rows="3" placeholder="" name="address">{{ $address }}</textarea>
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -47,7 +64,22 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" class="form-control" required="required" name="account_number">
+                                    <input type="number" class="form-control
+                                    @error('account_number')
+                                    is-invalid
+                                @enderror" value="{{ $account_number }}" required="required" name="account_number">
+                                </div>
+                            </div>
+                            <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pemilik
+                                    Rekening
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <input type="text" class="form-control
+                                    @error('account_owner')
+                                    is-invalid
+                                @enderror" value="{{ $account_owner }}" required="required" name="account_owner">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -55,14 +87,20 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control" required="required" name="bank_name">
+                                    <input type="text" class="form-control
+                                    @error('bank_name')
+                                    is-invalid
+                                @enderror" value="{{ $bank_name }}" required="required" name="bank_name">
                                 </div>
                             </div>
                             <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">NPWP
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" class="form-control" required="required" name="npwp">
+                                    <input type="number" class="form-control
+                                    @error('npwp')
+                                    is-invalid
+                                @enderror" value="{{ $npwp }}" required="required" name="npwp">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -71,7 +109,10 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" class="form-control" required="required" name="telephone">
+                                    <input type="number" class="form-control
+                                    @error('telephone')
+                                    is-invalid
+                                @enderror" value="{{ $telephone }}" required="required" name="telephone">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -79,7 +120,21 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="email" class="form-control" required="required" name="email">
+                                    <input type="email" class="form-control
+                                    @error('email')
+                                    is-invalid
+                                @enderror" value="{{ $email }}" required="required" name="email">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Status
+                                    Aktifasi Akun
+                                    <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <select name="state" class="custom-select" id="state">
+                                        <option @php if($state=="1" ){echo "selected" ;} @endphp>Aktif</option>
+                                        <option @php if($state=="0" ){echo "selected" ;} @endphp>Tidak Aktif</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -87,7 +142,7 @@
 
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
                                 </div>
                             </div>
                         </form>
