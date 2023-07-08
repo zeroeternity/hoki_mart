@@ -8,6 +8,7 @@ use App\Http\Controllers\MasterData\OutletController;
 use App\Http\Controllers\MasterData\SupplierController;
 use App\Http\Controllers\MasterData\UnitController;
 use App\Http\Controllers\Accountancy\AccountancyController;
+use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Warehouse\WarehouseController;
@@ -62,6 +63,9 @@ Route::get('/accountancy/pph', [AccountancyController::class, 'pph'])->name('acc
 Route::get('/accountancy/calculation', [AccountancyController::class, 'calculation'])->name('accountancy.calculation');
 Route::get('/accountancy/balance', [AccountancyController::class, 'balance'])->name('accountancy.balance');
 Route::get('/accountancy/trial', [AccountancyController::class, 'trial'])->name('accountancy.trial');
+
+// Member
+Route::get('/member', [MemberController::class, 'index'])->name('member');
 
 // Master Data - Outlet
 Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');

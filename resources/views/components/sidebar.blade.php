@@ -52,12 +52,12 @@
       <li><a><i class="fa fa-group"></i> Anggota <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="/">Estate/OU</a></li>
-          <li><a href="/">Data Anggota</a></li>
+          <li><a href="{{ route('member') }}">Data Anggota</a></li>
           <li><a href="/">Tagihan Piutang</a></li>
           <li><a href="/">Voucher Beras</a></li>
           <li><a href="/">Distribusi Pembagian SHU</a></li>
         </ul>
-       <li><a><i class="fa fa-database"></i> Master Data <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-database"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('outlet') }}">Outlet</a></li>
           <li><a href="{{ route('unit') }}">Unit</a></li>
