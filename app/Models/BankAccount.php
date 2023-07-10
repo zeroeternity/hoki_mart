@@ -9,6 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BankAccount extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'm_bank_accounts';
+    protected $table = 'bank_accounts';
     protected $guarded = [];
 }

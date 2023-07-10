@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('role_id')->references('id')->on('roles');
-            $table->foreignId('outlet_id')->references('id')->on('m_outlets');
+            $table->foreignId('outlet_id')->references('id')->on('outlets');
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();

@@ -43,6 +43,20 @@
 <script src="{{asset ('template/vendors/select2/js/select2.full.min.js')}}"></script>
 <!-- Bootstrap4 Duallistbox -->
 <script src="{{asset ('template/vendors/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
+<!-- bootstrap-datetimepicker -->
+<script src="{{asset ('template/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+<!-- Ion.RangeSlider -->
+<script src="{{asset ('template/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js')}}"></script>
+<!-- Bootstrap Colorpicker -->
+<script src="{{asset ('template/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}">
+</script>
+<!-- jquery.inputmask -->
+<script src="{{asset ('template/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
+<!-- jQuery Knob -->
+<script src="{{asset ('template/vendors/jquery-knob/dist/jquery.knob.min.js')}}"></script>
+<!-- Cropper -->
+<script src="{{asset ('template/vendors/cropper/dist/cropper.min.js')}}"></script>
+
 <!-- Datatables -->
 <script src="{{asset ('template/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset ('template/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
@@ -60,10 +74,66 @@
 <script src="{{asset ('template/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
 <script src="{{asset ('template/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
+{{-- Rupiah --}}
+<script type="text/javascript">
+    var rupiah = document.getElementById('rupiah');
+    rupiah.addEventListener('keyup', function(e){
+        rupiah.value = formatRupiah(this.value, ''); //this.value, 'Rp. '
+    });
+    /* Function Rp */
+    function formatRupiah(angka, prefix){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   		= number_string.split(','),
+        remainder     		= split[0].length % 3,
+        rupiah     		= split[0].substr(0, remainder),
+        thousand     		= split[0].substr(remainder).match(/\d{3}/gi);
+        if(thousand){
+            separator = remainder ? '.' : '';
+            rupiah += separator + thousand.join('.');
+        }
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? '' + rupiah : ''); //rupiah ?  'Rp. '
+    }
+</script>
+
 {{-- Select 2 --}}
 <script>
     //Initialize Select2 Elements
     $('.select2').select2()
+</script>
+
+<!-- Initialize datetimepicker -->
+<script type="text/javascript">
+    $(function () {
+                 $('#myDatepicker').datetimepicker();
+             });
+     
+     $('#myDatepicker2').datetimepicker({
+         format: 'DD.MM.YYYY'
+     });
+     
+     $('#myDatepicker3').datetimepicker({
+         format: 'hh:mm A'
+     });
+     
+     $('#myDatepicker4').datetimepicker({
+         ignoreReadonly: true,
+         allowInputToggle: true
+     });
+ 
+     $('#datetimepicker6').datetimepicker();
+     
+     $('#datetimepicker7').datetimepicker({
+         useCurrent: false
+     });
+     
+     $("#datetimepicker6").on("dp.change", function(e) {
+         $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+     });
+     
+     $("#datetimepicker7").on("dp.change", function(e) {
+         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+     });
 </script>
 
 {{-- Purchase Appendchild JS --}}

@@ -13,7 +13,7 @@
     <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list"
-          aria-selected="true">Daftar Anggota</a>
+          aria-selected="true">Data Anggota</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#type" role="tab" aria-controls="type"
@@ -51,7 +51,7 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
+                    <li><a href="{{ route('member.create.data') }}"><button type="button" class="btn btn-info">
                     <li class="fa fa-plus"></li>&nbsp; Add Anggota</button></a>
                     </li>
                   </ul>
@@ -77,17 +77,6 @@
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -104,7 +93,7 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
+                    <li><a href="{{ route('member.create.type') }}"><button type="button" class="btn btn-info">
                     <li class="fa fa-plus"></li>&nbsp; Add Jenis Anggota</button></a>
                     </li>
                   </ul>
@@ -149,7 +138,7 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
+                    <li><a href="{{ route('member.create.position') }}"><button type="button" class="btn btn-info">
                     <li class="fa fa-plus"></li>&nbsp; Add Jabatan</button></a>
                     </li>
                   </ul>

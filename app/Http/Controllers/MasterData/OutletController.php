@@ -12,7 +12,7 @@ class OutletController extends Controller
         $data = [
             'dataOutlet'   => Outlet::orderBy('created_at', 'desc')->get()
         ];
-        return view('page.master-data.outlet', $data);
+        return view('page.master-data.outlet.outlet', $data);
     }
 
     public function store(Request $request){

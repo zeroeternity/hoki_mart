@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('t_purchases', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('supllier_id')->references('id')->on('m_suppliers');
+            $table->foreignId('supllier_id')->references('id')->on('suppliers');
             $table->foreignId('stock_id')->references('id')->on('stocks');
             $table->foreignId('purchase_journal_id')->references('id')->on('purchase_journals');
-            $table->foreignId('m_units_id')->references('id')->on('m_units');
+            $table->foreignId('units_id')->references('id')->on('units');
             $table->string('no_faktur');
             $table->timestamp('tgl_faktur');
             $table->timestamp('tgl_jatuh_tempo')->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('t_purchases');
+        Schema::dropIfExists('purchases');
     }
 };

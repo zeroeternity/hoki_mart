@@ -12,7 +12,7 @@ class UnitController extends Controller
         $data = [
             'dataUnit'   => Unit::orderBy('created_at', 'desc')->get()
         ];
-        return view('page.master-data.unit', $data);
+        return view('page.master-data.unit.unit', $data);
     }
 
     public function store(Request $request){

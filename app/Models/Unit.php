@@ -9,6 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Unit extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'm_units';
+    protected $table = 'units';
     protected $guarded = [];
 }

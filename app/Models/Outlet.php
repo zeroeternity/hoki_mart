@@ -9,6 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Outlet extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'm_outlets';
+    protected $table = 'outlets';
     protected $guarded = [];
 }

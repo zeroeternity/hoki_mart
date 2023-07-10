@@ -25,7 +25,18 @@
 <!-- Bootstrap4 Duallistbox -->
 <link rel="stylesheet" href="{{asset ('template/vendors/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
 
-
+<!-- bootstrap-datetimepicker -->
+<link href="{{asset ('template/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css')}}"
+    rel="stylesheet">
+<!-- Ion.RangeSlider -->
+<link href="{{asset ('template/vendors/normalize-css/normalize.css')}}" rel="stylesheet">
+<link href="{{asset ('template/vendors/ion.rangeSlider/css/ion.rangeSlider.css')}}" rel="stylesheet">
+<link href="{{asset ('template/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
+<!-- Bootstrap Colorpicker -->
+<link href="{{asset ('template/vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css')}}"
+    rel="stylesheet">
+{{-- Cropper --}}
+<link href="{{asset ('template/vendors/cropper/dist/cropper.min.css')}}" rel="stylesheet">
 
 <!-- Datatables -->
 <link href="{{asset ('template/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">

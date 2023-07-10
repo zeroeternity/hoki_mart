@@ -71,6 +71,12 @@ Route::get('/accountancy/trial', [AccountancyController::class, 'trial'])->name(
 
 // Member
 Route::get('/member', [MemberController::class, 'index'])->name('member');
+Route::get('/member/data/create', [MemberController::class, 'createData'])->name('member.create.data');
+Route::get('/member/type/create', [MemberController::class, 'createType'])->name('member.create.type');
+Route::get('/member/position/create', [MemberController::class, 'createPosition'])->name('member.create.position');
+Route::post('/member/data/store', [MemberController::class, 'storeData'])->name('member.store.data');
+Route::post('/member/type/store', [MemberController::class, 'storeType'])->name('member.store.type');
+Route::post('/member/position/store', [MemberController::class, 'storePosition'])->name('member.store.position');
 
 // Master Data - Outlet
 Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');
