@@ -51,6 +51,7 @@ Route::get('/sale/instalment', [SaleController::class, 'instalment'])->name('sal
 Route::get('/sale/create_instalment', [SaleController::class, 'create_instalment'])->name('sale.create_instalment');
 
 //warehouse
+Route::get('/warehouse', [WarehouseController::class, 'index'])->name('warehouse');
 Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
 Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
 Route::get('/warehouse/stock', [WarehouseController::class, 'stock'])->name('warehouse.stock');

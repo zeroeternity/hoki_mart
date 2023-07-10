@@ -26,7 +26,7 @@
                         <form action="{{ route('supplier.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Code
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Code
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Nama
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Address
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Address
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nomor
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Nomor
                                     Rekening
                                     <span class="required">*</span>
                                 </label>
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Pemilik
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Nama Pemilik
                                     Rekening
                                     <span class="required">*</span>
                                 </label>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Bank
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Nama Bank
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">NPWP
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">NPWP
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <input type="number" class="form-control
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nomor
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Nomor
                                     Telepon
                                     <span class="required">*</span>
                                 </label>
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Email
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Email
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Status
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Status
                                     Aktifasi Akun
                                     <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
