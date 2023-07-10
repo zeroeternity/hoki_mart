@@ -38,13 +38,13 @@
           <div class="x_panel">
             <div class="page-title">
               <div class="title_left">
-                <h2>Data Anggota</h2>
+                <h2>Data Barang</h2>
               </div>
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
-                    <li class="fa fa-plus"></li>&nbsp; Add Anggota</button></a>
+                    <li><a href="{{ route('goods.create') }}"><button type="button" class="btn btn-info">
+                    <li class="fa fa-plus"></li>&nbsp; Add Barang</button></a>
                     </li>
                   </ul>
                 </div>

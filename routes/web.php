@@ -12,6 +12,7 @@ use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Warehouse\WarehouseController;
+use App\Http\Controllers\Warehouse\GoodsController;
 use App\Http\Controllers\Sale\SaleController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,11 +52,14 @@ Route::get('/sale/instalment', [SaleController::class, 'instalment'])->name('sal
 Route::get('/sale/create_instalment', [SaleController::class, 'create_instalment'])->name('sale.create_instalment');
 
 //warehouse
-Route::get('/warehouse', [WarehouseController::class, 'index'])->name('warehouse');
 Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
 Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
 Route::get('/warehouse/stock', [WarehouseController::class, 'stock'])->name('warehouse.stock');
 Route::get('/warehouse/stock_outlet', [WarehouseController::class, 'stock_outlet'])->name('warehouse.stock_outlet');
+
+//warehouse - Goods
+Route::get('/warehouse/goods', [GoodsController::class, 'index'])->name('goods');
+Route::get('/warehouse/goods/create', [GoodsController::class, 'create'])->name('goods.create');
 
 //accountancy
 Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');

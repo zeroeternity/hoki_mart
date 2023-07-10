@@ -28,6 +28,31 @@ class UnitController extends Controller
         return back()->with('success', 'Create Success!');
     }
 
+    public function edit($id){
+        $dataUnit = Unit::find($id);
+        $data = [
+            'id'                => $dataUnit->id,
+            'name'              => $dataUnit->name,
+        ];
+        return view('page.master-data.unit.edit-unit', $data);
+    }
+
+    public function update(request $request)
+    {
+        $request->validate([
+            'name'              => 'required|string',
+        ]);
+
+        $id         = $request->id;
+        $name           = $request->name;
+
+        $dataUnit = Unit::find($id);
+        $dataUnit->name             = $name;
+        $dataUnit->save();
+
+        return redirect()->route('unit');
+    }
+
     public function destroy($id)
     {
         Unit::find($id)->delete();
