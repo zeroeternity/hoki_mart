@@ -65,10 +65,12 @@
                   <th class="column-title">Stock Minimum</th>
                   <th class="column-title">Margin Karyawan</th>
                   <th class="column-title">Persen Non Margin</th>
+                  <th class="column-title">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -109,10 +111,12 @@
                 <tr class="headings">
                   <th class="column-title">No</th>
                   <th class="column-title">Satuan</th>
+                  <th class="column-title">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td></td>
                   <td></td>
                   <td></td>
                 </tr>
@@ -145,10 +149,12 @@
                   <th class="column-title">No</th>
                   <th class="column-title">Kode</th>
                   <th class="column-title">Nama group</th>
+                  <th class="column-title">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -182,10 +188,12 @@
                   <th class="column-title">Jenis</th>
                   <th class="column-title">Persen</th>
                   <th class="column-title">PPN Beli</th>
+                  <th class="column-title">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -218,10 +226,12 @@
                 <tr class="headings">
                   <th class="column-title">Kode Barang</th>
                   <th class="column-title">Nama Barang</th>
+                  <th class="column-title">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td></td>
                   <td></td>
                   <td></td>
                 </tr>
