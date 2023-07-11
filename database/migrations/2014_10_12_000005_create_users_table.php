@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->date('birthdate')->nullable();
             $table->date('entry_date')->nullable();
+            $table->enum('state', ['0', '1'])->default(1)->comment('1 = Active, 0 = NonActive');
             $table->rememberToken()->nullable();
             $table->timestamps();
             $table->softDeletes();

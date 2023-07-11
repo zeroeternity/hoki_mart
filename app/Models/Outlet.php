@@ -11,4 +11,9 @@ class Outlet extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'outlets';
     protected $guarded = [];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'outlet_id', 'id');
+    }
 }

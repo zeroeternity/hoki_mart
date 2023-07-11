@@ -11,4 +11,9 @@ class Estate extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'estates';
     protected $guarded = [];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'estate_id', 'id');
+    }
 }

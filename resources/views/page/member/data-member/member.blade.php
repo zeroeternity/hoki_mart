@@ -24,8 +24,8 @@
           aria-selected="false">Jabatan</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="import-voucher-tab" data-toggle="tab" href="#import-voucher" role="tab" aria-controls="import-voucher"
-          aria-selected="false">Import Voucher Beras</a>
+        <a class="nav-link" id="import-voucher-tab" data-toggle="tab" href="#import-voucher" role="tab"
+          aria-controls="import-voucher" aria-selected="false">Import Voucher Beras</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab" aria-controls="import"
@@ -76,8 +76,33 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                @foreach($dataMember as $key => $member)
+                <tr class="">
+                  <td class=" ">{{ $loop->iteration }}</td>
+                  <td class=" ">{{ $member->memberType->type }} </td>
+                  <td class=" ">{{ $member->estate->estate }} </td>
+                  <td class=" ">{{ $member->name }}</td>
+                  <td class=" ">{{ $member->ktp }}</td>
+                  <td class=" ">{{ $member->position->name }}</td>
+                  <td class=" ">{{ $member->birthdate }}</td>
+                  <td class=" ">{{ $member->gender }}</td>
+                  <td class=" ">{{ $member->entry_date }}</td>
+                  <td class="">
+                    @if($member->state== '1')
+                    Aktif
+                    @else
+                    Non Aktif
+                    @endif
+                  </td>
+                  <td class=" last">
+                    <a href="{{ route('supplier.edit',[$member->id]) }}">
+                      <button type="button" class="btn btn-info">
+                        <li class="fa fa-edit"></li>
+                      </button>
+                    </a>
+                  </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -110,19 +135,35 @@
                   <th class="column-title">Margin</th>
                   <th class="column-title">Range Tanggal</th>
                   <th class="column-title">S/D</th>
+                  <th class="column-title">Status</th>
                   <th class="column-title">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                @foreach($dataMemberType as $key => $memberType)
+                <tr class="">
+                  <td class=" ">{{ $loop->iteration }}</td>
+                  <td class=" ">{{ $memberType->type }}</td>
+                  <td class=" ">{{ $memberType->credit_limit }}</td>
+                  <td class=" ">{{ $memberType->margin }}</td>
+                  <td class=" ">{{ $memberType->range_date }}</td>
+                  <td class=" ">{{ $memberType->up_to }}</td>
+                  <td class="">
+                    @if($memberType->state== '1')
+                    SHU
+                    @else
+                    Non SHU
+                    @endif
+                  </td>
+                  <td class=" last">
+                    <a href="{{ route('supplier.edit',[$memberType->id]) }}">
+                      <button type="button" class="btn btn-info">
+                        <li class="fa fa-edit"></li>
+                      </button>
+                    </a>
+                  </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -155,11 +196,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                @foreach($dataPosition as $key => $position)
+                <tr class="">
+                  <td class=" ">{{ $loop->iteration }}</td>
+                  <td class=" ">{{ $position->name }}</td>
+                  <td class=" last">
+                    <a href="{{ route('supplier.edit',[$position->id]) }}">
+                      <button type="button" class="btn btn-info">
+                        <li class="fa fa-edit"></li>
+                      </button>
+                    </a>
+                  </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -231,32 +280,32 @@
             <table id="datatable-fixed-header" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr class="headings">
-                    <th class="column-title">No</th>
-                    <th class="column-title">Jenis Anggota</th>
-                    <th class="column-title">Estate</th>
-                    <th class="column-title">Nama Anggota</th>
-                    <th class="column-title">No KTP</th>
-                    <th class="column-title">Jabatan</th>
-                    <th class="column-title">Tanggal Lahir</th>
-                    <th class="column-title">Gender</th>
-                    <th class="column-title">Tanggal Masuk</th>
-                    <th class="column-title">Status</th>
-                    <th class="column-title">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  <th class="column-title">No</th>
+                  <th class="column-title">Jenis Anggota</th>
+                  <th class="column-title">Estate</th>
+                  <th class="column-title">Nama Anggota</th>
+                  <th class="column-title">No KTP</th>
+                  <th class="column-title">Jabatan</th>
+                  <th class="column-title">Tanggal Lahir</th>
+                  <th class="column-title">Gender</th>
+                  <th class="column-title">Tanggal Masuk</th>
+                  <th class="column-title">Status</th>
+                  <th class="column-title">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>

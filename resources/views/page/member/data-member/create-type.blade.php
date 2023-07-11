@@ -27,6 +27,18 @@
                         <form action="{{ route('member.store.type') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Status SHU
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="state">
+                                        <option value="1">SHU</option>
+                                        <option value="0">Non SHU</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis
                                     <span class="required">*</span>
                                 </label>

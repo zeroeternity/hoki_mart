@@ -11,4 +11,9 @@ class Position extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'positions';
     protected $guarded = [];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'position_id', 'id');
+    }
 }
