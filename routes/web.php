@@ -69,7 +69,7 @@ Route::get('/accountancy/calculation', [AccountancyController::class, 'calculati
 Route::get('/accountancy/balance', [AccountancyController::class, 'balance'])->name('accountancy.balance');
 Route::get('/accountancy/trial', [AccountancyController::class, 'trial'])->name('accountancy.trial');
 
-// Member
+// Member Data, Type and Position
 Route::get('/member', [MemberController::class, 'index'])->name('member');
 Route::get('/member/data/create', [MemberController::class, 'createData'])->name('member.create.data');
 Route::get('/member/type/create', [MemberController::class, 'createType'])->name('member.create.type');
@@ -77,6 +77,9 @@ Route::get('/member/position/create', [MemberController::class, 'createPosition'
 Route::post('/member/data/store', [MemberController::class, 'storeData'])->name('member.store.data');
 Route::post('/member/type/store', [MemberController::class, 'storeType'])->name('member.store.type');
 Route::post('/member/position/store', [MemberController::class, 'storePosition'])->name('member.store.position');
+Route::get('/member/data/edit/{id}', [MemberController::class, 'editData'])->name('member.edit.data');
+Route::get('/member/type/edit/{id}', [MemberController::class, 'editType'])->name('member.edit.type');
+Route::get('/member/position/edit/{id}', [MemberController::class, 'editPosition'])->name('member.edit.position');
 
 // Master Data - Outlet
 Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');

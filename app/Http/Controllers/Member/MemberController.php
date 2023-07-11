@@ -14,7 +14,9 @@ class MemberController extends Controller
 {
     public function index(){
         $data = [
-            'dataMember'        => User::orderBy('created_at', 'desc')->get(),
+            'dataMember'        => User::where('role_id','3')
+                                        ->with('memberType', 'estate', 'position')
+                                        ->orderBy('created_at', 'desc')->get(),
             'dataMemberType'    => MemberType::orderBy('created_at', 'desc')->get(),
             'dataPosition'      => Position::orderBy('created_at', 'desc')->get(),
         ];
@@ -95,6 +97,7 @@ class MemberController extends Controller
         $margin         = $request->margin;
         $range_date     = $request->range_date;
         $up_to          = $request->up_to;
+        $state          = $request->state;
 
         $data = new MemberType();
         $data->type         = $type;
@@ -102,6 +105,7 @@ class MemberController extends Controller
         $data->margin       = $margin;
         $data->range_date   = $range_date;
         $data->up_to        = $up_to;
+        $data->state        = $state;
         $data->save();
 
         return redirect()->route('member',['#type']);
@@ -117,5 +121,30 @@ class MemberController extends Controller
         $data->save();
 
         return redirect()->route('member',['#position']);
+    }
+
+    public function editMember($id){
+            $dataMember = User::where('role_id','3')
+                                ->with('memberType', 'estate', 'position')
+                                ->find($id);
+            $data = [
+                'id'                => $dataMember->id,
+                'member_type_id'    => $dataMember->memberType->id,
+                'member_type'       => $dataMember->memberType->type,
+                'estate_id'         => $dataMember->estate->id,
+                'estate'            => $dataMember->estate->estate,
+                'position_id'       => $dataMember->position->id,
+                'position'          => $dataMember->position->name,
+                'name'              => $dataMember->name,
+                'email'             => $dataMember->email,
+                'phone'             => $dataMember->phone,
+                'password'          => $dataMember->password,
+                'ktp'               => $dataMember->ktp,
+                'gender'            => $dataMember->gender,
+                'birthdate'         => $dataMember->birthdate,
+                'entry_date'        => $dataMember->entry_date,
+                'state'             => $dataMember->state,
+            ];
+            return view('page.master-data.supplier.edit-supplier', $data);
     }
 }

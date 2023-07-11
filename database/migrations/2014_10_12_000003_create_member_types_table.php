@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('margin');
             $table->integer('range_date');
             $table->integer('up_to');
+            $table->enum('state', ['0', '1'])->default(1)->comment('1 = SHU, 0 = NonSHU');
             $table->timestamps();
             $table->softDeletes();
         });

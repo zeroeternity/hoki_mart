@@ -26,4 +26,24 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
+
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
+    }
+
+    public function memberType()
+    {
+        return $this->belongsTo(MemberType::class, 'member_type_id', 'id');
+    }
+
+    public function estate()
+    {
+        return $this->belongsTo(Estate::class, 'estate_id', 'id');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'position_id', 'id');
+    }
 }
