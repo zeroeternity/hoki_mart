@@ -6,13 +6,14 @@ use App\Http\Controllers\MasterData\BankAcountController;
 use App\Http\Controllers\MasterData\EstateController;
 use App\Http\Controllers\MasterData\OutletController;
 use App\Http\Controllers\MasterData\SupplierController;
-use App\Http\Controllers\MasterData\UnitController;
 use App\Http\Controllers\Accountancy\AccountancyController;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Warehouse\WarehouseController;
 use App\Http\Controllers\Warehouse\GoodsController;
+use App\Http\Controllers\Warehouse\UnitController;
+use App\Http\Controllers\Warehouse\GroupController;
 use App\Http\Controllers\Sale\SaleController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,16 @@ Route::get('/warehouse/stock_outlet', [WarehouseController::class, 'stock_outlet
 //warehouse - Goods
 Route::get('/warehouse/goods', [GoodsController::class, 'index'])->name('goods');
 Route::get('/warehouse/goods/create', [GoodsController::class, 'create'])->name('goods.create');
+
+//warehouse - Units
+Route::get('/warehouse/unit', [UnitController::class, 'index'])->name('unit');
+Route::post('/warehouse/unit/store', [UnitController::class, 'store'])->name('unit.store');
+Route::delete('/warehouse/unit/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
+
+//warehouse - Group
+Route::get('/warehouse/group', [GroupController::class, 'index'])->name('group');
+Route::post('/master-data/group/store', [GroupController::class, 'store'])->name('group.store');
+Route::delete('/master-data/group/destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
 
 //accountancy
 Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');
