@@ -21,7 +21,7 @@ class SupplierController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'code'              => 'required|unique:m_suppliers,code',
+            'code'              => 'required|unique:suppliers,code',
             'name'              => 'required|string',
             'address'           => 'required|string',
             'account_number'    => 'required|string',
@@ -79,7 +79,7 @@ class SupplierController extends Controller
     public function update(request $request)
     {
         $request->validate([
-            'code'              => 'required|unique:m_suppliers,code',
+            'code'              => 'required|unique:suppliers,code',
             'name'              => 'required|string',
             'address'           => 'required|string',
             'account_number'    => 'required|string',

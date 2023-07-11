@@ -133,7 +133,6 @@
                                     <select class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;"
                                         name="position_id">
-                                        <option value=""></option>
                                         @foreach($dataPosition as $key => $position)
                                         <option value="{{ $position->id }}">{{ $position->name }}</option>
                                         @endforeach
