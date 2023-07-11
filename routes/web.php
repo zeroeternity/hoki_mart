@@ -87,6 +87,7 @@ Route::delete('/master-data/outlet/destroy/{id}', [OutletController::class, 'des
 Route::get('/master-data/unit', [UnitController::class, 'index'])->name('unit');
 Route::post('/master-data/unit/store', [UnitController::class, 'store'])->name('unit.store');
 Route::delete('/master-data/unit/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
+Route::get('/master-data/unit/getData', [UnitController::class, 'getData'])->name('unit.getdata');
 
 // Master Data - Supplier
 Route::get('/master-data/supplier', [SupplierController::class, 'index'])->name('supplier');

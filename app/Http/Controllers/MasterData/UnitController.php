@@ -58,4 +58,9 @@ class UnitController extends Controller
         Unit::find($id)->delete();
         return back()->with('success', 'Delete Success!');
     }
+    public function getData()
+    {
+       $unit = Unit::orderBy('created_at', 'desc')->get();
+        return response()->json($unit);
+    }
 }
