@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('group');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

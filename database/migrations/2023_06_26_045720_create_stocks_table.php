@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('group');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

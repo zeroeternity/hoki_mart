@@ -64,6 +64,22 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Email
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <input type="text" class="form-control" required="required" name="email">
+                                </div>
+                            </div>
+                            <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Telephone
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <input type="number" class="form-control" required="required" name="phone">
+                                </div>
+                            </div>
+                            <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">KTP
                                     <span class="required">*</span>
                                 </label>

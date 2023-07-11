@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('variation');
             $table->integer('total');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

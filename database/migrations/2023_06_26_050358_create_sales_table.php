@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('subtotal');
             $table->integer('grandtotal');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

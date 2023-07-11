@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('grandtotal_pembelian');
             $table->integer('purchase_price');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

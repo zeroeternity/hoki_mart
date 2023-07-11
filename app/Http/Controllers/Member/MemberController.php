@@ -7,13 +7,14 @@ use App\Models\Estate;
 use App\Models\MemberData;
 use App\Models\MemberType;
 use App\Models\Position;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
     public function index(){
         $data = [
-            'dataMember'        => MemberData::orderBy('created_at', 'desc')->get(),
+            'dataMember'        => User::orderBy('created_at', 'desc')->get(),
             'dataMemberType'    => MemberType::orderBy('created_at', 'desc')->get(),
             'dataPosition'      => Position::orderBy('created_at', 'desc')->get(),
         ];
@@ -41,29 +42,40 @@ class MemberController extends Controller
             'estate_id'         => 'required',
             'position_id'       => 'required',
             'name'              => 'required|string',
+            'email'             => 'required|email|unique:users,email',
+            'phone'             => 'required|string|unique:users,phone',
             'ktp'               => 'required|string',
             'gender'            => 'required|string',
             'birthdate'         => 'required|date',
             'entry_date'        => 'required|date',
         ]);
+
         $member_type_id = $request->member_type_id;
         $estate_id      = $request->estate_id;
         $position_id    = $request->position_id;
         $name           = $request->name;
+        $email          = $request->email;
+        $phone          = $request->phone;
         $ktp            = str_replace('-','',$request->ktp);
         $gender         = $request->gender;
         $birthdate      = $request->birthdate;
         $entry_date     = $request->entry_date;
+        $password       = bcrypt(str_replace('-','',$request->birthdate));
 
-        $data = new MemberData();
+        $data = new User();
+        $data->role_id          = 3;
+        $data->outlet_id        = 1;
         $data->member_type_id   = $member_type_id;
         $data->estate_id        = $estate_id;
         $data->position_id      = $position_id;
         $data->name             = $name;
+        $data->email            = $email;
+        $data->phone            = $phone;
         $data->ktp              = $ktp;
         $data->gender           = $gender;
         $data->birthdate        = $birthdate;
         $data->entry_date       = $entry_date;
+        $data->password         = $password;
         $data->save();
 
         return redirect()->route('member',['#data']);

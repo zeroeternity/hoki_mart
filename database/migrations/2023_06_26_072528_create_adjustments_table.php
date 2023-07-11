@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('qty_stock');
             $table->integer('qty_stock_new');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

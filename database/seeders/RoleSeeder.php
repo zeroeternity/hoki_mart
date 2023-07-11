@@ -20,12 +20,12 @@ class RoleSeeder extends Seeder
                 'updated_at'    => now(),
             ],
             [
-                'name'          => 'kasir',
+                'name'          => 'casheer',
                 'created_at'    => now(),
                 'updated_at'    => now(),
             ],
             [
-                'name'          => 'staf',
+                'name'          => 'member',
                 'created_at'    => now(),
                 'updated_at'    => now(),
             ],
