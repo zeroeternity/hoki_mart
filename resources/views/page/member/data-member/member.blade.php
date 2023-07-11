@@ -95,7 +95,7 @@
                     @endif
                   </td>
                   <td class=" last">
-                    <a href="{{ route('supplier.edit',[$member->id]) }}">
+                    <a href="{{ route('member.edit.data',[$member->id]) }}">
                       <button type="button" class="btn btn-info">
                         <li class="fa fa-edit"></li>
                       </button>
@@ -156,7 +156,7 @@
                     @endif
                   </td>
                   <td class=" last">
-                    <a href="{{ route('supplier.edit',[$memberType->id]) }}">
+                    <a href="{{ route('member.edit.type',[$memberType->id]) }}">
                       <button type="button" class="btn btn-info">
                         <li class="fa fa-edit"></li>
                       </button>
@@ -201,7 +201,7 @@
                   <td class=" ">{{ $loop->iteration }}</td>
                   <td class=" ">{{ $position->name }}</td>
                   <td class=" last">
-                    <a href="{{ route('supplier.edit',[$position->id]) }}">
+                    <a href="{{ route('member.edit.position',[$position->id]) }}">
                       <button type="button" class="btn btn-info">
                         <li class="fa fa-edit"></li>
                       </button>

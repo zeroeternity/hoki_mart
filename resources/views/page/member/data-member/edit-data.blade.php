@@ -24,8 +24,13 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form action="{{ route('member.store.data') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('member.update.data') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
+                            <input type="text" class="form-control 
+                                        @error('id')
+                                            is-invalid
+                                        @enderror" value="{{ $id }}" name="id" id="id" readonly hidden />
                             <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Anggota
                                     <span class="required">*</span>
@@ -34,9 +39,9 @@
                                     <select class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;"
                                         name="member_type_id">
-                                        <option value=""></option>
                                         @foreach($dataMemberType as $key => $memberType)
-                                        <option value="{{ $memberType->id }}">{{ $memberType->type }}</option>
+                                        <option value="{{ $memberType->id }}" {{ $memberType->id == $member_type_id ?
+                                            'selected' : '' }}>{{ $memberType->type }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -48,9 +53,9 @@
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <select class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="estate_id">
-                                        <option value=""></option>
                                         @foreach($dataEstate as $key => $estate)
-                                        <option value="{{ $estate->id }}">{{ $estate->estate }}</option>
+                                        <option value="{{ $estate->id }}" {{ $estate->id == $estate_id ?
+                                            'selected' : '' }}>{{ $estate->estate }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -134,7 +139,8 @@
                                         data-dropdown-css-class="select2-danger" style="width: 100%;"
                                         name="position_id">
                                         @foreach($dataPosition as $key => $position)
-                                        <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                        <option value="{{ $position->id }}" {{ $position->id == $position_id ?
+                                            'selected' : '' }}>{{ $position->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

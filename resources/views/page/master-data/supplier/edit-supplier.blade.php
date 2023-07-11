@@ -23,8 +23,13 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form action="{{ route('supplier.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('supplier.update') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
+                            <input type="text" class="form-control 
+                                        @error('id')
+                                            is-invalid
+                                        @enderror" value="{{ $id }}" name="id" id="id" readonly hidden />
                             <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Code
                                     <span class="required">*</span>
@@ -132,8 +137,10 @@
                                     <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <select name="state" class="custom-select" id="state">
-                                        <option @php if($state=="1" ){echo "selected" ;} @endphp>Aktif</option>
-                                        <option @php if($state=="0" ){echo "selected" ;} @endphp>Tidak Aktif</option>
+                                        <option value="1" @php if($state=="1" ){echo "selected" ;} @endphp>Aktif
+                                        </option>
+                                        <option value="0" @php if($state=="0" ){echo "selected" ;} @endphp>Tidak Aktif
+                                        </option>
                                     </select>
                                 </div>
                             </div>

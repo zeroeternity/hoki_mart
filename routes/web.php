@@ -91,6 +91,9 @@ Route::post('/member/position/store', [MemberController::class, 'storePosition']
 Route::get('/member/data/edit/{id}', [MemberController::class, 'editData'])->name('member.edit.data');
 Route::get('/member/type/edit/{id}', [MemberController::class, 'editType'])->name('member.edit.type');
 Route::get('/member/position/edit/{id}', [MemberController::class, 'editPosition'])->name('member.edit.position');
+Route::put('/member/data/update', [MemberController::class, 'updateData'])->name('member.update.data');
+Route::put('/member/type/update', [MemberController::class, 'updateType'])->name('member.update.type');
+Route::put('/member/position/update', [MemberController::class, 'updatePosition'])->name('member.update.position');
 
 // Master Data - Outlet
 Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');

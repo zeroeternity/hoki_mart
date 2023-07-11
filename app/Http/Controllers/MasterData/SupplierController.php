@@ -5,6 +5,8 @@ namespace App\Http\Controllers\MasterData;
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class SupplierController extends Controller
 {
@@ -79,7 +81,7 @@ class SupplierController extends Controller
     public function update(request $request)
     {
         $request->validate([
-            'code'              => 'required|unique:suppliers,code',
+            'code'              => ['required','string', Rule::unique('suppliers', 'code')->ignore($request->id, 'id')],
             'name'              => 'required|string',
             'address'           => 'required|string',
             'account_number'    => 'required|string',
@@ -88,9 +90,10 @@ class SupplierController extends Controller
             'npwp'              => 'string',
             'telephone'         => 'required|numeric',
             'email'             => 'required|email',
+            'state'             => 'required',
         ]);
 
-        $id         = $request->id;
+        $id             = $request->id;
         $code           = $request->code;
         $name           = $request->name;
         $address        = $request->address;
