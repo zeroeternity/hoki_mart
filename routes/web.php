@@ -16,6 +16,7 @@ use App\Http\Controllers\Warehouse\UnitController;
 use App\Http\Controllers\Warehouse\GroupController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Warehouse\PPNTypeController;
+use App\Http\Controllers\Warehouse\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,6 +78,11 @@ Route::delete('/warehouse/group/destroy/{id}', [GroupController::class, 'destroy
 Route::get('/warehouse/ppn', [PPNTypeController::class, 'index'])->name('ppn');
 Route::post('/warehouse/ppn/store', [PPNTypeController::class, 'store'])->name('ppn.store');
 Route::delete('/warehouse/ppn/destroy/{id}', [PPNTypeController::class, 'destroy'])->name('ppn.destroy');
+
+//warehouse - Voucher
+Route::get('/warehouse/voucher', [VoucherController::class, 'index'])->name('voucher');
+Route::post('/warehouse/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
+Route::delete('/warehouse/voucher/destroy/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
 
 //accountancy
 Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');

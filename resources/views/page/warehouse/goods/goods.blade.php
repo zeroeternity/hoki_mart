@@ -213,15 +213,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  @foreach($dataPPN as $key => $ppn)
+                @foreach($dataPPN as $key => $ppn)
                 <tr class="">
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $ppn->type }}</td>
                   <td>{{ $ppn->percent }}</td>
                   <td>{{ $ppn->ppn_buy }}</td>
                   <td>
-                    <form action="{{ route('ppn.destroy', $group->id) }}" method="POST">
+                    <form action="{{ route('ppn.destroy', $ppn->id) }}" method="POST">
                       @csrf
                       @method('delete')
                       <button type="submit" class="btn btn-success">
@@ -231,7 +230,6 @@
                   </td>
                 </tr>
                 @endforeach
-                </tr>
               </tbody>
             </table>
           </div>
@@ -247,7 +245,7 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
+                    <li><a href="{{ route('voucher') }}"><button type="button" class="btn btn-info">
                     <li class="fa fa-plus"></li>&nbsp; Add Barang Voucher</button></a>
                     </li>
                   </ul>
@@ -258,6 +256,7 @@
             <table id="datatable-fixed-header" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr class="headings">
+                  <th class="column-title">No</th>
                   <th class="column-title">Kode Barang</th>
                   <th class="column-title">Nama Barang</th>
                   <th class="column-title">Action</th>
@@ -265,9 +264,22 @@
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  @foreach($dataVoucher as $key => $voucher)
+                <tr class="">
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $voucher->code }}</td>
+                  <td>{{ $voucher->name }}</td>
+                  <td>
+                    <form action="{{ route('voucher.destroy', $voucher->id) }}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <button type="submit" class="btn btn-success">
+                        <li class="fa fa-trash"></li>&nbsp;Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                @endforeach
                 </tr>
               </tbody>
             </table>
