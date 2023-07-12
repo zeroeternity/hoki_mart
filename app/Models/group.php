@@ -11,4 +11,9 @@ class Group extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'groups';
     protected $guarded = [];
+
+    public function goods()
+    {
+        return $this->hasMany(Group::class, 'group_id', 'id');
+    }
 }

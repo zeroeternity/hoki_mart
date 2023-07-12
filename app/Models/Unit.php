@@ -11,4 +11,9 @@ class Unit extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'units';
     protected $guarded = [];
+
+    public function goods()
+    {
+        return $this->hasMany(Unit::class, 'unit_id', 'id');
+    }
 }

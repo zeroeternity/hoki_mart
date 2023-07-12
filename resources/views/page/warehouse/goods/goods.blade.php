@@ -63,26 +63,34 @@
                   <th class="column-title">Harga Beli</th>
                   <th class="column-title">Harga Jual</th>
                   <th class="column-title">Stock Minimum</th>
-                  <th class="column-title">Margin Karyawan</th>
                   <th class="column-title">Persen Non Margin</th>
                   <th class="column-title">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                @foreach($dataGoods as $key => $goods)
+                <tr class="">
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $goods->code }}</td>
+                  <td>{{ $goods->name }}</td>
+                  <td>{{ $goods->group->name }}</td>
+                  <td>{{ $goods->ppnType->type }}</td>
+                  <td>{{ $goods->unit->name }}</td>
+                  <td>{{ $goods->purchase_price }}</td>
+                  <td>{{ $goods->selling_price }}</td>
+                  <td>{{ $goods->minimum_stock }}</td>
+                  <td>{{ $goods->percent_non_margin }}</td>
+                  <td>
+                    <form action="" method="POST">
+                      @csrf
+                      @method('put')
+                      <button type="submit" class="btn btn-success">
+                        <li class="fa fa-edit"></li>
+                      </button>
+                    </form>
+                  </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -263,8 +271,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  @foreach($dataVoucher as $key => $voucher)
+                @foreach($dataVoucher as $key => $voucher)
                 <tr class="">
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $voucher->code }}</td>
@@ -280,7 +287,6 @@
                   </td>
                 </tr>
                 @endforeach
-                </tr>
               </tbody>
             </table>
           </div>

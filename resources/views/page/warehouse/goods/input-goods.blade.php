@@ -16,33 +16,50 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Form Daftar Barang <small>Nama / id outlet</small></h2>
+                        <h2>Form Daftar Barang</h2>
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('goods') }}">Data barang</a></li>
+                            <li class="breadcrumb-item active">Tambah Data Barang</li>
+                        </ol>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form action="{{ route('goods.store') }}" method="post" enctype="multipart/form-data">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                            @csrf
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Kode Barang <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Kode Barang <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <input type="text" id="code" required="required" class="form-control " name="code">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Nama Barang <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Nama Barang <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <input type="text" id="name" required="required" class="form-control " name="name">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Group Barang <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Group Barang <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                        name="select_input">
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="group_id">
                                         <option value=""></option>
                                         @foreach($dataGroup as $key => $group)
                                         <option value="{{ $group->id }}">{{ $group->name }}</option>
@@ -51,7 +68,8 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Jenis Barang <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Barang <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2 select2-danger"
@@ -70,8 +88,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                        name="select_input">
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="unit_id">
                                         <option value=""></option>
                                         @foreach($dataUnit as $key => $unit)
                                         <option value="{{ $unit->id }}">{{ $unit->name }}</option>
@@ -80,38 +97,54 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Harga Beli <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Beli <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <input type="number" id="purchase_price" required="required" class="form-control "
+                                        name="purchase_price" oninput="calculateLaba()">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Harga Jual <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Jual <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <input type="number" id="selling_price" required="required" class="form-control "
+                                        name="selling_price" oninput="calculateLaba()">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Stock Minimum <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Stock Minimum <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <input type="number" id="minimum_stock" required="required" class="form-control "
+                                        name="minimum_stock">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Margin Karyawan <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Margin Karyawan <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                        name="margin_member">
+                                        <option value="0">Tidak Aktif</option>
+                                        <option value="1">Aktif</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Persen non margin <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Persen non margin <span
+                                        class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <input type="number" step="any" id="percent_non_margin" required="required"
+                                        class="form-control " name="percent_non_margin"
+                                        oninput="calculateSellingPrice()">
+                                    <span class="form-control-feedback right" aria-hidden="true">%</span>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -128,5 +161,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    const calculateLaba = () => {
+        var purchasePrice       = $("#purchase_price").val()
+        var sellingPrice        = $("#selling_price").val()
+        var percentNonMargin    = $("#percent_non_margin").val()
+
+        if (purchasePrice > 0 && sellingPrice > 0 ){
+            var result = ((sellingPrice - purchasePrice) / purchasePrice) * 100
+
+            $("#percent_non_margin").val(result.toFixed(2))
+        }
+    }
+    const calculateSellingPrice = () => {
+        var purchasePrice       = $("#purchase_price").val()
+        var sellingPrice        = $("#selling_price").val()
+        var percentNonMargin    = $("#percent_non_margin").val()
+
+        if (purchasePrice > 0 && percentNonMargin > 0 ){
+            var result = Number((purchasePrice*percentNonMargin)/100) + Number(purchasePrice)
+
+            $("#selling_price").val(Math.floor(result))
+        }
+    }
+</script>
 
 @endsection

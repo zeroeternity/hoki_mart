@@ -63,6 +63,7 @@ Route::get('/warehouse/stock_outlet', [WarehouseController::class, 'stock_outlet
 //warehouse - Goods
 Route::get('/warehouse/goods', [GoodsController::class, 'index'])->name('goods');
 Route::get('/warehouse/goods/create', [GoodsController::class, 'create'])->name('goods.create');
+Route::post('/warehouse/goods/stores', [GoodsController::class, 'store'])->name('goods.store');
 
 //warehouse - Units
 Route::get('/warehouse/unit', [UnitController::class, 'index'])->name('unit');
