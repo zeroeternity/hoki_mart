@@ -28,8 +28,8 @@ class GroupController extends Controller
         $data->code        = $code;
         $data->name        = $name;
         $data->save();
-
-        return back()->with('success', 'Create Success!');
+        
+        return redirect()->route('goods');
     }
 
     public function destroy($id)

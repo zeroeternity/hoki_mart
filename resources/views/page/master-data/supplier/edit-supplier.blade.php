@@ -24,6 +24,17 @@
                     </div>
                     <div class="x_content">
                         <form action="{{ route('supplier.update') }}" method="post" enctype="multipart/form-data">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             @csrf
                             @method('PUT')
                             <input type="text" class="form-control 

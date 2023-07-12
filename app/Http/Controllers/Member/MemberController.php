@@ -85,11 +85,10 @@ class MemberController extends Controller
         return redirect()->route('member',['#data']);
     }
     public function storeType(Request $request){
-        
         $request->validate([
             'type'          => 'required|string',
             'credit_limit'  => 'required|string',
-            'margin'        => 'required|string',
+            'margin'        => 'required|numeric|between:0,999.99',
             'range_date'    => 'required|numeric',
             'up_to'         => 'required|numeric'
         ]);
@@ -219,7 +218,7 @@ class MemberController extends Controller
         $request->validate([
             'type'          => 'required|string',
             'credit_limit'  => 'required|string',
-            'margin'        => 'required|string',
+            'margin'        => 'required|numeric|between:0,999.99',
             'range_date'    => 'required|numeric',
             'up_to'         => 'required|numeric'
         ]);

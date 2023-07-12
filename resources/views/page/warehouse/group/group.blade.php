@@ -12,10 +12,25 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <form action="{{ route('group.store') }}" method="post" enctype="multipart/form-data">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>
+                                {{ $error }}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     @csrf
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Form Group</h2>
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{{ route('goods') }}">Data Group</a></li>
+                                <li class="breadcrumb-item active">Tambah Data Group</li>
+                            </ol>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">

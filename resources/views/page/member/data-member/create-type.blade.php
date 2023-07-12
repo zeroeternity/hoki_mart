@@ -25,6 +25,17 @@
                     </div>
                     <div class="x_content">
                         <form action="{{ route('member.store.type') }}" method="post" enctype="multipart/form-data">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             @csrf
                             <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Status SHU
@@ -61,7 +72,8 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" class="form-control" required="required" name="margin">
+                                    <input type="number" step="any" class="form-control" required="required"
+                                        name="margin">
                                     <span class="form-control-feedback right" aria-hidden="true">%</span>
                                 </div>
                             </div>

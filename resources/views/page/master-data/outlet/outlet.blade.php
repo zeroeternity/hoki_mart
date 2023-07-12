@@ -12,6 +12,17 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <form action="{{ route('outlet.store') }}" method="post" enctype="multipart/form-data">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>
+                                {{ $error }}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     @csrf
                     <div class="x_panel">
                         <div class="x_title">
@@ -28,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >location
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">location
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">

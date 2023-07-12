@@ -15,6 +15,7 @@ use App\Http\Controllers\Warehouse\GoodsController;
 use App\Http\Controllers\Warehouse\UnitController;
 use App\Http\Controllers\Warehouse\GroupController;
 use App\Http\Controllers\Sale\SaleController;
+use App\Http\Controllers\Warehouse\PPNTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,8 +70,13 @@ Route::delete('/warehouse/unit/destroy/{id}', [UnitController::class, 'destroy']
 
 //warehouse - Group
 Route::get('/warehouse/group', [GroupController::class, 'index'])->name('group');
-Route::post('/master-data/group/store', [GroupController::class, 'store'])->name('group.store');
-Route::delete('/master-data/group/destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
+Route::post('/warehouse/group/store', [GroupController::class, 'store'])->name('group.store');
+Route::delete('/warehouse/group/destroy/{id}', [GroupController::class, 'destroy'])->name('group.destroy');
+
+//warehouse - Jenis PPN & Non PPN
+Route::get('/warehouse/ppn', [PPNTypeController::class, 'index'])->name('ppn');
+Route::post('/warehouse/ppn/store', [PPNTypeController::class, 'store'])->name('ppn.store');
+Route::delete('/warehouse/ppn/destroy/{id}', [PPNTypeController::class, 'destroy'])->name('ppn.destroy');
 
 //accountancy
 Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');

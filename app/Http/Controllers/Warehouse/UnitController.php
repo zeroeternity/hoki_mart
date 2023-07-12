@@ -25,7 +25,7 @@ class UnitController extends Controller
         $data->name        = $name;
         $data->save();
 
-        return back()->with('success', 'Create Success!');
+        return redirect()->route('goods');
     }
 
     public function edit($id){
@@ -44,13 +44,13 @@ class UnitController extends Controller
         ]);
 
         $id         = $request->id;
-        $name           = $request->name;
+        $name       = $request->name;
 
         $dataUnit = Unit::find($id);
         $dataUnit->name             = $name;
         $dataUnit->save();
 
-        return redirect()->route('unit');
+        return redirect()->route('goods');
     }
 
     public function destroy($id)

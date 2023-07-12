@@ -24,6 +24,17 @@
                     </div>
                     <div class="x_content">
                         <form action="{{ route('estate.store') }}" method="post" enctype="multipart/form-data">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             @csrf
                             <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Kode

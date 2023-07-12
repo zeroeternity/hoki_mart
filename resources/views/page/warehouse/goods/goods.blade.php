@@ -25,7 +25,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" id="type-tab" data-toggle="tab" href="#type" role="tab" aria-controls="type"
-          aria-selected="false">Jenis Barang</a>
+          aria-selected="false">Jenis PPN & Non PPN</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="voucher-tab" data-toggle="tab" href="#voucher" role="tab" aria-controls="voucher"
@@ -117,20 +117,20 @@
               <tbody>
                 @foreach($dataUnit as $key => $unit)
                 <tr class="">
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $unit->name }}</td>
-                    <td>
-                        <form action="{{ route('unit.destroy', $unit->id) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-success">
-                                <li class="fa fa-trash"></li>&nbsp;Delete
-                            </button>
-                        </form>
-                    </td>
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $unit->name }}</td>
+                  <td>
+                    <form action="{{ route('unit.destroy', $unit->id) }}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <button type="submit" class="btn btn-success">
+                        <li class="fa fa-trash"></li>&nbsp;Delete
+                      </button>
+                    </form>
+                  </td>
                 </tr>
                 @endforeach
-            </tbody>
+              </tbody>
             </table>
           </div>
         </div>
@@ -165,21 +165,21 @@
               <tbody>
                 @foreach($dataGroup as $key => $group)
                 <tr class="">
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $group->code }}</td>
-                    <td>{{ $group->name }}</td>
-                    <td>
-                        <form action="{{ route('group.destroy', $group->id) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-success">
-                                <li class="fa fa-trash"></li>&nbsp;Delete
-                            </button>
-                        </form>
-                    </td>
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $group->code }}</td>
+                  <td>{{ $group->name }}</td>
+                  <td>
+                    <form action="{{ route('group.destroy', $group->id) }}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <button type="submit" class="btn btn-success">
+                        <li class="fa fa-trash"></li>&nbsp;Delete
+                      </button>
+                    </form>
+                  </td>
                 </tr>
                 @endforeach
-            </tbody>
+              </tbody>
             </table>
           </div>
         </div>
@@ -189,13 +189,13 @@
           <div class="x_panel">
             <div class="page-title">
               <div class="title_left">
-                <h2>jenis Barang</h2>
+                <h2>Jenis PPN & Non PPN</h2>
               </div>
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
-                    <li class="fa fa-plus"></li>&nbsp; Add jenis Barang</button></a>
+                    <li><a href="{{ route('ppn') }}"><button type="button" class="btn btn-info">
+                    <li class="fa fa-plus"></li>&nbsp; Add Jenis PPN & Non PPN</button></a>
                     </li>
                   </ul>
                 </div>
@@ -205,6 +205,7 @@
             <table id="datatable-fixed-header" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr class="headings">
+                  <th class="column-title">No</th>
                   <th class="column-title">Jenis</th>
                   <th class="column-title">Persen</th>
                   <th class="column-title">PPN Beli</th>
@@ -213,10 +214,23 @@
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  @foreach($dataPPN as $key => $ppn)
+                <tr class="">
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $ppn->type }}</td>
+                  <td>{{ $ppn->percent }}</td>
+                  <td>{{ $ppn->ppn_buy }}</td>
+                  <td>
+                    <form action="{{ route('ppn.destroy', $group->id) }}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <button type="submit" class="btn btn-success">
+                        <li class="fa fa-trash"></li>&nbsp;Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                @endforeach
                 </tr>
               </tbody>
             </table>

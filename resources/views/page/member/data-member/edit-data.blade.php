@@ -19,12 +19,23 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('member',['#type']) }}">Data Data Anggota</a>
                             </li>
-                            <li class="breadcrumb-item active">Tambah Data Anggota</li>
+                            <li class="breadcrumb-item active">Edit Data Anggota</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <form action="{{ route('member.update.data') }}" method="post" enctype="multipart/form-data">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             @csrf
                             @method('PUT')
                             <input type="text" class="form-control 
@@ -173,7 +184,7 @@
 
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
                                 </div>
                             </div>
                         </form>

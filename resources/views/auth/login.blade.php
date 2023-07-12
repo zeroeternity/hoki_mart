@@ -33,6 +33,17 @@
 
         <section class="login_content">
           <form method="POST" action="{{ url('signin') }}">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                <li>
+                  {{ $error }}
+                </li>
+                @endforeach
+              </ul>
+            </div>
+            @endif
             @csrf
             <div>
               <img src="{{ asset ('images/logo_hoki.png') }}" class="img-fluid pb-4" alt="logo_hoki">
