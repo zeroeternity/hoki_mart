@@ -107,30 +107,30 @@
     $(function () {
                  $('#myDatepicker').datetimepicker();
              });
-     
+
      $('#myDatepicker2').datetimepicker({
          format: 'DD.MM.YYYY'
      });
-     
+
      $('#myDatepicker3').datetimepicker({
          format: 'hh:mm A'
      });
-     
+
      $('#myDatepicker4').datetimepicker({
          ignoreReadonly: true,
          allowInputToggle: true
      });
- 
+
      $('#datetimepicker6').datetimepicker();
-     
+
      $('#datetimepicker7').datetimepicker({
          useCurrent: false
      });
-     
+
      $("#datetimepicker6").on("dp.change", function(e) {
          $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
      });
-     
+
      $("#datetimepicker7").on("dp.change", function(e) {
          $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
      });
@@ -285,6 +285,69 @@
         ppn.appendChild(input_ppn);
         qty.appendChild(input_qty);
         sale_price.appendChild(input_sale_price);
+        total.appendChild(input_total);
+        action.appendChild(hapus);
+        //hapus inner html
+        hapus.innerHTML =
+        '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
+        // Action hapus
+        hapus.onclick = function () {
+            row.parentNode.removeChild(row);
+        };
+        i++;
+    }
+</script>
+
+{{-- Adjustment Appendchild JS --}}
+<script>
+    // Appandchild Adjustment
+    var i = 1;
+    function addItemAdjustment() {
+        var itemlist = document.getElementById("itemListAdjustment");
+        // make element
+        var row = document.createElement("tr");
+        var code = document.createElement("td");
+        var name = document.createElement("td");
+        var adjust = document.createElement("td");
+        var price = document.createElement("td");
+        var total = document.createElement("td");
+        var action = document.createElement("td");
+        // make append element
+        itemlist.appendChild(row);
+        row.appendChild(code);
+        row.appendChild(name);
+        row.appendChild(adjust);
+        row.appendChild(price);
+        row.appendChild(total);
+        row.appendChild(action);
+        // make element input code
+        var input_code = document.createElement("input");
+        input_code.setAttribute("name", "items[" + i + "][code]");
+        input_code.setAttribute("class", "form-control");
+        // make element input name
+        var input_name = document.createElement("input");
+        input_name.setAttribute("name", "items[" + i + "][name]");
+        input_name.setAttribute("class", "form-control");
+        // make element input adjust
+        var input_adjust = document.createElement("input");
+        input_adjust.setAttribute("name", "items[" + i + "][adjust]");
+        input_adjust.setAttribute("class", "form-control");
+        // make element input price
+        var input_price = document.createElement("input");
+        input_price.setAttribute("name", "items[" + i + "][price]");
+        input_price.setAttribute("class", "form-control");
+        // make element input total
+        var input_total = document.createElement("input");
+        input_total.setAttribute("type", "number");
+        input_total.setAttribute("name", "items[" + i + "][total]");
+        input_total.setAttribute("class", "form-control");
+        // make element hapus
+        var hapus = document.createElement("a");
+        // function appendchild
+        code.appendChild(input_code);
+        name.appendChild(input_name);
+        adjust.appendChild(input_adjust);
+        price.appendChild(input_price);
         total.appendChild(input_total);
         action.appendChild(hapus);
         //hapus inner html

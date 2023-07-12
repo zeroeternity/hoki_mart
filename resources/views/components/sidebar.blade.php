@@ -59,7 +59,6 @@
       <li><a><i class="fa fa-database"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('outlet') }}">Outlet</a></li>
-          <li><a href="/">Unit</a></li>
           <li><a href="{{ route('supplier') }}">Supplier</a></li>
           <li><a href="{{ route('estate') }}">Estate</a></li>
         </ul>

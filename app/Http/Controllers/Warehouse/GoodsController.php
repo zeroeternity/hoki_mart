@@ -28,7 +28,9 @@ class GoodsController extends Controller
         $data = [
             'dataUnit'   => Unit::all(['id', 'name']),
             'dataGroup'   => Group::all(['id', 'name']),
+            'dataPPN'   => PPNType::all(['id', 'type'])
         ];
+
 
         return view('page.warehouse.goods.input-goods', $data);
     }

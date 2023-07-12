@@ -47,7 +47,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Barang <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" class="form-control" readonly="readonly" placeholder="">
+                                    <input type="text" class="form-control" required="required" placeholder="">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -79,9 +79,48 @@
                 </div>
             </div>
         </div>
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Data Barang</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-md-3 col-sm-3 offset-md-1">
+                    <a class="btn btn-primary text-white"
+                        onclick="addItemAdjustment(); return false">
+                        Add<i class="fa fa-plus px-2"></i></a>
+                </div>
+                <div class="card-box table-responsive">
+                    <table class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Kode Barang</th>
+                                <th>Nama Barang</th>
+                                <th>Adjustment</th>
+                                <th>Harga</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
 
+                        <tbody id="itemListAdjustment">
+                            <tr>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Custom Theme Scripts -->
+<script src="{{asset ('template/appendchild/adjustment.js')}}"></script>
 
 @endsection
