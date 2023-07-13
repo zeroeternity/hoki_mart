@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Purchase;
 
 use App\Http\Controllers\Controller;
+use App\Models\Goods;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -43,5 +44,12 @@ class PurchaseController extends Controller
     public function view()
     {
         return view('page.purchase.supllier-data');
+    }
+    public function getGoodsData(Request $request)
+    {
+        $unit = Goods::with('unit', 'ppnType')
+                        ->where('code', $request->code)
+                        ->first();
+        return response()->json($unit);
     }
 }

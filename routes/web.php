@@ -48,6 +48,8 @@ Route::get('/purchase/create', [PurchaseController::class, 'create'])->name('pur
 Route::get('/purchase/report', [PurchaseController::class, 'report'])->name('purchase.report');
 Route::get('/purchase/return', [PurchaseController::class, 'return'])->name('purchase.return');
 Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
+Route::post('/purchase/get-goods-data', [PurchaseController::class, 'getGoodsData'])->name('purchase.getgoodsdata');
+
 
 // sale
 Route::get('/sale', [SaleController::class, 'index'])->name('sale');
@@ -113,11 +115,6 @@ Route::put('/member/position/update', [MemberController::class, 'updatePosition'
 Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');
 Route::post('/master-data/outlet/store', [OutletController::class, 'store'])->name('outlet.store');
 Route::delete('/master-data/outlet/destroy/{id}', [OutletController::class, 'destroy'])->name('outlet.destroy');
-
-// Master Data - Unit
-Route::get('/master-data/unit', [UnitController::class, 'index'])->name('unit');
-Route::post('/master-data/unit/store', [UnitController::class, 'store'])->name('unit.store');
-Route::delete('/master-data/unit/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
 
 // Master Data - Supplier
 Route::get('/master-data/supplier', [SupplierController::class, 'index'])->name('supplier');

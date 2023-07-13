@@ -38,27 +38,14 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Kode <span
-                                        class="required">*</span>
-                                </label>
-                                <div class="col-md-2 col-sm-2  form-group ">
-                                    <input type="text" class="form-control" readonly="readonly" id="inputSuccess2"
-                                        placeholder="Kode">
-                                </div>
-                                <div class="col-md-4 col-sm-4  form-group ">
-                                    <input type="text" class="form-control" readonly="readonly" id="inputSuccess3"
-                                        placeholder="No Akun">
-                                </div>
-                            </div>
-                            <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">TGL.Faktur
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
+                                    {{-- <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
                                         type="text" required="required" type="text" onfocus="this.type='date'"
                                         onmouseover="this.type='date'" onclick="this.type='date'"
-                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)"> --}}
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -66,10 +53,10 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
+                                    {{-- <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
                                         type="text" required="required" type="text" onfocus="this.type='date'"
                                         onmouseover="this.type='date'" onclick="this.type='date'"
-                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)"> --}}
                                 </div>
                             </div>
 
@@ -124,5 +111,119 @@
         </div>
     </div>
 </div>
+
+{{-- Purchase Appendchild JS --}}
+<script>
+    // Appandchild Purchase
+    var i = 1;
+    function addItemPurchase() {
+        var itemlist = document.getElementById("itemListPurchase");
+        // make element
+        var row = document.createElement("tr");
+        var code = document.createElement("td");
+        var name = document.createElement("td");
+        var unit = document.createElement("td");
+        var ppn = document.createElement("td");
+        var qty = document.createElement("td");
+        var total = document.createElement("td");
+        var purchase_price = document.createElement("td");
+        var action = document.createElement("td");
+        // make append element
+        itemlist.appendChild(row);
+        row.appendChild(code);
+        row.appendChild(name);
+        row.appendChild(unit);
+        row.appendChild(ppn);
+        row.appendChild(qty);
+        row.appendChild(total);
+        row.appendChild(purchase_price);
+        row.appendChild(action);
+        
+        // make element input code
+        var input_code = document.createElement("input");
+        input_code.setAttribute("name", "items_code_"+i);
+        input_code.setAttribute("id", "items_code_"+i);
+        input_code.setAttribute("class", "form-control");
+
+        // make element input name
+        var input_name = document.createElement("input");
+        input_name.setAttribute("name", "items[" + i + "][name]");
+        input_name.setAttribute("id", "items[" + i + "][name]");
+        input_name.setAttribute("class", "form-control");
+
+        // make element input unit
+        var input_unit = document.createElement("input");
+        input_unit.setAttribute("name", "items[" + i + "][unit]");
+        input_unit.setAttribute("id", "items[" + i + "][unit]");
+        input_unit.setAttribute("class", "form-control");
+
+        // make element input ppn
+        var input_ppn = document.createElement("input");
+        input_ppn.setAttribute("name", "items[" + i + "][ppn]");
+        input_ppn.setAttribute("id", "items[" + i + "][ppn]");
+        input_ppn.setAttribute("class", "form-control");
+
+        // make element input qty
+        var input_qty = document.createElement("input");
+        input_qty.setAttribute("type", "number");
+        input_qty.setAttribute("name", "items[" + i + "][qty]");
+        input_qty.setAttribute("id", "items[" + i + "][qty]");
+        input_qty.setAttribute("class", "form-control");
+
+        // make element input total
+        var input_total = document.createElement("input");
+        input_total.setAttribute("type", "number");
+        input_total.setAttribute("name", "items[" + i + "][total]");
+        input_total.setAttribute("id", "items[" + i + "][total]");
+        input_total.setAttribute("class", "form-control");
+
+        // make element input number
+        var input_purchase_price = document.createElement("input");
+        input_purchase_price.setAttribute("type", "number");
+        input_purchase_price.setAttribute("name", "items[" + i + "][purchase_price]");
+        input_purchase_price.setAttribute("id", "items[" + i + "][purchase_price]");       
+        input_purchase_price.setAttribute("data-row-index", i);
+        input_purchase_price.setAttribute("class", "form-control");
+
+        // ajax get data goods
+        input_code.oninput=function(){
+            var goods_code=input_code.value
+            $.ajax({
+                type:"POST",
+                url:"{{ route('purchase.getgoodsdata') }}",
+                data:{
+                    "code":goods_code,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success:function(response){
+                    input_name.value=response.name
+                    input_unit.value=response.unit.name
+                    input_ppn.value=response.ppn_type.type
+                }
+                
+            })
+        }
+
+        // make element hapus
+        var hapus = document.createElement("a");
+        // function appendchild
+        code.appendChild(input_code);
+        name.appendChild(input_name);
+        unit.appendChild(input_unit);
+        ppn.appendChild(input_ppn);
+        qty.appendChild(input_qty);
+        total.appendChild(input_total);
+        purchase_price.appendChild(input_purchase_price);
+        action.appendChild(hapus);
+        //hapus inner html
+        hapus.innerHTML =
+        '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
+        // Action hapus
+        hapus.onclick = function () {
+            row.parentNode.removeChild(row);
+        };
+        i++;
+    }
+</script>
 
 @endsection
