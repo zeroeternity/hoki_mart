@@ -67,7 +67,7 @@
         <ul class="nav child_menu">
           <li><a href="/">User Account</a></li>
           <li><a href="/">Change Password</a></li>
-          <li><a href="/">Log Activity</a></li>
+          <li><a href="{{ route('log-activity') }}">Log Activity</a></li>
         </ul>
       </li>
     </ul>

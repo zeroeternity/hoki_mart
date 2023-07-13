@@ -15,6 +15,7 @@ use App\Http\Controllers\Warehouse\GoodsController;
 use App\Http\Controllers\Warehouse\UnitController;
 use App\Http\Controllers\Warehouse\GroupController;
 use App\Http\Controllers\Sale\SaleController;
+use App\Http\Controllers\Setting\LogActivityController;
 use App\Http\Controllers\Warehouse\PPNTypeController;
 use App\Http\Controllers\Warehouse\VoucherController;
 use Illuminate\Support\Facades\Route;
@@ -134,7 +135,9 @@ Route::get('/master-data/estate/edit/{id}', [EstateController::class, 'edit'])->
 Route::put('/master-data/estate/update', [EstateController::class, 'update'])->name('estate.update');
 Route::delete('/master-data/estate/destroy/{id}', [EstateController::class, 'destroy'])->name('estate.destroy');
 
-
+// Setting - Log Activity
+Route::get('/setting/log-activity', [LogActivityController::class, 'index'])->name('log-activity');
+Route::get('/setting/log-activity/detail/{id}', [LogActivityController::class, 'detail'])->name('log-activity.detail');
 
 Route::get('/bukubesar', function () {
     return view('bukubesar');
