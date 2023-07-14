@@ -31,7 +31,7 @@ class SupplierController extends Controller
             'telephone'         => 'required|numeric',
             'email'             => 'required|email',
         ]);
-        
+
         $code           = $request->code;
         $name           = $request->name;
         $address        = $request->address;

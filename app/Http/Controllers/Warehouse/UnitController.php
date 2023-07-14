@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\MasterData;
+namespace App\Http\Controllers\Warehouse;
 
 use App\Http\Controllers\Controller;
 use App\Models\Unit;
@@ -12,7 +12,7 @@ class UnitController extends Controller
         $data = [
             'dataUnit'   => Unit::orderBy('created_at', 'desc')->get()
         ];
-        return view('page.master-data.unit.unit', $data);
+        return view('page.warehouse.unit.unit', $data);
     }
 
     public function store(Request $request){
@@ -34,7 +34,7 @@ class UnitController extends Controller
             'id'                => $dataUnit->id,
             'name'              => $dataUnit->name,
         ];
-        return view('page.master-data.unit.edit-unit', $data);
+        return view('page.warehouse.unit.edit-unit', $data);
     }
 
     public function update(request $request)

@@ -98,7 +98,7 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
+                    <li><a href="{{ route('unit') }}"><button type="button" class="btn btn-info">
                     <li class="fa fa-plus"></li>&nbsp; Add Satuan Barang</button></a>
                     </li>
                   </ul>
@@ -115,12 +115,22 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                @foreach($dataUnit as $key => $unit)
+                <tr class="">
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $unit->name }}</td>
+                    <td>
+                        <form action="{{ route('unit.destroy', $unit->id) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-success">
+                                <li class="fa fa-trash"></li>&nbsp;Delete
+                            </button>
+                        </form>
+                    </td>
                 </tr>
-              </tbody>
+                @endforeach
+            </tbody>
             </table>
           </div>
         </div>
@@ -135,7 +145,7 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href=""><button type="button" class="btn btn-info">
+                    <li><a href="{{ route('group') }}"><button type="button" class="btn btn-info">
                     <li class="fa fa-plus"></li>&nbsp; Add Group Barang</button></a>
                     </li>
                   </ul>
@@ -153,13 +163,23 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                @foreach($dataGroup as $key => $group)
+                <tr class="">
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $group->code }}</td>
+                    <td>{{ $group->name }}</td>
+                    <td>
+                        <form action="{{ route('group.destroy', $group->id) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-success">
+                                <li class="fa fa-trash"></li>&nbsp;Delete
+                            </button>
+                        </form>
+                    </td>
                 </tr>
-              </tbody>
+                @endforeach
+            </tbody>
             </table>
           </div>
         </div>

@@ -39,8 +39,15 @@
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" >Group Barang <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                        name="select_input">
+                                        <option value=""></option>
+                                        @foreach($dataGroup as $key => $group)
+                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
