@@ -74,7 +74,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                        name="select_input">
+                                        name="ppn_type_id">
                                         <option value=""></option>
                                         @foreach($dataPPN as $key => $ppntype)
                                         <option value="{{ $ppntype->id }}">{{ $ppntype->type }}</option>
