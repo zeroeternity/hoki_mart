@@ -14,7 +14,7 @@ class Goods extends Model
 
     public function group()
     {
-        return $this->belongsTo(Goods::class, 'group_id', 'id');
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 
     public function ppnType()

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Warehouse;
 use App\Http\Controllers\Controller;
 use App\Models\Goods;
 use App\Models\Unit;
-use App\Models\group;
+use App\Models\Group;
 use App\Models\PPNType;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
@@ -74,7 +74,7 @@ class GoodsController extends Controller
         $data->margin_member        = $margin_member;
         $data->percent_non_margin   = $percent_non_margin;
         $data->save();
-        
+
         return redirect()->route('goods');
     }
 }

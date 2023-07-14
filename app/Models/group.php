@@ -14,6 +14,6 @@ class Group extends Model
 
     public function goods()
     {
-        return $this->hasMany(Group::class, 'group_id', 'id');
+        return $this->hasMany(Goods::class, 'group_id', 'id');
     }
 }

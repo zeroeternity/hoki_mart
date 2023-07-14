@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Warehouse;
 
 use App\Http\Controllers\Controller;
-use App\Models\group;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -28,7 +28,7 @@ class GroupController extends Controller
         $data->code        = $code;
         $data->name        = $name;
         $data->save();
-        
+
         return redirect()->route('goods');
     }
 

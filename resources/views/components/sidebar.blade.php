@@ -31,7 +31,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('goods') }}">Data Barang</a></li>
           <li><a href="{{ route('warehouse.mutation') }}">Mutasi Barang</a></li>
-          <li><a href="{{ route('warehouse.adjust') }}">Adjust</a></li>
+          <li><a href="{{ route('adjustment') }}">Adjust</a></li>
           <li><a href="{{ route('warehouse.stock') }}">Persediaan</a></li>
           <li><a href="{{ route('warehouse.stock_outlet') }}">Kartu Stock Outlet</a></li>
         </ul>

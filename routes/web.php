@@ -11,6 +11,7 @@ use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Warehouse\WarehouseController;
+use App\Http\Controllers\Warehouse\AdjustmentController;
 use App\Http\Controllers\Warehouse\GoodsController;
 use App\Http\Controllers\Warehouse\UnitController;
 use App\Http\Controllers\Warehouse\GroupController;
@@ -59,7 +60,6 @@ Route::get('/sale/create_instalment', [SaleController::class, 'create_instalment
 
 //warehouse
 Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');
-Route::get('/warehouse/adjust', [WarehouseController::class, 'adjust'])->name('warehouse.adjust');
 Route::get('/warehouse/stock', [WarehouseController::class, 'stock'])->name('warehouse.stock');
 Route::get('/warehouse/stock_outlet', [WarehouseController::class, 'stock_outlet'])->name('warehouse.stock_outlet');
 
@@ -87,6 +87,10 @@ Route::delete('/warehouse/ppn/destroy/{id}', [PPNTypeController::class, 'destroy
 Route::get('/warehouse/voucher', [VoucherController::class, 'index'])->name('voucher');
 Route::post('/warehouse/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
 Route::delete('/warehouse/voucher/destroy/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
+
+//warehouse - Adjustments
+Route::get('/warehouse/adjustment', [AdjustmentController::class, 'index'])->name('adjustment');
+
 
 //accountancy
 Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');

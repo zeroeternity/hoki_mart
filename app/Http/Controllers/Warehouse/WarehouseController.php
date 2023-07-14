@@ -12,11 +12,6 @@ class WarehouseController extends Controller
         return view('page.warehouse.mutasi');
     }
 
-    public function adjust()
-    {
-        return view('page.warehouse.adjustment');
-    }
-
     public function stock()
     {
         return view('page.warehouse.stock');

@@ -23,45 +23,69 @@
                         <br />
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Cari No adjust <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Toko /
+                                    Outlet <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="outlet_id">
+                                        <option value=""></option>
+                                        @foreach($dataOutlet as $key => $outlet)
+                                            <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tanggal adjust <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tanggal
+                                    adjust <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="date-picker form-control" placeholder="dd-mm-yyyy" type="text"readonly="readonly" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <input class="date-picker form-control" placeholder="dd-mm-yyyy" type="text"
+                                        readonly="readonly" type="text" onfocus="this.type='date'"
+                                        onmouseover="this.type='date'" onclick="this.type='date'"
+                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)"
+                                        value="{{ date('Y-m-d') }}">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Kode Barang <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Barang
+                                    <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" required="required" class="form-control ">
+                                    <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="goods_id">
+                                        <option value=""></option>
+                                        @foreach($dataGoods as $key => $good)
+                                            <option data-good='{{ json_encode($good) }}' value="{{ $good->id }}">
+                                                {{ $good->code }} - {{ $good->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Barang <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Info <span
+                                        class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" class="form-control" required="required" placeholder="">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Info <span class="required">*</span>
-                                </label>
-                                <div class="col-md-2 col-sm-2  form-group has-feedback">
-                                    <input type="text" class="form-control has-feedback-left" required="required" id="inputSuccess2" placeholder="Harga">
+                                <div class="col-md-3 col-sm-3  form-group has-feedback">
+                                    <input type="text" class="form-control has-feedback-left" readonly="readonly"
+                                        id="price" placeholder="Harga">
                                     <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                                <div class="col-md-2 col-sm-2  form-group has-feedback">
-                                    <input type="text" class="form-control" required="required"  id="inputSuccess3" placeholder="Stock">
+                                <div class="col-md-3 col-sm-3  form-group has-feedback">
+                                    <input type="text" class="form-control" readonly="readonly" id="stock"
+                                        placeholder="Stock">
                                 </div>
-                                <div class="col-md-2 col-sm-2  form-group has-feedback">
-                                    <input type="text" class="form-control" required="required"  id="inputSuccess4" placeholder="Qty">
+
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Barang
+                                    Rusak
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-3 col-sm-3  form-group has-feedback">
+                                    <input type="text" class="form-control" required="required" id="qty"
+                                        placeholder="Qty">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -90,8 +114,7 @@
             </div>
             <div class="x_content">
                 <div class="col-md-3 col-sm-3 offset-md-1">
-                    <a class="btn btn-primary text-white"
-                        onclick="addItemAdjustment(); return false">
+                    <a class="btn btn-primary text-white" onclick="addItemAdjustment(); return false">
                         Add<i class="fa fa-plus px-2"></i></a>
                 </div>
                 <div class="card-box table-responsive">
@@ -120,7 +143,89 @@
     </div>
 </div>
 
+{{-- Adjustment Appendchild JS --}}
+<script>
+    // Appandchild Adjustment
+    var i = 1;
+
+    function addItemAdjustment() {
+        var itemlist = document.getElementById("itemListAdjustment");
+        // make element
+        var row = document.createElement("tr");
+        var code = document.createElement("td");
+        var name = document.createElement("td");
+        var adjust = document.createElement("td");
+        var price = document.createElement("td");
+        var total = document.createElement("td");
+        var action = document.createElement("td");
+        // make append element
+        itemlist.appendChild(row);
+        row.appendChild(code);
+        row.appendChild(name);
+        row.appendChild(adjust);
+        row.appendChild(price);
+        row.appendChild(total);
+        row.appendChild(action);
+        // make element input code
+        var input_code = document.createElement("input");
+        input_code.setAttribute("name", "items[" + i + "][code]");
+        input_code.setAttribute("class", "form-control");
+        // make element input name
+        var input_name = document.createElement("input");
+        input_name.setAttribute("name", "items[" + i + "][name]");
+        input_name.setAttribute("class", "form-control");
+        // make element input adjust
+        var input_adjust = document.createElement("input");
+        input_adjust.setAttribute("name", "items[" + i + "][adjust]");
+        input_adjust.setAttribute("class", "form-control");
+        // make element input price
+        var input_price = document.createElement("input");
+        input_price.setAttribute("name", "items[" + i + "][price]");
+        input_price.setAttribute("class", "form-control");
+        // make element input total
+        var input_total = document.createElement("input");
+        input_total.setAttribute("type", "number");
+        input_total.setAttribute("name", "items[" + i + "][total]");
+        input_total.setAttribute("class", "form-control");
+        // make element hapus
+        var hapus = document.createElement("a");
+        // function appendchild
+        code.appendChild(input_code);
+        name.appendChild(input_name);
+        adjust.appendChild(input_adjust);
+        price.appendChild(input_price);
+        total.appendChild(input_total);
+        action.appendChild(hapus);
+        //hapus inner html
+        hapus.innerHTML =
+            '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
+        // Action hapus
+        hapus.onclick = function () {
+            row.parentNode.removeChild(row);
+        };
+        i++;
+    }
+
+</script>
+
 <!-- Custom Theme Scripts -->
-<script src="{{asset ('template/appendchild/adjustment.js')}}"></script>
+<script src="{{ asset ('template/appendchild/adjustment.js') }}"></script>
 
 @endsection
+
+@push('addon-script')
+    <script>
+        $("select[name=goods_id]").on('change', function () {
+            const good = $('select[name=goods_id]').find("option:selected").data('good')
+            $("input#price").val(good.selling_price)
+            $("input#stock").val(good.minimum_stock)
+        })
+        $("#qty").on('change', function () {
+            var stock = $("input#stock").val()
+            var qty = $("#qty").val();
+            console.log(stock);
+            console.log(qty);
+        })
+
+    </script>
+@endpush
