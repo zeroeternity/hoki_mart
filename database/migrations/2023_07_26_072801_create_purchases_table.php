@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('supllier_id')->references('id')->on('suppliers');
-            $table->foreignId('stock_id')->references('id')->on('stocks');
-            $table->foreignId('purchase_journal_id')->references('id')->on('purchase_journals');
-            $table->foreignId('units_id')->references('id')->on('units');
+            $table->foreignId('goods_id')->references('id')->on('goods');
             $table->string('no_faktur');
             $table->timestamp('tgl_faktur');
             $table->timestamp('tgl_jatuh_tempo')->nullable();

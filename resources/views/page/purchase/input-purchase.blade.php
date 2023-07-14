@@ -42,10 +42,10 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    {{-- <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
+                                    <input name="tgl_faktur" id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
                                         type="text" required="required" type="text" onfocus="this.type='date'"
                                         onmouseover="this.type='date'" onclick="this.type='date'"
-                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)"> --}}
+                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -53,10 +53,10 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    {{-- <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
+                                    <input name="tgl_jatuh_tempo" id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
                                         type="text" required="required" type="text" onfocus="this.type='date'"
                                         onmouseover="this.type='date'" onclick="this.type='date'"
-                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)"> --}}
+                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                                 </div>
                             </div>
 
@@ -147,41 +147,41 @@
 
         // make element input name
         var input_name = document.createElement("input");
-        input_name.setAttribute("name", "items[" + i + "][name]");
-        input_name.setAttribute("id", "items[" + i + "][name]");
+        input_name.setAttribute("name", "items_name_"+i);
+        input_name.setAttribute("id", "items_name_"+i);
         input_name.setAttribute("class", "form-control");
 
         // make element input unit
         var input_unit = document.createElement("input");
-        input_unit.setAttribute("name", "items[" + i + "][unit]");
-        input_unit.setAttribute("id", "items[" + i + "][unit]");
+        input_unit.setAttribute("name", "items_unit_"+i);
+        input_unit.setAttribute("id", "items_unit_"+i);
         input_unit.setAttribute("class", "form-control");
 
         // make element input ppn
         var input_ppn = document.createElement("input");
-        input_ppn.setAttribute("name", "items[" + i + "][ppn]");
-        input_ppn.setAttribute("id", "items[" + i + "][ppn]");
+        input_ppn.setAttribute("name", "items_ppn_"+i);
+        input_ppn.setAttribute("id", "items_ppn_"+i);
         input_ppn.setAttribute("class", "form-control");
 
         // make element input qty
         var input_qty = document.createElement("input");
         input_qty.setAttribute("type", "number");
-        input_qty.setAttribute("name", "items[" + i + "][qty]");
-        input_qty.setAttribute("id", "items[" + i + "][qty]");
+        input_qty.setAttribute("name", "items_qty_"+i);
+        input_qty.setAttribute("id", "items_qty_"+i);
         input_qty.setAttribute("class", "form-control");
 
         // make element input total
         var input_total = document.createElement("input");
         input_total.setAttribute("type", "number");
-        input_total.setAttribute("name", "items[" + i + "][total]");
-        input_total.setAttribute("id", "items[" + i + "][total]");
+        input_total.setAttribute("name", "items_total_"+i);
+        input_total.setAttribute("id", "items_total_"+i);
         input_total.setAttribute("class", "form-control");
 
         // make element input number
         var input_purchase_price = document.createElement("input");
         input_purchase_price.setAttribute("type", "number");
-        input_purchase_price.setAttribute("name", "items[" + i + "][purchase_price]");
-        input_purchase_price.setAttribute("id", "items[" + i + "][purchase_price]");       
+        input_purchase_price.setAttribute("name", "items_purchase_price_"+i);
+        input_purchase_price.setAttribute("id", "items_purchase_price_"+i);       
         input_purchase_price.setAttribute("data-row-index", i);
         input_purchase_price.setAttribute("class", "form-control");
 

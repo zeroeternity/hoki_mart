@@ -22,8 +22,18 @@ class PurchaseController extends Controller
         return view('page.purchase.input-purchase', $data);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $request->validate([
+            'user_id'                  => 'required|string',
+            'supplier_id'              => 'required',
+            'goods_id'                 => 'required',
+            'no_faktur'                => 'required',
+            'tgl_faktur'               => 'required',
+            'tgl_jatuh_tempo'          => 'required',
+            'grandtotal_pembelian'     => 'required',
+            'purchase_price'           => 'required|string',
+        ]);
     }
 
     public function return()
@@ -48,8 +58,8 @@ class PurchaseController extends Controller
     public function getGoodsData(Request $request)
     {
         $unit = Goods::with('unit', 'ppnType')
-                        ->where('code', $request->code)
-                        ->first();
+            ->where('code', $request->code)
+            ->first();
         return response()->json($unit);
     }
 }
