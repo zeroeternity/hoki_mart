@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->decimal('percent');
-            $table->decimal('ppn_buy');
             $table->timestamps();
             $table->softDeletes();
         });

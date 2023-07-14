@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('supllier_id')->references('id')->on('suppliers');
+            $table->foreignId('purchase_id')->references('id')->on('purchases');
             $table->foreignId('goods_id')->references('id')->on('goods');
-            $table->string('no_faktur');
-            $table->timestamp('tgl_faktur');
-            $table->timestamp('tgl_jatuh_tempo')->nullable();
-            $table->integer('grandtotal_pembelian');
+            $table->integer('qty');
             $table->integer('purchase_price');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('purchase_items');
     }
 };

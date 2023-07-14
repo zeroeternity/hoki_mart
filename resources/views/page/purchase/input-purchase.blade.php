@@ -156,12 +156,14 @@
         input_unit.setAttribute("name", "items_unit_"+i);
         input_unit.setAttribute("id", "items_unit_"+i);
         input_unit.setAttribute("class", "form-control");
+        input_unit.setAttribute("disabled",true);
 
         // make element input ppn
         var input_ppn = document.createElement("input");
         input_ppn.setAttribute("name", "items_ppn_"+i);
         input_ppn.setAttribute("id", "items_ppn_"+i);
         input_ppn.setAttribute("class", "form-control");
+        input_ppn.setAttribute("disabled", true);
 
         // make element input qty
         var input_qty = document.createElement("input");
@@ -169,14 +171,7 @@
         input_qty.setAttribute("name", "items_qty_"+i);
         input_qty.setAttribute("id", "items_qty_"+i);
         input_qty.setAttribute("class", "form-control");
-
-        // make element input total
-        var input_total = document.createElement("input");
-        input_total.setAttribute("type", "number");
-        input_total.setAttribute("name", "items_total_"+i);
-        input_total.setAttribute("id", "items_total_"+i);
-        input_total.setAttribute("class", "form-control");
-
+       
         // make element input number
         var input_purchase_price = document.createElement("input");
         input_purchase_price.setAttribute("type", "number");
@@ -184,6 +179,14 @@
         input_purchase_price.setAttribute("id", "items_purchase_price_"+i);       
         input_purchase_price.setAttribute("data-row-index", i);
         input_purchase_price.setAttribute("class", "form-control");
+
+         // make element input total
+         var input_total = document.createElement("input");
+        input_total.setAttribute("type", "number");
+        input_total.setAttribute("name", "items_total_"+i);
+        input_total.setAttribute("id", "items_total_"+i);
+        input_total.setAttribute("class", "form-control");
+        input_total.setAttribute("disabled", true);
 
         // ajax get data goods
         input_code.oninput=function(){
@@ -202,6 +205,16 @@
                 }
                 
             })
+        }
+        input_qty.oninput=function(){
+            var qty =input_qty.value;
+            var price = input_purchase_price.value;
+            input_total.value= qty * price;
+        }
+        input_purchase_price.oninput=function(){
+            var qty =input_qty.value;
+            var price = input_purchase_price.value;
+            input_total.value= qty * price;
         }
 
         // make element hapus
