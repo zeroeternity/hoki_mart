@@ -13,13 +13,13 @@ class LogActivityController extends Controller
         $data = [
             'dataUser'   => User::where('role_id', '2')->orderBy('created_at', 'desc')->get()
         ];
-        return view('page.setting.log-activity', $data);
+        return view('page.setting.log-activity.log-activity', $data);
     }
     public function detail($id){
         
         $data = [
             'dataLogActivity'   => LogActivity::with('user')->where('user_id', "$id")->orderBy('created_at', 'desc')->get()
         ];
-        return view('page.setting.log-activity-detail', $data);
+        return view('page.setting.log-activity.log-activity-detail', $data);
     }
 }

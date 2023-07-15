@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'updated_at'    => now(),
             ],
             [
-                'role_id'       => Role::firstWhere(['name' => 'casheer'])->id,
+                'role_id'       => Role::firstWhere(['name' => 'cashier'])->id,
                 'outlet_id'     => Outlet::firstWhere(['name' => 'Hoki Mart'])->id,
                 'name'          => 'Kasir',
                 'email'         => 'kasir@taniyuk.com',

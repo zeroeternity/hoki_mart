@@ -17,6 +17,7 @@ use App\Http\Controllers\Warehouse\UnitController;
 use App\Http\Controllers\Warehouse\GroupController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Setting\LogActivityController;
+use App\Http\Controllers\Setting\UserAccountController;
 use App\Http\Controllers\Warehouse\PPNTypeController;
 use App\Http\Controllers\Warehouse\VoucherController;
 use Illuminate\Support\Facades\Route;
@@ -140,6 +141,13 @@ Route::delete('/master-data/estate/destroy/{id}', [EstateController::class, 'des
 // Setting - Log Activity
 Route::get('/setting/log-activity', [LogActivityController::class, 'index'])->name('log-activity');
 Route::get('/setting/log-activity/detail/{id}', [LogActivityController::class, 'detail'])->name('log-activity.detail');
+
+// Setting - User Account
+Route::get('/setting/user-account', [UserAccountController::class, 'index'])->name('user-account');
+Route::get('/setting/user-account/creaete', [UserAccountController::class, 'create'])->name('user-account.create');
+Route::post('/setting/user-account/store', [UserAccountController::class, 'store'])->name('user-account.store');
+Route::get('/setting/user-account/edit/{id}', [UserAccountController::class, 'edit'])->name('user-account.edit');
+Route::put('/setting/user-account/update', [UserAccountController::class, 'update'])->name('user-account.update');
 
 Route::get('/bukubesar', function () {
     return view('bukubesar');
