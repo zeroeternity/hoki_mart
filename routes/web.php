@@ -90,6 +90,7 @@ Route::delete('/warehouse/voucher/destroy/{id}', [VoucherController::class, 'des
 
 //warehouse - Adjustments
 Route::get('/warehouse/adjustment', [AdjustmentController::class, 'index'])->name('adjustment');
+Route::get('/warehouse/adjustment/getdata', [AdjustmentController::class, 'getData'])->name('adjustment.getData');
 
 
 //accountancy

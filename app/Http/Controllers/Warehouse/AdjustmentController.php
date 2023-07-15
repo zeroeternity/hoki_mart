@@ -18,5 +18,9 @@ class AdjustmentController extends Controller
         ];
         return view('page.warehouse.adjustment', $data);
     }
-
+    public function getData()
+    {
+        $goods = Goods::orderBy('id')->get();
+        return response()->json($goods);
+    }
 }
