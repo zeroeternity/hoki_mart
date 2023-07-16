@@ -68,6 +68,8 @@ Route::get('/warehouse/stock_outlet', [WarehouseController::class, 'stock_outlet
 Route::get('/warehouse/goods', [GoodsController::class, 'index'])->name('goods');
 Route::get('/warehouse/goods/create', [GoodsController::class, 'create'])->name('goods.create');
 Route::post('/warehouse/goods/stores', [GoodsController::class, 'store'])->name('goods.store');
+Route::get('/warehouse/goods/edit/{id}', [GoodsController::class, 'edit'])->name('goods.edit');
+Route::put('/warehouse/goods/update', [GoodsController::class, 'update'])->name('goods.update');
 
 //warehouse - Units
 Route::get('/warehouse/unit', [UnitController::class, 'index'])->name('unit');

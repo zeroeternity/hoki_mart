@@ -123,9 +123,11 @@
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <select class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="gender">
-                                        <option @php if($state=="Laki-Laki" ){echo "selected" ;} @endphp>Laki-Laki
+                                        <option value="Laki-Laki" @php if($state=="Laki-Laki" ){echo "selected" ;}
+                                            @endphp>Laki-Laki
                                         </option>
-                                        <option @php if($state=="Perempuan" ){echo "selected" ;} @endphp>Perempuan
+                                        <option value="Perempuan" @php if($state=="Perempuan" ){echo "selected" ;}
+                                            @endphp>Perempuan
                                         </option>
                                     </select>
                                 </div>

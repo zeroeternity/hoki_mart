@@ -28,9 +28,9 @@ class GoodsController extends Controller
     public function create()
     {
         $data = [
-            'dataUnit'   => Unit::all(['id', 'name']),
-            'dataGroup'   => Group::all(['id', 'name']),
-            'dataPPN'   => PPNType::all(['id', 'type'])
+            'dataUnit'      => Unit::all(['id', 'name']),
+            'dataGroup'     => Group::all(['id', 'name']),
+            'dataPPN'       => PPNType::all(['id', 'type'])
         ];
 
 
@@ -63,6 +63,72 @@ class GoodsController extends Controller
         $percent_non_margin = $request->percent_non_margin;
 
         $data = new Goods();
+        $data->code                 = $code;
+        $data->name                 = $name;
+        $data->group_id             = $group_id;
+        $data->ppn_type_id          = $ppn_type_id;
+        $data->unit_id              = $unit_id;
+        $data->purchase_price       = $purchase_price;
+        $data->selling_price        = $selling_price;
+        $data->minimum_stock        = $minimum_stock;
+        $data->margin_member        = $margin_member;
+        $data->percent_non_margin   = $percent_non_margin;
+        $data->save();
+
+        return redirect()->route('goods');
+    }
+
+    public function edit($id)
+    {
+        $dataGoods = Goods::find($id);
+        $data = [
+            'id'                    => $dataGoods->id,
+            'code'                  => $dataGoods->code,
+            'name'                  => $dataGoods->name,
+            'group_id'              => $dataGoods->group_id,
+            'ppn_type_id'           => $dataGoods->ppn_type_id,
+            'unit_id'               => $dataGoods->unit_id,
+            'purchase_price'        => $dataGoods->purchase_price,
+            'selling_price'         => $dataGoods->selling_price,
+            'minimum_stock'         => $dataGoods->minimum_stock,
+            'margin_member'         => $dataGoods->margin_member,
+            'percent_non_margin'    => $dataGoods->percent_non_margin,
+            'dataUnit'              => Unit::all(['id', 'name']),
+            'dataGroup'             => Group::all(['id', 'name']),
+            'dataPPN'               => PPNType::all(['id', 'type'])
+        ];
+
+
+        return view('page.warehouse.goods.edit-goods', $data);
+    }
+
+    public function update(Request $request){
+        $request->validate([
+            'code'                  => 'required|string',
+            'name'                  => 'required|string',
+            'group_id'              => 'required',
+            'ppn_type_id'           => 'required',
+            'unit_id'               => 'required',
+            'purchase_price'        => 'required|numeric',
+            'selling_price'         => 'required|numeric',
+            'minimum_stock'         => 'required|numeric',
+            'margin_member'         => 'required|string',
+            'percent_non_margin'    => 'required|string',
+        ]);
+
+        $id                 = $request->id;
+        $code               = $request->code;
+        $name               = $request->name;
+        $group_id           = $request->group_id;
+        $ppn_type_id        = $request->ppn_type_id;
+        $unit_id            = $request->unit_id;
+        $purchase_price     = $request->purchase_price;
+        $selling_price      = $request->selling_price;
+        $minimum_stock      = $request->minimum_stock;
+        $margin_member      = $request->margin_member;
+        $percent_non_margin = $request->percent_non_margin;
+
+        $data = Goods::find($id);
         $data->code                 = $code;
         $data->name                 = $name;
         $data->group_id             = $group_id;

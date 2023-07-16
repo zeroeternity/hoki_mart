@@ -81,13 +81,11 @@
                   <td>{{ $goods->minimum_stock }}</td>
                   <td>{{ $goods->percent_non_margin }}</td>
                   <td>
-                    <form action="" method="POST">
-                      @csrf
-                      @method('put')
-                      <button type="submit" class="btn btn-success">
+                    <a href="{{ route('goods.edit',[$goods->id]) }}">
+                      <button type="button" class="btn btn-info">
                         <li class="fa fa-edit"></li>
                       </button>
-                    </form>
+                    </a>
                   </td>
                 </tr>
                 @endforeach
