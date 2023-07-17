@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Purchase;
 
 use App\Http\Controllers\Controller;
-use App\Models\Goods;
+use App\Models\Item;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -27,7 +27,7 @@ class PurchaseController extends Controller
         $request->validate([
             'user_id'                  => 'required|string',
             'supplier_id'              => 'required',
-            'goods_id'                 => 'required',
+            'item_id'                 => 'required',
             'no_faktur'                => 'required',
             'tgl_faktur'               => 'required',
             'tgl_jatuh_tempo'          => 'required',
@@ -55,9 +55,9 @@ class PurchaseController extends Controller
     {
         return view('page.purchase.supllier-data');
     }
-    public function getGoodsData(Request $request)
+    public function getItemData(Request $request)
     {
-        $unit = Goods::with('unit', 'ppnType')
+        $unit = Item::with('unit', 'ppnType')
             ->where('code', $request->code)
             ->first();
         return response()->json($unit);

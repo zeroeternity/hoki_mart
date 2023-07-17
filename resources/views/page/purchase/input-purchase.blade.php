@@ -188,14 +188,14 @@
         input_total.setAttribute("id", "items_total_"+i);
         input_total.setAttribute("class", "form-control");
 
-        // ajax get data goods
+        // ajax get data item
         input_code.oninput=function(){
-            var goods_code=input_code.value
+            var item_code=input_code.value
             $.ajax({
                 type:"POST",
-                url:"{{ route('purchase.getgoodsdata') }}",
+                url:"{{ route('purchase.getitemdata') }}",
                 data:{
-                    "code":goods_code,
+                    "code":item_code,
                     "_token": "{{ csrf_token() }}",
                 },
                 success:function(response){

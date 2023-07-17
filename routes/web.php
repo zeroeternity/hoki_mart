@@ -12,12 +12,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Warehouse\WarehouseController;
 use App\Http\Controllers\Warehouse\AdjustmentController;
-use App\Http\Controllers\Warehouse\GoodsController;
 use App\Http\Controllers\Warehouse\UnitController;
 use App\Http\Controllers\Warehouse\GroupController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Setting\LogActivityController;
 use App\Http\Controllers\Setting\UserAccountController;
+use App\Http\Controllers\Warehouse\ItemController;
 use App\Http\Controllers\Warehouse\PPNTypeController;
 use App\Http\Controllers\Warehouse\VoucherController;
 use Illuminate\Support\Facades\Route;
@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/report', [PurchaseController::class, 'report'])->name('purchase.report');
     Route::get('/purchase/return', [PurchaseController::class, 'return'])->name('purchase.return');
     Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
-    Route::post('/purchase/get-goods-data', [PurchaseController::class, 'getGoodsData'])->name('purchase.getgoodsdata');
+    Route::post('/purchase/get-items-data', [PurchaseController::class, 'getItemData'])->name('purchase.getitemdata');
 
 
     // sale
@@ -66,12 +66,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/warehouse/stock', [WarehouseController::class, 'stock'])->name('warehouse.stock');
     Route::get('/warehouse/stock_outlet', [WarehouseController::class, 'stock_outlet'])->name('warehouse.stock_outlet');
 
-    //warehouse - Goods
-    Route::get('/warehouse/goods', [GoodsController::class, 'index'])->name('goods');
-    Route::get('/warehouse/goods/create', [GoodsController::class, 'create'])->name('goods.create');
-    Route::post('/warehouse/goods/stores', [GoodsController::class, 'store'])->name('goods.store');
-    Route::get('/warehouse/goods/edit/{id}', [GoodsController::class, 'edit'])->name('goods.edit');
-    Route::put('/warehouse/goods/update', [GoodsController::class, 'update'])->name('goods.update');
+    //warehouse - Item
+    Route::get('/warehouse/item', [ItemController::class, 'index'])->name('item');
+    Route::get('/warehouse/item/create', [ItemController::class, 'create'])->name('item.create');
+    Route::post('/warehouse/item/stores', [ItemController::class, 'store'])->name('item.store');
+    Route::get('/warehouse/item/edit/{id}', [ItemController::class, 'edit'])->name('item.edit');
+    Route::put('/warehouse/item/update', [ItemController::class, 'update'])->name('item.update');
 
     //warehouse - Units
     Route::get('/warehouse/unit', [UnitController::class, 'index'])->name('unit');

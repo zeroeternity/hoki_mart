@@ -18,13 +18,13 @@
                     <div class="x_title">
                         <h2>Edit Daftar Barang</h2>
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('goods') }}">Data barang</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('item') }}">Data barang</a></li>
                             <li class="breadcrumb-item active">Edit Data Barang</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form action="{{ route('goods.update') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('item.update') }}" method="post" enctype="multipart/form-data">
                             @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>

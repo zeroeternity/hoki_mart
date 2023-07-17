@@ -29,7 +29,7 @@ class GroupController extends Controller
         $data->name        = $name;
         $data->save();
 
-        return redirect()->route('goods');
+        return redirect()->route('item');
     }
 
     public function destroy($id)

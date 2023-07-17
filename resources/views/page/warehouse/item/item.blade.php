@@ -43,7 +43,7 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="{{ route('goods.create') }}"><button type="button" class="btn btn-info">
+                    <li><a href="{{ route('item.create') }}"><button type="button" class="btn btn-info">
                     <li class="fa fa-plus"></li>&nbsp; Add Barang</button></a>
                     </li>
                   </ul>
@@ -68,20 +68,20 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($dataGoods as $key => $goods)
+                @foreach($dataItem as $key => $item)
                 <tr class="">
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $goods->code }}</td>
-                  <td>{{ $goods->name }}</td>
-                  <td>{{ $goods->group->name }}</td>
-                  <td>{{ $goods->ppnType->type }}</td>
-                  <td>{{ $goods->unit->name }}</td>
-                  <td>{{ $goods->purchase_price }}</td>
-                  <td>{{ $goods->selling_price }}</td>
-                  <td>{{ $goods->minimum_stock }}</td>
-                  <td>{{ $goods->percent_non_margin }}</td>
+                  <td>{{ $item->code }}</td>
+                  <td>{{ $item->name }}</td>
+                  <td>{{ $item->group->name }}</td>
+                  <td>{{ $item->ppnType->type }}</td>
+                  <td>{{ $item->unit->name }}</td>
+                  <td>{{ $item->purchase_price }}</td>
+                  <td>{{ $item->selling_price }}</td>
+                  <td>{{ $item->minimum_stock }}</td>
+                  <td>{{ $item->percent_non_margin }}</td>
                   <td>
-                    <a href="{{ route('goods.edit',[$goods->id]) }}">
+                    <a href="{{ route('item.edit',[$item->id]) }}">
                       <button type="button" class="btn btn-info">
                         <li class="fa fa-edit"></li>
                       </button>

@@ -28,7 +28,7 @@
                         <div class="x_title">
                             <h2>Form Group</h2>
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('goods') }}">Data Group</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('item') }}">Data Group</a></li>
                                 <li class="breadcrumb-item active">Tambah Data Group</li>
                             </ol>
                             <div class="clearfix"></div>

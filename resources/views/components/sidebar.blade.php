@@ -29,7 +29,7 @@
       </li>
       <li><a><i class="fa fa-cubes"></i> Gudang <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{ route('goods') }}">Data Barang</a></li>
+          <li><a href="{{ route('item') }}">Data Barang</a></li>
           <li><a href="{{ route('warehouse.mutation') }}">Mutasi Barang</a></li>
           <li><a href="{{ route('adjustment') }}">Adjust</a></li>
           <li><a href="{{ route('warehouse.stock') }}">Persediaan</a></li>

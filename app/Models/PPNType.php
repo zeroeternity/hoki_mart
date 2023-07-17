@@ -12,8 +12,8 @@ class PPNType extends Model
     protected $table = 'ppn_types';
     protected $guarded = [];
 
-    public function goods()
+    public function item()
     {
-        return $this->hasMany(PPNType::class, 'ppn_type_id', 'id');
+        return $this->hasMany(Item::class, 'ppn_type_id', 'id');
     }
 }

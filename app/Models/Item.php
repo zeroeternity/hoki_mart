@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Goods extends Model
+class Item extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'goods';
+    protected $table = 'items';
     protected $guarded = [];
 
     public function group()

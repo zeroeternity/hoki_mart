@@ -32,7 +32,7 @@ class PPNTypeController extends Controller
         $data->ppn_buy     = $ppn_buy;
         $data->save();
         
-        return redirect()->route('goods');
+        return redirect()->route('item');
     }
 
     public function destroy($id)

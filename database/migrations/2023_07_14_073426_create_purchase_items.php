@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('purchase_id')->references('id')->on('purchases');
-            $table->foreignId('goods_id')->references('id')->on('goods');
+            $table->foreignId('item_id')->references('id')->on('items');
             $table->integer('qty');
             $table->integer('purchase_price');
             $table->timestamps();

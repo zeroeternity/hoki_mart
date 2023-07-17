@@ -15,7 +15,7 @@
                     <div class="x_title">
                         <h2>Form Data PPN & Non PPN</h2>
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('goods') }}">Data PPN & Non PPN</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('item') }}">Data PPN & Non PPN</a></li>
                             <li class="breadcrumb-item active">Tambah Data PPN & Non PPN</li>
                         </ol>
                         <div class="clearfix"></div>

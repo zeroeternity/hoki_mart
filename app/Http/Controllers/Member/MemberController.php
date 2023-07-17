@@ -16,7 +16,7 @@ class MemberController extends Controller
 {
     public function index(){
         $data = [
-            'dataMember'        => User::where('role_id','3')
+            'dataMember'        => User::where('role_id','4')
                                         ->with('memberType', 'estate', 'position')
                                         ->orderBy('created_at', 'desc')->get(),
             'dataMemberType'    => MemberType::orderBy('created_at', 'desc')->get(),
@@ -113,12 +113,12 @@ class MemberController extends Controller
     }
     public function storePosition(Request $request){
         $request->validate([
-            'name'     => 'required|string',
+            'name'  => 'required|string',
         ]);
         $name  = $request->name;
 
         $data = new Position();
-        $data->name        = $name;
+        $data->name = $name;
         $data->save();
 
         return redirect()->route('member',['#position']);

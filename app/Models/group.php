@@ -12,8 +12,8 @@ class Group extends Model
     protected $table = 'groups';
     protected $guarded = [];
 
-    public function goods()
+    public function item()
     {
-        return $this->hasMany(Goods::class, 'group_id', 'id');
+        return $this->hasMany(Item::class, 'group_id', 'id');
     }
 }

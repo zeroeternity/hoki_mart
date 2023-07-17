@@ -28,7 +28,7 @@
                         <div class="x_title">
                             <h2>Form Data Unit</h2>
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('goods') }}">Data Unit</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('item') }}">Data Unit</a></li>
                                 <li class="breadcrumb-item active">Tambah Data Unit</li>
                             </ol>
                             <div class="clearfix"></div>

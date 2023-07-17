@@ -15,7 +15,7 @@
                     <div class="x_title">
                         <h2>Form Data Voucher</h2>
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('goods') }}">Data Voucher</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('item') }}">Data Voucher</a></li>
                             <li class="breadcrumb-item active">Tambah Data Voucher</li>
                         </ol>
                         <div class="clearfix"></div>
