@@ -42,10 +42,11 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input name="tgl_faktur" id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
-                                        type="text" required="required" type="text" onfocus="this.type='date'"
-                                        onmouseover="this.type='date'" onclick="this.type='date'"
-                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <input name="tgl_faktur" id="birthday" class="date-picker form-control"
+                                        placeholder="dd-mm-yyyy" type="text" required="required" type="text"
+                                        onfocus="this.type='date'" onmouseover="this.type='date'"
+                                        onclick="this.type='date'" onblur="this.type='text'"
+                                        onmouseout="timeFunctionLong(this)">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -53,10 +54,11 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input name="tgl_jatuh_tempo" id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy"
-                                        type="text" required="required" type="text" onfocus="this.type='date'"
-                                        onmouseover="this.type='date'" onclick="this.type='date'"
-                                        onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <input name="tgl_jatuh_tempo" id="birthday" class="date-picker form-control"
+                                        placeholder="dd-mm-yyyy" type="text" required="required" type="text"
+                                        onfocus="this.type='date'" onmouseover="this.type='date'"
+                                        onclick="this.type='date'" onblur="this.type='text'"
+                                        onmouseout="timeFunctionLong(this)">
                                 </div>
                             </div>
 
@@ -176,8 +178,7 @@
         var input_purchase_price = document.createElement("input");
         input_purchase_price.setAttribute("type", "number");
         input_purchase_price.setAttribute("name", "items_purchase_price_"+i);
-        input_purchase_price.setAttribute("id", "items_purchase_price_"+i);       
-        input_purchase_price.setAttribute("data-row-index", i);
+        input_purchase_price.setAttribute("id", "items_purchase_price_"+i);
         input_purchase_price.setAttribute("class", "form-control");
 
          // make element input total
@@ -186,7 +187,6 @@
         input_total.setAttribute("name", "items_total_"+i);
         input_total.setAttribute("id", "items_total_"+i);
         input_total.setAttribute("class", "form-control");
-        input_total.setAttribute("disabled", true);
 
         // ajax get data goods
         input_code.oninput=function(){
@@ -206,15 +206,26 @@
                 
             })
         }
+        // make oninput qty
         input_qty.oninput=function(){
             var qty =input_qty.value;
             var price = input_purchase_price.value;
+
+            if(price > 0){
             input_total.value= qty * price;
+            }
         }
+        // make oninput price
         input_purchase_price.oninput=function(){
             var qty =input_qty.value;
             var price = input_purchase_price.value;
             input_total.value= qty * price;
+        }
+        // make oninput total
+        input_total.oninput=function(){
+            var qty =input_qty.value;
+            var total = input_total.value;
+            input_purchase_price.value= total / qty;
         }
 
         // make element hapus
