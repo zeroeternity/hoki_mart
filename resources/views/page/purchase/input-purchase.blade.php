@@ -5,12 +5,12 @@
 
 <div class="" role="main">
     <div class="">
+        <form  action="{{ route('purchase.update') }}" method="post" enctype="multipart/form-data">
         <div class="page-title">
             <div class="title_left">
                 <h3>Pembelian</h3>
             </div>
         </div>
-
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
@@ -21,15 +21,15 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            @csrf
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Supllier
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Supllier
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <select class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                        name="select_input">
+                                        name="supllier_id">
                                         <option value=""></option>
                                         @foreach($dataSupplier as $key => $supplier)
                                         <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -38,11 +38,11 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">TGL.Faktur
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >TGL.Faktur
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input name="tgl_faktur" id="birthday" class="date-picker form-control"
+                                    <input name="tgl_faktur" id="birthday" class="date-picker form-control" name="tgl_faktur"
                                         placeholder="dd-mm-yyyy" type="text" required="required" type="text"
                                         onfocus="this.type='date'" onmouseover="this.type='date'"
                                         onclick="this.type='date'" onblur="this.type='text'"
@@ -50,11 +50,11 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">TGL.J Tempo
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >TGL.J Tempo
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input name="tgl_jatuh_tempo" id="birthday" class="date-picker form-control"
+                                    <input name="tgl_jatuh_tempo" id="birthday" class="date-picker form-control" name="tgl_jatuh_tempo"
                                         placeholder="dd-mm-yyyy" type="text" required="required" type="text"
                                         onfocus="this.type='date'" onmouseover="this.type='date'"
                                         onclick="this.type='date'" onblur="this.type='text'"
@@ -69,7 +69,6 @@
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -89,7 +88,7 @@
                         Add<i class="fa fa-plus px-2"></i></a>
                 </div>
                 <div class="card-box table-responsive">
-                    <table class="table table-striped table-bordered" style="width:100%">
+                    <table class="table table-striped table-bordered"  style="width:100%">
                         <thead>
                             <tr>
                                 <th>Kode Barang</th>
@@ -111,6 +110,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 
@@ -140,7 +140,13 @@
         row.appendChild(total);
         row.appendChild(purchase_price);
         row.appendChild(action);
-        
+
+        // make element input id
+        var input_id = document.createElement("input");
+        input_id.setAttribute("name", "items_id");
+        input_id.setAttribute("id", "items_id");
+        input_id.setAttribute("hidden", true);
+
         // make element input code
         var input_code = document.createElement("input");
         input_code.setAttribute("name", "items_code_"+i);
@@ -173,7 +179,7 @@
         input_qty.setAttribute("name", "items_qty_"+i);
         input_qty.setAttribute("id", "items_qty_"+i);
         input_qty.setAttribute("class", "form-control");
-       
+
         // make element input number
         var input_purchase_price = document.createElement("input");
         input_purchase_price.setAttribute("type", "number");
@@ -199,11 +205,12 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success:function(response){
+                    input_id.value=response.id
                     input_name.value=response.name
                     input_unit.value=response.unit.name
                     input_ppn.value=response.ppn_type.type
                 }
-                
+
             })
         }
         // make oninput qty
