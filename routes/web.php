@@ -18,6 +18,7 @@ use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Setting\LogActivityController;
 use App\Http\Controllers\Setting\UserAccountController;
 use App\Http\Controllers\Warehouse\ItemController;
+use App\Http\Controllers\Warehouse\MutationController;
 use App\Http\Controllers\Warehouse\PPNTypeController;
 use App\Http\Controllers\Warehouse\VoucherController;
 use Illuminate\Support\Facades\Route;
@@ -54,7 +55,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/purchase/update', [PurchaseController::class, 'update'])->name('purchase.update');
     Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
     Route::post('/purchase/get-items-data', [PurchaseController::class, 'getItemData'])->name('purchase.getitemdata');
-
 
     // sale
     Route::get('/sale', [SaleController::class, 'index'])->name('sale');
@@ -98,6 +98,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/warehouse/adjustment', [AdjustmentController::class, 'index'])->name('adjustment');
     Route::get('/warehouse/adjustment/getdata', [AdjustmentController::class, 'getData'])->name('adjustment.getData');
     Route::get('/warehouse/adjustment/update', [AdjustmentController::class, 'update'])->name('adjustment.update');
+
+    //warehouse - Mutation
+    Route::get('/warehouse/mutation', [MutationController::class, 'index'])->name('mutation');
+    Route::get('/warehouse/mutation/getdata', [MutationController::class, 'getData'])->name('mutation.getData');
+    Route::get('/warehouse/mutation/update', [MutationController::class, 'update'])->name('mutation.update');
 
     //accountancy
     Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');
