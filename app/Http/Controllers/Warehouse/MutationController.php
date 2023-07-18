@@ -15,7 +15,7 @@ class MutationController extends Controller
     {
         $data = [
             'dataOutlet'  => Outlet::all(['id', 'name']),
-            'dataItem'  => Item::all(['id', 'code', 'name']),
+            'dataItem'  => Item::all(['id', 'name']),
         ];
         return view('page.warehouse.Mutation', $data);
     }
@@ -42,9 +42,4 @@ class MutationController extends Controller
         return redirect()->route('mutation');
     }
 
-    public function getData()
-    {
-        $item = Item::orderBy('id')->get();
-        return response()->json($item);
-    }
 }
