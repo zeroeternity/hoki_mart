@@ -45,6 +45,7 @@ class PurchaseController extends Controller
             $due_date       = $request->due_date;
             $items          = $request->items;
 
+            // Store data purchase
             $purchase = new Purchase();
             $purchase->user_id          =  Auth::id();
             $purchase->supllier_id      = $supllier_id;
@@ -53,9 +54,12 @@ class PurchaseController extends Controller
             $purchase->due_date         = $due_date;
             $purchase->save();
             
+            // manage array data items
             foreach ($items as $item) {
+                // get item data
                 $item_data = Item::where('code', $item['code'])->first();
 
+                // store purchase item
                 PurchaseItem::create([
                     'purchase_id'       => $supllier_id,
                     'item_id'           => $item_data['id'],
@@ -63,8 +67,10 @@ class PurchaseController extends Controller
                     'purchase_price'    => $item['purchase_price'],
                 ]);
 
+                // formula add stock
                 $stock = $item_data['minimum_stock'] + $item['qty'];
 
+                // update stock from item
                 $update_item = Item::find($item_data['id']);
                 $update_item->minimum_stock = $stock;
                 $update_item->save();
