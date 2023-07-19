@@ -11,4 +11,9 @@ class Purchase extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'purchases';
     protected $guarded = [];
+
+    public function purchaseItem()
+    {
+        return $this->hasMany(PurchaseItem::class, 'purchase_id', 'id');
+    }
 }

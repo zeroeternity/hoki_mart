@@ -10,6 +10,7 @@ use App\Models\Unit;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
@@ -40,7 +41,7 @@ class ItemController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'code'                  => 'required|string',
+            'code'                  => 'required|string|unique:items,code',
             'name'                  => 'required|string',
             'group_id'              => 'required',
             'ppn_type_id'           => 'required',
@@ -106,7 +107,7 @@ class ItemController extends Controller
 
     public function update(Request $request){
         $request->validate([
-            'code'                  => 'required|string',
+            'code'                  => ['required','string', Rule::unique('items', 'code')->ignore($request->id, 'id')],
             'name'                  => 'required|string',
             'group_id'              => 'required',
             'ppn_type_id'           => 'required',

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use App\Models\Purchase_item;
 use App\Models\Item;
+use App\Models\PurchaseItem;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
@@ -26,54 +28,54 @@ class PurchaseController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id'                  => 'required|string',
-            'supplier_id'              => 'required',
-            'item_id    '              => 'required',
-            'purchase_id'              => 'required',
-            'tgl_faktur'               => 'required',
-            'tgl_jatuh_tempo'          => 'required',
-            'grandtotal_pembelian'     => 'required',
-            'qty'                      => 'required',
-            'purchase_price'           => 'required|string',
-        ]);
-    }
+        try {
+            $request->validate([
+                'supllier_id'           => 'required',
+                'invoice_number'        => 'required|string',
+                'invoice_date'          => 'required|date',
+                'due_date'              => 'required|date',
+                'items.*.code'           => 'required|string',
+                'items.*.qty'            => 'required|numeric',
+                'items.*.purchase_price' => 'required|numeric',
+            ]);
+    
+            $supllier_id    = $request->supllier_id;
+            $invoice_number = $request->invoice_number;
+            $invoice_date   = $request->invoice_date;
+            $due_date       = $request->due_date;
+            $items          = $request->items;
 
-    public function update(Request $request){
+            $purchase = new Purchase();
+            $purchase->user_id          =  Auth::id();
+            $purchase->supllier_id      = $supllier_id;
+            $purchase->invoice_number   = $invoice_number;
+            $purchase->invoice_date     = $invoice_date;
+            $purchase->due_date         = $due_date;
+            $purchase->save();
+            
+            foreach ($items as $item) {
+                $item_data = Item::where('code', $item['code'])->first();
 
+                PurchaseItem::create([
+                    'purchase_id'       => $supllier_id,
+                    'item_id'           => $item_data['id'],
+                    'qty'               => $item['qty'],
+                    'purchase_price'    => $item['purchase_price'],
+                ]);
 
-        $user_id                = $request->user_id;
-        $supplier_id            = $request->supplier_id;
-        $purchase_id            = $request->purchase_id;
-        $tgl_faktur             = $request->tgl_faktur;
-        $tgl_jatuh_tempo        = $request->tgl_jatuh_tempo;
-        $grandtotal_pembelian   = $request->grandtotal_pembelian;
-        $purchase_price         = $request->purchase_price;
-        $qty                    = $request->qty;
+                $stock = $item_data['minimum_stock'] + $item['qty'];
 
-        $data = Item::find($request->items_id);
-        dd($user_id);
-        $minimum_stock             = $data->minimum_stock;
-        $purchase_item             = $request->purchase_item;
-        $data->minimum_stock       = $minimum_stock + $purchase_item;
-        $data->save();
+                $update_item = Item::find($item_data['id']);
+                $update_item->minimum_stock = $stock;
+                $update_item->save();
+            }
 
-        $purchase = new Purchase;
-        $purchase->user_id                  = $user_id;
-        $purchase->supplier_id              = $supplier_id;
-        $purchase->tgl_faktur               = $tgl_faktur;
-        $purchase->tgl_jatuh_tempo          = $tgl_jatuh_tempo;
-        $purchase->grandtotal_pembelian     = $grandtotal_pembelian;
-        $purchase->save();
-
-        $purchase_item = new Purchase_item;
-        $purchase_item->purchase_id                 = $purchase_id;
-        // $purchase_item->$Item_id                    = $Item_id;
-        $purchase_item->$qty                        = $qty;
-        $purchase_item->$purchase_price             = $purchase_price;
-        $purchase_item->save();
-
-        return redirect()->route('Item');
+            return redirect()->route('purchase');
+            
+        } catch (\Exception $th) {
+            throw $th;
+            return $this->responseJSON([], 500, $th);
+        } 
     }
 
     public function return()
