@@ -39,6 +39,7 @@ class PurchaseController extends Controller
                 'items.*.code'           => 'required|string',
                 'items.*.qty'            => 'required|numeric',
                 'items.*.purchase_price' => 'required|numeric',
+                'items'                 => 'required',
             ]);
     
             $supllier_id    = $request->supllier_id;
@@ -63,7 +64,7 @@ class PurchaseController extends Controller
 
                 // store purchase item
                 PurchaseItem::create([
-                    'purchase_id'       => $supllier_id,
+                    'purchase_id'       => $purchase->id,
                     'item_id'           => $item_data['id'],
                     'qty'               => $item['qty'],
                     'purchase_price'    => $item['purchase_price'],
