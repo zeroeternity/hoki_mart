@@ -64,7 +64,7 @@
       <div class="x_panel">
         <div class="page-title">
           <div class="title_left">
-            <h3>Users <small>Some examples to get you started</small></h3>
+            <h3><small>Pembelian Sebelumnya</small></h3>
           </div>
 
           <div class="title_right">
@@ -80,47 +80,34 @@
         </div>
         <div class="clearfix"></div>
         <table id="datatable-fixed-header" class="table table-striped table-bordered" style="width:100%">
-          <thead>
-            <tr class="headings">
-              <th class="column-title">No</th>
-              <th class="column-title">Kode Barang</th>
-              <th class="column-title">Nama Barang</th>
-              <th class="column-title">Satuan</th>
-              <th class="column-title">PPN</th>
-              <th class="column-title">QTY</th>
-              <th class="column-title">Total</th>
-              <th class="column-title">Harga Beli</th>
-              <th class="column-title">Detail</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr class="">
-              <td class=" ">1</td>
-              <td class=" ">121000040 </td>
-              <td class=" ">Beras</td>
-              <td class=" ">KRG</td>
-              <td class=" ">0</td>
-              <td class=" ">1</td>
-              <td class="a-right a-right ">$7.45</td>
-              <td class="a-right a-right ">$4.45</td>
-              <td class=" last"><a href="/invoice"><button type="button" class="btn btn-info">Info</button></a>
-              </td>
-            </tr>
-            <tr class="">
-              <td class=" ">1</td>
-              <td class=" ">121000040 </td>
-              <td class=" ">Beras</td>
-              <td class=" ">KRG</td>
-              <td class=" ">0</td>
-              <td class=" ">1</td>
-              <td class="a-right a-right ">$7.45</td>
-              <td class="a-right a-right ">$4.45</td>
-              <td class=" last"><a href="/invoice"><button type="button" class="btn btn-info">Info</button></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+            <thead>
+              <tr class="headings">
+                <th class="column-title">No</th>
+                <th class="column-title">No faktur</th>
+                <th class="column-title">Nama Barang</th>
+                <th class="column-title">Qty</th>
+                <th class="column-title">Harga Beli</th>
+                <th class="column-title">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($dataPurchaseItem as $key => $data)
+              <tr class="">
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $data->purchase->invoice_number }}</td>
+                <td>{{ $data->item->name }}</td>
+                <td>{{ $data->qty }}</td>
+                <td>{{ $data->purchase_price }}</td>
+                <td>
+                    <button type="button" class="btn btn-info">
+                      <li class="fa fa-edit"></li>
+                    </button>
+                  </a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
       </div>
     </div>
   </div>

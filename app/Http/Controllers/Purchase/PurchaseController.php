@@ -16,7 +16,12 @@ class PurchaseController extends Controller
 {
     public function index()
     {
-        return view('page.purchase.purchase');
+        $data = [
+            'dataPurchaseItem'      => PurchaseItem::with('purchase', 'item')
+                                    ->orderBy('created_at', 'desc')
+                                    ->get(),
+        ];
+        return view('page.purchase.purchase', $data);
     }
 
     public function create()
@@ -41,7 +46,7 @@ class PurchaseController extends Controller
                 'items.*.purchase_price' => 'required|numeric',
                 'items'                 => 'required',
             ]);
-    
+
             $supllier_id    = $request->supllier_id;
             $invoice_number = $request->invoice_number;
             $invoice_date   = $request->invoice_date;
@@ -56,7 +61,7 @@ class PurchaseController extends Controller
             $purchase->invoice_date     = $invoice_date;
             $purchase->due_date         = $due_date;
             $purchase->save();
-            
+
             // manage array data items
             foreach ($items as $item) {
                 // get item data
@@ -80,12 +85,12 @@ class PurchaseController extends Controller
             }
             DB::commit();
             return redirect()->route('purchase');
-            
+
         } catch (\Exception $th) {
             throw $th;
             DB::rollback();
             return $this->responseJSON([], 500, $th);
-        } 
+        }
     }
 
     public function return()
