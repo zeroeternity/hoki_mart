@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
     {
 
         //Factory For Testing
-        // Group::factory()->count(10)->create();
-        // Voucher::factory()->count(10)->create();    
-        // Supplier::factory()->count(5)->create();
+        Group::factory()->count(10)->create();
+        Voucher::factory()->count(10)->create();    
+        Supplier::factory()->count(5)->create();
 
         try {
             $this->call([

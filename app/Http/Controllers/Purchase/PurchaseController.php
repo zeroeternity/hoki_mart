@@ -10,6 +10,7 @@ use App\Models\PurchaseItem;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -28,6 +29,7 @@ class PurchaseController extends Controller
 
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try {
             $request->validate([
                 'supllier_id'           => 'required',
@@ -75,11 +77,12 @@ class PurchaseController extends Controller
                 $update_item->minimum_stock = $stock;
                 $update_item->save();
             }
-
+            DB::commit();
             return redirect()->route('purchase');
             
         } catch (\Exception $th) {
             throw $th;
+            DB::rollback();
             return $this->responseJSON([], 500, $th);
         } 
     }
