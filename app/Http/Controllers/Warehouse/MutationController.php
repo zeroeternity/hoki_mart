@@ -14,11 +14,25 @@ class MutationController extends Controller
     public function index()
     {
         $data = [
+            'dataMutation'      => Mutation::with('outlet', 'item', 'item.outlet')
+                                    ->orderBy('created_at', 'desc')
+                                    ->get()
+                                    ,
+        ];
+
+        // dd($data['dataMutation']);
+        return view('page.warehouse.mutation.mutation', $data);
+    }
+
+    public function create()
+    {
+        $data = [
             'dataOutlet'  => Outlet::all(['id', 'name']),
             'dataItem'  => Item::all(['id', 'name']),
         ];
-        return view('page.warehouse.Mutation', $data);
+        return view('page.warehouse.mutation.input-mutation', $data);
     }
+
     public function update(Request $request){
         $request->validate([
             'item_id'              => 'required',

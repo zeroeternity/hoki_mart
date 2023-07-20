@@ -26,4 +26,9 @@ class Item extends Model
     {
         return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
+    }
+
 }

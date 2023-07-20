@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function () {
 
     //warehouse - Mutation
     Route::get('/warehouse/mutation', [MutationController::class, 'index'])->name('mutation');
+    Route::get('/warehouse/mutation/create', [MutationController::class, 'create'])->name('mutation.create');
     Route::get('/warehouse/mutation/getdata', [MutationController::class, 'getData'])->name('mutation.getData');
     Route::get('/warehouse/mutation/update', [MutationController::class, 'update'])->name('mutation.update');
 
