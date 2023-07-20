@@ -19,10 +19,8 @@ return new class extends Migration
             $table->foreignId('ppn_type_id')->references('id')->on('ppn_types');
             $table->foreignId('unit_id')->references('id')->on('units');
             $table->foreignId('outlet_id')->references('id')->on('outlets');
-            $table->integer('purchase_price');
             $table->integer('selling_price');
             $table->integer('minimum_stock');
-            $table->enum('margin_member', ['0', '1'])->default(0)->comment('0 = Not Active, 1 = Active');
             $table->decimal('percent_non_margin');
             $table->enum('status', ['0', '1'])->default(1)->comment('0 = Not Active, 1 = Active');
             $table->timestamps();

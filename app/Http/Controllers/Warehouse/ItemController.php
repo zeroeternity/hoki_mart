@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\Item;
 use App\Models\PPNType;
+use App\Models\PurchaseItem;
 use App\Models\Unit;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
@@ -17,15 +18,20 @@ class ItemController extends Controller
     public function index()
     {
         $data = [
-            'dataItem'      => Item::with('group', 'ppnType', 'unit')
+            'dataItem'      => Item::with('group', 'ppnType', 'unit', 'purchaseItem')
                                     ->where('outlet_id', Auth::user()->outlet_id)
                                     ->orderBy('created_at', 'desc')
-                                    ->get(),
+                                    ->get()
+                                    ->map(fn ($item) => [
+                                        ...$item->toArray(),
+                                        'purchase_item' => $item->purchaseItem()->latest()->first(),                            
+                                    ]),
             'dataUnit'      => Unit::orderBy('created_at', 'desc')->get(),
             'dataGroup'     => Group::orderBy('created_at', 'desc')->get(),
             'dataPPN'       => PPNType::orderBy('created_at', 'desc')->get(),
             'dataVoucher'   => Voucher::orderBy('created_at', 'desc')->get(),
         ];
+        // dd($data);
         return view('page.warehouse.item.item', $data);
     }
 
@@ -46,11 +52,6 @@ class ItemController extends Controller
             'group_id'              => 'required',
             'ppn_type_id'           => 'required',
             'unit_id'               => 'required',
-            'purchase_price'        => 'required|numeric',
-            'selling_price'         => 'required|numeric',
-            'minimum_stock'         => 'required|numeric',
-            'margin_member'         => 'required|string',
-            'percent_non_margin'    => 'required|string',
         ]);
 
         $code               = $request->code;
@@ -59,11 +60,9 @@ class ItemController extends Controller
         $ppn_type_id        = $request->ppn_type_id;
         $unit_id            = $request->unit_id;
         $outlet_id          = Auth::user()->outlet_id;
-        $purchase_price     = $request->purchase_price;
-        $selling_price      = $request->selling_price;
-        $minimum_stock      = $request->minimum_stock;
-        $margin_member      = $request->margin_member;
-        $percent_non_margin = $request->percent_non_margin;
+        $selling_price      = $request->selling_price ?? 0;
+        $minimum_stock      = $request->minimum_stock ?? 0;
+        $percent_non_margin = $request->percent_non_margin ?? 0;
         
         $data = new Item();
         $data->code                 = $code;
@@ -72,10 +71,8 @@ class ItemController extends Controller
         $data->ppn_type_id          = $ppn_type_id;
         $data->unit_id              = $unit_id;
         $data->outlet_id            = $outlet_id;
-        $data->purchase_price       = $purchase_price;
         $data->selling_price        = $selling_price;
         $data->minimum_stock        = $minimum_stock;
-        $data->margin_member        = $margin_member;
         $data->percent_non_margin   = $percent_non_margin;
         $data->save();
 
@@ -85,6 +82,7 @@ class ItemController extends Controller
     public function edit($id)
     {
         $dataItem = Item::find($id);
+        $data_purchase_price = PurchaseItem::where('item_id', $id)->first();
         $data = [
             'id'                    => $dataItem->id,
             'code'                  => $dataItem->code,
@@ -92,7 +90,7 @@ class ItemController extends Controller
             'group_id'              => $dataItem->group_id,
             'ppn_type_id'           => $dataItem->ppn_type_id,
             'unit_id'               => $dataItem->unit_id,
-            'purchase_price'        => $dataItem->purchase_price,
+            'purchase_price'        => $data_purchase_price ?? 0,
             'selling_price'         => $dataItem->selling_price,
             'minimum_stock'         => $dataItem->minimum_stock,
             'margin_member'         => $dataItem->margin_member,
@@ -112,11 +110,6 @@ class ItemController extends Controller
             'group_id'              => 'required',
             'ppn_type_id'           => 'required',
             'unit_id'               => 'required',
-            'purchase_price'        => 'required|numeric',
-            'selling_price'         => 'required|numeric',
-            'minimum_stock'         => 'required|numeric',
-            'margin_member'         => 'required|string',
-            'percent_non_margin'    => 'required|string',
         ]);
 
         $id                 = $request->id;
@@ -125,10 +118,8 @@ class ItemController extends Controller
         $group_id           = $request->group_id;
         $ppn_type_id        = $request->ppn_type_id;
         $unit_id            = $request->unit_id;
-        $purchase_price     = $request->purchase_price;
         $selling_price      = $request->selling_price;
         $minimum_stock      = $request->minimum_stock;
-        $margin_member      = $request->margin_member;
         $percent_non_margin = $request->percent_non_margin;
 
         $data = Item::find($id);
@@ -137,10 +128,8 @@ class ItemController extends Controller
         $data->group_id             = $group_id;
         $data->ppn_type_id          = $ppn_type_id;
         $data->unit_id              = $unit_id;
-        $data->purchase_price       = $purchase_price;
         $data->selling_price        = $selling_price;
         $data->minimum_stock        = $minimum_stock;
-        $data->margin_member        = $margin_member;
         $data->percent_non_margin   = $percent_non_margin;
         $data->save();
 

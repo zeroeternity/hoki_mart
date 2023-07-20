@@ -74,7 +74,8 @@
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="group_id">
                                         <option value=""></option>
                                         @foreach($dataGroup as $key => $group)
-                                        <option value="{{ $group->id }}" {{ $group->id = $group_id ? 'selected' : ''
+                                        <option value="{{ $group->id }}" {{ $group_id==$group->id ?
+                                            'selected="selected"' : ''
                                             }}>{{ $group->name }}</option>
                                         @endforeach
                                     </select>
@@ -90,8 +91,8 @@
                                         name="ppn_type_id">
                                         <option value=""></option>
                                         @foreach($dataPPN as $key => $ppntype)
-                                        <option value="{{ $ppntype->id }}" {{ $ppntype->id = $ppn_type_id ? 'selected' :
-                                            '' }}>{{ $ppntype->type }}</option>
+                                        <option value="{{ $ppntype->id }}" {{ $ppn_type_id==$ppntype->id ?
+                                            'selected="selected"' : '' }}>{{ $ppntype->type }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -105,30 +106,29 @@
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="unit_id">
                                         <option value=""></option>
                                         @foreach($dataUnit as $key => $unit)
-                                        <option value="{{ $unit->id }}" {{ $unit->id = $unit_id ? 'selected' : '' }}>{{
+                                        <option value="{{ $unit->id }}" {{ $unit_id==$unit->id ? 'selected="selected"' :
+                                            '' }}>{{
                                             $unit->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Beli <span
-                                        class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Beli
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="purchase_price" required="required" class="form-control 
+                                    <input type="number" id="purchase_price" class="form-control 
                                     @error('purchase_price')
                                             is-invalid
                                         @enderror" value="{{ $purchase_price }}" name="purchase_price"
-                                        oninput="calculateLaba()">
+                                        oninput="calculateLaba()" disabled>
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Jual <span
-                                        class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Jual
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="selling_price" required="required" class="form-control 
+                                    <input type="number" id="selling_price" class="form-control 
                                     @error('selling_price')
                                             is-invalid
                                         @enderror" value="{{ $selling_price }}" name="selling_price"
@@ -136,38 +136,20 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Stock Minimum <span
-                                        class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Stock Minimum
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="minimum_stock" required="required" class="form-control 
+                                    <input type="number" id="minimum_stock" class="form-control 
                                     @error('minimum_stock')
                                             is-invalid
                                         @enderror" value="{{ $minimum_stock }}" name="minimum_stock">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Margin Karyawan <span
-                                        class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Persen non margin
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                        name="margin_member">
-                                        <option value="0" @php if($margin_member=="0" ){echo "selected" ;} @endphp>Tidak
-                                            Aktif
-                                        </option>
-                                        <option value="1" @php if($margin_member=="1" ){echo "selected" ;} @endphp>Aktif
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Persen non margin <span
-                                        class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" step="any" id="percent_non_margin" required="required" class="form-control 
+                                    <input type="number" step="any" id="percent_non_margin" class="form-control 
                                         @error('percent_non_margin')
                                             is-invalid
                                         @enderror" value="{{ $percent_non_margin }}" name="percent_non_margin"

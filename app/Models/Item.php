@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
@@ -26,9 +29,15 @@ class Item extends Model
     {
         return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
+    
     public function outlet()
     {
         return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
     }
 
+
+    public function purchaseItem()
+    {
+        return $this->hasMany(PurchaseItem::class, 'item_id', 'id');
+    }
 }

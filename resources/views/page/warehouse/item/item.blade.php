@@ -71,17 +71,17 @@
                 @foreach($dataItem as $key => $item)
                 <tr class="">
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $item->code }}</td>
-                  <td>{{ $item->name }}</td>
-                  <td>{{ $item->group->name }}</td>
-                  <td>{{ $item->ppnType->type }}</td>
-                  <td>{{ $item->unit->name }}</td>
-                  <td>{{ $item->purchase_price }}</td>
-                  <td>{{ $item->selling_price }}</td>
-                  <td>{{ $item->minimum_stock }}</td>
-                  <td>{{ $item->percent_non_margin }}</td>
+                  <td>{{ $item['code'] }}</td>
+                  <td>{{ $item['name'] }}</td>
+                  <td>{{ $item['group']['name'] }}</td>
+                  <td>{{ $item['ppn_type']['type'] }}</td>
+                  <td>{{ $item['unit']['name'] }}</td>
+                  <td>{{ $item['purchase_item']['purchase_price'] ?? 0}}</td>
+                  <td>{{ $item['selling_price'] }}</td>
+                  <td>{{ $item['minimum_stock'] }}</td>
+                  <td>{{ $item['percent_non_margin'] }}</td>
                   <td>
-                    <a href="{{ route('item.edit',[$item->id]) }}">
+                    <a href="{{ route('item.edit',[$item['id']]) }}">
                       <button type="button" class="btn btn-info">
                         <li class="fa fa-edit"></li>
                       </button>

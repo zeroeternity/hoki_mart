@@ -97,53 +97,26 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Beli <span
-                                        class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Jual
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="purchase_price" required="required" class="form-control "
-                                        name="purchase_price" oninput="calculateLaba()">
+                                    <input type="number" id="selling_price" class="form-control " name="selling_price"
+                                        oninput="calculateLaba()">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Jual <span
-                                        class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Stock Minimum
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="selling_price" required="required" class="form-control "
-                                        name="selling_price" oninput="calculateLaba()">
+                                    <input type="number" id="minimum_stock" class="form-control " name="minimum_stock">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Stock Minimum <span
-                                        class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Persen non margin
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="minimum_stock" required="required" class="form-control "
-                                        name="minimum_stock">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Margin Karyawan <span
-                                        class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                        name="margin_member">
-                                        <option value="0">Tidak Aktif</option>
-                                        <option value="1">Aktif</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Persen non margin <span
-                                        class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" step="any" id="percent_non_margin" required="required"
-                                        class="form-control " name="percent_non_margin"
-                                        oninput="calculateSellingPrice()">
+                                    <input type="number" step="any" id="percent_non_margin" class="form-control "
+                                        name="percent_non_margin" oninput="calculateSellingPrice()">
                                     <span class="form-control-feedback right" aria-hidden="true">%</span>
                                 </div>
                             </div>
@@ -162,7 +135,8 @@
     </div>
 </div>
 
-<script>
+{{-- Script calculate --}}
+{{-- <script>
     const calculateLaba = () => {
         var purchasePrice       = $("#purchase_price").val()
         var sellingPrice        = $("#selling_price").val()
@@ -185,6 +159,6 @@
             $("#selling_price").val(Math.floor(result))
         }
     }
-</script>
+</script> --}}
 
 @endsection
