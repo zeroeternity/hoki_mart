@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
         // sale
         Route::get('/sale', [SaleController::class, 'index'])->name('sale');
         Route::get('/sale/create', [SaleController::class, 'create'])->name('sale.create');
+        Route::post('/sale/store', [SaleController::class, 'store'])->name('sale.store');
 
         //warehouse
         Route::get('/warehouse/mutation', [WarehouseController::class, 'mutation'])->name('warehouse.mutation');

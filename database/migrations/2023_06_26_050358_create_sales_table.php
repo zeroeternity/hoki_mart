@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cashier_id')->references('id')->on('users');
-            $table->foreignId('member_id')->references('id')->on('users');
+            $table->foreignId('member_id')->nullable()->references('id')->on('users');
             $table->string('payment_method');
             // $table->integer('subtotal');
             // $table->integer('grandtotal');

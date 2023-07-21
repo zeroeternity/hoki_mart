@@ -5,30 +5,43 @@
 
     <div class="" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Penjualan</h3>
-                </div>
-            </div>
+            <form action="{{ route('sale.store') }}" method="post" id="demo-form2" data-parsley-validate
+                class="form-horizontal form-label-left">
+                @csrf
 
-            <div class="clearfix"></div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 ">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>Form Penjualan <small>Nama / id outlet</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <br />
-                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Penjualan</h3>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 ">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Form Penjualan <small>Nama / id outlet</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>
+                                                    {{ $error }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">NO.Anggota <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" id="first-name" required="required" class="form-control ">
+                                        <input name="member_id" type="text" id="first-name" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -44,7 +57,7 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-1 col-sm-1 ">
-                                        <select class="form-control">
+                                        <select name="payment_method" class="form-control">
                                             <option>Cash</option>
                                             <option>Piutang</option>
                                         </select>
@@ -65,59 +78,61 @@
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 offset-md-3">
-                                        <button class="btn btn-primary" type="button">New</button>
-                                        <button class="btn btn-info" type="button">Edit</button>
-                                        <button class="btn btn-danger" type="reset">Delete</button>
-                                        <button class="btn btn-warning" type="button">Search</button>
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Data Barang</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="col-md-3 col-sm-3 offset-md-1">
-                        <a class="btn btn-primary text-white" onclick="addItemSale(); return false">
-                            Add<i class="fa fa-plus px-2"></i></a>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Data Barang</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="card-box table-responsive">
-                        <table class="table table-striped table-bordered" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Satuan</th>
-                                    <th>PPN</th>
-                                    <th>Qty</th>
-                                    <th>Harga</th>
-                                    <th>Total</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                    <div class="x_content">
+                        <div class="col-md-3 col-sm-3 offset-md-1">
+                            <a class="btn btn-primary text-white" onclick="addItemSale(); return false">
+                                Add<i class="fa fa-plus px-2"></i></a>
+                        </div>
+                        <div class="card-box table-responsive">
+                            <table class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Kode Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Satuan</th>
+                                        <th>PPN</th>
+                                        <th>Qty</th>
+                                        <th>Harga</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
 
-                            <tbody id="itemListSale">
-                                <tr>
+                                <tbody id="itemListSale">
+                                    <tr>
 
-                                </tr>
+                                    </tr>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="item form-group">
+                            <div class="col-md-6 col-sm-6 offset-md-3">
+                                <button class="btn btn-primary" type="button">New</button>
+                                <button class="btn btn-info" type="button">Edit</button>
+                                <button class="btn btn-danger" type="reset">Delete</button>
+                                <button class="btn btn-warning" type="button">Search</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
         </div>
     </div>
 
@@ -201,7 +216,7 @@
             input_total.setAttribute("name", 'items[' + i + '][total]');
             input_total.setAttribute("id", 'items[' + i + '][total]');
             input_total.setAttribute("class", "form-control");
-            
+
             // ajax get data item
             input_code.oninput = function() {
                 var item_code = input_code.value
@@ -221,6 +236,28 @@
 
                 })
             }
+            // make oninput qty
+            input_qty.oninput = function() {
+                var qty = input_qty.value;
+                var price = input_sale_price.value;
+
+                if (price > 0) {
+                    input_total.value = qty * price;
+                }
+            }
+            // make oninput price
+            input_sale_price.oninput = function() {
+                var qty = input_qty.value;
+                var price = input_sale_price.value;
+                input_total.value = qty * price;
+            }
+            // make oninput total
+            input_total.oninput = function() {
+                var qty = input_qty.value;
+                var total = input_total.value;
+                input_sale_price.value = total / qty;
+            }
+
             // make element hapus
             var hapus = document.createElement("a");
             // function appendchild
