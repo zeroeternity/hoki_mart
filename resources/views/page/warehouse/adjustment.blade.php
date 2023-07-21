@@ -54,11 +54,11 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="item_id">
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="outlet_item_id">
                                         <option value=""></option>
-                                        @foreach ($dataItem as $key => $item)
-                                        <option data-item='{{ json_encode($item) }}' value="{{ $item->id }}">
-                                            {{ $item->code }} - {{ $item->name }}</option>
+                                        @foreach ($dataOutletItem as $key => $outlet_item)
+                                        <option data-outlet_item='{{ json_encode($outlet_item) }}' value="{{ $outlet_item->id }}">
+                                            {{ $outlet_item->item->code }} - {{ $outlet_item->item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -91,10 +91,6 @@
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">New</button>
-                                    <button class="btn btn-info" type="button">Edit</button>
-                                    <button class="btn btn-danger" type="reset">Delete</button>
-                                    <button class="btn btn-warning" type="button">Search</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
@@ -214,15 +210,15 @@
 
 @push('addon-script')
 <script>
-    $("select[name=item_id]").on('change', function() {
-            const item = $('select[name=item_id]').find("option:selected").data('item')
-            $("input#price").val(item.selling_price)
-            $("input#stock").val(item.minimum_stock)
+    $("select[name=outlet_item_id]").on('change', function() {
+            const outlet_item = $('select[name=outlet_item_id]').find("option:selected").data('outlet_item')
+            $("input#price").val(outlet_item.selling_price)
+            $("input#stock").val(outlet_item.minimum_stock)
         })
 
         $('#qty').on('input', function() {
-            const item = $('select[name=item_id]').find("option:selected").data('item')
-            var totalStock = parseInt(item.minimum_stock) || 0;;
+            const outlet_item = $('select[name=outlet_item_id]').find("option:selected").data('outlet_item')
+            var totalStock = parseInt(outlet_item.minimum_stock) || 0;;
             var quantity = parseInt($(this).val()) || 0;
              totalStock += quantity;
             $('#stock').val(totalStock);

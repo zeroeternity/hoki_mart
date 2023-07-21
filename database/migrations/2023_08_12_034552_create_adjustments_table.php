@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('adjustments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->references('id')->on('items');
+            $table->foreignId('outlet_item_id')->references('id')->on('outlet_items');
             $table->timestamps();
             $table->softDeletes();
         });
