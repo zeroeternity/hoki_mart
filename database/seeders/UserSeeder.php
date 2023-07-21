@@ -17,6 +17,16 @@ class UserSeeder extends Seeder
     {
         User::insert([
             [
+                'role_id'       => Role::firstWhere(['name' => 'superadmin'])->id,
+                'outlet_id'     => Outlet::firstWhere(['name' => 'Hoki Mart'])->id,
+                'name'          => 'Super Admin',
+                'email'         => 'superadmin@taniyuk.com',
+                'phone'         => null,
+                'password'      => bcrypt('12345678'),
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ],
+            [
                 'role_id'       => Role::firstWhere(['name' => 'admin'])->id,
                 'outlet_id'     => Outlet::firstWhere(['name' => 'Hoki Mart'])->id,
                 'name'          => 'Admin',
