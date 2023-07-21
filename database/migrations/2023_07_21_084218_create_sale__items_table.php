@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('sale_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cashier_id')->references('id')->on('users');
-            $table->foreignId('member_id')->references('id')->on('users');
-            $table->string('payment_method');
-            // $table->integer('subtotal');
-            // $table->integer('grandtotal');
+            $table->foreignId('sale_id')->references('id')->on('sales');
+            $table->foreignId('outlet_item_id')->references('id')->on('outlet_items');
+            $table->integer('qty');
+            $table->integer('sale_price');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('sale__items');
     }
 };
