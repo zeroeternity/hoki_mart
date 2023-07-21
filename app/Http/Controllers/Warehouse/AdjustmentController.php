@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Outlet;
 use App\Models\Adjustment;
 use App\Models\Item;
+use App\Models\OutletItem;
 use Illuminate\Http\Request;
 
 class AdjustmentController extends Controller
@@ -14,26 +15,27 @@ class AdjustmentController extends Controller
     {
         $data = [
             'dataOutlet'  => Outlet::all(['id', 'name']),
-            'dataItem'  => Item::all(['id', 'code', 'name', 'selling_price', 'minimum_stock']),
+            'dataItem'  => Item::all(['id', 'code', 'name']),
+            'dataOutletItem'  => OutletItem::all(['id', 'item_id','selling_price', 'minimum_stock']),
         ];
         return view('page.warehouse.adjustment', $data);
     }
 
     public function update(Request $request){
         $request->validate([
-            'item_id'              => 'required',
+            'outlet_item_id'       => 'required',
         ]);
 
-        $item_id           = $request->item_id;
+        $outlet_item_id           = $request->outlet_item_id;
 
-        $data = Item::find($item_id);
+        $data = OutletItem::find($outlet_item_id);
         $minimum_stock             = $data->minimum_stock;
         $adjustment                = $request->adjustment;
         $data->minimum_stock       = $minimum_stock + $adjustment;
         $data->save();
 
         $adjust = new Adjustment;
-        $adjust->item_id = $item_id;
+        $adjust->outlet_item_id = $outlet_item_id;
         $adjust->save();
 
         return redirect()->route('item');
