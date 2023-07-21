@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use App\Models\Purchase_item;
 use App\Models\Item;
+use App\Models\OutletItem;
 use App\Models\PurchaseItem;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class PurchaseController extends Controller
             foreach ($items as $item) {
                 // get item data
                 $item_data = Item::where('code', $item['code'])->first();
-
+                $item_outlet = OutletItem::where('id' , $item_data['id'])->first();
                 // store purchase item
                 PurchaseItem::create([
                     'purchase_id'       => $purchase->id,
@@ -76,10 +77,10 @@ class PurchaseController extends Controller
                 ]);
 
                 // formula add stock
-                $stock = $item_data['minimum_stock'] + $item['qty'];
+                $stock = $item_outlet['minimum_stock'] + $item['qty'];
 
                 // update stock from item
-                $update_item = Item::find($item_data['id']);
+                $update_item = OutletItem::find($item_outlet['id']);
                 $update_item->minimum_stock = $stock;
                 $update_item->save();
             }

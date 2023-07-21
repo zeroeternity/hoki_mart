@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Outlet_Item extends Model
+class OutletItem extends Model
 {
     use HasFactory;
-    protected $table = 'outlet_item';
+    protected $table = 'outlet_items';
     protected $guarded = [];
 
     public function outlet()
@@ -20,4 +20,5 @@ class Outlet_Item extends Model
     {
         return $this->belongsTo(Item::class, 'item_id', 'id');
     }
+    
 }
