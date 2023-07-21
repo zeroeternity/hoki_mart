@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\MasterData\BankAcountController;
-use App\Http\Controllers\MasterData\EstateController;
 use App\Http\Controllers\MasterData\OutletController;
 use App\Http\Controllers\MasterData\SupplierController;
 use App\Http\Controllers\Accountancy\AccountancyController;
+use App\Http\Controllers\Member\EstateController;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
@@ -153,13 +152,12 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/master-data/supplier/update', [SupplierController::class, 'update'])->name('supplier.update');
         Route::delete('/master-data/supplier/destroy/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
-        // Master Data - Estate
-        Route::get('/master-data/estate', [EstateController::class, 'index'])->name('estate');
-        Route::get('/master-data/estate/create', [EstateController::class, 'create'])->name('estate.create');
-        Route::post('/master-data/estate/store', [EstateController::class, 'store'])->name('estate.store');
-        Route::get('/master-data/estate/edit/{id}', [EstateController::class, 'edit'])->name('estate.edit');
-        Route::put('/master-data/estate/update', [EstateController::class, 'update'])->name('estate.update');
-        Route::delete('/master-data/estate/destroy/{id}', [EstateController::class, 'destroy'])->name('estate.destroy');
+        // Member - Estate
+        Route::get('/member/estate/create', [EstateController::class, 'create'])->name('estate.create');
+        Route::post('/member/estate/store', [EstateController::class, 'store'])->name('estate.store');
+        Route::get('/member/estate/edit/{id}', [EstateController::class, 'edit'])->name('estate.edit');
+        Route::put('/member/estate/update', [EstateController::class, 'update'])->name('estate.update');
+        Route::delete('/member/estate/destroy/{id}', [EstateController::class, 'destroy'])->name('estate.destroy');
 
         // Setting - Log Activity
         Route::get('/setting/log-activity', [LogActivityController::class, 'index'])->name('log-activity');

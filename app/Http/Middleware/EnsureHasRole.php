@@ -19,7 +19,7 @@ class EnsureHasRole
     public function handle(Request $request, Closure $next, ...$name)
     {
         if (!Role::whereIn('name', $name)->pluck('id')->contains($request->user()->role_id)) {
-            return redirect()->route('auth')->with('message', 'Anda Tidak Memiliki Akses');
+            return redirect()->route('auth');
         }
 
         return $next($request);

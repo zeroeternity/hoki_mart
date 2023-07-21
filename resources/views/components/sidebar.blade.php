@@ -28,7 +28,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('item') }}">Data Barang</a></li>
           <li><a href="{{ route('mutation') }}">Mutasi Barang</a></li>
-          <li><a href="{{ route('adjustment') }}">Adjust</a></li>
+          <li><a href="{{ route('adjustment') }}">Adjustment</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-file-text-o"></i> Akutansi <span class="fa fa-chevron-down"></span></a>
@@ -61,7 +61,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('item') }}">Data Barang</a></li>
           <li><a href="{{ route('mutation') }}">Mutasi Barang</a></li>
-          <li><a href="{{ route('adjustment') }}">Adjust</a></li>
+          <li><a href="{{ route('adjustment') }}">Adjustment</a></li>
           <li><a href="{{ route('warehouse.stock') }}">Persediaan</a></li>
           <li><a href="{{ route('warehouse.stock_outlet') }}">Kartu Stock Outlet</a></li>
         </ul>
@@ -113,7 +113,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('item') }}">Data Barang</a></li>
           <li><a href="{{ route('mutation') }}">Mutasi Barang</a></li>
-          <li><a href="{{ route('adjustment') }}">Adjust</a></li>
+          <li><a href="{{ route('adjustment') }}">Adjustment</a></li>
           <li><a href="{{ route('warehouse.stock') }}">Persediaan</a></li>
           <li><a href="{{ route('warehouse.stock_outlet') }}">Kartu Stock Outlet</a></li>
         </ul>

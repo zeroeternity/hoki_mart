@@ -21,6 +21,8 @@ class MemberController extends Controller
                                         ->orderBy('created_at', 'desc')->get(),
             'dataMemberType'    => MemberType::orderBy('created_at', 'desc')->get(),
             'dataPosition'      => Position::orderBy('created_at', 'desc')->get(),
+            'dataEstate'        => Estate::orderBy('created_at', 'desc')->get(),
+
         ];
         return view('page.member.data-member.member', $data);
     }

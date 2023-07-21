@@ -17,7 +17,7 @@
                     <div class="x_title">
                         <h2>Edit Estate</h2>
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('estate') }}">Data Estate</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('member',['#estate']) }}">Data Estate</a></li>
                             <li class="breadcrumb-item active">Edit Estate</li>
                         </ol>
                         <div class="clearfix"></div>
