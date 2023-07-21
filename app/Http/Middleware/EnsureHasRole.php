@@ -16,13 +16,13 @@ class EnsureHasRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$role_name)
+    public function handle(Request $request, Closure $next, ...$name)
     {
         if (!$request->user() || !$request->user()->role_id) {
             return redirect('/auth');
         }
         
-        if (!Role::whereIn('role_name', $role_name)->pluck('id')->contains($request->user()->role_id)) {
+        if (!Role::whereIn('name', $name)->pluck('id')->contains($request->user()->role_id)) {
             return HandlerResponse::responseJSON(['message' => 'Akun tidak memiliki hak akses!'], 403);
         }
 
