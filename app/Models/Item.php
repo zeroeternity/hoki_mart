@@ -30,8 +30,5 @@ class Item extends Model
         return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
 
-    public function purchaseItem()
-    {
-        return $this->hasMany(PurchaseItem::class, 'item_id', 'id');
-    }
+    
 }

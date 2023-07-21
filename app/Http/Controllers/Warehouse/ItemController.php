@@ -20,20 +20,15 @@ class ItemController extends Controller
     public function index()
     {
         $data = [
-            'dataItem'      => Item::with('group', 'ppnType', 'unit', 'purchaseItem')->get()->map(fn ($item) => [
-                ...$item->toArray(),
-                'purchase_item'=> $item->purchaseItem()->latest()->first(),
-            ]),
-            'dataOutlet_item' => OutletItem::with('outlet', 'item')->where('outlet_id', Auth::user()->outlet_id)
+            'dataItem'      => Item::with('group', 'ppnType', 'unit')->get(),
+            'dataOutlet_item' => OutletItem::with('outlet', 'item', 'purchaseItem')->where('outlet_id', Auth::user()->outlet_id)
                 ->orderBy('created_at', 'desc')
                 ->get(),
-
             'dataUnit'      => Unit::orderBy('created_at', 'desc')->get(),
             'dataGroup'     => Group::orderBy('created_at', 'desc')->get(),
             'dataPPN'       => PPNType::orderBy('created_at', 'desc')->get(),
             'dataVoucher'   => Voucher::orderBy('created_at', 'desc')->get(),
         ];
-        dd($data['dataItem']);
         return view('page.warehouse.item.item', $data);
     }
 

@@ -76,7 +76,7 @@
                   <td>{{ $item->item->group->name }}</td>
                   <td>{{ $item->item->ppnType->type }}</td>
                   <td>{{ $item->item->unit->name }}</td>
-                  <td>{{ $item->item->purchase_item->purchase_price}}</td>
+                  <td>{{ $item->purchaseItem[0]->purchase_price}}</td>
                   <td>{{ $item->selling_price}}</td>
                   <td>{{ $item->minimum_stock}}</td>
                   <td>{{ $item->percent_non_margin}}</td>
