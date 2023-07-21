@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mutations', function (Blueprint $table) {
+        Schema::create('outlet__items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('outlet_id')->references('id')->on('outlets');
             $table->foreignId('item_id')->references('id')->on('items');
-            $table->integer('qty');
+            $table->foreignId('outlet_id')->references('id')->on('outlets');
+            $table->integer('selling_price');
+            $table->integer('minimum_stock');
+            $table->decimal('percent_non_margin');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mutations');
+        Schema::dropIfExists('outlet__items');
     }
 };

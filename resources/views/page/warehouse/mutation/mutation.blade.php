@@ -86,6 +86,7 @@
                 <th class="column-title">Nama Barang</th>
                 <th class="column-title">Dikirim dari outlet</th>
                 <th class="column-title">Diterima di outlet</th>
+                <th class="column-title">Sebanyak</th>
                 <th class="column-title">Action</th>
               </tr>
             </thead>
@@ -96,6 +97,7 @@
                 <td>{{ $data->item->name }}</td>
                 <td>{{ $data->outlet->name }}</td>
                 <td>{{ $data->item->outlet->name }}</td>
+                <td>{{ $data->qty}}</td>
                 <td>
                     <button type="button" class="btn btn-info">
                       <li class="fa fa-edit"></li>

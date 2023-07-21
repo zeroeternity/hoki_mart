@@ -36,18 +36,6 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Outlet <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="mutation">
-                                        @foreach ($dataOutlet as $key => $outlet)
-                                        <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Pengirim <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -60,6 +48,28 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="item form-group ">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Outlet <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 has-feedback-left">
+                                    <select class="form-control select2 select2-danger"
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="mutation">
+                                        @foreach ($dataOutlet as $key => $outlet)
+                                        <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Jumlah dikirim
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-3 col-sm-3  form-group has-feedback">
+                                    <input type="text" class="form-control" required="required" id="qty"
+                                        name="qty" placeholder="Qty">
+                                </div>
+                            </div>
+
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">

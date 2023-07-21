@@ -16,8 +16,7 @@ class MutationController extends Controller
         $data = [
             'dataMutation'      => Mutation::with('outlet', 'item', 'item.outlet')
                                     ->orderBy('created_at', 'desc')
-                                    ->get()
-                                    ,
+                                    ->get(),
         ];
 
         // dd($data['dataMutation']);
@@ -41,16 +40,24 @@ class MutationController extends Controller
 
         $item_id           = $request->item_id;
         $outlet_id         = $request->outlet_id;
+        $qty               = $request->qty;
 
         $data = Item::find($item_id);
-        $outlet_id             = $data->outlet_id;
-        $mutation              = $request->mutation;
-        $data->outlet_id       = $mutation;
+        $minimum_stock         = $data->minimum_stock;
+        $qty                   = $request->qty;
+        $data->minimum_stock   = $minimum_stock - $qty;
         $data->save();
+
+        $mutate = new Item;
+        $mutate->outlet_id = $outlet_id;
+        $mutate->item_id   = $item_id;
+        $mutate->qty       = $qty;
+        $mutate->save();
 
         $mutate = new Mutation;
         $mutate->outlet_id = $outlet_id;
-        $mutate->item_id = $item_id;
+        $mutate->item_id   = $item_id;
+        $mutate->qty       = $qty;
         $mutate->save();
 
         return redirect()->route('mutation');

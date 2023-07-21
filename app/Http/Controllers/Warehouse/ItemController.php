@@ -24,7 +24,7 @@ class ItemController extends Controller
                                     ->get()
                                     ->map(fn ($item) => [
                                         ...$item->toArray(),
-                                        'purchase_item' => $item->purchaseItem()->latest()->first(),                            
+                                        'purchase_item' => $item->purchaseItem()->latest()->first(),
                                     ]),
             'dataUnit'      => Unit::orderBy('created_at', 'desc')->get(),
             'dataGroup'     => Group::orderBy('created_at', 'desc')->get(),
@@ -63,7 +63,7 @@ class ItemController extends Controller
         $selling_price      = $request->selling_price ?? 0;
         $minimum_stock      = $request->minimum_stock ?? 0;
         $percent_non_margin = $request->percent_non_margin ?? 0;
-        
+
         $data = new Item();
         $data->code                 = $code;
         $data->name                 = $name;
