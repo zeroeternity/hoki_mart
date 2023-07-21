@@ -43,7 +43,7 @@ Route::controller(AuthenticationController::class)->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::middleware('role:superadmin,admin,kasir')->group(function () {
+    Route::middleware('role:superadmin,admin,cashier')->group(function () {
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index']);
 

@@ -18,12 +18,8 @@ class EnsureHasRole
      */
     public function handle(Request $request, Closure $next, ...$name)
     {
-        if (!$request->user() || !$request->user()->role_id) {
-            return redirect('/auth');
-        }
-        
         if (!Role::whereIn('name', $name)->pluck('id')->contains($request->user()->role_id)) {
-            return HandlerResponse::responseJSON(['message' => 'Akun tidak memiliki hak akses!'], 403);
+            return redirect()->route('auth')->with('message', 'Anda Tidak Memiliki Akses');
         }
 
         return $next($request);
