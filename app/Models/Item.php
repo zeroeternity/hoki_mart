@@ -29,6 +29,10 @@ class Item extends Model
     {
         return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
+    public function outlet_item()
+    {
+        return $this->hasMany(OutletItem::class, 'item_id', 'id');
+    }
 
     
 }

@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
                 MemberTypeSeeder::class,
                 PositionSeeder::class,
                 GroupSeeder::class,
-
+                EstateSeeder::class,
+                
             ]);
             $this->command->info('Database Seeder Success!');
           } catch (\Throwable $th) {

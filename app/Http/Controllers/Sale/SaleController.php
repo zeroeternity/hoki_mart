@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\OutletItem;
 use App\Models\Sale;
 use App\Models\Sale_Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,10 @@ class SaleController extends Controller
     public function create()
     {
 
-        return view('page.sale.input-sale');
+        $data = [
+            'user'   => User::where('role_id' ,4)->get(['id', 'name','role_id']),
+        ];
+        return view('page.sale.input-sale',$data);
     }
 
     public function instalment()
@@ -85,5 +89,12 @@ class SaleController extends Controller
     public function create_instalment()
     {
         return view('page.sale.input-sale-instalment');
+    }
+    public function getData(Request $request)
+    {
+        $unit = Item::with('unit', 'ppnType','outlet_item')
+            ->where('code', $request->code)
+            ->first();
+        return response()->json($unit);
     }
 }

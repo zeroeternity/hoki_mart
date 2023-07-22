@@ -41,7 +41,7 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input name="member_id" type="text" id="first-name" class="form-control ">
+                                        <input name="member_id" readonly="readyonly" type="text" id="member_id" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -49,7 +49,14 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" class="form-control" readonly="readonly" placeholder="">
+                                        <select class="form-control select2 select2-danger"
+                                            data-dropdown-css-class="select2-danger" style="width: 100%;" name="member_name"
+                                            data-member='{{ json_encode($user) }}'>
+                                            <option value=""></option>
+                                            @foreach ($user as $key => $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -122,10 +129,10 @@
                         </div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button class="btn btn-primary" type="button">New</button>
+                                {{-- <button class="btn btn-primary" type="button">New</button>
                                 <button class="btn btn-info" type="button">Edit</button>
                                 <button class="btn btn-danger" type="reset">Delete</button>
-                                <button class="btn btn-warning" type="button">Search</button>
+                                <button class="btn btn-warning" type="button">Search</button> --}}
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
@@ -210,6 +217,8 @@
             input_sale_price.setAttribute("name", 'items[' + i + '][purchase_price]');
             input_sale_price.setAttribute("id", 'items[' + i + '][purchase_price]');
             input_sale_price.setAttribute("class", "form-control");
+            input_sale_price.setAttribute("readonly", true);
+
             // make element input total
             var input_total = document.createElement("input");
             input_total.setAttribute("type", "number");
@@ -222,7 +231,7 @@
                 var item_code = input_code.value
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('purchase.getitemdata') }}",
+                    url: "{{ route('sale.getData') }}",
                     data: {
                         "code": item_code,
                         "_token": "{{ csrf_token() }}",
@@ -232,6 +241,7 @@
                         input_name.value = response.name ?? ''
                         input_unit.value = response.unit?.name ?? ''
                         input_ppn.value = response.ppn_type?.type ?? ''
+                        input_sale_price.value = response.outlet_item[0]?.selling_price ?? ''
                     }
 
                 })
@@ -279,4 +289,42 @@
             i++;
         }
     </script>
+    @push('addon-script')
+        <script>
+            // // Parse the JSON data from the data-member attribute and store it in a variable
+            const membersData = JSON.parse($('select[name=member_name]').attr('data-member'));
+            
+            // // Event listener for the member_id input field
+            // $("input[name=member_id]").on('input', function() {
+            //     var id = $(this).val();
+            //     // Find the corresponding member in the data based on the entered id
+            //     var foundData = membersData.find(member => member.id == id);
+            //     if (foundData) {
+            //         // Select the corresponding option in the member_name select element
+            //         $('select[name=member_name]').val(foundData.id).trigger('change');
+            //     } else {
+            //         // If the member is not found, reset the member_name select element
+            //         $('select[name=member_name]').val('').trigger('change');
+            //     }
+            // });
+
+            // Event listener for the member_id input field
+            $("select[name=member_name]").on('change', function() {
+                var id = $(this).val();
+                console.log("ch");
+                // Find the corresponding member in the data based on the entered id
+                var foundData = membersData.find(member => member.id == id);
+                if (foundData) {
+                    // Select the corresponding option in the member_id select element
+                    $('input[name=member_id]').val(foundData.id);
+                    console.log(foundData);
+                } else {
+                    // If the member is not found, reset the member_id input element
+                    $('input[name=member_id]').val('');
+                    console.log("not found");
+
+                }
+            });
+        </script>
+    @endpush
 @endsection
