@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Models\Estate;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EstateController extends Controller
 {
@@ -25,6 +26,8 @@ class EstateController extends Controller
         $data->code        = $code;
         $data->estate      = $estate;
         $data->save();
+
+        Alert::success('Estate Berhasil Ditambahkan');
 
         return redirect()->route('member',['#estate']);
     }
@@ -54,6 +57,8 @@ class EstateController extends Controller
         $dataEstate->code        = $code;
         $dataEstate->estate      = $estate;
         $dataEstate->save();
+
+        Alert::success('Estate Berhasil Diupdate');
 
         return redirect()->route('member',['#estate']);
     }

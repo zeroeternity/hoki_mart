@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SupplierController extends Controller
 {
@@ -56,6 +57,9 @@ class SupplierController extends Controller
         $data->email            = $email;
         $data->state            = '1';
         $data->save();
+
+        Alert::success('Supplier Berhasil Ditambahkan');
+
 
         return redirect()->route('supplier');
     }
@@ -117,6 +121,8 @@ class SupplierController extends Controller
         $dataSupplier->email            = $email;
         $dataSupplier->state            = $state;
         $dataSupplier->save();
+
+        Alert::success('Supplier Berhasil Diupdate');
 
         return redirect()->route('supplier');
     }

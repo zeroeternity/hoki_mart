@@ -12,6 +12,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PurchaseController extends Controller
 {
@@ -84,7 +85,11 @@ class PurchaseController extends Controller
                 $update_item->minimum_stock = $stock;
                 $update_item->save();
             }
+
             DB::commit();
+
+            Alert::success('Transaksi Pembelian Berhasil');
+
             return redirect()->route('purchase');
 
         } catch (\Exception $th) {

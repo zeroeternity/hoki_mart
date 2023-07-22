@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ItemController extends Controller
 {
@@ -80,6 +81,7 @@ class ItemController extends Controller
             $outlet_item->percent_non_margin   = $percent_non_margin;
             $outlet_item->save();
             DB::commit();
+            Alert::success('Data Barang Berhasil Ditambahkan');
             return redirect()->route('item');
         } catch (\Exception) {
             DB::rollback();
@@ -142,6 +144,7 @@ class ItemController extends Controller
         $data->percent_non_margin   = $percent_non_margin;
         $data->save();
 
+        Alert::success('Data Barang Berhasil Diupdate');
         return redirect()->route('item');
     }
 }

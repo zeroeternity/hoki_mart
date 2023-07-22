@@ -31,8 +31,8 @@
     <a class="hiddenanchor" id="signin"></a>
     <div class="login_wrapper">
       <div class="animate form login_form">
-
         <section class="login_content">
+          @include('sweetalert::alert')
           <form method="POST" action="{{ url('signin') }}">
             @if ($errors->any())
             <div class="alert alert-danger">

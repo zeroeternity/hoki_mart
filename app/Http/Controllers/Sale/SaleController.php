@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SaleController extends Controller
 {
@@ -78,6 +79,7 @@ class SaleController extends Controller
                 $update_item->save();
             }
             DB::commit();
+            Alert::success('Transaksi Penjualan Berhasil');
             return redirect()->route('purchase');
         } catch (\Exception $th) {
             throw $th;

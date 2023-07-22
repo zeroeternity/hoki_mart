@@ -120,7 +120,10 @@
 
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success" id="submit-btn">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -230,7 +233,7 @@
 
             })
         }
-        
+
         // make oninput qty
         input_qty.oninput=function(){
             var qty =input_qty.value;

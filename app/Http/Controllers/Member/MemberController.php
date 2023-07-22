@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MemberController extends Controller
 {
@@ -84,6 +85,8 @@ class MemberController extends Controller
         $data->password         = $password;
         $data->save();
 
+        Alert::success('Data Anggota Berhasil Ditambahkan');
+
         return redirect()->route('member',['#data']);
     }
     public function storeType(Request $request){
@@ -111,6 +114,8 @@ class MemberController extends Controller
         $data->state        = $state;
         $data->save();
 
+        Alert::success('Jenis Anggota Berhasil Ditambahkan');
+
         return redirect()->route('member',['#type']);
     }
     public function storePosition(Request $request){
@@ -122,6 +127,8 @@ class MemberController extends Controller
         $data = new Position();
         $data->name = $name;
         $data->save();
+
+        Alert::success('Jabatan Berhasil Ditambahkan');
 
         return redirect()->route('member',['#position']);
     }
@@ -213,10 +220,12 @@ class MemberController extends Controller
         $data->entry_date       = $entry_date;
         $data->save();
 
+        Alert::success('Data Anggota Berhasil Diupdate');
+
         return redirect()->route('member',['#data']);
     }
     public function updateType(Request $request){
-        
+
         $request->validate([
             'type'          => 'required|string',
             'credit_limit'  => 'required|string',
@@ -242,6 +251,8 @@ class MemberController extends Controller
         $data->state        = $state;
         $data->save();
 
+        Alert::success('Jenis Anggota Berhasil Diupdate');
+
         return redirect()->route('member',['#type']);
     }
     public function updatePosition(Request $request){
@@ -255,6 +266,8 @@ class MemberController extends Controller
         $data = Position::find($id);
         $data->name = $name;
         $data->save();
+
+        Alert::success('Jabatan Berhasil Diupdate');
 
         return redirect()->route('member',['#position']);
     }

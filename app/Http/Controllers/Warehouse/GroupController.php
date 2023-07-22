@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Warehouse;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GroupController extends Controller
 {
@@ -28,6 +29,8 @@ class GroupController extends Controller
         $data->code        = $code;
         $data->name        = $name;
         $data->save();
+
+        Alert::success('Group Barang Berhasil DItambahkan');
 
         return redirect()->route('item');
     }
