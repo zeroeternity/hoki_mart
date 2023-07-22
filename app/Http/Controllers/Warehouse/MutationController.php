@@ -8,6 +8,7 @@ use App\Models\Mutation;
 use App\Models\Item;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MutationController extends Controller
 {
@@ -59,6 +60,8 @@ class MutationController extends Controller
         $mutate->item_id   = $item_id;
         $mutate->qty       = $qty;
         $mutate->save();
+
+        Alert::success('Transaksi Mutasi Barang Berhasil');
 
         return redirect()->route('mutation');
     }

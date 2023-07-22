@@ -8,6 +8,7 @@ use App\Models\Adjustment;
 use App\Models\Item;
 use App\Models\OutletItem;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdjustmentController extends Controller
 {
@@ -37,6 +38,8 @@ class AdjustmentController extends Controller
         $adjust = new Adjustment;
         $adjust->outlet_item_id = $outlet_item_id;
         $adjust->save();
+
+        Alert::success('Transaksi Adjusment Barang Berhasil');
 
         return redirect()->route('item');
     }

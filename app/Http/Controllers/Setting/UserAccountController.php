@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserAccountController extends Controller
 {
@@ -52,6 +53,8 @@ class UserAccountController extends Controller
         $data->password         = $password;
         $data->save();
 
+        Alert::success('User Berhasil Ditambahkan');
+
         return redirect()->route('user-account');
     }
 
@@ -94,6 +97,8 @@ class UserAccountController extends Controller
         $data->email            = $email;
         $data->phone            = $phone;
         $data->save();
+
+        Alert::success('User Berhasil Diupdate');
 
         return redirect()->route('user-account');
     }

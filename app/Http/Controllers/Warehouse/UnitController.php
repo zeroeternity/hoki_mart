@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Warehouse;
 use App\Http\Controllers\Controller;
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UnitController extends Controller
 {
@@ -25,6 +26,7 @@ class UnitController extends Controller
         $data->name        = $name;
         $data->save();
 
+        Alert::success('Ssatuan Barang Berhasil Ditambahkan');
         return redirect()->route('item');
     }
 
@@ -50,8 +52,8 @@ class UnitController extends Controller
         $dataUnit->name             = $name;
         $dataUnit->save();
 
-        return redirect()->route('item
-        ');
+        Alert::success('Satuan Barang Berhasil Diupdate');
+        return redirect()->route('item');
     }
 
     public function destroy($id)

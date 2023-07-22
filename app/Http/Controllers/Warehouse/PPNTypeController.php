@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Warehouse;
 use App\Http\Controllers\Controller;
 use App\Models\PPNType;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PPNTypeController extends Controller
 {
@@ -31,7 +32,8 @@ class PPNTypeController extends Controller
         $data->percent     = $percent;
         $data->ppn_buy     = $ppn_buy;
         $data->save();
-        
+
+        Alert::success('Tipe PPN Berhasil Ditambahkan');
         return redirect()->route('item');
     }
 

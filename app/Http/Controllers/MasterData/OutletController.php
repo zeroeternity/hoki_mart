@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MasterData;
 use App\Http\Controllers\Controller;
 use App\Models\Outlet;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OutletController extends Controller
 {
@@ -27,6 +28,8 @@ class OutletController extends Controller
         $data->name        = $name;
         $data->location    = $location;
         $data->save();
+
+        Alert::success('Outlet Berhasil Ditambahkan');
 
         return back()->with('success', 'Create Success!');
     }
