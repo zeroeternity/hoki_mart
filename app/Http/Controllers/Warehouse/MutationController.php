@@ -45,7 +45,7 @@ class MutationController extends Controller
                                             ->where('outlet_id', $sender_id)
                                             ->first();
         $Outlet_Receiver    = OutletItem::where('outlet_id', $reciver_id)->where('outlet_id', $reciver_id)->first() ;
-        if ($Outlet_Receiver && Auth::user()->outlet_id == $Outlet_Receiver->outlet_id){
+        if ($Outlet_Receiver->outlet_id != $Outlet_Sender->outlet_id){
             $Outlet_Sender->minimum_stock = $Outlet_Sender->minimum_stock - $qty;
             $Outlet_Receiver->minimum_stock = $Outlet_Sender->minimum_stock + $qty;
             $Outlet_Receiver->save();
