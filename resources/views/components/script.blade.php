@@ -136,81 +136,14 @@
      });
 </script>
 
-{{-- Sale Appendchild JS --}}
-{{-- <script>
-    // Appandchild Sale
-    var i = 1;
-    function addItemSale() {
-        var itemlist = document.getElementById("itemListSale");
-        // make element
-        var row = document.createElement("tr");
-        var code = document.createElement("td");
-        var name = document.createElement("td");
-        var unit = document.createElement("td");
-        var ppn = document.createElement("td");
-        var qty = document.createElement("td");
-        var sale_price = document.createElement("td");
-        var total = document.createElement("td");
-        var action = document.createElement("td");
-        // make append element
-        itemlist.appendChild(row);
-        row.appendChild(code);
-        row.appendChild(name);
-        row.appendChild(unit);
-        row.appendChild(ppn);
-        row.appendChild(qty);
-        row.appendChild(sale_price);
-        row.appendChild(total);
-        row.appendChild(action);
-        // make element input code
-        var input_code = document.createElement("input");
-        input_code.setAttribute("name", "items[" + i + "][code]");
-        input_code.setAttribute("class", "form-control");
-        // make element input name
-        var input_name = document.createElement("input");
-        input_name.setAttribute("name", "items[" + i + "][name]");
-        input_name.setAttribute("class", "form-control");
-        // make element input unit
-        var input_unit = document.createElement("input");
-        input_unit.setAttribute("name", "items[" + i + "][unit]");
-        input_unit.setAttribute("class", "form-control");
-        // make element input ppn
-        var input_ppn = document.createElement("input");
-        input_ppn.setAttribute("name", "items[" + i + "][ppn]");
-        input_ppn.setAttribute("class", "form-control");
-        // make element input qty
-        var input_qty = document.createElement("input");
-        input_qty.setAttribute("type", "number");
-        input_qty.setAttribute("name", "items[" + i + "][qty]");
-        input_qty.setAttribute("class", "form-control");
-        // make element input number
-        var input_sale_price = document.createElement("input");
-        input_sale_price.setAttribute("type", "number");
-        input_sale_price.setAttribute("name", "items[" + i + "][sale_price]");
-        input_sale_price.setAttribute("class", "form-control");
-        // make element input total
-        var input_total = document.createElement("input");
-        input_total.setAttribute("type", "number");
-        input_total.setAttribute("name", "items[" + i + "][total]");
-        input_total.setAttribute("class", "form-control");
-        // make element hapus
-        var hapus = document.createElement("a");
-        // function appendchild
-        code.appendChild(input_code);
-        name.appendChild(input_name);
-        unit.appendChild(input_unit);
-        ppn.appendChild(input_ppn);
-        qty.appendChild(input_qty);
-        sale_price.appendChild(input_sale_price);
-        total.appendChild(input_total);
-        action.appendChild(hapus);
-        //hapus inner html
-        hapus.innerHTML =
-        '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
-        // Action hapus
-        hapus.onclick = function () {
-            row.parentNode.removeChild(row);
-        };
-        i++;
-    }
-</script> --}}
+{{-- Loading --}}
+<script>
+    $('#submit-btn').click(function() {
+        // Show the spinner and disable the button
+        $(this).find('.spinner-border').removeClass('d-none');
+        $(this).prop('disabled', true);
+
+        // Submit the form
+        $('form').submit();
+    });
+</script>

@@ -38,7 +38,7 @@
                             @endif
                             @csrf
                             @method('PUT')
-                            <input type="text" class="form-control 
+                            <input type="text" class="form-control
                                         @error('id')
                                             is-invalid
                                         @enderror" value="{{ $id }}" name="id" id="id" readonly hidden />
@@ -118,7 +118,10 @@
 
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <button type="submit" class="btn btn-success" id="submit-btn">
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                        Update
+                                    </button>
                                 </div>
                             </div>
                         </form>
