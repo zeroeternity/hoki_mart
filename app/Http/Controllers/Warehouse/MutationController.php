@@ -45,19 +45,23 @@ class MutationController extends Controller
                                             ->where('outlet_id', $sender_id)
                                             ->first();
         $Outlet_Receiver    = OutletItem::where('outlet_id', $reciver_id)->where('outlet_id', $reciver_id)->first() ;
-        if ($Outlet_Receiver->outlet_id != $Outlet_Sender->outlet_id){
+
+        if ($Outlet_Receiver->item_id == $Outlet_Sender->item_id){
             $Outlet_Sender->minimum_stock = $Outlet_Sender->minimum_stock - $qty;
-            $Outlet_Receiver->minimum_stock = $Outlet_Sender->minimum_stock + $qty;
+            $Outlet_Receiver->minimum_stock = $Outlet_Receiver->minimum_stock + $qty;
             $Outlet_Receiver->save();
             $Outlet_Sender->save();
         }
         else {
-            $Outlet_Item_Receiver = new OutletItem;
+
+            $Outlet_Item_Receiver = new OutletItem();
             $Outlet_Item_Receiver->item_id= $item_id;
             $Outlet_Item_Receiver->outlet_id = $Outlet_Receiver->outlet_id;
             $Outlet_Item_Receiver->selling_price = $Outlet_Sender->selling_price;
             $Outlet_Item_Receiver->percent_non_margin = $Outlet_Sender->percent_non_margin;
-
+            $Outlet_Sender->minimum_stock = $Outlet_Sender->minimum_stock - $qty;
+            $Outlet_Item_Receiver->minimum_stock = $qty;
+            $Outlet_Item_Receiver->save();
             $Outlet_Receiver->save();
             $Outlet_Sender->save();
 
@@ -68,7 +72,7 @@ class MutationController extends Controller
         $mutate->qty       = $qty;
         $mutate->save();
 
-        return redirect()->route('item');
+        return redirect()->route('mutation');
     }
 
 }
