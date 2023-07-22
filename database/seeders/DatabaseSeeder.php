@@ -4,10 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Estate;
 use App\Models\Group;
+use App\Models\Position;
 use App\Models\Supplier;
 use App\Models\Voucher;
 use Illuminate\Database\Seeder;
+use PHPUnit\Metadata\Api\Groups;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,20 +21,20 @@ class DatabaseSeeder extends Seeder
     {
 
         //Factory For Testing
-        Group::factory()->count(10)->create();
+        // Group::factory()->count(10)->create();
         Voucher::factory()->count(10)->create();    
         Supplier::factory()->count(5)->create();
-
+      
         try {
             $this->call([
                 RoleSeeder::class,
                 OutletSeeder::class,
                 UserSeeder::class,
-                
-                //Seeder Testing
                 PpnSeeder::class,
                 UnitSeeder::class,
-             
+                MemberTypeSeeder::class,
+                PositionSeeder::class,
+                GroupSeeder::class,
 
             ]);
             $this->command->info('Database Seeder Success!');
