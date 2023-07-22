@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('mutations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('outlet_id')->references('id')->on('outlets');
-            $table->foreignId('item_id')->references('id')->on('items');
+            $table->foreignId('outlet_item_id')->references('id')->on('outlet_items');
             $table->integer('qty');
             $table->timestamps();
             $table->softDeletes();

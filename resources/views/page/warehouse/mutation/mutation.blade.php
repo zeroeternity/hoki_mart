@@ -94,9 +94,9 @@
               @foreach($dataMutation as $key => $data)
               <tr class="">
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->item->name }}</td>
-                <td>{{ $data->outlet->name }}</td>
-                <td>{{ $data->item->outlet->name }}</td>
+                <td>{{ $data->outlet_item->item->name }}</td>
+                <td>{{ $data->outlet_item->outlet->name  }}</td>
+                <td>{{ $data->outlet_item->outlet->name }}</td>
                 <td>{{ $data->qty}}</td>
                 <td>
                     <button type="button" class="btn btn-info">

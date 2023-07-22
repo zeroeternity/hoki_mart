@@ -29,7 +29,7 @@
                                     <select class="form-control select2 select2-danger"
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="item_id">
                                         <option value=""></option>
-                                        @foreach ($dataItem as $key => $item)
+                                        @foreach ($dataItem as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
@@ -40,9 +40,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="outlet_id">
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="sender_id">
                                         <option value=""></option>
-                                        @foreach ($dataOutlet as $key => $outlet)
+                                        @foreach ($dataOutlet as $outlet)
                                         <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
                                         @endforeach
                                     </select>
@@ -53,8 +53,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
                                     <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="mutation">
-                                        @foreach ($dataOutlet as $key => $outlet)
+                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="receiver_id">
+                                        <option value=""></option>
+                                        @foreach ($dataOutlet as $outlet)
                                         <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
                                         @endforeach
                                     </select>

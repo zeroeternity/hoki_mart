@@ -11,14 +11,9 @@ class Mutation extends Model
     protected $table = 'mutations';
     protected $guarded = [];
 
-    public function item()
+    public function outlet_item()
     {
-        return $this->belongsTo(Item::class, 'item_id', 'id');
-    }
-
-    public function outlet()
-    {
-        return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
+        return $this->belongsTo(OutletItem::class, 'outlet_item_id', 'id');
     }
 }
 
