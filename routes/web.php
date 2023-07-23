@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\MasterData\OutletController;
-use App\Http\Controllers\MasterData\SupplierController;
+use App\Http\Controllers\Outlet\OutletController;
+use App\Http\Controllers\Outlet\SupplierController;
 use App\Http\Controllers\Accountancy\AccountancyController;
 use App\Http\Controllers\Member\EstateController;
 use App\Http\Controllers\Member\MemberController;
@@ -101,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/warehouse/mutation/create', [MutationController::class, 'create'])->name('mutation.create');
         Route::get('/warehouse/mutation/getdata', [MutationController::class, 'getData'])->name('mutation.getData');
         Route::get('/warehouse/mutation/update', [MutationController::class, 'update'])->name('mutation.update');
-        
+
         //accountancy
         Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');
 
@@ -145,14 +145,14 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/member/data/update', [MemberController::class, 'updateData'])->name('member.update.data');
         Route::put('/member/type/update', [MemberController::class, 'updateType'])->name('member.update.type');
         Route::put('/member/position/update', [MemberController::class, 'updatePosition'])->name('member.update.position');
-      
-        // Master Data - Supplier
-        Route::get('/master-data/supplier', [SupplierController::class, 'index'])->name('supplier');
-        Route::get('/master-data/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
-        Route::post('/master-data/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
-        Route::get('/master-data/supplier/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.edit');
-        Route::put('/master-data/supplier/update', [SupplierController::class, 'update'])->name('supplier.update');
-        Route::delete('/master-data/supplier/destroy/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+
+        // Purchase - Supplier
+        Route::get('/purchase/supplier', [SupplierController::class, 'index'])->name('supplier');
+        Route::get('/purchase/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
+        Route::post('/purchase/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
+        Route::get('/purchase/supplier/edit/{id}', [SupplierController::class, 'edit'])->name('supplier.edit');
+        Route::put('/purchase/supplier/update', [SupplierController::class, 'update'])->name('supplier.update');
+        Route::delete('/purchase/supplier/destroy/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
         // Member - Estate
         Route::get('/member/estate/create', [EstateController::class, 'create'])->name('estate.create');
@@ -168,9 +168,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware('role:superadmin')->group(function () {
         // Master Data - Outlet
-        Route::get('/master-data/outlet', [OutletController::class, 'index'])->name('outlet');
-        Route::post('/master-data/outlet/store', [OutletController::class, 'store'])->name('outlet.store');
-        Route::delete('/master-data/outlet/destroy/{id}', [OutletController::class, 'destroy'])->name('outlet.destroy');
+        Route::get('/outlet/outlet', [OutletController::class, 'index'])->name('outlet');
+        Route::post('/outlet/outlet/store', [OutletController::class, 'store'])->name('outlet.store');
+        Route::delete('/outlet/outlet/destroy/{id}', [OutletController::class, 'destroy'])->name('outlet.destroy');
 
         // Setting - User Account
         Route::get('/setting/user-account', [UserAccountController::class, 'index'])->name('user-account');

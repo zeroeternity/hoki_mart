@@ -17,7 +17,7 @@
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Form Pembelian <small>Nama / id outlet</small></h2>
+                            <h2>Form Pembelian</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -119,12 +119,11 @@
                     <div class="ln_solid"></div>
 
                     <div class="item form-group">
-                        <div class="col-md-6 col-sm-6">
-                            <button type="submit" class="btn btn-success" id="submit-btn">
-                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                                Submit
-                            </button>
-                        </div>
+                        <button type="submit" class='btn btn-block btn-success text-white' id="submit-btn">
+                            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            <i class="fa fa-save px-2"></i>
+                            Submit Pembelian
+                        </button>
                     </div>
                 </div>
             </div>
