@@ -143,7 +143,6 @@
                                     <th class="column-title">No</th>
                                     <th class="column-title">Jenis</th>
                                     <th class="column-title">Kredit Limit</th>
-                                    <th class="column-title">Margin</th>
                                     <th class="column-title">Range Tanggal</th>
                                     <th class="column-title">S/D</th>
                                     <th class="column-title">Status</th>
@@ -156,7 +155,6 @@
                                         <td class=" ">{{ $loop->iteration }}</td>
                                         <td class=" ">{{ $memberType->type }}</td>
                                         <td class=" ">{{ $memberType->credit_limit }}</td>
-                                        <td class=" ">{{ $memberType->margin }}</td>
                                         <td class=" ">{{ $memberType->range_date }}</td>
                                         <td class=" ">{{ $memberType->up_to }}</td>
                                         <td class="">
