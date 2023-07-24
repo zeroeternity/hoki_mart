@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cashier_id')->references('id')->on('users');
             $table->foreignId('member_id')->nullable()->references('id')->on('users');
-            $table->string('payment_method');
-            // $table->integer('subtotal');
-            // $table->integer('grandtotal');
+            $table->enum('payment_method', ['0', '1'])->default(0)->comment('0 = Cash, 1 = Piutang');
+            $table->enum('status', ['0', '1'])->default(0)->comment('0 = Pending, 1 = Confirm');
+            $table->date('confirm_at');
             $table->timestamps();
             $table->softDeletes();
         });

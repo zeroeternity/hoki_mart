@@ -103,7 +103,29 @@
                     <div class="x_content">
                         <div class="col-md-3 col-sm-3">
                             <a class="btn btn-primary text-white" onclick="addItemSale(); return false">
-                                Add<i class="fa fa-plus px-2"></i></a>
+                                <i class="fa fa-plus px-2"></i>Add</a>
+                            <!-- Search barang -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target=".bs-example-modal-lg"><i class="fa fa-search px-2"></i> Search Barang
+                            </button>
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Data Barang</h4>
+                                            <button type="button" class="close" data-dismiss="modal"><span
+                                                    aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                        </div>
+                                        <div class="modal-footer">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-box table-responsive">
                             <table class="table table-striped table-bordered" style="width:100%">
@@ -130,7 +152,8 @@
                         </div>
                         <div class="item form-group">
                             <button type="submit" class='btn btn-block btn-success text-white' id="submit-btn">
-                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status"
+                                      aria-hidden="true"></span>
                                 <i class="fa fa-save px-2"></i>
                                 Submit Penjualan
                             </button>

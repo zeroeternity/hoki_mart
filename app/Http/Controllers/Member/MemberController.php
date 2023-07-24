@@ -92,25 +92,20 @@ class MemberController extends Controller
         $request->validate([
             'type'          => 'required|string',
             'credit_limit'  => 'required|string',
-            'margin'        => 'required|numeric|between:0,999.99',
             'range_date'    => 'required|numeric',
             'up_to'         => 'required|numeric'
         ]);
 
         $type           = $request->type;
         $credit_limit   = str_replace('.','',$request->credit_limit);
-        $margin         = $request->margin;
         $range_date     = $request->range_date;
         $up_to          = $request->up_to;
-        $state          = $request->state;
 
         $data = new MemberType();
         $data->type         = $type;
         $data->credit_limit = $credit_limit;
-        $data->margin       = $margin;
         $data->range_date   = $range_date;
         $data->up_to        = $up_to;
-        $data->state        = $state;
         $data->save();
 
         Alert::success('Jenis Anggota Berhasil Ditambahkan');
