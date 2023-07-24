@@ -60,11 +60,12 @@
                     </div>
                 </div>
             </div>
-            <div class="" role="main">
-                <div class="">
+
+            <div class=" " role="main">
+                <div class="x_panel">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Users <small>Some examples to get you started</small></h3>
+                            <h3><small>Penjualan Sebelumnya</small></h3>
                         </div>
 
                         <div class="title_right">
@@ -72,8 +73,8 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for...">
                                     <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button">Go!</button>
-                      </span>
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
                                 </div>
                             </div>
                         </div>
@@ -83,47 +84,25 @@
                         <thead>
                         <tr class="headings">
                             <th class="column-title">No</th>
-                            <th class="column-title">Kode Barang</th>
                             <th class="column-title">Nama Barang</th>
-                            <th class="column-title">Satuan</th>
-                            <th class="column-title">PPN</th>
-                            <th class="column-title">QTY</th>
-                            <th class="column-title">Total</th>
-                            <th class="column-title">Detail</th>
+                            <th class="column-title">Qty</th>
+                            <th class="column-title">Total Pembelian</th>
                         </tr>
                         </thead>
-
                         <tbody>
-                        <tr class="">
-                            <td class=" ">1</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">Beras</td>
-                            <td class=" ">KRG</td>
-                            <td class=" ">0</td>
-                            <td class=" ">1</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="/invoice">
-                                    <button type="button" class="btn btn-info">Info</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td class=" ">1</td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">Beris</td>
-                            <td class=" ">KRG</td>
-                            <td class=" ">0</td>
-                            <td class=" ">1</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="/invoice">
-                                    <button type="button" class="btn btn-info">Info</button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach($dataSaleItem as $key => $data)
+                            <tr class="">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $data->outlet_item->item->name }}</td>
+                                <td>{{ $data->qty }}</td>
+                                <td>{{ $data->sale_price }}</td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
 
 @endsection

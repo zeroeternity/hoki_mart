@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\OutletItem;
 use App\Models\Sale;
-use App\Models\Sale_Item;
+use App\Models\SaleItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +17,12 @@ class SaleController extends Controller
 {
     public function index()
     {
-        return view('page.sale.sale');
+        $data = [
+            'dataSaleItem'      => SaleItem::with('sale', 'outlet_item')
+                                    ->orderBy('created_at', 'desc')
+                                    ->get(),
+        ];
+        return view('page.sale.sale', $data);
     }
 
     public function create()
@@ -63,7 +68,7 @@ class SaleController extends Controller
                 $item_data = Item::where('code', $item['code'])->first();
                 $item_outlet = OutletItem::where('id', $item_data['id'])->first();
                 // store purchase item
-                Sale_Item::create([
+                SaleItem::create([
                     'sale_id'       => $sale->id,
                     'outlet_item_id'           => $item_data['id'],
                     'qty'               => $item['qty'],

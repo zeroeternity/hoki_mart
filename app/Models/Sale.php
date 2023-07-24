@@ -11,4 +11,9 @@ class Sale extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'sales';
     protected $guarded = [];
+
+    public function saleItem()
+    {
+        return $this->hasMany(SaleItem::class, 'purchase_id', 'id');
+    }
 }
