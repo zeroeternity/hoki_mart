@@ -145,7 +145,6 @@
                                     <th class="column-title">Kredit Limit</th>
                                     <th class="column-title">Range Tanggal</th>
                                     <th class="column-title">S/D</th>
-                                    <th class="column-title">Status</th>
                                     <th class="column-title">Action</th>
                                 </tr>
                                 </thead>
@@ -157,13 +156,6 @@
                                         <td class=" ">{{ $memberType->credit_limit }}</td>
                                         <td class=" ">{{ $memberType->range_date }}</td>
                                         <td class=" ">{{ $memberType->up_to }}</td>
-                                        <td class="">
-                                            @if($memberType->state== '1')
-                                                SHU
-                                            @else
-                                                Non SHU
-                                            @endif
-                                        </td>
                                         <td class=" last">
                                             <a href="{{ route('member.edit.type',[$memberType->id]) }}">
                                                 <button type="button" class="btn btn-info">

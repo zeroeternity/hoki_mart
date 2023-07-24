@@ -157,10 +157,8 @@ class MemberController extends Controller
             'id'                => $dataMemberType->id,
             'type'              => $dataMemberType->type,
             'credit_limit'      => $dataMemberType->credit_limit,
-            'margin'            => $dataMemberType->margin,
             'range_date'        => $dataMemberType->range_date,
             'up_to'             => $dataMemberType->up_to,
-            'state'             => $dataMemberType->state,
         ];
         return view('page.member.data-member.edit-type', $data);
     }
@@ -223,7 +221,6 @@ class MemberController extends Controller
         $request->validate([
             'type'          => 'required|string',
             'credit_limit'  => 'required|string',
-            'margin'        => 'required|numeric|between:0,999.99',
             'range_date'    => 'required|numeric',
             'up_to'         => 'required|numeric'
         ]);
@@ -231,18 +228,14 @@ class MemberController extends Controller
         $id             = $request->id;
         $type           = $request->type;
         $credit_limit   = str_replace('.','',$request->credit_limit);
-        $margin         = $request->margin;
         $range_date     = $request->range_date;
         $up_to          = $request->up_to;
-        $state          = $request->state;
 
         $data = MemberType::find($id);
         $data->type         = $type;
         $data->credit_limit = $credit_limit;
-        $data->margin       = $margin;
         $data->range_date   = $range_date;
         $data->up_to        = $up_to;
-        $data->state        = $state;
         $data->save();
 
         Alert::success('Jenis Anggota Berhasil Diupdate');
