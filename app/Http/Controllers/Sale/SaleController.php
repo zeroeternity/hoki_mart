@@ -19,8 +19,8 @@ class SaleController extends Controller
     {
         $data = [
             'dataSaleItem'      => SaleItem::with('sale', 'outlet_item')
-                                    ->orderBy('created_at', 'desc')
-                                    ->get(),
+                ->orderBy('created_at', 'desc')
+                ->get(),
         ];
         return view('page.sale.sale', $data);
     }
@@ -29,9 +29,10 @@ class SaleController extends Controller
     {
 
         $data = [
-            'users'   => User::where('role_id' ,4)->get(['id', 'name','role_id']),
+            'users'   => User::where('role_id', 4)->get(['id', 'name', 'role_id']),
+            'items_outlet' => Item::with('unit', 'ppnType', 'outlet_item')->get(),
         ];
-        return view('page.sale.input-sale',$data);
+        return view('page.sale.input-sale', $data);
     }
 
     public function store(Request $request)
@@ -55,7 +56,7 @@ class SaleController extends Controller
             $sale->cashier_id       = Auth::id();
             $sale->member_id        = $member_id;
             $sale->payment_method   = $payment_method;
-            $sale->status           = '0';
+            // $sale->status           = '0';
             $sale->save();
 
             // manage array data items
@@ -100,7 +101,7 @@ class SaleController extends Controller
     }
     public function getData(Request $request)
     {
-        $unit = Item::with('unit', 'ppnType','outlet_item')
+        $unit = Item::with('unit', 'ppnType', 'outlet_item')
             ->where('code', $request->code)
             ->first();
         return response()->json($unit);
