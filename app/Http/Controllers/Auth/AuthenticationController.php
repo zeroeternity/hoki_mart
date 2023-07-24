@@ -36,8 +36,8 @@ class AuthenticationController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             return redirect()->back();
-        } 
-        
+        }
+
         $request->session()->regenerate();
 
         // Save Log Activity Staff Signin
@@ -45,6 +45,11 @@ class AuthenticationController extends Controller
             'user_id'   => Auth::id(),
             'state'     => '0',
         ]);
+
+
+        if(Auth::user()->Role()->where('name', 'member')->exists()){
+            return redirect()->intended('_member/dashboard');
+        }
 
         return redirect()->intended('/dashboard');
     }

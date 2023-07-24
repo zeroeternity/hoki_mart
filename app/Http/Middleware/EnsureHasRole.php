@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Actions\Handlers\HandlerResponse;
 use App\Models\Role;
 use RealRashid\SweetAlert\Facades\Alert;
 use Closure;
@@ -20,7 +19,7 @@ class EnsureHasRole
     public function handle(Request $request, Closure $next, ...$name)
     {
         if (!Role::whereIn('name', $name)->pluck('id')->contains($request->user()->role_id)) {
-            Alert::alert('Title', 'Message', 'Type');
+            Alert::warning('Mohon Maaf','Account Anda tidak memiliki akses');
             return redirect()->route('auth');
         }
 

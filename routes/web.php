@@ -179,4 +179,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/setting/user-account/edit/{id}', [UserAccountController::class, 'edit'])->name('user-account.edit');
         Route::put('/setting/user-account/update', [UserAccountController::class, 'update'])->name('user-account.update');
     });
+
+    Route::group([
+        'middleware' => 'role:member',
+        'prefix' => '_member',
+    ], function () {
+        // Dashboard Member
+        Route::get('/dashboard', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'index'])->name('member.dashboard');
+
+        // Sales History Member
+        Route::get('/history', [\App\Http\Controllers\RoleMember\PurchaseHistoryController::class, 'index'])->name('history.dashboard');
+    });;
 });

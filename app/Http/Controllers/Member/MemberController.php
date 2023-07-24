@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Estate;
-use App\Models\MemberData;
 use App\Models\MemberType;
 use App\Models\Position;
 use App\Models\User;
@@ -70,7 +69,7 @@ class MemberController extends Controller
         $password       = bcrypt(str_replace('-','',$request->birthdate));
 
         $data = new User();
-        $data->role_id          = 3;
+        $data->role_id          = 4;
         $data->outlet_id        = 1;
         $data->member_type_id   = $member_type_id;
         $data->estate_id        = $estate_id;
