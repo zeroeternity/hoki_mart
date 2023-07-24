@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->integer('credit_limit');
-            $table->decimal('margin');
             $table->integer('range_date');
             $table->integer('up_to');
             $table->enum('state', ['0', '1'])->default(1)->comment('1 = SHU, 0 = NonSHU');
