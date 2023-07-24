@@ -40,18 +40,9 @@
                                     </label>
                                     <div class="col-md-3 col-sm-3 ">
                                         <select name="payment_method" class="form-control">
-                                            <option>Cash</option>
-                                            <option>Piutang</option>
+                                            <option value="0">Cash</option>
+                                            <option value="1">Piutang</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">No.Anggota <span
-                                            class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input name="member_id" readonly="readyonly" type="text" id="member_id"
-                                               class="form-control ">
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -62,10 +53,10 @@
                                         <select class="form-control select2 select2-danger"
                                                 data-dropdown-css-class="select2-danger" style="width: 100%;"
                                                 name="member_name"
-                                                data-member='{{ json_encode($user) }}'>
+                                                data-member='{{ json_encode($users) }}'>
                                             <option value=""></option>
-                                            @foreach ($user as $key => $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @foreach ($users as $key => $user)
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

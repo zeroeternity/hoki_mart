@@ -29,14 +29,9 @@ class SaleController extends Controller
     {
 
         $data = [
-            'user'   => User::where('role_id' ,4)->get(['id', 'name','role_id']),
+            'users'   => User::where('role_id' ,4)->get(['id', 'name','role_id']),
         ];
         return view('page.sale.input-sale',$data);
-    }
-
-    public function instalment()
-    {
-        return view('page.sale.sale-instalment');
     }
 
     public function store(Request $request)
@@ -44,35 +39,36 @@ class SaleController extends Controller
         DB::beginTransaction();
         try {
             $request->validate([
-                'payment_method'        => 'required|string',
-                'items.*.code'           => 'required|string',
-                'items.*.qty'            => 'required|numeric',
-                'items.*.purchase_price' => 'required|numeric',
-                'items'                 => 'required',
+                'payment_method'            => 'required|string',
+                'items.*.code'              => 'required|string',
+                'items.*.qty'               => 'required|numeric',
+                'items.*.purchase_price'    => 'required|numeric',
+                'items'                     => 'required',
             ]);
 
-            $member_id    = $request->member_id;
+            $member_id      = $request->member_id;
             $payment_method = $request->payment_method;
             $items          = $request->items;
 
             // Store data purchase
             $sale = new Sale();
-            $sale->cashier_id          =  Auth::id();
-            $sale->member_id      = $member_id;
+            $sale->cashier_id       = Auth::id();
+            $sale->member_id        = $member_id;
             $sale->payment_method   = $payment_method;
+            $sale->status           = '0';
             $sale->save();
 
             // manage array data items
             foreach ($items as $item) {
                 // get item data
-                $item_data = Item::where('code', $item['code'])->first();
-                $item_outlet = OutletItem::where('id', $item_data['id'])->first();
+                $item_data      = Item::where('code', $item['code'])->first();
+                $item_outlet    = OutletItem::where('id', $item_data['id'])->first();
                 // store purchase item
                 SaleItem::create([
-                    'sale_id'       => $sale->id,
-                    'outlet_item_id'           => $item_data['id'],
+                    'sale_id'           => $sale->id,
+                    'outlet_item_id'    => $item_data['id'],
                     'qty'               => $item['qty'],
-                    'sale_price'    => $item['purchase_price'],
+                    'sale_price'        => $item['purchase_price'],
                 ]);
 
                 // formula add stock
@@ -91,6 +87,11 @@ class SaleController extends Controller
             DB::rollback();
             return $this->responseJSON([], 500, $th);
         }
+    }
+
+    public function instalment()
+    {
+        return view('page.sale.sale-instalment');
     }
 
     public function create_instalment()
