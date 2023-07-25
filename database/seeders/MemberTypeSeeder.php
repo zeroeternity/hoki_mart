@@ -16,7 +16,7 @@ class MemberTypeSeeder extends Seeder
         MemberType::insert([
                 [
                     'type'          => 'FL',
-                    'credit_limit'  => '3000000',
+                    'credit_limit'  => '300000',
                     'range_date'    => '5',
                     'up_to'         => '5',
                     'created_at'    => now(),

@@ -31,9 +31,10 @@ class SaleController extends Controller
 
     public function create()
     {
-
         $data = [
-            'users'   => User::where('role_id', 4)->get(['id', 'name', 'role_id']),
+            'users'   => User::with('estate')
+                ->where('role_id', 4)
+                ->get(),
             'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
         ];
         return view('page.sale.input-sale', $data);
@@ -61,7 +62,7 @@ class SaleController extends Controller
             $sale->member_id        = $member_id;
             $sale->payment_method   = $payment_method;
             $sale->status           = '0';
-            $sale->confirm_at   = Carbon::now();
+            $sale->confirm_at       = Carbon::now();
             $sale->save();
 
             // manage array data items
@@ -106,7 +107,7 @@ class SaleController extends Controller
     }
     public function getData(Request $request)
     {
-        $unit = Item::with('unit', 'ppnType', 'outlet_item')
+        $unit = Item::with('unit', 'ppnType', 'outletItem')
             ->where('code', $request->code)
             ->first();
         return response()->json($unit);
