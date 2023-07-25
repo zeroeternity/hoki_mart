@@ -117,7 +117,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Beli
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="purchase_price" class="form-control
+                                    <input type="number" id="purchase_price" required="required" class="form-control
                                     @error('purchase_price')
                                             is-invalid
                                         @enderror" value="{{ $purchase_price }}" name="purchase_price"
@@ -128,7 +128,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Jual
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="selling_price" class="form-control
+                                    <input type="number" id="selling_price" required="required" class="form-control
                                     @error('selling_price')
                                             is-invalid
                                         @enderror" value="{{ $selling_price }}" name="selling_price"
@@ -139,7 +139,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Stock Minimum
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="minimum_stock" class="form-control
+                                    <input type="number" id="minimum_stock" required="required" class="form-control
                                     @error('minimum_stock')
                                             is-invalid
                                         @enderror" value="{{ $minimum_stock }}" name="minimum_stock">
@@ -149,7 +149,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Persen non margin
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" step="any" id="percent_non_margin" class="form-control
+                                    <input type="number" step="any" id="percent_non_margin" required="required" class="form-control
                                         @error('percent_non_margin')
                                             is-invalid
                                         @enderror" value="{{ $percent_non_margin }}" name="percent_non_margin"

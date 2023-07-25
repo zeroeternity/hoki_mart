@@ -85,19 +85,23 @@
                         <tr class="headings">
                             <th class="column-title">No</th>
                             <th class="column-title">Nama Barang</th>
-                            <th class="column-title">Qty</th>
+                            <th class="column-title">Nama Member</th>
                             <th class="column-title">Total Pembelian</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($dataSaleItem as $key => $data)
+                        @foreach($dataSale as $key => $data)
                             <tr class="">
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $data->outlet_item->item->name }}</td>
-                                <td>{{ $data->qty }}</td>
-                                <td>{{ $data->sale_price }}</td>
+                                <td>{{ $data->cashier_id}}</td>
+                                <td>{{ $data->member_id}}</td>
+                                @foreach($dataSaleItem as $key => $data)
+                                @endforeach
+                                <td>{{ $totalAmount = $data->groupBy('sale_id')->sum('sale_price')}}</td>
                             </tr>
                         @endforeach
+
+
                         </tbody>
                     </table>
                 </div>

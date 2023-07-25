@@ -8,6 +8,7 @@ use App\Models\OutletItem;
 use App\Models\Sale;
 use App\Models\SaleItem;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,10 @@ class SaleController extends Controller
     public function index()
     {
         $data = [
-            'dataSaleItem'      => SaleItem::with('sale', 'outlet_item')
+            'dataSaleItem'=> SaleItem::with('sale', 'outlet_item')
+                ->orderBy('created_at', 'desc')
+                ->get(),
+            'dataSale'=> Sale::with('user')
                 ->orderBy('created_at', 'desc')
                 ->get(),
         ];
@@ -30,7 +34,7 @@ class SaleController extends Controller
 
         $data = [
             'users'   => User::where('role_id', 4)->get(['id', 'name', 'role_id']),
-            'items_outlet' => Item::with('unit', 'ppnType', 'outlet_item')->get(),
+            'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
         ];
         return view('page.sale.input-sale', $data);
     }
@@ -56,7 +60,8 @@ class SaleController extends Controller
             $sale->cashier_id       = Auth::id();
             $sale->member_id        = $member_id;
             $sale->payment_method   = $payment_method;
-            // $sale->status           = '0';
+            $sale->status           = '0';
+            $sale->confirm_at   = Carbon::now();
             $sale->save();
 
             // manage array data items
@@ -82,7 +87,7 @@ class SaleController extends Controller
             }
             DB::commit();
             Alert::success('Transaksi Penjualan Berhasil');
-            return redirect()->route('purchase');
+            return redirect()->route('sale');
         } catch (\Exception $th) {
             throw $th;
             DB::rollback();

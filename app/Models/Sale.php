@@ -12,8 +12,14 @@ class Sale extends Model
     protected $table = 'sales';
     protected $guarded = [];
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function saleItem()
     {
-        return $this->hasMany(SaleItem::class, 'purchase_id', 'id');
+        return $this->hasMany(SaleItem::class, 'sale_item_id', 'id');
     }
 }

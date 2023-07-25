@@ -21,15 +21,20 @@ class ItemController extends Controller
     public function index()
     {
         $data = [
-            'dataItem'      => Item::with('group', 'ppnType', 'unit')->get(),
-            'dataOutlet_item' => OutletItem::with('outlet', 'item', 'purchaseItem')->where('outlet_id', Auth::user()->outlet_id)
-                ->orderBy('created_at', 'desc')
-                ->get(),
-            'dataUnit'      => Unit::orderBy('created_at', 'desc')->get(),
-            'dataGroup'     => Group::orderBy('created_at', 'desc')->get(),
-            'dataPPN'       => PPNType::orderBy('created_at', 'desc')->get(),
-            'dataVoucher'   => Voucher::orderBy('created_at', 'desc')->get(),
+            'dataItem'       => Item::with('group', 'ppnType', 'unit', 'purchaseItem', 'outletItem')
+                    ->get()
+                    ->map(fn ($item) => [
+                    ...$item->toArray(),
+                    'purchase_item' => $item->purchaseItem()->latest()->first(),
+                    'outlet_item'   => $item->outletItem()->latest()->first(),
+            ]),
+            'dataOutletItem' => OutletItem::with('outlet', 'item')->where('outlet_id', Auth::user()->outlet_id),
+            'dataUnit'       => Unit::orderBy('created_at', 'desc')->get(),
+            'dataGroup'      => Group::orderBy('created_at', 'desc')->get(),
+            'dataPPN'        => PPNType::orderBy('created_at', 'desc')->get(),
+            'dataVoucher'    => Voucher::orderBy('created_at', 'desc')->get(),
         ];
+
         return view('page.warehouse.item.item', $data);
     }
 
@@ -92,7 +97,8 @@ class ItemController extends Controller
     public function edit($id)
     {
         $dataItem = Item::find($id);
-        $data_purchase_price = PurchaseItem::where('item_id', $id)->first();
+        $data_purchase_price = PurchaseItem::where('item_id', $id)->orderby('created_at', 'desc')->first();
+        $data_outlet_item = OutletItem::where('item_id', $id)->first();
         $data = [
             'id'                    => $dataItem->id,
             'code'                  => $dataItem->code,
@@ -100,11 +106,10 @@ class ItemController extends Controller
             'group_id'              => $dataItem->group_id,
             'ppn_type_id'           => $dataItem->ppn_type_id,
             'unit_id'               => $dataItem->unit_id,
-            'purchase_price'        => $data_purchase_price ?? 0,
-            'selling_price'         => $dataItem->selling_price,
-            'minimum_stock'         => $dataItem->minimum_stock,
-            'margin_member'         => $dataItem->margin_member,
-            'percent_non_margin'    => $dataItem->percent_non_margin,
+            'purchase_price'        => $data_purchase_price?->purchase_price ?? 0,
+            'selling_price'         => $data_outlet_item->selling_price,
+            'minimum_stock'         => $data_outlet_item->minimum_stock,
+            'percent_non_margin'    => $data_outlet_item->percent_non_margin,
             'dataUnit'              => Unit::all(['id', 'name']),
             'dataGroup'             => Group::all(['id', 'name']),
             'dataPPN'               => PPNType::all(['id', 'type'])
@@ -121,30 +126,48 @@ class ItemController extends Controller
             'group_id'              => 'required',
             'ppn_type_id'           => 'required',
             'unit_id'               => 'required',
+            'selling_price'         => 'required',
+            'minimum_stock'         => 'required',
+            'percent_non_margin'    => 'required',
         ]);
+        DB::beginTransaction();
+        try {
+            $id                 = $request->id;
+            $code               = $request->code;
+            $name               = $request->name;
+            $group_id           = $request->group_id;
+            $ppn_type_id        = $request->ppn_type_id;
+            $unit_id            = $request->unit_id;
+            $outlet_id          = Auth::user()->outlet_id;
+            $selling_price      = $request->selling_price;
+            $minimum_stock      = $request->minimum_stock;
+            $percent_non_margin = $request->percent_non_margin;
 
-        $id                 = $request->id;
-        $code               = $request->code;
-        $name               = $request->name;
-        $group_id           = $request->group_id;
-        $ppn_type_id        = $request->ppn_type_id;
-        $unit_id            = $request->unit_id;
-        $selling_price      = $request->selling_price;
-        $minimum_stock      = $request->minimum_stock;
-        $percent_non_margin = $request->percent_non_margin;
+            $item = Item::find($id);
+            $item->code                 = $code;
+            $item->name                 = $name;
+            $item->group_id             = $group_id;
+            $item->ppn_type_id          = $ppn_type_id;
+            $item->unit_id              = $unit_id;
+            $item->save();
 
-        $data = Item::find($id);
-        $data->code                 = $code;
-        $data->name                 = $name;
-        $data->group_id             = $group_id;
-        $data->ppn_type_id          = $ppn_type_id;
-        $data->unit_id              = $unit_id;
-        $data->selling_price        = $selling_price;
-        $data->minimum_stock        = $minimum_stock;
-        $data->percent_non_margin   = $percent_non_margin;
-        $data->save();
+            $outlet = OutletItem::where('item_id', $item->id)
+                ->where('outlet_id', $outlet_id)
+                ->update(
+                    [
+                        'selling_price'        =>$selling_price,
+                        'minimum_stock'        =>$minimum_stock,
+                        'percent_non_margin'   =>$percent_non_margin
+                    ]
+                );
 
-        Alert::success('Data Barang Berhasil Diupdate');
-        return redirect()->route('item');
+            DB::commit();
+            Alert::success('Data Barang Berhasil Diupdate');
+            return redirect()->route('item');
+        } catch (\Exception) {
+            DB::rollback();
+            return $this->responseJSON([], 500);
+        }
+
     }
 }

@@ -40,7 +40,6 @@ class PurchaseController extends Controller
         try {
             $request->validate([
                 'supllier_id'           => 'required',
-                'invoice_number'        => 'required|string',
                 'invoice_date'          => 'required|date',
                 'due_date'              => 'required|date',
                 'items.*.code'           => 'required|string',

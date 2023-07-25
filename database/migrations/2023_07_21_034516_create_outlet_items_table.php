@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('outlet_id')->references('id')->on('outlets');
             $table->integer('selling_price');
             $table->integer('minimum_stock');
-            $table->decimal('percent_non_margin');
+            $table->integer('percent_non_margin');
             $table->timestamps();
             $table->softDeletes();
         });
