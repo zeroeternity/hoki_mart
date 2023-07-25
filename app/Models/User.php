@@ -21,6 +21,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(LogActivity::class, 'user_id', 'id');
     }
+ 
 
     public function role()
     {

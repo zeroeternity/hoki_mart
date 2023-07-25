@@ -13,9 +13,13 @@ class Sale extends Model
     protected $guarded = [];
 
 
-    public function user()
+    public function cashier()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'cashier_id', 'id');
+    }
+    public function member()
+    {
+        return $this->belongsTo(User::class, 'member_id', 'id');
     }
 
     public function saleItem()

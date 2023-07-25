@@ -22,7 +22,7 @@ class SaleController extends Controller
             'dataSaleItem'=> SaleItem::with('sale', 'outlet_item')
                 ->orderBy('created_at', 'desc')
                 ->get(),
-            'dataSale'=> Sale::with('user')
+            'dataSale'=> Sale::with('cashier','member')
                 ->orderBy('created_at', 'desc')
                 ->get(),
         ];
