@@ -154,9 +154,11 @@ class ItemController extends Controller
             $outlet = OutletItem::where('item_id', $item->id)
                 ->where('outlet_id', $outlet_id)
                 ->update(
-                    ['selling_price'        =>$selling_price],
-                    ['minimum_stock'        =>$minimum_stock],
-                    ['percent_non_margin'   =>$percent_non_margin],
+                    [
+                        'selling_price'        =>$selling_price,
+                        'minimum_stock'        =>$minimum_stock,
+                        'percent_non_margin'   =>$percent_non_margin
+                    ]
                 );
 
             DB::commit();
