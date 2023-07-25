@@ -106,7 +106,7 @@ class SaleController extends Controller
     }
     public function getData(Request $request)
     {
-        $unit = Item::with('unit', 'ppnType', 'outlet_item')
+        $unit = Item::with('unit', 'ppnType', 'purchaseItem')
             ->where('code', $request->code)
             ->first();
         return response()->json($unit);

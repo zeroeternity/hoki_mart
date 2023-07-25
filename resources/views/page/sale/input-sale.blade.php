@@ -347,9 +347,6 @@
             // Modal Handler
             $("#add_item").on('click', function() {
                 var id = $("#modal_select_item").val();
-                if(id == null){
-                    
-                }
                 var data_item = JSON.parse($('#modal_select_item').attr('data-item'));
                 var foundData = data_item.find(item => item.id == id);
                 console.log(foundData);
