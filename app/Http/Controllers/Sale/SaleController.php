@@ -34,7 +34,7 @@ class SaleController extends Controller
 
         $data = [
             'users'   => User::where('role_id', 4)->get(['id', 'name', 'role_id']),
-            'items_outlet' => Item::with('unit', 'ppnType', 'outlet_item')->get(),
+            'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
         ];
         return view('page.sale.input-sale', $data);
     }
