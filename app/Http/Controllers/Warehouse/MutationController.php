@@ -16,9 +16,9 @@ class MutationController extends Controller
     public function index()
     {
         $data = [
-            'dataMutation'      => Mutation::with('outlet_item','outlet_item.outlet','outlet_item.item')
-                                    ->orderBy('created_at', 'desc')
-                                    ->get(),
+            'dataMutation'      => Mutation::with('outlet_item', 'outlet_item.outlet', 'outlet_item.item')
+                ->orderBy('created_at', 'desc')
+                ->get(),
         ];
 
         // dd($data['dataMutation']);
@@ -30,32 +30,40 @@ class MutationController extends Controller
         $data = [
             'dataOutlet'  => Outlet::all(['id', 'name']),
             'dataItem'  => Item::all(['id', 'name']),
-            'dataOutletItem'  => OutletItem::all(['id', 'outlet_id']),
+            'dataOutletItem'  => OutletItem::where('outlet_id', auth()->user()->outlet_id)->get(['id', 'outlet_id']),
         ];
         return view('page.warehouse.mutation.input-mutation', $data);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
+
         $item_id        = $request->item_id;
-        $sender_id      = $request->sender_id;
+        $sender_id      = auth()->user()->outlet_id;
         $reciver_id     = $request->receiver_id;
         $qty            = $request->qty;
 
         $Outlet_Sender      = OutletItem::where('item_id', $item_id)
-                                            ->where('outlet_id', $sender_id)
-                                            ->first();
-        $Outlet_Receiver    = OutletItem::where('outlet_id', $reciver_id)->where('outlet_id', $reciver_id)->first() ;
+            ->where('outlet_id', $sender_id)
+            ->first();
 
-        if ($Outlet_Receiver->item_id == $Outlet_Sender->item_id){
+        $request->validate([
+            'item_id' => ['required'],
+            'receiver_id' => ['required'],
+            'qty' => ['numeric', 'min:0', 'max:5'],
+        ]);
+
+        $Outlet_Receiver    = OutletItem::where('outlet_id', $reciver_id)->where('outlet_id', $reciver_id)->first();
+
+        if ($Outlet_Receiver->item_id == $Outlet_Sender->item_id) {
             $Outlet_Sender->minimum_stock = $Outlet_Sender->minimum_stock - $qty;
             $Outlet_Receiver->minimum_stock = $Outlet_Receiver->minimum_stock + $qty;
             $Outlet_Receiver->save();
             $Outlet_Sender->save();
-        }
-        else {
+        } else {
 
             $Outlet_Item_Receiver = new OutletItem();
-            $Outlet_Item_Receiver->item_id= $item_id;
+            $Outlet_Item_Receiver->item_id = $item_id;
             $Outlet_Item_Receiver->outlet_id = $Outlet_Receiver->outlet_id;
             $Outlet_Item_Receiver->selling_price = $Outlet_Sender->selling_price;
             $Outlet_Item_Receiver->percent_non_margin = $Outlet_Sender->percent_non_margin;
@@ -64,8 +72,6 @@ class MutationController extends Controller
             $Outlet_Item_Receiver->save();
             $Outlet_Receiver->save();
             $Outlet_Sender->save();
-
-
         }
         $mutate = new Mutation;
         $mutate->outlet_item_id = $item_id;
@@ -74,5 +80,4 @@ class MutationController extends Controller
 
         return redirect()->route('mutation');
     }
-
 }

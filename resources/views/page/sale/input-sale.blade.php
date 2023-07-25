@@ -99,7 +99,7 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target=".bs-example-modal-lg"><i class="fa fa-search px-2"></i> Search Barang
                             </button>
-                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -347,6 +347,9 @@
             // Modal Handler
             $("#add_item").on('click', function() {
                 var id = $("#modal_select_item").val();
+                if(id == null){
+                    
+                }
                 var data_item = JSON.parse($('#modal_select_item').attr('data-item'));
                 var foundData = data_item.find(item => item.id == id);
                 console.log(foundData);
