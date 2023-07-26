@@ -46,7 +46,7 @@
                                     <div class="col-md-6 col-sm-6 has-feedback-left">
                                         <select class="form-control select2 select2-danger"
                                                 data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                                name="supllier_id">
+                                                name="supplier_id">
                                             <option value=""></option>
                                             @foreach($dataSupplier as $key => $supplier)
                                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
