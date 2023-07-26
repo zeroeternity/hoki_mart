@@ -30,19 +30,27 @@
                             <th class="column-title">Nama Barang</th>
                             <th class="column-title">qty</th>
                             <th class="column-title">Harga Beli</th>
+                            <th class="column-title">Sub Total</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($data as $ta)
+                        @foreach($data->purchaseItem as $ta)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$ta->sup}}</td>
-                            <td>{{$ta->item}}</td>
+                            <td>{{$data->supplier->name}}</td>
+                            <td>{{$ta->item->name}}</td>
                             <td>{{$ta->qty}}</td>
-                            <td>{{$ta->purchase_price}}</td>
+                            <td>Rp {{number_format($ta->purchase_price,0,',','.')}}</td>
+                            <td>Rp {{number_format($ta->subtotal,0,',','.')}}</td>
                         </tr>
                         @endforeach
                         </tbody>
+                        <thead>
+                            <tr class="headings">
+                                <th colspan="5">Total</th>
+                                <td>Rp {{number_format($data->total,0,',','.')}}</td>
+                            </tr>
+                        </thead>
                     </table>
                 </div>
             </div>
