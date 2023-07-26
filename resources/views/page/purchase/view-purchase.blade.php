@@ -38,10 +38,8 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$ta->sup}}</td>
                             <td>{{$ta->item}}</td>
-                               <td>{{$ta->purchase_price}}</td>
-                               <td>{{$ta->qty}}</td>
-                               <td><button class="btn btn-warning">Aksi</button></td>
-
+                            <td>{{$ta->purchase_price}}</td>
+                            <td>{{$ta->qty}}</td>
                         </tr>
                         @endforeach
                         </tbody>
