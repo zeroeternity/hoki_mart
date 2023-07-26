@@ -38,8 +38,8 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$ta->sup}}</td>
                             <td>{{$ta->item}}</td>
-                            <td>{{$ta->purchase_price}}</td>
                             <td>{{$ta->qty}}</td>
+                            <td>{{$ta->purchase_price}}</td>
                         </tr>
                         @endforeach
                         </tbody>
