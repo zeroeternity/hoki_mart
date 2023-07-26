@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Purchase;
 
 use App\Http\Controllers\Controller;
 use App\Models\Purchase;
-use App\Models\Purchase_item;
 use App\Models\Item;
 use App\Models\OutletItem;
 use App\Models\PurchaseItem;
@@ -19,7 +18,7 @@ class PurchaseController extends Controller
     public function index()
     {
         $data = [
-            'dataPurchaseItem'      => PurchaseItem::with('purchase', 'item')
+            'dataPurchase'      => Purchase::with('user', 'supllier')
                                     ->orderBy('created_at', 'desc')
                                     ->get(),
         ];
@@ -98,6 +97,18 @@ class PurchaseController extends Controller
         }
     }
 
+    public function view($id)
+    {
+        // $data = PurchaseItem::with('purchase')->with('item')->where('purchase_id',$id)->get();
+        $data = DB::table('purchase_items')->select('qty', 'purchase_price', 'items.name as item','suppliers.name as sup')
+        ->join('purchases', 'purchases.id', '=', 'purchase_items.purchase_id')
+        ->join('items', 'items.id', '=', 'purchase_items.item_id')
+        ->join('suppliers', 'suppliers.id', '=', 'purchases.supllier_id')
+        ->where('purchase_id', $id)->get();
+
+        return view('page.purchase.view-purchase',compact('data'));
+    }
+
     public function return()
     {
         return view('page.purchase.return-purchase');
@@ -113,10 +124,6 @@ class PurchaseController extends Controller
         return view('page.purchase.return-report-purchase');
     }
 
-    public function view()
-    {
-        return view('page.purchase.supllier-data');
-    }
     public function getItemData(Request $request)
     {
         $unit = Item::with('unit', 'ppnType')

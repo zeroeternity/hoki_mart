@@ -88,23 +88,22 @@
                         <tr class="headings">
                             <th class="column-title">No</th>
                             <th class="column-title">No faktur</th>
-                            <th class="column-title">Nama Barang</th>
-                            <th class="column-title">Qty</th>
-                            <th class="column-title">Harga Beli</th>
+                            <th class="column-title">Nama Supllier</th>
+                            <th class="column-title">Nama cashier</th>
                             <th class="column-title">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($dataPurchaseItem as $key => $data)
+                        @foreach($dataPurchase as $key => $data)
                             <tr class="">
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $data->purchase->invoice_number }}</td>
-                                <td>{{ $data->item->name }}</td>
-                                <td>{{ $data->qty }}</td>
-                                <td>{{ $data->purchase_price }}</td>
+                                <td>{{ $data->invoice_number }}</td>
+                                <td>{{ $data->supllier->name }}</td>
+                                <td>{{ $data->user->name }}</td>
                                 <td>
+                                    <a href="{{ route('purchase.view',[$data['id']]) }}">
                                     <button type="button" class="btn btn-info">
-                                        <li class="fa fa-edit"></li>
+                                        <li class="fa fa-eye"></li>
                                     </button>
                                     </a>
                                 </td>
