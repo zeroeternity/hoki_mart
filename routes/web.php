@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/sale', [SaleController::class, 'index'])->name('sale');
         Route::get('/sale/create', [SaleController::class, 'create'])->name('sale.create');
         Route::post('/sale/store', [SaleController::class, 'store'])->name('sale.store');
+        Route::get('/sale/print', [SaleController::class, 'print'])->name('sale.print');
         Route::post('/sale/getData', [SaleController::class, 'getData'])->name('sale.getData');
         Route::post('/purchase/get-items-data', [PurchaseController::class, 'getItemData'])->name('purchase.getitemdata');
 

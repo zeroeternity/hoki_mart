@@ -8,6 +8,7 @@ use App\Models\OutletItem;
 use App\Models\Sale;
 use App\Models\SaleItem;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,9 +87,14 @@ class SaleController extends Controller
                 $update_item->minimum_stock = $stock;
                 $update_item->save();
             }
-            DB::commit();
-            Alert::success('Transaksi Penjualan Berhasil');
-            return redirect()->route('sale');
+            if($payment_method == 0){
+                DB::commit();
+                return redirect()->route('sale.print');
+            }else{
+                DB::commit();
+                Alert::success('Transaksi Penjualan Berhasil');
+                return redirect()->route('sale');
+            }
         } catch (\Exception $th) {
             throw $th;
             DB::rollback();
@@ -111,5 +117,13 @@ class SaleController extends Controller
             ->where('code', $request->code)
             ->first();
         return response()->json($unit);
+    }
+    public function print(){
+        $pdf = Pdf::loadView('page.sale.print')->setPaper(array(0,0,75,150),'portrait');
+        $pdf->stream();
+        return response($pdf->output())
+            ->header('Content-Type', 'application/pdf')
+            // Set the Content-Disposition header to inline instead of attachment
+            ->header('Content-Disposition', 'inline; filename="filename.pdf"');
     }
 }
