@@ -119,11 +119,6 @@ class SaleController extends Controller
         return response()->json($unit);
     }
     public function print(){
-        $pdf = Pdf::loadView('page.sale.print')->setPaper(array(0,0,75,150),'portrait');
-        $pdf->stream();
-        return response($pdf->output())
-            ->header('Content-Type', 'application/pdf')
-            // Set the Content-Disposition header to inline instead of attachment
-            ->header('Content-Disposition', 'inline; filename="filename.pdf"');
+        return view('page.sale.print');
     }
 }

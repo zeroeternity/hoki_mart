@@ -40,13 +40,13 @@
                                     </div>
                                 </div>
                                 <div class="item form-group ">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Supllier
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Supplier
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 has-feedback-left">
                                         <select class="form-control select2 select2-danger"
-                                            data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                            name="supllier_id">
+                                                data-dropdown-css-class="select2-danger" style="width: 100%;"
+                                                name="supplier_id">
                                             <option value=""></option>
                                             @foreach ($dataSupplier as $key => $supplier)
                                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>

@@ -18,10 +18,11 @@ class PurchaseController extends Controller
     public function index()
     {
         $data = [
-            'dataPurchase'      => Purchase::with('user', 'supllier')
+            'dataPurchase'      => Purchase::with(['user', 'supplier', 'purchaseItem'])
                                     ->orderBy('created_at', 'desc')
                                     ->get(),
         ];
+
         return view('page.purchase.purchase', $data);
     }
 
@@ -40,7 +41,7 @@ class PurchaseController extends Controller
         DB::beginTransaction();
         try {
             $request->validate([
-                'supllier_id'           => 'required',
+                'supplier_id'           => 'required',
                 'invoice_date'          => 'required|date',
                 'due_date'              => 'required|date',
                 'items.*.code'           => 'required|string',
@@ -49,7 +50,7 @@ class PurchaseController extends Controller
                 'items'                 => 'required',
             ]);
 
-            $supllier_id    = $request->supllier_id;
+            $supplier_id    = $request->supplier_id;
             $invoice_number = $request->invoice_number;
             $invoice_date   = $request->invoice_date;
             $due_date       = $request->due_date;
@@ -58,7 +59,7 @@ class PurchaseController extends Controller
             // Store data purchase
             $purchase = new Purchase();
             $purchase->user_id          =  Auth::id();
-            $purchase->supllier_id      = $supllier_id;
+            $purchase->supplier_id      = $supplier_id;
             $purchase->invoice_number   = $invoice_number;
             $purchase->invoice_date     = $invoice_date;
             $purchase->due_date         = $due_date;
@@ -102,11 +103,12 @@ class PurchaseController extends Controller
     public function view($id)
     {
         // $data = PurchaseItem::with('purchase')->with('item')->where('purchase_id',$id)->get();
-        $data = DB::table('purchase_items')->select('qty', 'purchase_price', 'items.name as item','suppliers.name as sup')
-        ->join('purchases', 'purchases.id', '=', 'purchase_items.purchase_id')
-        ->join('items', 'items.id', '=', 'purchase_items.item_id')
-        ->join('suppliers', 'suppliers.id', '=', 'purchases.supllier_id')
-        ->where('purchase_id', $id)->get();
+        // $data = DB::table('purchase_items')->select('qty', 'purchase_price', 'items.name as item','suppliers.name as sup')
+        // ->join('purchases', 'purchases.id', '=', 'purchase_items.purchase_id')
+        // ->join('items', 'items.id', '=', 'purchase_items.item_id')
+        // ->join('suppliers', 'suppliers.id', '=', 'purchases.supplier_id')
+        // ->where('purchase_id', $id)->get();
+        $data = Purchase::with(['purchaseItem','purchaseItem.item','supplier'])->find($id);
 
         return view('page.purchase.view-purchase',compact('data'));
     }

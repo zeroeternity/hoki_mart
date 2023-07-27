@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('supllier_id')->references('id')->on('suppliers');
+            $table->foreignId('supplier_id')->references('id')->on('suppliers');
             $table->string('invoice_number')->nullable();
             $table->timestamp('invoice_date');
             $table->timestamp('due_date')->nullable();
