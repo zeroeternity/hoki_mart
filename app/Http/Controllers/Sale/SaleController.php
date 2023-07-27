@@ -81,20 +81,10 @@ class SaleController extends Controller
                 $update_item->save();
             }
             if ($payment_method == 0) {
-                $sale_data = $sale->load(['userCashier', 'userMember', 'items'])->loadSum('items', 'qty * sale_price as total');
 
-                $data = [
-                    'id' => $sale_data,
-                    'cashier' => $sale_data->userCashier->name,
-                    'member' => $sale_data->userMember?->name,
-                    'payment_method' => $sale_data->payment_method,
-                    'status' => $sale_data->status,
-                    'created_at' => $sale_data->created_at,
-                    'sale_item' => $sale_data->items,
-                ];
 
                 DB::commit();
-                return redirect()->route('sale.print')->with($data);
+                return redirect()->route('sale.view', [$sale->id]);
             } else {
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
@@ -110,9 +100,9 @@ class SaleController extends Controller
     public function view($id)
     {
 
-        $data = Sale::with(['saleItem','saleItem.outletItem','cashier','member'])->find($id);
+        $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])->find($id);
 //        dd($data);
-        return view('page.sale.view-sale',compact('data'));
+        return view('page.sale.view-sale', compact('data'));
     }
 
     public function instalment()
@@ -133,8 +123,25 @@ class SaleController extends Controller
         return response()->json($unit);
     }
 
-    public function print()
+    public function print(Request $request)
     {
-        return view('page.sale.print');
+        $id = $request->query('id');
+
+        $sale = Sale::with(['userCashier', 'userMember', 'items'])->find($id);
+
+        $data = [
+            'id' => $sale->id,
+            'cashier' => $sale->userCashier->name,
+            'member' => $sale->userMember?->name,
+            'payment_method' => $sale->payment_method,
+            'status' => $sale->status,
+            'sale_item' => $sale->items,
+            'voucher'=>0,//voucher hard code
+            'total'=>$sale->total,
+            'subtotal'=> $sale->total - 0, //-voucher hard code
+            'created_at' => $sale->created_at,
+        ];
+
+        return view('page.sale.print', $data);
     }
 }

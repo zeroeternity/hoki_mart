@@ -18,8 +18,10 @@
                             <h2>Form Penjualan</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <a href="{{ route('sale.create') }}">
-                                        <button type="button" class="btn btn-info">
-                                <li class="fa fa-plus"></li>&nbsp;Form penjualan</button></a>
+                                    <button type="button" class="btn btn-info">
+                                        <li class="fa fa-plus"></li>&nbsp;Form penjualan
+                                    </button>
+                                </a>
 
                             </ul>
                             <div class="clearfix"></div>
@@ -99,9 +101,9 @@
                                 <td>Rp {{number_format($data->total,0,',','.')}}</td>
                                 <td>
                                     <a href="{{ route('sale.view',[$data['id']]) }}">
-                                    <button type="button" class="btn btn-info">
-                                        <li class="fa fa-eye"></li>
-                                    </button>
+                                        <button type="button" class="btn btn-info">
+                                            <li class="fa fa-eye"></li>
+                                        </button>
                                     </a>
                                 </td>
                             </tr>
@@ -114,6 +116,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

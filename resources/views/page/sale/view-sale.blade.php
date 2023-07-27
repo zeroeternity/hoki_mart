@@ -8,6 +8,15 @@
             <div class="title_left">
                 <h3>Detail Penjualan</h3>
             </div>
+            <div class="title_right">
+                <div class="form-group pull-right">
+                    <a href="{{ route('sale.print', ['id'=> request('id')]) }}">
+                        <button type="button" class="btn btn-info">
+                            <li class="fa fa-print"></li>&nbsp;Print
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="clearfix"></div>
@@ -57,7 +66,4 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection

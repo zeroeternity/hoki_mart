@@ -52,51 +52,55 @@
     <title>Cetak Struk</title>
 </head>
 <body>
-<img src="{{ asset('images/hoki-black.png') }}" class="center">
-<p>Tanggal Transaksi: {{ session('created_at') }}</p>
-<p>-------------------------------------------------------------------------------------</p>
-{{--@dd(session('sale_item'))--}}
-<table>
-    <tr style="width:100%">
-        <th style="width:65%">Nama Barang</th>
-        <th style="width:5%">Jml</th>
-        <th style="width:15%">Harga</th>
-        <th style="width:15%">Total</th>
-    </tr>
-    @foreach(session('sale_item',[]) as $item)
-        <tr>
-            <td>{{$item->name}}</td>
-            <td align="center">{{ $item->pivot->qty }}</td>
-            <td align="right">{{ $item->pivot->sale_price }}</td>
-            <td align="right">{{$item->pivot->total}}</td>
+<center>
+    <img src="{{ asset('images/hoki-black.png') }}" class="center">
+    <br>
+    <p>Tanggal Transaksi: {{ $created_at }}</p>
+    <p>-------------------------------------------------------------------------------------</p>
+    <table>
+
+        <tr style="width:100%">
+            <th style="width:65%">Nama Barang</th>
+            <th style="width:5%">Jml</th>
+            <th style="width:15%">Harga</th>
+            <th style="width:15%">Total</th>
         </tr>
-    @endforeach
-    <tr>
-        <td></td>
-        <td colspan="3">-----------------------------</td>
-    </tr>
-    <tr>
-        <td colspan="3" align="right">Sub Total</td>
-        <td align="right">120000</td>
-    </tr>
-    <tr>
-        <td colspan="3" align="right">Voucher</td>
-        <td align="right">0</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td colspan="3">-----------------------------</td>
-    </tr>
-    <tr>
-        <td colspan="3" align="right">Total</td>
-        <td align="right">120000</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td colspan="3">-----------------------------</td>
-    </tr>
-</table>
-<p>-------------------------------------------------------------------------------------</p>
+        @foreach($sale_item as $item)
+            <tr>
+                <td>{{$item->name}}</td>
+                <td align="center">{{ $item->pivot->qty }}</td>
+                <td align="right">{{ $item->pivot->sale_price }}</td>
+                <td align="right">{{$item->pivot->total}}</td>
+            </tr>
+        @endforeach
+        <tr>
+            <td></td>
+            <td colspan="3">-----------------------------</td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">Sub Total</td>
+            <td align="right">{{$total}}</td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">Voucher</td>
+            <td align="right">{{$voucher}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3">-----------------------------</td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">Total</td>
+            <td align="right">{{$subtotal}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3">-----------------------------</td>
+        </tr>
+    </table>
+    <p>-------------------------------------------------------------------------------------</p>
+
+</center>
 
 </body>
 <script type="text/javascript">
