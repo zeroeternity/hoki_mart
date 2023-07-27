@@ -5,22 +5,43 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sale extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $table = 'sales';
     protected $guarded = [];
 
+    public function userCashier()
+    {
+        return $this->belongsTo(User::class, 'cashier_id', 'id');
+    }
+
+    public function userMember()
+    {
+        return $this->belongsTo(User::class, 'member_id', 'id');
+    }
 
     public function cashier()
     {
         return $this->belongsTo(User::class, 'cashier_id', 'id');
     }
-    public function member()
+
+    public function member(): BelongsTo
     {
         return $this->belongsTo(User::class, 'member_id', 'id');
+    }
+
+    public function items(): BelongsToMany
+    {
+
+        return $this->belongsToMany(Item::class, 'sale_items', 'sale_id', 'outlet_item_id',)
+            ->withPivot(['qty', 'sale_price'])
+            ->using(SaleItem::class);
     }
 
     public function saleItem()
@@ -28,10 +49,10 @@ class Sale extends Model
         return $this->hasMany(SaleItem::class, 'sale_id', 'id');
     }
 
-    protected function total(): Attribute{
+    protected function total(): Attribute
+    {
         return new Attribute(
-            get: fn () => $this->saleItem->sum('subtotal'),
+            get: fn() => $this->saleItem->sum('subtotal'),
         );
     }
-
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sale;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSaleRequest;
 use App\Models\Item;
 use App\Models\OutletItem;
 use App\Models\Sale;
@@ -20,10 +21,10 @@ class SaleController extends Controller
     public function index()
     {
         $data = [
-            'dataSaleItem'=> SaleItem::with('sale', 'outlet_item')
+            'dataSaleItem' => SaleItem::with('sale', 'outletItem')
                 ->orderBy('created_at', 'desc')
                 ->get(),
-            'dataSale'=> Sale::with('cashier','member')
+            'dataSale' => Sale::with('cashier', 'member')
                 ->orderBy('created_at', 'desc')
                 ->get(),
         ];
@@ -33,7 +34,7 @@ class SaleController extends Controller
     public function create()
     {
         $data = [
-            'users'   => User::with('estate')
+            'users' => User::with('estate')
                 ->where('role_id', 4)
                 ->get(),
             'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
@@ -41,42 +42,34 @@ class SaleController extends Controller
         return view('page.sale.input-sale', $data);
     }
 
-    public function store(Request $request)
+    public function store(StoreSaleRequest $request)
     {
         DB::beginTransaction();
         try {
-            $request->validate([
-                'payment_method'            => 'required|string',
-                'items.*.code'              => 'required|string',
-                'items.*.qty'               => 'required|numeric',
-                'items.*.purchase_price'    => 'required|numeric',
-                'items'                     => 'required',
-            ]);
-
-            $member_id      = $request->member_id;
+            $member_id = $request->member_id;
             $payment_method = $request->payment_method;
-            $items          = $request->items;
+            $items = $request->items;
 
             // Store data purchase
             $sale = new Sale();
-            $sale->cashier_id       = Auth::id();
-            $sale->member_id        = $member_id;
-            $sale->payment_method   = $payment_method;
-            $sale->status           = '0';
-            $sale->confirm_at       = Carbon::now();
+            $sale->cashier_id = Auth::id();
+            $sale->member_id = $member_id;
+            $sale->payment_method = $payment_method;
+            $sale->status = '0';
+            $sale->confirm_at = null;
             $sale->save();
 
             // manage array data items
             foreach ($items as $item) {
                 // get item data
-                $item_data      = Item::where('code', $item['code'])->first();
-                $item_outlet    = OutletItem::where('id', $item_data['id'])->first();
+                $item_data = Item::where('code', $item['code'])->first();
+                $item_outlet = OutletItem::find($item_data['id']);
                 // store purchase item
                 SaleItem::create([
-                    'sale_id'           => $sale->id,
-                    'outlet_item_id'    => $item_data['id'],
-                    'qty'               => $item['qty'],
-                    'sale_price'        => $item['purchase_price'],
+                    'sale_id' => $sale->id,
+                    'outlet_item_id' => $item_data['id'],
+                    'qty' => $item['qty'],
+                    'sale_price' => $item['purchase_price'],
                 ]);
 
                 // formula add stock
@@ -87,10 +80,24 @@ class SaleController extends Controller
                 $update_item->minimum_stock = $stock;
                 $update_item->save();
             }
-            if($payment_method == 0){
+            if ($payment_method == 0) {
+                $sale_data = $sale->load(['userCashier', 'userMember', 'items'])->loadSum('items', 'qty * sale_price as total');
+
+                dd($sale_data);
+
+                $data = [
+                    'id' => $sale_data,
+                    'cashier' => $sale_data->userCashier->name,
+                    'member' => $sale_data->userMember?->name,
+                    'payment_method' => $sale_data->payment_method,
+                    'status' => $sale_data->status,
+                    'created_at' => $sale_data->created_at,
+                    'sale_item' => $sale_data->items,
+                ];
+
                 DB::commit();
-                return redirect()->route('sale.print');
-            }else{
+                return redirect()->route('sale.print')->with($data);
+            } else {
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
                 return redirect()->route('sale');
@@ -119,6 +126,7 @@ class SaleController extends Controller
     {
         return view('page.sale.input-sale-instalment');
     }
+
     public function getData(Request $request)
     {
         $unit = Item::with('unit', 'ppnType', 'outletItem')
@@ -126,7 +134,9 @@ class SaleController extends Controller
             ->first();
         return response()->json($unit);
     }
-    public function print(){
+
+    public function print()
+    {
         return view('page.sale.print');
     }
 }

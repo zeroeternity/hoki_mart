@@ -5,33 +5,38 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class SaleItem extends Model
+class SaleItem extends Pivot
 {
     use HasFactory;
+
     protected $table = 'sale_items';
 
     protected $guarded = [];
-    protected $appends = ['subtotal'];
+    protected $appends = ['subtotal', 'total'];
 
-    public function sale()
+    public function sales()
     {
         return $this->belongsTo(Sale::class, 'sale_id', 'id');
     }
 
-    public function item()
+    public function items()
     {
-        return $this->belongsTo(Item::class, 'item_id', 'id');
+        return $this->belongsToMany(Item::class, 'outlet_items')->using(OutletItem::class);
     }
 
-    public function outlet_item()
+    protected function total(): Attribute
     {
-        return $this->belongsTo(OutletItem::class, 'outlet_item_id', 'id');
+        return Attribute::get(function ($value, array $attributes) {
+            return $attributes['qty'] * $attributes['sale_price'];
+        });
     }
 
-    protected function subtotal(): Attribute{
+    protected function subtotal(): Attribute
+    {
         return new Attribute(
-            get: fn () => $this->qty * $this->sale_price,
+            get: fn() => $this->qty * $this->sale_price,
         );
     }
 }

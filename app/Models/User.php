@@ -21,7 +21,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(LogActivity::class, 'user_id', 'id');
     }
- 
 
     public function role()
     {
@@ -46,5 +45,14 @@ class User extends Authenticatable
     public function position()
     {
         return $this->belongsTo(Position::class, 'position_id', 'id');
+    }
+
+    public function salesCashier()
+    {
+        return $this->hasMany(Sale::class, 'cashier_id', 'id');
+    }
+    public function salesMember()
+    {
+        return $this->hasMany(Sale::class, 'member_id', 'id');
     }
 }
