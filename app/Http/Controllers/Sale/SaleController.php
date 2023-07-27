@@ -28,6 +28,7 @@ class SaleController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get(),
         ];
+
         return view('page.sale.sale', $data);
     }
 
@@ -81,8 +82,6 @@ class SaleController extends Controller
                 $update_item->save();
             }
             if ($payment_method == 0) {
-
-
                 DB::commit();
                 return redirect()->route('sale.view', [$sale->id]);
             } else {
@@ -99,9 +98,7 @@ class SaleController extends Controller
 
     public function view($id)
     {
-
         $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])->find($id);
-//        dd($data);
         return view('page.sale.view-sale', compact('data'));
     }
 

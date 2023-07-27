@@ -120,13 +120,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/purchase/report', [PurchaseController::class, 'report'])->name('purchase.report');
         Route::get('/purchase/return', [PurchaseController::class, 'return'])->name('purchase.return');
         Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
-        Route::get('/purchase/view/{id}', [PurchaseController::class, 'view'])->name('purchase.view2');
         Route::post('/purchase/get-items-data', [PurchaseController::class, 'getItemData'])->name('purchase.getitemdata');
 
         // Sale
         Route::get('/sale/instalment', [SaleController::class, 'instalment'])->name('sale.instalment');
         Route::get('/sale/create_instalment', [SaleController::class, 'create_instalment'])->name('sale.create_instalment');
-        Route::get('/sale/view/{id}', [SaleController::class, 'view'])->name('sale.view');
+
 
         //accountancy
         Route::get('/accountancy/ledger', [AccountancyController::class, 'ledger'])->name('accountancy.ledger');

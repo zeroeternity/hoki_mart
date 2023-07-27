@@ -85,6 +85,8 @@
                         <thead>
                         <tr class="headings">
                             <th class="column-title">No</th>
+                            <th class="column-title">Pembayaran</th>
+                            <th class="column-title">Tanggal</th>
                             <th class="column-title">Nama Kasir</th>
                             <th class="column-title">Nama Member</th>
                             <th class="column-title">Total</th>
@@ -95,6 +97,14 @@
                         @foreach($dataSale as $key => $data)
                             <tr class="">
                                 <td>{{ $loop->iteration }}</td>
+                                <td class="">
+                                    @if($data->payment_method== '1')
+                                        Piutang
+                                    @else
+                                        Cash
+                                    @endif
+                                </td>
+                                <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->cashier->name}}</td>
                                 <td>{{ $data->member->name?? 'Non Member'}}</td>
                                 <td>Rp {{number_format($data->total,0,',','.')}}</td>
@@ -107,8 +117,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
-
                         </tbody>
                     </table>
                 </div>
