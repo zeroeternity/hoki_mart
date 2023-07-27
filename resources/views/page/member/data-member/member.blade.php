@@ -66,8 +66,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr class="headings">
                                     <th class="column-title">No</th>
@@ -136,8 +135,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr class="headings">
                                     <th class="column-title">No</th>
@@ -190,8 +188,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr class="headings">
                                     <th class="column-title">No</th>
@@ -238,8 +235,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr class="headings">
                                     <th class="column-title">No</th>
@@ -288,9 +284,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
-                                <thead>
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <tr class="headings">
                                     <th class="column-title">No.Register</th>
                                     <th class="column-title">Nama karyawan</th>
@@ -329,8 +323,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr class="headings">
                                     <th class="column-title">No</th>
@@ -385,9 +378,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
-                                <thead>
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <tr class="headings">
                                     <th class="column-title">No.Register</th>
                                     <th class="column-title">Nama Karyawan</th>
@@ -426,8 +417,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <table id="datatable-fixed-header" class="table table-striped table-bordered"
-                                   style="width:100%">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr class="headings">
                                     <th class="column-title">Tahun</th>

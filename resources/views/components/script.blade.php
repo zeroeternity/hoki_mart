@@ -97,10 +97,12 @@
     }
 </script>
 
-{{-- Select 2 --}}
+
 <script>
     //Initialize Select2 Elements
     $('.select2').select2()
+    //Initialize DataTable Elements
+    $('#datatable').DataTable()
 </script>
 
 <!-- Initialize datetimepicker -->
