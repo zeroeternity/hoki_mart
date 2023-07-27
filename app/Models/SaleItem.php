@@ -33,6 +33,11 @@ class SaleItem extends Pivot
         });
     }
 
+    public function outletItem()
+    {
+        return $this->belongsTo(OutletItem::class, 'outlet_item_id', 'id');
+    }
+
     protected function subtotal(): Attribute
     {
         return new Attribute(

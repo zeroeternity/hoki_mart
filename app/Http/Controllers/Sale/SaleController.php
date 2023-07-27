@@ -21,7 +21,7 @@ class SaleController extends Controller
     public function index()
     {
         $data = [
-            'dataSaleItem' => SaleItem::with('sale', 'outletItem')
+            'dataSaleItem' => SaleItem::with('sales', 'outletItem')
                 ->orderBy('created_at', 'desc')
                 ->get(),
             'dataSale' => Sale::with('cashier', 'member')
@@ -83,8 +83,6 @@ class SaleController extends Controller
             if ($payment_method == 0) {
                 $sale_data = $sale->load(['userCashier', 'userMember', 'items'])->loadSum('items', 'qty * sale_price as total');
 
-                dd($sale_data);
-
                 $data = [
                     'id' => $sale_data,
                     'cashier' => $sale_data->userCashier->name,
@@ -112,8 +110,8 @@ class SaleController extends Controller
     public function view($id)
     {
 
-        $data = Sale::with(['saleItem','saleItem.outlet_item','cashier','member'])->find($id);
-
+        $data = Sale::with(['saleItem','saleItem.outletItem','cashier','member'])->find($id);
+//        dd($data);
         return view('page.sale.view-sale',compact('data'));
     }
 

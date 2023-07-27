@@ -1,9 +1,9 @@
 - name: blue
   hex: "#007bff"
 - name: indigo
-  hex: "#00BE73"
+  hex: "#6610f2"
 - name: purple
-  hex: "#568203"
+  hex: "#6f42c1"
 - name: pink
   hex: "#e83e8c"
 - name: red

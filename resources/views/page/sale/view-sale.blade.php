@@ -38,7 +38,7 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$data->member->name?? 'Non Member'}}</td>
-                            <td>{{$ta->outlet_item->item->name}}</td>
+                            <td>{{$ta->outletItem->item->name}}</td>
                             <td>{{$ta->qty}}</td>
                             <td>Rp {{number_format($ta->sale_price,0,',','.')}}</td>
                             <td>Rp {{number_format($ta->subtotal,0,',','.')}}</td>

@@ -74,6 +74,7 @@
 <script src="{{asset ('template/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
 <script src="{{asset ('template/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
+
 {{-- Rupiah --}}
 <script type="text/javascript">
     var rupiah = document.getElementById('rupiah');
