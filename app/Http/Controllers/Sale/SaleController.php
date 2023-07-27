@@ -102,6 +102,14 @@ class SaleController extends Controller
         }
     }
 
+    public function view($id)
+    {
+
+        $data = Sale::with(['saleItem','saleItem.outlet_item','cashier','member'])->find($id);
+
+        return view('page.sale.view-sale',compact('data'));
+    }
+
     public function instalment()
     {
         return view('page.sale.sale-instalment');

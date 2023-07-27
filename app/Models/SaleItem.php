@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class SaleItem extends Model
     protected $table = 'sale_items';
 
     protected $guarded = [];
+    protected $appends = ['subtotal'];
 
     public function sale()
     {
@@ -27,4 +29,9 @@ class SaleItem extends Model
         return $this->belongsTo(OutletItem::class, 'outlet_item_id', 'id');
     }
 
+    protected function subtotal(): Attribute{
+        return new Attribute(
+            get: fn () => $this->qty * $this->sale_price,
+        );
+    }
 }

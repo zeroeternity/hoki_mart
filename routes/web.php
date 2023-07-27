@@ -125,6 +125,7 @@ Route::middleware(['auth'])->group(function () {
         // Sale
         Route::get('/sale/instalment', [SaleController::class, 'instalment'])->name('sale.instalment');
         Route::get('/sale/create_instalment', [SaleController::class, 'create_instalment'])->name('sale.create_instalment');
+        Route::get('/sale/view/{id}', [SaleController::class, 'view'])->name('sale.view');
 
         //accountancy
         Route::get('/accountancy/ledger', [AccountancyController::class, 'ledger'])->name('accountancy.ledger');

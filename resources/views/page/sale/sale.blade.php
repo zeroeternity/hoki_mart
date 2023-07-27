@@ -86,7 +86,8 @@
                             <th class="column-title">No</th>
                             <th class="column-title">Nama Kasir</th>
                             <th class="column-title">Nama Member</th>
-                            <th class="column-title">Total Pembelian</th>
+                            <th class="column-title">Total</th>
+                            <th class="column-title">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -95,9 +96,14 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->cashier->name}}</td>
                                 <td>{{ $data->member->name?? 'Non Member'}}</td>
-                                @foreach($dataSaleItem as $key => $data)
-                                @endforeach
-                                <td>{{ $totalAmount = $data->groupBy('sale_id')->sum('sale_price')}}</td>
+                                <td>Rp {{number_format($data->total,0,',','.')}}</td>
+                                <td>
+                                    <a href="{{ route('sale.view',[$data['id']]) }}">
+                                    <button type="button" class="btn btn-info">
+                                        <li class="fa fa-eye"></li>
+                                    </button>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
 

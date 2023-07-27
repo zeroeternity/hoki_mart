@@ -21,7 +21,6 @@ class OutletItem extends Model
         return $this->belongsTo(Item::class, 'item_id', 'id');
     }
 
-
     public function saleItem()
     {
         return $this->hasMany(SaleItem::class, 'item_id', 'id');
