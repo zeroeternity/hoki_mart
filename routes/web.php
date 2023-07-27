@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
         // Purchase
         Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase');
-        Route::get('/purchase/view', [PurchaseController::class, 'view'])->name('purchase.view');
+        Route::get('/purchase/view/{id}', [PurchaseController::class, 'view'])->name('purchase.view');
         Route::get('/purchase/create', [PurchaseController::class, 'create'])->name('purchase.create');
         Route::post('/purchase/store', [PurchaseController::class, 'store'])->name('purchase.store');
 
@@ -119,7 +119,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/purchase/report', [PurchaseController::class, 'report'])->name('purchase.report');
         Route::get('/purchase/return', [PurchaseController::class, 'return'])->name('purchase.return');
         Route::get('/purchase/return_report', [PurchaseController::class, 'return_report'])->name('purchase.return_report');
-        Route::get('/setting/purchase/view/{id}', [PurchaseController::class, 'view'])->name('purchase.view');
+        Route::get('/setting/purchase/view/{id}', [PurchaseController::class, 'view'])->name('purchase.view2');
         Route::post('/purchase/get-items-data', [PurchaseController::class, 'getItemData'])->name('purchase.getitemdata');
 
         // Sale

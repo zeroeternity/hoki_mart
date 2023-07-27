@@ -94,7 +94,7 @@
                             <tr class="">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->cashier->name}}</td>
-                                <td>{{ $data->member->name?? 'Non Member'}}</td>
+                                <td>{{ $data->member->name?? '-'}}</td>
                                 @foreach($dataSaleItem as $key => $data)
                                 @endforeach
                                 <td>{{ $totalAmount = $data->groupBy('sale_id')->sum('sale_price')}}</td>
