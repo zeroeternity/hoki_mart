@@ -29,7 +29,9 @@ class PurchaseController extends Controller
     public function create()
     {
         $data = [
-            'dataSupplier'   => Supplier::all(['id', 'name'])
+            'dataSupplier'   => Supplier::all(['id', 'name']),
+            'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
+
         ];
         return view('page.purchase.input-purchase', $data);
     }

@@ -48,7 +48,7 @@
                                                 data-dropdown-css-class="select2-danger" style="width: 100%;"
                                                 name="supplier_id">
                                             <option value=""></option>
-                                            @foreach($dataSupplier as $key => $supplier)
+                                            @foreach ($dataSupplier as $key => $supplier)
                                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                             @endforeach
                                         </select>
@@ -60,10 +60,10 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input id="invoice_date" class="date-picker form-control" name="invoice_date"
-                                               placeholder="dd-mm-yyyy" type="text" required="required" type="text"
-                                               onfocus="this.type='date'" onmouseover="this.type='date'"
-                                               onclick="this.type='date'" onblur="this.type='text'"
-                                               onmouseout="timeFunctionLong(this)">
+                                            placeholder="dd-mm-yyyy" type="text" required="required" type="text"
+                                            onfocus="this.type='date'" onmouseover="this.type='date'"
+                                            onclick="this.type='date'" onblur="this.type='text'"
+                                            onmouseout="timeFunctionLong(this)">
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -71,10 +71,10 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input id="due_date" class="date-picker form-control" name="due_date"
-                                               placeholder="dd-mm-yyyy" type="text" required="required" type="text"
-                                               onfocus="this.type='date'" onmouseover="this.type='date'"
-                                               onclick="this.type='date'" onblur="this.type='text'"
-                                               onmouseout="timeFunctionLong(this)">
+                                            placeholder="dd-mm-yyyy" type="text" required="required" type="text"
+                                            onfocus="this.type='date'" onmouseover="this.type='date'"
+                                            onclick="this.type='date'" onblur="this.type='text'"
+                                            onmouseout="timeFunctionLong(this)">
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                                 <i class="fa fa-plus px-2"></i>Add</a>
                             <!-- Search barang -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target=".bs-example-modal-lg"><i class="fa fa-search px-2"></i> Search Barang
+                                data-target=".bs-example-modal-lg"><i class="fa fa-search px-2"></i> Search Barang
                             </button>
                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -108,7 +108,25 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align">Barang
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 ">
+                                                    <select class="form-control select2 select2-danger"
+                                                        id="modal_select_item" data-dropdown-css-class="select2-danger"
+                                                        style="width: 100%;" name=""
+                                                        data-item='{{ json_encode($items_outlet) }}'>
+                                                        <option value=""></option>
+                                                        @foreach ($items_outlet as $key => $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <button id="add_item" type="button" class="btn btn-success">Add +
+                                                </button>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
 
@@ -121,22 +139,29 @@
                         <div class="card-box table-responsive">
                             <table class="table table-striped table-bordered" style="width:100%">
                                 <thead>
-                                <tr>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Satuan</th>
-                                    <th>PPN</th>
-                                    <th>Qty</th>
-                                    <th>Total</th>
-                                    <th>Harga Beli</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>Kode Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Satuan</th>
+                                        <th>PPN</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Harga Beli</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
 
                                 <tbody id="itemListPurchase">
-                                <tr>
-                                </tr>
+                                    <tr>
+                                    </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="6" class="text-right">Total</th>
+                                        <th id="grand_total"></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <div class="ln_solid"></div>
@@ -144,7 +169,7 @@
                         <div class="item form-group">
                             <button type="submit" class='btn btn-block btn-success text-white' id="submit-btn">
                                 <span class="spinner-border spinner-border-sm d-none" role="status"
-                                      aria-hidden="true"></span>
+                                    aria-hidden="true"></span>
                                 <i class="fa fa-save px-2"></i>
                                 Submit Pembelian
                             </button>
@@ -239,7 +264,7 @@
             input_purchase_price.setAttribute("class", "form-control");
 
             // ajax get data item
-            input_code.oninput = function () {
+            input_code.oninput = function() {
                 var item_code = input_code.value
                 $.ajax({
                     type: "POST",
@@ -248,7 +273,7 @@
                         "code": item_code,
                         "_token": "{{ csrf_token() }}",
                     },
-                    success: function (response) {
+                    success: function(response) {
                         input_id.value = response.id ?? ''
                         input_name.value = response.name ?? ''
                         input_unit.value = response.unit?.name ?? ''
@@ -259,7 +284,7 @@
             }
 
             // make oninput qty
-            input_qty.oninput = function () {
+            input_qty.oninput = function() {
                 var qty = input_qty.value;
                 var price = input_purchase_price.value;
 
@@ -268,13 +293,13 @@
                 }
             }
             // make oninput price
-            input_purchase_price.oninput = function () {
+            input_purchase_price.oninput = function() {
                 var qty = input_qty.value;
                 var price = input_purchase_price.value;
                 input_total.value = qty * price;
             }
             // make oninput total
-            input_total.oninput = function () {
+            input_total.oninput = function() {
                 var qty = input_qty.value;
                 var total = input_total.value;
                 input_purchase_price.value = total / qty;
@@ -295,7 +320,7 @@
             hapus.innerHTML =
                 '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
             // Action hapus
-            hapus.onclick = function () {
+            hapus.onclick = function() {
                 row.parentNode.removeChild(row);
             };
             i++;
