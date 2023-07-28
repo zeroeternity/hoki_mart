@@ -28,9 +28,8 @@ class MutationController extends Controller
     public function create()
     {
         $data = [
-            'dataOutlet'  => Outlet::all(['id', 'name']),
-            'dataItem'  => Item::all(['id', 'name']),
-            'dataOutletItem'  => OutletItem::where('outlet_id', auth()->user()->outlet_id)->get(['id', 'outlet_id']),
+            'dataOutletItem'  => OutletItem::where('outlet_id', auth()->user()->outlet_id)->get(),
+            'dataOutlet' => Outlet::where('id' ,'!=',Auth::user()->outlet_id)->get(),
         ];
         return view('page.warehouse.mutation.input-mutation', $data);
     }

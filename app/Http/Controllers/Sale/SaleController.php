@@ -22,14 +22,11 @@ class SaleController extends Controller
     public function index()
     {
         $data = [
-            'dataSaleItem' => SaleItem::with('sales', 'outletItem')
-                ->orderBy('created_at', 'desc')
-                ->get(),
             'dataSale' => Sale::with('cashier', 'member')
                 ->orderBy('created_at', 'desc')
+                ->whereRelation('cashier','outlet_id', Auth::user()->outlet_id)
                 ->get(),
         ];
-
         return view('page.sale.sale', $data);
     }
 
@@ -38,6 +35,7 @@ class SaleController extends Controller
         $data = [
             'users'   => User::with('estate', 'memberType')
                 ->where('role_id', 4)
+                ->where('outlet_id', Auth::user()->outlet_id)
                 ->get(),
             'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
             'receivable' => Receivable::all(),
@@ -111,7 +109,7 @@ class SaleController extends Controller
                     DB::rollback();
                     return redirect()->route('sale.create');
                 }
-                
+
                 $receivable->amount = $receivable_amount + $total_sale;
                 $receivable->save();
                 foreach ($items as $item) {
@@ -141,7 +139,9 @@ class SaleController extends Controller
 
     public function view($id)
     {
-        $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])->find($id);
+        $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])
+                    ->whereRelation('cashier','outlet_id', Auth::user()->outlet_id)
+                    ->find($id);
         return view('page.sale.view-sale', compact('data'));
     }
 
