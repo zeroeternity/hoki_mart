@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSaleRequest;
 use App\Models\Item;
 use App\Models\OutletItem;
+use App\Models\Receivable;
 use App\Models\Sale;
 use App\Models\SaleItem;
 use App\Models\User;
@@ -35,11 +36,13 @@ class SaleController extends Controller
     public function create()
     {
         $data = [
-            'users' => User::with('estate')
+            'users'   => User::with('estate','memberType')
                 ->where('role_id', 4)
                 ->get(),
             'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
+            'receivable' => Receivable::all(),
         ];
+        // dd($data['users']);
         return view('page.sale.input-sale', $data);
     }
 

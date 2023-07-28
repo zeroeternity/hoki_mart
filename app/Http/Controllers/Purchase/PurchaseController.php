@@ -22,7 +22,6 @@ class PurchaseController extends Controller
                                     ->orderBy('created_at', 'desc')
                                     ->get(),
         ];
-
         return view('page.purchase.purchase', $data);
     }
 

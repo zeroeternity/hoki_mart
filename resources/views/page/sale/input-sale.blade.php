@@ -65,11 +65,11 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback">
-                                        <input type="text" class="form-control has-feedback-left" readonly="readonly"
+                                        <input name="estate_code" type="text" class="form-control has-feedback-left" readonly="readonly"
                                             id="inputSuccess2" placeholder="">
                                     </div>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback">
-                                        <input type="text" class="form-control" readonly="readonly" id="inputSuccess3"
+                                        <input name="estate_name" type="text" class="form-control" readonly="readonly" id="inputSuccess3"
                                             placeholder="">
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback">
-                                        <input type="text" class="form-control has-feedback-left" readonly="readonly"
+                                        <input name="receivable" type="text" class="form-control has-feedback-left" readonly="readonly"
                                             id="inputSuccess2" placeholder="Piutang">
                                         <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                                     </div>
@@ -336,6 +336,8 @@
             // Action hapus
             hapus.onclick = function() {
                 row.parentNode.removeChild(row);
+                input_total.value = 0;
+                calculateTotal(input_total);
             };
             i++;
         }
@@ -361,24 +363,7 @@
         }
 
         // Parse the JSON data from the data-member attribute and store it in a variable
-        // const membersData = JSON.parse($('select[name=member_name]').attr('data-member'));
-        // // Event listener for the member_id input field
-        // $("select[name=member_name]").on('change', function() {
-        //     var id = $(this).val();
-        //     console.log("ch");
-        //     // Find the corresponding member in the data based on the entered id
-        //     var foundData = membersData.find(member => member.id == id);
-        //     if (foundData) {
-        //         // Select the corresponding option in the member_id select element
-        //         $('input[name=member_id]').val(foundData.id);
-        //         console.log(foundData);
-        //     } else {
-        //         // If the member is not found, reset the member_id input element
-        //         $('input[name=member_id]').val('');
-        //         console.log("not found");
 
-        //     }
-        // });
 
         // Modal Handler
     </script>
@@ -543,6 +528,8 @@
                 // Action hapus
                 hapus.onclick = function() {
                     row.parentNode.removeChild(row);
+                    input_total.value = 0;
+                    calculateTotal(input_total);
                 };
                 i++;
 
@@ -612,6 +599,26 @@
             //     )
 
             // })
+            const membersData = JSON.parse($('select[name=member_id]').attr('data-member'));
+            // Event listener for the member_id input field
+            $("select[name=member_id]").on('change', function() {
+                var id = $(this).val();
+                // Find the corresponding member in the data based on the entered id
+                var foundData = membersData.find(member => member.id == id);
+                if (foundData) {
+                    // Select the corresponding option in the member_id select element
+                    $('input[name=member_id]').val(foundData.id);
+                    $('input[name=estate_code]').val(foundData.estate.code);
+                    $('input[name=estate_name]').val(foundData.estate.estate);
+                    $('input[name=receivable]').val(foundData.member_type.credit_limit);
+                    console.log(foundData);
+                } else {
+                    // If the member is not found, reset the member_id input element
+                    $('input[name=member_id]').val('');
+                    console.log("not found");
+
+                }
+            });
         </script>
     @endpush
 @endsection
