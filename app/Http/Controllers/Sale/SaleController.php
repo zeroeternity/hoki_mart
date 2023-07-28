@@ -36,7 +36,7 @@ class SaleController extends Controller
     public function create()
     {
         $data = [
-            'users'   => User::with('estate','memberType')
+            'users'   => User::with('estate', 'memberType')
                 ->where('role_id', 4)
                 ->get(),
             'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
@@ -54,67 +54,80 @@ class SaleController extends Controller
             $payment_method = $request->payment_method;
             $items = $request->items;
 
-            // Store data purchase
-            $sale = new Sale();
 
-            $sale->cashier_id = Auth::id();
-            $sale->member_id = $member_id;
-            $sale->payment_method = $payment_method;
-            $sale->status = '0';
-            $sale->confirm_at = null;
-            $sale->save();
-
-            // manage array data items
-            foreach ($items as $item) {
-                // get item data
-                $item_data = Item::where('code', $item['code'])->first();
-                $item_outlet = OutletItem::find($item_data['id']);
-                // store purchase item
-                SaleItem::create([
-                    'sale_id' => $sale->id,
-                    'outlet_item_id' => $item_data['id'],
-                    'qty' => $item['qty'],
-                    'sale_price' => $item['purchase_price'],
-                ]);
-
-
-            }
             if ($payment_method == 0) {
-                foreach ($items as $item){
-                    // formula add stock
-                    $stock = $item_outlet['minimum_stock'] - $item['qty'];
+                // Store data purchase
+                $sale = new Sale();
 
-                    // update stock from item
-                    $update_item = OutletItem::find($item_outlet['id']);
-                    $update_item->minimum_stock = $stock;
-                    $update_item->save();
+                $sale->cashier_id = Auth::id();
+                $sale->member_id = $member_id;
+                $sale->payment_method = $payment_method;
+                $sale->status = '1';
+                $sale->confirm_at = null;
+                $sale->save();
+
+                // manage array data items
+                foreach ($items as $item) {
+                    // get item data
+                    $item_data = Item::where('code', $item['code'])->first();
+                    $item_outlet = OutletItem::find($item_data['id']);
+                    // store purchase item
+                    SaleItem::create([
+                        'sale_id' => $sale->id,
+                        'outlet_item_id' => $item_data['id'],
+                        'qty' => $item['qty'],
+                        'sale_price' => $item['purchase_price'],
+                    ]);
+                     // formula add stock
+                     $stock = $item_outlet['minimum_stock'] - $item['qty'];
+
+                     // update stock from item
+                     $update_item = OutletItem::find($item_outlet['id']);
+                     $update_item->minimum_stock = $stock;
+                     $update_item->save();
                 }
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
                 return redirect()->route('sale.view', [$sale->id]);
             } else {
+                $sale = new Sale();
+
+                $sale->cashier_id = Auth::id();
+                $sale->member_id = $member_id;
+                $sale->payment_method = $payment_method;
+                $sale->status = '0';
+                $sale->confirm_at = null;
+                $sale->save();
+
                 $receivable = Receivable::where('user_id', $member_id)->first();
-                $receivable_user = User::where('id',$member_id)->with('memberType')->first();
+                $receivable_user = User::where('id', $member_id)->with('memberType')->first();
                 $receivable_amount = $receivable->amount;
                 $receivable_limit = $receivable_user->memberType->credit_limit;
                 $total_sale = $request->grand_total;
                 $receivable_limit_amount = $receivable_limit - $receivable_amount;
-                if($total_sale > $receivable_limit_amount){
+
+                if ($total_sale > $receivable_limit_amount) {
                     Alert::error('Limit Melebihi Batas');
                     DB::rollback();
                     return redirect()->route('sale.create');
                 }
+                
                 $receivable->amount = $receivable_amount + $total_sale;
                 $receivable->save();
-                foreach ($items as $item){
-                    // formula add stock
-                    $stock = $item_outlet['minimum_stock'] - $item['qty'];
-
-                    // update stock from item
-                    $update_item = OutletItem::find($item_outlet['id']);
-                    $update_item->minimum_stock = $stock;
-                    $update_item->save();
+                foreach ($items as $item) {
+                    // get item data
+                    $item_data = Item::where('code', $item['code'])->first();
+                    $item_outlet = OutletItem::find($item_data['id']);
+                    // store purchase item
+                    SaleItem::create([
+                        'sale_id' => $sale->id,
+                        'outlet_item_id' => $item_data['id'],
+                        'qty' => $item['qty'],
+                        'sale_price' => $item['purchase_price'],
+                    ]);
+                    
                 }
+                
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
                 return redirect()->route('sale');
@@ -163,9 +176,9 @@ class SaleController extends Controller
             'payment_method' => $sale->payment_method,
             'status' => $sale->status,
             'sale_item' => $sale->items,
-            'voucher'=>0,//voucher hard code
-            'total'=>$sale->total,
-            'subtotal'=> $sale->total - 0, //-voucher hard code
+            'voucher' => 0, //voucher hard code
+            'total' => $sale->total,
+            'subtotal' => $sale->total - 0, //-voucher hard code
             'created_at' => $sale->created_at,
         ];
 
