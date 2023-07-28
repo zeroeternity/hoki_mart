@@ -189,6 +189,8 @@ Route::middleware(['auth'])->group(function () {
     ], function () {
         // Dashboard Member
         Route::get('/dashboard', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'index'])->name('member.dashboard');
+        Route::get('/dashboard/view', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'view'])->name('member.dashboard.view');
+
 
         // Sales History Member
         Route::get('/history', [\App\Http\Controllers\RoleMember\PurchaseHistoryController::class, 'index'])->name('history.dashboard');

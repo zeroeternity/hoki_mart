@@ -76,16 +76,20 @@ class SaleController extends Controller
                     'sale_price' => $item['purchase_price'],
                 ]);
 
-                // formula add stock
-                $stock = $item_outlet['minimum_stock'] - $item['qty'];
 
-                // update stock from item
-                $update_item = OutletItem::find($item_outlet['id']);
-                $update_item->minimum_stock = $stock;
-                $update_item->save();
             }
             if ($payment_method == 0) {
+                foreach ($items as $item){
+                    // formula add stock
+                    $stock = $item_outlet['minimum_stock'] - $item['qty'];
+
+                    // update stock from item
+                    $update_item = OutletItem::find($item_outlet['id']);
+                    $update_item->minimum_stock = $stock;
+                    $update_item->save();
+                }
                 DB::commit();
+                Alert::success('Transaksi Penjualan Berhasil');
                 return redirect()->route('sale.view', [$sale->id]);
             } else {
                 DB::commit();

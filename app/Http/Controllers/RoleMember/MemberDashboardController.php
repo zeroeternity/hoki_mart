@@ -12,12 +12,19 @@ class MemberDashboardController extends Controller
     public function index(){
         $member_id = Auth::id();
         $data = [
-            'dataTransaksi'   => Sale::where('member_id', $member_id)
+            'dataTransaksi'   => Sale::with('cashier', 'member')->where('member_id', $member_id)
                 ->where('status', '0')
                 ->orderBy('created_at', 'desc')
                 ->get()
         ];
-        dd($data);
-        return view('member.dashboard');
+        return view('member.dashboard', $data);
+    }
+    public function view($id)
+    {
+        $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])->find($id);
+        return view('member.dashboard-view', compact('data'));
+    }
+    public function store(){
+
     }
 }
