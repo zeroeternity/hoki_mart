@@ -77,7 +77,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" >Nama Akun <span class="required">*</span>
                                 </label>
                                 <div class="col-md-4 col-sm-4 form-group">
-                                    <input type="text" id="first-name" readonly="readonly" class="form-control" placeholder="Nama Akun">
+                                    <input type="text" id="first-name" required="required" class="form-control" placeholder="Nama Akun">
                                 </div>
                                 <div class="col-md-2 col-sm-2 form-group">
                                     <input type="text" id="first-name" required="required" class="form-control" placeholder="Kode Akun">
