@@ -56,6 +56,7 @@ class SaleController extends Controller
 
             // Store data purchase
             $sale = new Sale();
+
             $sale->cashier_id = Auth::id();
             $sale->member_id = $member_id;
             $sale->payment_method = $payment_method;
@@ -92,6 +93,28 @@ class SaleController extends Controller
                 Alert::success('Transaksi Penjualan Berhasil');
                 return redirect()->route('sale.view', [$sale->id]);
             } else {
+                $receivable = Receivable::where('user_id', $member_id)->first();
+                $receivable_user = User::where('id',$member_id)->with('memberType')->first();
+                $receivable_amount = $receivable->amount;
+                $receivable_limit = $receivable_user->memberType->credit_limit;
+                $total_sale = $request->grand_total;
+                $receivable_limit_amount = $receivable_limit - $receivable_amount;
+                if($total_sale > $receivable_limit_amount){
+                    Alert::error('Limit Melebihi Batas');
+                    DB::rollback();
+                    return redirect()->route('sale.create');
+                }
+                $receivable->amount = $receivable_amount + $total_sale;
+                $receivable->save();
+                foreach ($items as $item){
+                    // formula add stock
+                    $stock = $item_outlet['minimum_stock'] - $item['qty'];
+
+                    // update stock from item
+                    $update_item = OutletItem::find($item_outlet['id']);
+                    $update_item->minimum_stock = $stock;
+                    $update_item->save();
+                }
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
                 return redirect()->route('sale');

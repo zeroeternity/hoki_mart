@@ -359,7 +359,7 @@
             totalInputs.forEach(function(input) {
                 grandTotal += parseFloat(input.value) || 0;
             });
-            document.getElementById("grand_total").textContent = "Rp. " + grandTotal;
+            document.getElementById("grand_total").innerHTML = '<input name="grand_total" type="text" readonly class="form-control" value="'+grandTotal+'">';
         }
 
         // Parse the JSON data from the data-member attribute and store it in a variable

@@ -6,19 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Estate;
 use App\Models\MemberType;
 use App\Models\Position;
+use App\Models\Receivable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MemberController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
-            'dataMember'        => User::where('role_id','4')
-                                        ->with('memberType', 'estate', 'position')
-                                        ->orderBy('created_at', 'desc')->get(),
+            'dataMember'        => User::where('role_id', '4')
+                ->with('memberType', 'estate', 'position')
+                ->orderBy('created_at', 'desc')->get(),
             'dataMemberType'    => MemberType::orderBy('created_at', 'desc')->get(),
             'dataPosition'      => Position::orderBy('created_at', 'desc')->get(),
             'dataEstate'        => Estate::orderBy('created_at', 'desc')->get(),
@@ -27,7 +30,8 @@ class MemberController extends Controller
         return view('page.member.data-member.member', $data);
     }
 
-    public function createData(){
+    public function createData()
+    {
         $data = [
             'dataMemberType' => MemberType::all(['id', 'type']),
             'dataPosition'   => Position::all(['id', 'name']),
@@ -35,14 +39,17 @@ class MemberController extends Controller
         ];
         return view('page.member.data-member.create-data', $data);
     }
-    public function createType(){
+    public function createType()
+    {
         return view('page.member.data-member.create-type');
     }
-    public function createPosition(){
+    public function createPosition()
+    {
         return view('page.member.data-member.create-position');
     }
 
-    public function storeData(Request $request){
+    public function storeData(Request $request)
+    {
         $request->validate([
             'member_type_id'    => 'required',
             'estate_id'         => 'required',
@@ -55,40 +62,51 @@ class MemberController extends Controller
             'birthdate'         => 'required|date',
             'entry_date'        => 'required|date',
         ]);
+        DB::beginTransaction();
+        try {
+            $member_type_id = $request->member_type_id;
+            $estate_id      = $request->estate_id;
+            $position_id    = $request->position_id;
+            $name           = $request->name;
+            $email          = $request->email;
+            $phone          = $request->phone;
+            $ktp            = str_replace('-', '', $request->ktp);
+            $gender         = $request->gender;
+            $birthdate      = $request->birthdate;
+            $entry_date     = $request->entry_date;
+            $password       = bcrypt(str_replace('-', '', $request->birthdate));
 
-        $member_type_id = $request->member_type_id;
-        $estate_id      = $request->estate_id;
-        $position_id    = $request->position_id;
-        $name           = $request->name;
-        $email          = $request->email;
-        $phone          = $request->phone;
-        $ktp            = str_replace('-','',$request->ktp);
-        $gender         = $request->gender;
-        $birthdate      = $request->birthdate;
-        $entry_date     = $request->entry_date;
-        $password       = bcrypt(str_replace('-','',$request->birthdate));
+            $data = new User();
+            $data->role_id          = 4;
+            $data->outlet_id        = 1;
+            $data->member_type_id   = $member_type_id;
+            $data->estate_id        = $estate_id;
+            $data->position_id      = $position_id;
+            $data->name             = $name;
+            $data->email            = $email;
+            $data->phone            = $phone;
+            $data->ktp              = $ktp;
+            $data->gender           = $gender;
+            $data->birthdate        = $birthdate;
+            $data->entry_date       = $entry_date;
+            $data->password         = $password;
+            $data->save();
 
-        $data = new User();
-        $data->role_id          = 4;
-        $data->outlet_id        = 1;
-        $data->member_type_id   = $member_type_id;
-        $data->estate_id        = $estate_id;
-        $data->position_id      = $position_id;
-        $data->name             = $name;
-        $data->email            = $email;
-        $data->phone            = $phone;
-        $data->ktp              = $ktp;
-        $data->gender           = $gender;
-        $data->birthdate        = $birthdate;
-        $data->entry_date       = $entry_date;
-        $data->password         = $password;
-        $data->save();
-
-        Alert::success('Data Anggota Berhasil Ditambahkan');
-
-        return redirect()->route('member',['#data']);
+            $receivable = new Receivable();
+            $receivable->user_id = $data->id;
+            $receivable->amount = 0;
+            $receivable->save();
+            Alert::success('Data Anggota Berhasil Ditambahkan');
+            DB::commit();
+            return redirect()->route('member', ['#data']);
+        } catch (\Exception $th) {
+            throw $th;
+            DB::rollback();
+            return $this->responseJSON([], 500, $th);
+        }
     }
-    public function storeType(Request $request){
+    public function storeType(Request $request)
+    {
         $request->validate([
             'type'          => 'required|string',
             'credit_limit'  => 'required|string',
@@ -97,7 +115,7 @@ class MemberController extends Controller
         ]);
 
         $type           = $request->type;
-        $credit_limit   = str_replace('.','',$request->credit_limit);
+        $credit_limit   = str_replace('.', '', $request->credit_limit);
         $range_date     = $request->range_date;
         $up_to          = $request->up_to;
 
@@ -110,9 +128,10 @@ class MemberController extends Controller
 
         Alert::success('Jenis Anggota Berhasil Ditambahkan');
 
-        return redirect()->route('member',['#type']);
+        return redirect()->route('member', ['#type']);
     }
-    public function storePosition(Request $request){
+    public function storePosition(Request $request)
+    {
         $request->validate([
             'name'  => 'required|string',
         ]);
@@ -124,13 +143,14 @@ class MemberController extends Controller
 
         Alert::success('Jabatan Berhasil Ditambahkan');
 
-        return redirect()->route('member',['#position']);
+        return redirect()->route('member', ['#position']);
     }
 
-    public function editData($id){
-        $dataMember = User::where('role_id','3')
-                               ->with('memberType', 'estate', 'position')
-                               ->find($id);
+    public function editData($id)
+    {
+        $dataMember = User::where('role_id', '3')
+            ->with('memberType', 'estate', 'position')
+            ->find($id);
         $data = [
             'id'                => $dataMember->id,
             'member_type_id'    => $dataMember->memberType->id,
@@ -151,7 +171,8 @@ class MemberController extends Controller
         ];
         return view('page.member.data-member.edit-data', $data);
     }
-    public function editType($id){
+    public function editType($id)
+    {
         $dataMemberType = MemberType::find($id);
         $data = [
             'id'                => $dataMemberType->id,
@@ -162,7 +183,8 @@ class MemberController extends Controller
         ];
         return view('page.member.data-member.edit-type', $data);
     }
-    public function editPosition($id){
+    public function editPosition($id)
+    {
         $dataPosition = Position::find($id);
         $data = [
             'id'                => $dataPosition->id,
@@ -171,14 +193,15 @@ class MemberController extends Controller
         return view('page.member.data-member.edit-position', $data);
     }
 
-    public function updateData(Request $request){
+    public function updateData(Request $request)
+    {
         $request->validate([
             'member_type_id'    => 'required',
             'estate_id'         => 'required',
             'position_id'       => 'required',
             'name'              => 'required|string',
-            'email'             => ['required','email', Rule::unique('users', 'email')->ignore($request->id, 'id')],
-            'phone'             => ['required','string', Rule::unique('users', 'phone')->ignore($request->id, 'id')],
+            'email'             => ['required', 'email', Rule::unique('users', 'email')->ignore($request->id, 'id')],
+            'phone'             => ['required', 'string', Rule::unique('users', 'phone')->ignore($request->id, 'id')],
             'ktp'               => 'required|string',
             'gender'            => 'required|string',
             'birthdate'         => 'required|date',
@@ -192,7 +215,7 @@ class MemberController extends Controller
         $name           = $request->name;
         $email          = $request->email;
         $phone          = $request->phone;
-        $ktp            = str_replace('-','',$request->ktp);
+        $ktp            = str_replace('-', '', $request->ktp);
         $gender         = $request->gender;
         $birthdate      = $request->birthdate;
         $entry_date     = $request->entry_date;
@@ -214,9 +237,10 @@ class MemberController extends Controller
 
         Alert::success('Data Anggota Berhasil Diupdate');
 
-        return redirect()->route('member',['#data']);
+        return redirect()->route('member', ['#data']);
     }
-    public function updateType(Request $request){
+    public function updateType(Request $request)
+    {
 
         $request->validate([
             'type'          => 'required|string',
@@ -227,7 +251,7 @@ class MemberController extends Controller
 
         $id             = $request->id;
         $type           = $request->type;
-        $credit_limit   = str_replace('.','',$request->credit_limit);
+        $credit_limit   = str_replace('.', '', $request->credit_limit);
         $range_date     = $request->range_date;
         $up_to          = $request->up_to;
 
@@ -240,9 +264,10 @@ class MemberController extends Controller
 
         Alert::success('Jenis Anggota Berhasil Diupdate');
 
-        return redirect()->route('member',['#type']);
+        return redirect()->route('member', ['#type']);
     }
-    public function updatePosition(Request $request){
+    public function updatePosition(Request $request)
+    {
         $request->validate([
             'name'     => 'required|string',
         ]);
@@ -256,6 +281,6 @@ class MemberController extends Controller
 
         Alert::success('Jabatan Berhasil Diupdate');
 
-        return redirect()->route('member',['#position']);
+        return redirect()->route('member', ['#position']);
     }
 }
