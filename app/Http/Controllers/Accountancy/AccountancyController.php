@@ -12,6 +12,11 @@ class AccountancyController extends Controller
         return view('page.accountancy.journal');
     }
 
+    public function journal_view()
+    {
+        return view('page.accountancy.view-journal');
+    }
+
     public function ledger()
     {
         return view('page.accountancy.ledger');

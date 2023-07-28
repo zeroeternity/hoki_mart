@@ -45,13 +45,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 has-feedback-left">
                                         <select class="form-control select2 select2-danger"
-<<<<<<< HEAD
-                                            data-dropdown-css-class="select2-danger" style="width: 100%;"
-                                            name="supllier_id">
-=======
                                                 data-dropdown-css-class="select2-danger" style="width: 100%;"
                                                 name="supplier_id">
->>>>>>> 8c745ac88a49d6b99510498ad44b98ef5351b2f0
                                             <option value=""></option>
                                             @foreach ($dataSupplier as $key => $supplier)
                                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -329,7 +324,7 @@
                 '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
             // Action hapus
             hapus.onclick = function() {
-              
+
 
                 row.parentNode.removeChild(row);
                 input_total.value = 0;
@@ -520,7 +515,7 @@
             };
             i++;
         });
-    
+
 </script>
 @endpush
 @endsection

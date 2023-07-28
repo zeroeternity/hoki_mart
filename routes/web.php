@@ -106,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
 
         //accountancy
         Route::get('/accountancy/journal', [AccountancyController::class, 'journal'])->name('accountancy.journal');
+        Route::get('/accountancy/journal_view', [AccountancyController::class, 'journal_view'])->name('accountancy.journal_view');
 
         // Profile
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');

@@ -121,9 +121,9 @@
                 <li><a><i class="fa fa-file-text-o"></i> Akutansi <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="/">Master Akun</a></li>
-                        <li><a href="/">Tranksaksi Jurnal</a></li>
+                        <li><a href="{{ route('accountancy.journal') }}">Tranksaksi Jurnal</a></li>
                         <li><a href="/">Koreksi Fiksal</a></li>
-                        <li><a href="{{ route('accountancy.journal') }}">Jurnal</a></li>
+                        <li><a href="{{ route('accountancy.journal_view') }}">Jurnal</a></li>
                         <li><a href="{{ route('accountancy.ledger') }}">Buku besar</a></li>
                         <li><a href="{{ route('accountancy.pph') }}">PPH Terhutang</a></li>
                         <li><a href="{{ route('accountancy.trial') }}">Trial Balance</a></li>
