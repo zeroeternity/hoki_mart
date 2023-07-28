@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-title">
         <div class="title_left">
-            <h3>Dashboard</h3>
+            <h3>History</h3>
         </div>
     </div>
 
@@ -11,23 +11,11 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
-            <div class="tile_count">
-                <div class=" col-sm-6  tile_stats_count">
-                    <span class="count_top d-flex justify-content-center"><i class="fa fa-cubes px-2"></i> Jumlah Pembelian</span>
-                    <div class="count d-flex justify-content-center">{{$allTransaction}}</div>
-                </div>
-                <div class="col-sm-6  tile_stats_count">
-                    <span class="count_top d-flex justify-content-center"><i class="fa fa-table px-2"></i> Jumlah Pembelian Per Hari</span>
-                    <div class="count d-flex justify-content-center">{{$oneDayTransaction}}</div>
-                </div>
-            </div>
             <div class="x_panel">
-
                 <div class="x_title">
-                    <h2>Daftar Confirm Pembelian</h2>
+                    <h2>History Pembelian</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-
                     </ul>
                     <div class="clearfix"></div>
                 </div>

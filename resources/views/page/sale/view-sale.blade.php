@@ -37,7 +37,7 @@
                             <th class="column-title">No</th>
                             <th class="column-title">Nama Member</th>
                             <th class="column-title">Nama Barang</th>
-                            <th class="column-title">qty</th>
+                            <th class="column-title">Jumlah</th>
                             <th class="column-title">Harga</th>
                             <th class="column-title">Sub Total</th>
                         </tr>

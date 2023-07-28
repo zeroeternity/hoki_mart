@@ -190,10 +190,13 @@ Route::middleware(['auth'])->group(function () {
     ], function () {
         // Dashboard Member
         Route::get('/dashboard', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'index'])->name('member.dashboard');
-        Route::get('/dashboard/view', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'view'])->name('member.dashboard.view');
-
+        Route::get('/dashboard/view/{id}', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'view'])->name('member.dashboard.view');
+        Route::post('/reject/{id}', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'reject'])->name('member.dashboard.reject');
+        Route::post('/approved/{id}', [\App\Http\Controllers\RoleMember\MemberDashboardController::class, 'approved'])->name('member.dashboard.approved');
 
         // Sales History Member
-        Route::get('/history', [\App\Http\Controllers\RoleMember\PurchaseHistoryController::class, 'index'])->name('history.dashboard');
+        Route::get('/history', [\App\Http\Controllers\RoleMember\PurchaseHistoryController::class, 'index'])->name('member.history');
+        Route::get('/history/view/{id}', [\App\Http\Controllers\RoleMember\PurchaseHistoryController::class, 'view'])->name('member.history.view');
+
     });;
 });

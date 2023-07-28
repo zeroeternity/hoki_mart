@@ -1,7 +1,6 @@
 @extends('layouts.template')
 @section('content')
 
-
     <div class="" role="main">
         <div class="">
             <div class="page-title">
@@ -10,16 +9,20 @@
                 </div>
                 <div class="title_right">
                     <div class="form-group pull-right">
-                        <a href="{{ route('sale.print', ['id'=> request('id')]) }}">
-                            <button type="button" class="btn btn-info">
-                                <li class="fa fa-print"></li>&nbsp;Print
+                        <form id="approved" action="{{ route('member.dashboard.approved', ['id'=> request('id')]) }}" method="post"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" class="btn btn-success" style="width: 120px">
+                                <li class="fa fa-check"></li>&nbsp;Approved
                             </button>
-                        </a>
-                        <a href="{{ route('sale.print', ['id'=> request('id')]) }}">
-                            <button type="button" class="btn btn-info">
-                                <li class="fa fa-print"></li>&nbsp;Print
+                        </form>
+                        <form id="reject" action="{{ route('member.dashboard.reject', ['id'=> request('id')]) }}" method="post"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="width: 120px">
+                                <li class="fa fa-close"></li>&nbsp;Reject
                             </button>
-                        </a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -31,8 +34,7 @@
                         <div class="x_title">
                             <h2>Detail Pembelian</h2>
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('member.dashboard') }}">Daftar Pembelian</a></li>
-                                <li class="breadcrumb-item active">View Detail Pembelian</li>
+                                <li class="breadcrumb-item"><a href="{{ route('member.dashboard') }}">Dashboard</a></li>
                             </ol>
                             <div class="clearfix"></div>
                         </div>
@@ -40,9 +42,8 @@
                             <thead>
                             <tr class="headings">
                                 <th class="column-title">No</th>
-                                <th class="column-title">Nama Member</th>
                                 <th class="column-title">Nama Barang</th>
-                                <th class="column-title">qty</th>
+                                <th class="column-title">Jumlah</th>
                                 <th class="column-title">Harga</th>
                                 <th class="column-title">Sub Total</th>
                             </tr>
@@ -51,7 +52,7 @@
                             @foreach($data->saleItem as $ta)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$data->member->name?? 'Non Member'}}</td>
+                                    {{--                                    <td>{{$data->member->name?? 'Non Member'}}</td>--}}
                                     <td>{{$ta->outletItem->item->name}}</td>
                                     <td>{{$ta->qty}}</td>
                                     <td>Rp {{number_format($ta->sale_price,0,',','.')}}</td>
@@ -61,8 +62,7 @@
                             </tbody>
                             <thead>
                             <tr class="headings">
-                                <th colspan="5">Total</th>
-                                <td>Rp {{number_format($data->total,0,',','.')}}</td>
+                                <th colspan="6">Total : Rp {{number_format($data->total,0,',','.')}}</th>
                             </tr>
                             </thead>
                         </table>
@@ -71,4 +71,24 @@
             </div>
         </div>
     </div>
+    <script>
+        //rejecr
+        var reject = document.getElementById('reject');
+        reject.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (confirm('Are you sure you want to submit this form?')) {
+                reject.submit();
+            } else {
+            }
+        });
+        //approved
+        var approved = document.getElementById('approved');
+        approved.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (confirm('Are you sure you want to submit this form?')) {
+                approved.submit();
+            } else {
+            }
+        });
+    </script>
 @endsection

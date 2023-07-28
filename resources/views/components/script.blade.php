@@ -102,7 +102,9 @@
     //Initialize Select2 Elements
     $('.select2').select2()
     //Initialize DataTable Elements
-    $('#datatable').DataTable()
+    $('#datatable').DataTable({
+        responsive: true
+    })
 </script>
 
 <!-- Initialize datetimepicker -->

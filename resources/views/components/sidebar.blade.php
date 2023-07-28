@@ -153,7 +153,7 @@
             @if (auth()->user()->Role()->where('name', 'member')->exists())
                 <li><a href="{{ route('member.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                 </li>
-                <li><a href="{{ route('history.dashboard') }}"><i class="fa fa-book"></i> History Pembelian</a>
+                <li><a href="{{ route('member.history') }}"><i class="fa fa-book"></i> History Pembelian</a>
                 </li>
             @endif
         </ul>
