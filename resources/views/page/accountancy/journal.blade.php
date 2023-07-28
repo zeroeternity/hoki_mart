@@ -58,7 +58,7 @@
                                 <label class="  ">Jenis <span
                                         class="required">*</span>
                                 </label>
-                                <div class="col-md-2 col-sm-2 ">
+                                <div class="col-md-3 col-sm-3 ">
                                     <select name="method" class="form-control">
                                         <option value="0">Penerimaan</option>
                                         <option value="1">Pengeluran</option>
@@ -140,8 +140,8 @@
                     <tbody>
                     </tbody>
                     <thead>
-                        <th class="column-title">Debit</th>
-                        <th class="column-title">Kredit</th>
+                        <th colspan="3">Debit</th>
+                        <th colspan="3">Kredit</th>
                     </thead>
 
                 </table>
