@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Adjustment</h3>
+                <h3>Jurnal Tranksaksi</h3>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Form Adjustment <small> Nama / id outlet</small></h2>
+                        <h2>Form Jurnal Tranksaksi <small> Nama / id outlet</small></h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
