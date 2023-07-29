@@ -79,6 +79,7 @@
                         <tr class="headings">
                             <th class="column-title">No</th>
                             <th class="column-title">Nama Barang</th>
+                            <th class="column-title">Dikirim dari outlet</th>
                             <th class="column-title">Mutasi ke outlet</th>
                             <th class="column-title">Sebanyak</th>
                             <th class="column-title">Action</th>
@@ -90,6 +91,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->outlet_item->item->name }}</td>
                                 <td>{{ $data->outlet_item->outlet->name }}</td>
+                                <td>{{ $data->outlet->name }}</td>
                                 <td>{{ $data->qty}}</td>
                                 <td>
                                     <button type="button" class="btn btn-info">

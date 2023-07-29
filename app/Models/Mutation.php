@@ -15,5 +15,9 @@ class Mutation extends Model
     {
         return $this->belongsTo(OutletItem::class, 'outlet_item_id', 'id');
     }
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
+    }
 }
 
