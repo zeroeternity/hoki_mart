@@ -42,6 +42,7 @@
                             <thead>
                             <tr class="headings">
                                 <th class="column-title">No</th>
+                                <th class="column-title">Kode Barang</th>
                                 <th class="column-title">Nama Barang</th>
                                 <th class="column-title">Jumlah</th>
                                 <th class="column-title">Harga</th>
@@ -52,7 +53,7 @@
                             @foreach($data->saleItem as $ta)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    {{--                                    <td>{{$data->member->name?? 'Non Member'}}</td>--}}
+                                    <td>{{$ta->outletItem->item->code}}</td>
                                     <td>{{$ta->outletItem->item->name}}</td>
                                     <td>{{$ta->qty}}</td>
                                     <td>Rp {{number_format($ta->sale_price,0,',','.')}}</td>

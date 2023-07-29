@@ -76,7 +76,7 @@ class SaleController extends Controller
                         'qty' => $item['qty'],
                         'sale_price' => $item['purchase_price'],
                     ]);
-                     // formula add stock
+                     // formula stock
                      $stock = $item_outlet['minimum_stock'] - $item['qty'];
 
                      // update stock from item
@@ -114,8 +114,7 @@ class SaleController extends Controller
                 $receivable->save();
                 foreach ($items as $item) {
                     // get item data
-                    $item_data = Item::where('code', $item['code'])->first();
-                    $item_outlet = OutletItem::find($item_data['id']);
+                    $item_data = Item::where('code', $item['code'])->first();\
                     // store purchase item
                     SaleItem::create([
                         'sale_id' => $sale->id,
@@ -123,9 +122,9 @@ class SaleController extends Controller
                         'qty' => $item['qty'],
                         'sale_price' => $item['purchase_price'],
                     ]);
-                    
+
                 }
-                
+
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
                 return redirect()->route('sale');
