@@ -16,8 +16,7 @@
                         <div class="x_title">
                             <h2>History Pembelian</h2>
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('member.history') }}">History Pembelian</a></li>
-                                <li class="breadcrumb-item active">View History Pembelian</li>
+                                <li class="breadcrumb-item"><a href="{{ route('member.history') }}">History</a></li>
                             </ol>
                             <div class="clearfix"></div>
                         </div>
@@ -25,7 +24,7 @@
                             <thead>
                             <tr class="headings">
                                 <th class="column-title">No</th>
-                                <th class="column-title">Nama Member</th>
+                                <th class="column-title">Kode Barang</th>
                                 <th class="column-title">Nama Barang</th>
                                 <th class="column-title">Jumlah</th>
                                 <th class="column-title">Harga</th>
@@ -36,7 +35,7 @@
                             @foreach($data->saleItem as $ta)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$data->member->name?? 'Non Member'}}</td>
+                                    <td>{{$ta->outletItem->item->code}}</td>
                                     <td>{{$ta->outletItem->item->name}}</td>
                                     <td>{{$ta->qty}}</td>
                                     <td>Rp {{number_format($ta->sale_price,0,',','.')}}</td>
@@ -46,8 +45,7 @@
                             </tbody>
                             <thead>
                             <tr class="headings">
-                                <th colspan="5">Total</th>
-                                <td>Rp {{number_format($data->total,0,',','.')}}</td>
+                                <th colspan="6">Total : Rp {{number_format($data->total,0,',','.')}}</th>
                             </tr>
                             </thead>
                         </table>

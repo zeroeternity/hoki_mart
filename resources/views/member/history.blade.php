@@ -28,6 +28,7 @@
                                     <tr class="headings">
                                         <th class="column-title">No</th>
                                         <th class="column-title">Pembayaran</th>
+                                        <th class="column-title">Status</th>
                                         <th class="column-title">Tanggal</th>
                                         <th class="column-title">Nama Kasir</th>
                                         <th class="column-title">Nama Member</th>
@@ -46,12 +47,19 @@
                                                     Cash
                                                 @endif
                                             </td>
+                                            <td class="">
+                                                @if($data->status== '1')
+                                                    Approve
+                                                @elseif($data->status== '2')
+                                                    Cash
+                                                @endif
+                                            </td>
                                             <td>{{ $data->created_at }}</td>
                                             <td>{{ $data->cashier->name}}</td>
                                             <td>{{ $data->member->name?? 'Non Member'}}</td>
                                             <td>Rp {{number_format($data->total,0,',','.')}}</td>
                                             <td>
-                                                <a href="{{ route('member.dashboard.view',[$data['id']]) }}">
+                                                <a href="{{ route('member.history.view',[$data['id']]) }}">
                                                     <button type="button" class="btn btn-info">
                                                         <li class="fa fa-eye"></li>
                                                     </button>

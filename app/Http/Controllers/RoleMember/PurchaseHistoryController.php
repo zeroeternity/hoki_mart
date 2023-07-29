@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PurchaseHistoryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $member_id = Auth::id();
         $data = [
-            'dataTransaksi'   => Sale::with('cashier', 'member')
+            'dataTransaksi' => Sale::with('cashier', 'member')
                 ->where('member_id', $member_id)
                 ->whereIn('status', ['1', '2'])
                 ->orderBy('created_at', 'desc')
@@ -20,9 +21,12 @@ class PurchaseHistoryController extends Controller
         ];
         return view('member.history', $data);
     }
+
     public function view($id)
     {
-        $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])->find($id);
+        $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])
+            ->whereIn('status', ['1', '2'])
+            ->find($id);
         return view('member.history-view', compact('data'));
     }
 }
