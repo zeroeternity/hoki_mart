@@ -30,7 +30,7 @@
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="item_id">
                                         <option value=""></option>
                                         @foreach ($dataOutletItem as $outlet_item)
-                                        <option value="{{ $outlet_item->item_id }}" {{ old('item_id') == $outlet_item->id ? "selected" : "" }}>{{$outlet_item->item->name}}</option>
+                                        <option value="{{ $outlet_item->item->id }}" {{ old('item_id') == $outlet_item->id ? "selected" : "" }}>{{$outlet_item->item->name}}</option>
                                             
                                         @endforeach
                                     </select>

@@ -40,7 +40,7 @@ class MutationController extends Controller
         $item_id        = $request->item_id;
         $receiver_id    = $request->receiver_id;
         $sender_id      = auth()->user()->outlet_id;
-        $reciver_id     = $request->receiver_id;
+        $receiver_id     = $request->receiver_id;
         $qty            = $request->qty;
 
         $Outlet_Sender      = OutletItem::where('item_id', $item_id)
@@ -52,24 +52,22 @@ class MutationController extends Controller
             'receiver_id' => ['required'],
             'qty' => ['numeric', 'min:0'],
         ]);
-
-        $Outlet_Receiver    = OutletItem::where('outlet_id', $reciver_id)->where('outlet_id', $reciver_id)->first();
-
-        if ($Outlet_Receiver->item_id == $Outlet_Sender->item_id) {
-            $Outlet_Sender->minimum_stock = $Outlet_Sender->minimum_stock - $qty;
-            $Outlet_Receiver->minimum_stock = $Outlet_Receiver->minimum_stock + $qty;
-            $Outlet_Receiver->save();
-            $Outlet_Sender->save();
-        } else {
-
+        $Outlet_Receiver    = OutletItem::where('item_id', $item_id)->where('outlet_id', $receiver_id)->first();
+        
+        if ($Outlet_Receiver == null) {
             $Outlet_Item_Receiver = new OutletItem();
             $Outlet_Item_Receiver->item_id = $item_id;
-            $Outlet_Item_Receiver->outlet_id = $Outlet_Receiver->outlet_id;
+            $Outlet_Item_Receiver->outlet_id = $receiver_id;
             $Outlet_Item_Receiver->selling_price = $Outlet_Sender->selling_price;
             $Outlet_Item_Receiver->percent_non_margin = $Outlet_Sender->percent_non_margin;
             $Outlet_Sender->minimum_stock = $Outlet_Sender->minimum_stock - $qty;
             $Outlet_Item_Receiver->minimum_stock = $qty;
             $Outlet_Item_Receiver->save();
+            $Outlet_Sender->save();
+            
+        } else {
+            $Outlet_Sender->minimum_stock = $Outlet_Sender->minimum_stock - $qty;
+            $Outlet_Receiver->minimum_stock = $Outlet_Receiver->minimum_stock + $qty;
             $Outlet_Receiver->save();
             $Outlet_Sender->save();
         }
