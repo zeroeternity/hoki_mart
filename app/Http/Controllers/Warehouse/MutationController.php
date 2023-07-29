@@ -49,7 +49,7 @@ class MutationController extends Controller
         $request->validate([
             'item_id' => ['required'],
             'receiver_id' => ['required'],
-            'qty' => ['numeric', 'min:0', 'max:5'],
+            'qty' => ['numeric', 'min:0'],
         ]);
 
         $Outlet_Receiver    = OutletItem::where('outlet_id', $reciver_id)->where('outlet_id', $reciver_id)->first();
