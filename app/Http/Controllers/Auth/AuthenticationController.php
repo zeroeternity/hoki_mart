@@ -56,13 +56,18 @@ class AuthenticationController extends Controller
 
     public function signup(Request $request)
     {
-        // Save Log Activity Staff Signup
-        LogActivity::create([
-            'user_id'   => Auth::id(),
-            'state'     => '1',
-        ]);
+        if(Auth::id() != null){
+            // Save Log Activity Staff Signup
+            LogActivity::create([
+                'user_id'   => Auth::id(),
+                'state'     => '1',
+            ]);
 
-        Auth::logout();
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect('/');
+        }
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');

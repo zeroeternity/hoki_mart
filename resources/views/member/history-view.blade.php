@@ -1,7 +1,5 @@
 @extends('layouts.template')
 @section('content')
-
-
     <div class="" role="main">
         <div class="">
             <div class="page-title">
