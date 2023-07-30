@@ -114,7 +114,7 @@ class SaleController extends Controller
                 $receivable->save();
                 foreach ($items as $item) {
                     // get item data
-                    $item_data = Item::where('code', $item['code'])->first();\
+                    $item_data = Item::where('code', $item['code'])->first();
                     // store purchase item
                     SaleItem::create([
                         'sale_id' => $sale->id,
