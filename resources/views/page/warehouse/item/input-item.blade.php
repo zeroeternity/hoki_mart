@@ -96,23 +96,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Harga Jual
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" id="selling_price" class="form-control " name="selling_price"
-                                        oninput="calculateLaba()">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Persen non margin
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="number" step="any" id="percent_non_margin" class="form-control "
-                                        name="percent_non_margin" oninput="calculateSellingPrice()">
-                                    <span class="form-control-feedback right" aria-hidden="true">%</span>
-                                </div>
-                            </div>
                             <div class="ln_solid"></div>
 
                             <div class="item form-group">

@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
 
         //Factory For Testing
         // Group::factory()->count(10)->create();
-        Voucher::factory()->count(10)->create();    
+        Voucher::factory()->count(10)->create();
         Supplier::factory()->count(5)->create();
-      
+
         try {
             $this->call([
                 RoleSeeder::class,
@@ -36,13 +36,13 @@ class DatabaseSeeder extends Seeder
                 PositionSeeder::class,
                 GroupSeeder::class,
                 EstateSeeder::class,
-                
+                AmenabilitiesSeeder::class,
             ]);
             $this->command->info('Database Seeder Success!');
           } catch (\Throwable $th) {
             throw $th;
             $this->command->error('Error: ' . $th->getMessage());
         }
-        
+
     }
 }
