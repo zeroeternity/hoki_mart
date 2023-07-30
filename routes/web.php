@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware('role:superadmin,admin,cashier')->group(function () {
         // Dashboard
-        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // Purchase
         Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase');

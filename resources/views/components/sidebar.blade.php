@@ -13,6 +13,8 @@
         <ul class="nav side-menu ">
             {{-- Menu Role Akses Cashier --}}
             @if (auth()->user()->Role()->where('name', 'cashier')->exists())
+                <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                </li>
                 <li><a><i class="fa fa-download"></i> Pembelian <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('purchase') }}">Pembelian</a></li>
@@ -41,6 +43,8 @@
 
             {{-- Menu Role Akses Admin --}}
             @if (auth()->user()->Role()->where('name', 'admin')->exists())
+                <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                </li>
                 <li><a><i class="fa fa-download"></i> Pembelian <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('purchase') }}">Pembelian</a></li>
@@ -93,6 +97,8 @@
 
             {{-- Menu Role Akses Super Admin --}}
             @if (auth()->user()->Role()->where('name', 'superadmin')->exists())
+                <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                </li>
                 <li><a><i class="fa fa-download"></i> Pembelian <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('purchase') }}">Pembelian</a></li>
