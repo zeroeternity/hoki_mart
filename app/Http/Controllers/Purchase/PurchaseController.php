@@ -42,7 +42,6 @@ class PurchaseController extends Controller
             $request->validate([
                 'supplier_id'           => 'required',
                 'invoice_date'          => 'required|date',
-                'due_date'              => 'required|date',
                 'items.*.code'           => 'required|string',
                 'items.*.qty'            => 'required|numeric',
                 'items.*.purchase_price' => 'required|numeric',
@@ -52,7 +51,7 @@ class PurchaseController extends Controller
             $supplier_id    = $request->supplier_id;
             $invoice_number = $request->invoice_number;
             $invoice_date   = $request->invoice_date;
-            $due_date       = $request->due_date;
+            $due_date       = $request->due_date ?? null;
             $items          = $request->items;
 
             // Store data purchase

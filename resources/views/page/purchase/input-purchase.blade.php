@@ -145,8 +145,8 @@
                                         <th>Satuan</th>
                                         <th>PPN</th>
                                         <th>Qty</th>
-                                        <th>Total</th>
                                         <th>Harga Beli</th>
+                                        <th>Total</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -194,8 +194,8 @@
             var unit = document.createElement("td");
             var ppn = document.createElement("td");
             var qty = document.createElement("td");
-            var total = document.createElement("td");
             var purchase_price = document.createElement("td");
+            var total = document.createElement("td");
             var action = document.createElement("td");
             // make append element
             itemlist.appendChild(row);
@@ -204,8 +204,8 @@
             row.appendChild(unit);
             row.appendChild(ppn);
             row.appendChild(qty);
-            row.appendChild(total);
             row.appendChild(purchase_price);
+            row.appendChild(total);
             row.appendChild(action);
 
             // make element input id
@@ -249,6 +249,13 @@
             input_qty.setAttribute("id", 'items[' + i + '][qty]');
             input_qty.setAttribute("class", "form-control");
 
+            // make element input purchase_price
+            var input_purchase_price = document.createElement("input");
+            input_purchase_price.setAttribute("type", "number");
+            input_purchase_price.setAttribute("name", 'items[' + i + '][purchase_price]');
+            input_purchase_price.setAttribute("id", 'items[' + i + '][purchase_price]');
+            input_purchase_price.setAttribute("class", "form-control");
+
             // make element input total
             var input_total = document.createElement("input");
             input_total.setAttribute("type", "number");
@@ -256,12 +263,7 @@
             input_total.setAttribute("id", 'items[' + i + '][total]');
             input_total.setAttribute("class", "form-control");
 
-            // make element input number
-            var input_purchase_price = document.createElement("input");
-            input_purchase_price.setAttribute("type", "number");
-            input_purchase_price.setAttribute("name", 'items[' + i + '][purchase_price]');
-            input_purchase_price.setAttribute("id", 'items[' + i + '][purchase_price]');
-            input_purchase_price.setAttribute("class", "form-control");
+
 
             // ajax get data item
             input_code.oninput = function() {
@@ -316,8 +318,8 @@
             unit.appendChild(input_unit);
             ppn.appendChild(input_ppn);
             qty.appendChild(input_qty);
-            total.appendChild(input_total);
             purchase_price.appendChild(input_purchase_price);
+            total.appendChild(input_total);
             action.appendChild(hapus);
             //hapus inner html
             hapus.innerHTML =
@@ -371,8 +373,8 @@
             var unit = document.createElement("td");
             var ppn = document.createElement("td");
             var qty = document.createElement("td");
-            var total = document.createElement("td");
             var purchase_price = document.createElement("td");
+            var total = document.createElement("td");
             var action = document.createElement("td");
             // make append element
             itemlist.appendChild(row);
@@ -381,8 +383,8 @@
             row.appendChild(unit);
             row.appendChild(ppn);
             row.appendChild(qty);
-            row.appendChild(total);
             row.appendChild(purchase_price);
+            row.appendChild(total);
             row.appendChild(action);
 
             // make element input id
@@ -430,19 +432,19 @@
             input_qty.setAttribute("id", 'items[' + i + '][qty]');
             input_qty.setAttribute("class", "form-control");
 
+            // make element input purchase_price
+            var input_purchase_price = document.createElement("input");
+            input_purchase_price.setAttribute("type", "number");
+            input_purchase_price.setAttribute("name", 'items[' + i + '][purchase_price]');
+            input_purchase_price.setAttribute("id", 'items[' + i + '][purchase_price]');
+            input_purchase_price.setAttribute("class", "form-control");
+
             // make element input total
             var input_total = document.createElement("input");
             input_total.setAttribute("type", "number");
             input_total.setAttribute("name", 'items[' + i + '][total]');
             input_total.setAttribute("id", 'items[' + i + '][total]');
             input_total.setAttribute("class", "form-control");
-
-            // make element input number
-            var input_purchase_price = document.createElement("input");
-            input_purchase_price.setAttribute("type", "number");
-            input_purchase_price.setAttribute("name", 'items[' + i + '][purchase_price]');
-            input_purchase_price.setAttribute("id", 'items[' + i + '][purchase_price]');
-            input_purchase_price.setAttribute("class", "form-control");
 
             // ajax get data item
             input_code.oninput = function() {
@@ -500,8 +502,8 @@
             unit.appendChild(input_unit);
             ppn.appendChild(input_ppn);
             qty.appendChild(input_qty);
-            total.appendChild(input_total);
             purchase_price.appendChild(input_purchase_price);
+            total.appendChild(input_total);
             action.appendChild(hapus);
             //hapus inner html
             hapus.innerHTML =

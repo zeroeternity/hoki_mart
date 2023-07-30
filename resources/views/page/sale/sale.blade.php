@@ -98,7 +98,9 @@
                             <tr class="">
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="">
-                                    @if($data->payment_method== '1')
+                                    @if($data->payment_method== '2')
+                                        Voucher
+                                    @elseif($data->payment_method== '1')
                                         Piutang
                                     @else
                                         Cash
