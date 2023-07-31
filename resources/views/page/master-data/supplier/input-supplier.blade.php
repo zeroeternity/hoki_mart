@@ -41,7 +41,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control" required="required" name="code">
+                                    <input type="text" class="form-control" required="required" name="code" value="{{ old('code') }}">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -49,7 +49,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control" required="required" name="name">
+                                    <input type="text" class="form-control" required="required" name="name" value="{{ old('name') }}">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -57,7 +57,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <textarea class="form-control" rows="3" placeholder="" name="address"></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="" name="address" >{{ old('address') }}</textarea>
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -66,7 +66,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" class="form-control" required="required" name="account_number">
+                                    <input type="number" class="form-control" required="required" name="account_number" value="{{ old('account_number') }}">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -75,7 +75,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control" required="required" name="account_owner">
+                                    <input type="text" class="form-control" required="required" name="account_owner" value="{{ old('account_owner') }}">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -83,14 +83,14 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="text" class="form-control" required="required" name="bank_name">
+                                    <input type="text" class="form-control" required="required" name="bank_name" value="{{ old('bank_name') }}">
                                 </div>
                             </div>
                             <div class="item form-group ">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">NPWP
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" class="form-control" required="required" name="npwp">
+                                    <input type="number" class="form-control" required="required" name="npwp" value="{{ old('npwp') }}">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -99,7 +99,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" class="form-control" required="required" name="telephone">
+                                    <input type="number" class="form-control" required="required" name="telephone" value="{{ old('telephone') }}">
                                 </div>
                             </div>
                             <div class="item form-group ">
@@ -107,7 +107,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="email" class="form-control" required="required" name="email">
+                                    <input type="email" class="form-control" required="required" name="email" value="{{ old('email') }}">
                                 </div>
                             </div>
 
