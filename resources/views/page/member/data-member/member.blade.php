@@ -31,8 +31,8 @@
                        aria-selected="false">Estate</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="import-voucher-tab" data-toggle="tab" href="#import-voucher" role="tab"
-                       aria-controls="import-voucher" aria-selected="false">Import Voucher Beras</a>
+                    <a class="nav-link" id="member-voucher-tab" data-toggle="tab" href="#member-voucher" role="tab"
+                       aria-controls="import-voucher" aria-selected="false">Voucher Anggota</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="import-tab" data-toggle="tab" href="#import" role="tab"
@@ -264,19 +264,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="import-voucher" role="tabpanel" aria-labelledby="import-voucher-tab">
+                <div class="tab-pane fade" id="member-voucher" role="tabpanel" aria-labelledby="import-voucher-tab">
                     <div class=" " role="main">
                         <div class="x_panel">
                             <div class="page-title">
                                 <div class="title_left">
-                                    <h2>Import Voucher Beras</h2>
+                                    <h2>Voucher Anggota</h2>
                                 </div>
                                 <div class="title_right">
                                     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                                         <ul class="nav navbar-right panel_toolbox">
                                             <a href="">
                                                 <button type="button" class="btn btn-info">
-                                                    <li class="fa fa-plus"></li>&nbsp; Add Import Voucher Beras
+                                                    <li class="fa fa-plus"></li>&nbsp; Add Voucher Anggota
                                                 </button>
                                             </a>
                                         </ul>
@@ -286,7 +286,7 @@
                             <div class="clearfix"></div>
                             <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                 <tr class="headings">
-                                    <th class="column-title">No.Register</th>
+                                    <th class="column-title">No.</th>
                                     <th class="column-title">Nama karyawan</th>
                                     <th class="column-title">Estate/OU</th>
                                     <th class="column-title">Tangungan</th>

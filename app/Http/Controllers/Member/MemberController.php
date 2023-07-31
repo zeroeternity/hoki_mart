@@ -148,7 +148,7 @@ class MemberController extends Controller
 
     public function editData($id)
     {
-        $dataMember = User::where('role_id', '3')
+        $dataMember = User::where('role_id', '4')
             ->with('memberType', 'estate', 'position')
             ->find($id);
         $data = [

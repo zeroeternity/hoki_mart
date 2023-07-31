@@ -21,16 +21,13 @@ class PPNTypeController extends Controller
         $request->validate([
             'type'              => 'required|string',
             'percent'           => 'required|numeric|between:0,999.99',
-            'ppn_buy'           => 'required|numeric|between:0,999.99',
         ]);
         $type           = $request->type;
         $percent        = $request->percent;
-        $ppn_buy        = $request->ppn_buy;
 
         $data = new PPNType();
         $data->type        = $type;
         $data->percent     = $percent;
-        $data->ppn_buy     = $ppn_buy;
         $data->save();
 
         Alert::success('Tipe PPN Berhasil Ditambahkan');

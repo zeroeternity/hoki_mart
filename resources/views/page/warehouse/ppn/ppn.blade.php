@@ -52,16 +52,6 @@
                                     <span class="form-control-feedback right" aria-hidden="true">%</span>
                                 </div>
                             </div>
-                            <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">PPN Beli
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 has-feedback-left">
-                                    <input type="number" step="any" class="form-control" required="required"
-                                        name="ppn_buy">
-                                    <span class="form-control-feedback right" aria-hidden="true">%</span>
-                                </div>
-                            </div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button type="submit" class="btn btn-success" id="submit-btn">

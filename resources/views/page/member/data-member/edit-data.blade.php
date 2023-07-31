@@ -15,7 +15,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Add Data Anggota</h2>
+                        <h2>Edit Data Anggota</h2>
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('member',['#type']) }}">Data Data Anggota</a>
                             </li>
