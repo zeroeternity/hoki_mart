@@ -82,8 +82,12 @@ class PurchaseController extends Controller
                 // update stock from item
                 $update_item = OutletItem::find($item_outlet['id']);
                 $update_item->minimum_stock = $stock;
+                $update_item->selling_price = ($item['purchase_price']*$update_item->percent_non_margin/100)+$item['purchase_price'];
+
                 $update_item->save();
             }
+
+
 
             DB::commit();
 
