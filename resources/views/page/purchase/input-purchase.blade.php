@@ -36,7 +36,7 @@
                                         Faktur
                                     </label>
                                     <div class="col-md-6 col-sm-6 has-feedback-left">
-                                        <input type="text" class="form-control" name="invoice_number">
+                                        <input type="text" class="form-control" name="invoice_number" value="{{ old('invoice_number') }}">
                                     </div>
                                 </div>
                                 <div class="item form-group ">
@@ -49,7 +49,7 @@
                                                 name="supplier_id">
                                             <option value=""></option>
                                             @foreach ($dataSupplier as $key => $supplier)
-                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                                <option value="{{ $supplier->id }}"{{ old('supplier_id') == $supplier->id ? 'selected' : '' }} >{{ $supplier->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -63,7 +63,7 @@
                                             placeholder="dd-mm-yyyy" type="text" required="required" type="text"
                                             onfocus="this.type='date'" onmouseover="this.type='date'"
                                             onclick="this.type='date'" onblur="this.type='text'"
-                                            onmouseout="timeFunctionLong(this)">
+                                            onmouseout="timeFunctionLong(this) " value="{{ old('invoice_date') }}">
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -74,7 +74,7 @@
                                             placeholder="dd-mm-yyyy" type="text" required="required" type="text"
                                             onfocus="this.type='date'" onmouseover="this.type='date'"
                                             onclick="this.type='date'" onblur="this.type='text'"
-                                            onmouseout="timeFunctionLong(this)">
+                                            onmouseout="timeFunctionLong(this)" value="{{ old('due_date') }}">
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,6 @@
             </form>
         </div>
     </div>
-
     {{-- Purchase Appendchild JS --}}
     <script>
         // Appandchild Purchase
@@ -309,7 +308,7 @@
                 input_purchase_price.value = total / qty;
                 calculateTotal(input_total);
             }
-
+          
             // make element hapus
             var hapus = document.createElement("a");
             // function appendchild
@@ -356,6 +355,7 @@
     </script>
 @push('addon-script')
 <script>
+      
     // Parse the JSON data from the data-member attribute and store it in a variable
     // Event listener for the member_id input field
 
