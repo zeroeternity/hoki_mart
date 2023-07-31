@@ -42,7 +42,7 @@
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="code" required="required" class="form-control " name="code">
+                                    <input type="text" id="code" required="required" class="form-control " name="code" value="{{ old('code') }}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -50,7 +50,7 @@
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="name" required="required" class="form-control " name="name">
+                                    <input type="text" id="name" required="required" class="form-control " name="name" value="{{ old('name') }}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -62,7 +62,7 @@
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="group_id">
                                         <option value=""></option>
                                         @foreach($dataGroup as $key => $group)
-                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
+                                        <option value="{{ $group->id }}" {{ old('group_id') == $group->id ? 'selected' : '' }}>{{ $group->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -77,7 +77,7 @@
                                         name="ppn_type_id">
                                         <option value=""></option>
                                         @foreach($dataPPN as $key => $ppntype)
-                                        <option value="{{ $ppntype->id }}">{{ $ppntype->type }}</option>
+                                        <option value="{{ $ppntype->id }}" {{ old('ppn_type_id') == $ppntype->id ? 'selected' : '' }}>{{ $ppntype->type }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -91,7 +91,7 @@
                                         data-dropdown-css-class="select2-danger" style="width: 100%;" name="unit_id">
                                         <option value=""></option>
                                         @foreach($dataUnit as $key => $unit)
-                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                        <option value="{{ $unit->id }}"  {{ old('unit_id') == $unit->id ? 'selected' : '' }} >{{ $unit->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
