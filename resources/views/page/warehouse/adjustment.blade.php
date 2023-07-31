@@ -106,6 +106,8 @@
     </div>
 </div>
 
+@endsection
+
 @push('addon-script')
 <script>
     $("select[name=outlet_item_id]").on('change', function() {
