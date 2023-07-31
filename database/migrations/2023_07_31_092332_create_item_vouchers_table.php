@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member_vouchers', function (Blueprint $table) {
+        Schema::create('item_vouchers', function (Blueprint $table) {
             $table->id();
-            $table->integer('employee');
-            $table->integer('wife');
-            $table->integer('child');
-            $table->decimal('total');
-            $table->enum('status', ['0', '1'])->default(1)->comment('0 = Not Active, 1 = Active');
+            $table->foreignId('item_id')->references('id')->on('items');
+            $table->foreignId('outlet_id')->references('id')->on('outlets');
+            $table->integer('margin');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member_vouchers');
+        Schema::dropIfExists('item_vouchers');
     }
 };

@@ -88,10 +88,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/warehouse/ppn/store', [PPNTypeController::class, 'store'])->name('ppn.store');
         Route::delete('/warehouse/ppn/destroy/{id}', [PPNTypeController::class, 'destroy'])->name('ppn.destroy');
 
-        //warehouse - Voucher
-        Route::get('/warehouse/voucher', [VoucherController::class, 'index'])->name('voucher');
-        Route::post('/warehouse/voucher/store', [VoucherController::class, 'store'])->name('voucher.store');
-        Route::delete('/warehouse/voucher/destroy/{id}', [VoucherController::class, 'destroy'])->name('voucher.destroy');
+        //Voucher
+        Route::get('/voucher', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'index'])->name('voucher-member');
+        Route::post('/voucher/store', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'store'])->name('voucher-member.store');
+        Route::delete('/voucher/destroy/{id}', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'destroy'])->name('voucher-member.destroy');
 
         //warehouse - Adjustments
         Route::get('/warehouse/adjustment', [AdjustmentController::class, 'index'])->name('adjustment');

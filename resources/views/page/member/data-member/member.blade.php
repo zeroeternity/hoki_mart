@@ -285,6 +285,7 @@
                             </div>
                             <div class="clearfix"></div>
                             <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
                                 <tr class="headings">
                                     <th class="column-title">No.</th>
                                     <th class="column-title">Nama karyawan</th>
