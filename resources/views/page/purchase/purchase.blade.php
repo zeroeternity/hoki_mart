@@ -29,7 +29,6 @@
                             <h3><small>Pembelian Sebelumnya</small></h3>
                         </div>
 
-
                     </div>
                     <div class="clearfix"></div>
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">

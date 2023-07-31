@@ -140,15 +140,19 @@
                     <tbody>
                     </tbody>
                     <thead>
-                        <th colspan="3">Debit</th>
-                        <th colspan="3">Kredit</th>
+                        <th colspan="2" class="text-right">Debit</th>
+                        <th colspan="1">Rp.      </th>
+                        <th colspan="2" class="text-right">Kredit</th>
+                        <th colspan="1">Rp.      </th>
                     </thead>
 
                 </table>
-                <div class="col-md-6 col-sm-6 offset-md-3">
-                    <button type="submit" class="btn btn-success" id="submit-btn">
-                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                        Submit
+                <div class="item form-group">
+                    <button type="submit" class='btn btn-block btn-success text-white' id="submit-btn">
+                        <span class="spinner-border spinner-border-sm d-none" role="status"
+                            aria-hidden="true"></span>
+                        <i class="fa fa-save px-2"></i>
+                        Submit Jurnal
                     </button>
                 </div>
             </div>
