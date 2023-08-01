@@ -646,7 +646,6 @@
                     // If the member is not found, reset the member_id input element
                     $('input[name=member_id]').val('');
                     console.log("not found");
-
                 }
             });
         </script>

@@ -10,4 +10,9 @@ class MemberVoucher extends Model
     use HasFactory;
     protected $table = 'member_vouchers';
     protected $guarded = [];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'member_id', 'id');
+    }
 }

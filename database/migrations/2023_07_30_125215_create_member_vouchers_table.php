@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('member_vouchers', function (Blueprint $table) {
             $table->id();
-            $table->integer('employee');
-            $table->integer('wife');
-            $table->integer('child');
+            $table->foreignId('member_id')->references('id')->on('users');
+            $table->decimal('employee');
+            $table->decimal('wife');
+            $table->decimal('child');
             $table->decimal('total');
             $table->enum('status', ['0', '1'])->default(1)->comment('0 = Not Active, 1 = Active');
             $table->timestamps();

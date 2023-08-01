@@ -51,8 +51,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Sale::class, 'cashier_id', 'id');
     }
+
     public function salesMember()
     {
         return $this->hasMany(Sale::class, 'member_id', 'id');
+    }
+
+    public function memberVoucher()
+    {
+        return $this->hasMany(MemberVoucher::class, 'member_id', 'id');
     }
 }

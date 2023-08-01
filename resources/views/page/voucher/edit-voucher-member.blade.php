@@ -8,30 +8,42 @@
                     <h3>Voucher Anggota</h3>
                 </div>
             </div>
+
             <div class="clearfix"></div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
-                    <form action="{{ route('voucher-member.store') }}" method="post" enctype="multipart/form-data">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>
-                                            {{ $error }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        @csrf
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Add Voucer Anggota</h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Edit Voucher Anggota</h2>
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{{ route('voucher-member') }}">Data Voucher
+                                        Anggota</a></li>
+                                <li class="breadcrumb-item active">Edit Voucher Anggota</li>
+                            </ol>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form action="{{ route('voucher-member.update') }}" method="post"
+                                  enctype="multipart/form-data">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>
+                                                    {{ $error }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @csrf
+                                @method('PUT')
+                                <input type="text" class="form-control
+                                        @error('id')
+                                            is-invalid
+                                        @enderror" value="{{ $id }}" name="id" id="id" readonly hidden/>
                                 <div class="item form-group ">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align"  >Anggota
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Anggota
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -40,7 +52,8 @@
                                                 data-member='{{ json_encode($users) }}'>
                                             <option value=""></option>
                                             @foreach ($users as $key => $user)
-                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                <option value="{{ $user->id }}" {{ $member_id==$user->id ?
+                                            'selected="selected"' : ''}}>{{ $user->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -50,7 +63,10 @@
                                     >Estate
                                     </label>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback">
-                                        <input name="estate_name" type="text" class="form-control" readonly="readonly"
+                                        <input name="estate_name" type="text" class="form-control
+                                         @error('selling_price')
+                                            is-invalid
+                                        @enderror" value="{{ $estate_name }}" readonly="readonly"
                                                placeholder="">
                                     </div>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback">
@@ -59,8 +75,8 @@
                                             >Istri :
                                             </label>
                                             <select name="wife" class="form-control">--}}
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
+                                                <option value="0" @php if($wife=="0" ){echo "selected" ;} @endphp>0</option>
+                                                <option value="1" @php if($wife=="1" ){echo "selected" ;} @endphp>1</option>
                                             </select>
                                         </div>
                                         <div class="item form-group col-md-6 col-sm-6">
@@ -68,68 +84,29 @@
                                             >Anak :
                                             </label>
                                             <select name="child" class="form-control">--}}
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
+                                                <option value="0" @php if($child=="0" ){echo "selected" ;} @endphp>0</option>
+                                                <option value="1" @php if($child=="1" ){echo "selected" ;} @endphp>1</option>
+                                                <option value="2" @php if($child=="2" ){echo "selected" ;} @endphp>2</option>
+                                                <option value="3" @php if($child=="3" ){echo "selected" ;} @endphp>3</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="ln_solid"></div>
+
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
                                         <button type="submit" class="btn btn-success" id="submit-btn">
                                             <span class="spinner-border spinner-border-sm d-none" role="status"
                                                   aria-hidden="true"></span>
-                                            Simpan
+                                            Update
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class=" " role="main">
-                <div class="x_panel">
-                    <div class="page-title">
-                        <div class="title_left">
-                            <h2>Data Voucher Anggota</h2>
-                        </div>
-                        <div class="title_right">
+                            </form>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                        <tr class="headings">
-                            <th class="column-title">No.</th>
-                            <th class="column-title">Nama Karyawan</th>
-                            <th class="column-title">Estate/OU</th>
-                            <th class="column-title">Tangungan (KG)</th>
-                            <th class="column-title">Total (KG)</th>
-                            <th class="column-title">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($member_vouchers as $key => $member_voucher)
-                            <tr class="">
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $member_voucher->users->name }}</td>
-                                <td>{{ $member_voucher->users->estate->estate }}</td>
-                                <td>Istri : {{ $member_voucher->wife }}, Anak : {{ $member_voucher->child }}</td>
-                                <td>{{ $member_voucher->total}}</td>
-                                <td>
-                                    <a href="{{ route('voucher-member.edit', [$member_voucher['id']]) }}">
-                                        <button type="button" class="btn btn-info">
-                                            <li class="fa fa-edit"></li> Edit
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

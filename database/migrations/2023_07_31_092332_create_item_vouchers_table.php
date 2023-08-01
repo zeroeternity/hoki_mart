@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('item_vouchers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('member_id')->references('id')->on('users');
+            $table->foreignId('member_voucher_id')->references('id')->on('member_vouchers');
             $table->foreignId('item_id')->references('id')->on('items');
             $table->foreignId('outlet_id')->references('id')->on('outlets');
             $table->integer('margin');
