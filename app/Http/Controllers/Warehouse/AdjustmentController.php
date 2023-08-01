@@ -15,7 +15,7 @@ class AdjustmentController extends Controller
     public function index()
     {
         $data = [
-            'dataAdjustment'  => Adjustment::with(['outlet_item', 'qty'])
+            'dataAdjustment'  => Adjustment::with(['outlet_item'])
                 ->orderBy('created_at', 'desc')
                 ->get(),
         ];
