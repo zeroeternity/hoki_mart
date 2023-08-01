@@ -93,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/voucher/store', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'store'])->name('voucher-member.store');
         Route::get('/voucher/edit/{id}', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'edit'])->name('voucher-member.edit');
         Route::put('/voucher/update', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'update'])->name('voucher-member.update');
-        Route::delete('/voucher/destroy/{id}', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'destroy'])->name('voucher-member.destroy');
+
 
         //warehouse - Adjustments
         Route::get('/warehouse/adjustment', [AdjustmentController::class, 'index'])->name('adjustment');

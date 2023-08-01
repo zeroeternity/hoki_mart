@@ -133,7 +133,7 @@ class VoucherMemberController extends Controller
             $member_voucher->save();
 
             DB::commit();
-            Alert::success('Voucher Anggota Berhasil Ditambahkan');
+            Alert::success('Voucher Anggota Berhasil Diupdate');
             return redirect()->route('voucher-member');
         } catch (\Exception $th) {
             throw $th;
