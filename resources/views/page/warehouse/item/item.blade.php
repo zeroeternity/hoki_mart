@@ -260,7 +260,7 @@
                                 <div class="title_right">
                                     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                                         <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="{{ route('voucher') }}">
+                                            {{-- <li><a href="{{ route('voucher') }}"> --}}
                                                     <button type="button" class="btn btn-info">
                                             <li class="fa fa-plus"></li>&nbsp; Add Barang Voucher</button></a>
                                             </li>
@@ -286,7 +286,7 @@
                                         <td>{{ $voucher->code }}</td>
                                         <td>{{ $voucher->name }}</td>
                                         <td>
-                                            <form action="{{ route('voucher.destroy', $voucher->id) }}" method="POST">
+                                            {{-- <form action="{{ route('voucher.destroy', $voucher->id) }}" method="POST"> --}}
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-success">

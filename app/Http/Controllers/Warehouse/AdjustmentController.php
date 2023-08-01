@@ -15,7 +15,7 @@ class AdjustmentController extends Controller
     public function index()
     {
         $data = [
-            'dataAdjustment'  => Adjustment::with(['outlet_item','qty'])
+            'dataAdjustment'  => Adjustment::with(['outlet_item', 'qty'])
                 ->orderBy('created_at', 'desc')
                 ->get(),
         ];
@@ -27,24 +27,24 @@ class AdjustmentController extends Controller
         $data = [
             'dataOutlet'  => Outlet::all(['id', 'name']),
             'dataItem'  => Item::all(['id', 'code', 'name']),
-            'dataOutletItem'  => OutletItem::all(['id', 'item_id','selling_price', 'minimum_stock']),
+            'dataOutletItem'  => OutletItem::all(['id', 'item_id', 'selling_price', 'minimum_stock']),
         ];
         return view('page.warehouse.adjustment.input-adjustment', $data);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
             'outlet_item_id'       => 'required',
             'qty'       => 'required',
         ]);
 
         $outlet_item_id           = $request->outlet_item_id;
-        $qty           = $request->qty;
+        $qty                      = $request->qty;
 
         $data = OutletItem::find($outlet_item_id);
         $minimum_stock             = $data->minimum_stock;
-        $adjustment                = $request->adjustment;
-        $data->minimum_stock       = $minimum_stock + $adjustment;
+        $data->minimum_stock       = $minimum_stock + $qty;
         $data->save();
 
         $adjust = new Adjustment;
@@ -56,6 +56,4 @@ class AdjustmentController extends Controller
 
         return redirect()->route('item');
     }
-
-
 }

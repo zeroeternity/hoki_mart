@@ -85,7 +85,7 @@
                                 </label>
                                 <div class="col-md-3 col-sm-3  form-group has-feedback">
                                     <input type="text" class="form-control" required="required" id="qty"
-                                        name="adjustment" placeholder="Qty">
+                                        name="qty" placeholder="Qty">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
