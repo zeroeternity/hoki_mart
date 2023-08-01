@@ -15,19 +15,31 @@ class AdjustmentController extends Controller
     public function index()
     {
         $data = [
+            'dataAdjustment'  => Adjustment::with(['outlet_item','qty'])
+                ->orderBy('created_at', 'desc')
+                ->get(),
+        ];
+        return view('page.warehouse.adjustment.adjustment', $data);
+    }
+
+    public function create()
+    {
+        $data = [
             'dataOutlet'  => Outlet::all(['id', 'name']),
             'dataItem'  => Item::all(['id', 'code', 'name']),
             'dataOutletItem'  => OutletItem::all(['id', 'item_id','selling_price', 'minimum_stock']),
         ];
-        return view('page.warehouse.adjustment', $data);
+        return view('page.warehouse.adjustment.input-adjustment', $data);
     }
 
     public function update(Request $request){
         $request->validate([
             'outlet_item_id'       => 'required',
+            'qty'       => 'required',
         ]);
 
         $outlet_item_id           = $request->outlet_item_id;
+        $qty           = $request->qty;
 
         $data = OutletItem::find($outlet_item_id);
         $minimum_stock             = $data->minimum_stock;
@@ -37,6 +49,7 @@ class AdjustmentController extends Controller
 
         $adjust = new Adjustment;
         $adjust->outlet_item_id = $outlet_item_id;
+        $adjust->qty = $qty;
         $adjust->save();
 
         Alert::success('Transaksi Adjusment Barang Berhasil');
@@ -44,9 +57,5 @@ class AdjustmentController extends Controller
         return redirect()->route('item');
     }
 
-    public function getData()
-    {
-        $item = Item::orderBy('id')->get();
-        return response()->json($item);
-    }
+
 }

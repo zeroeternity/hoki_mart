@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('adjustments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('outlet_item_id')->references('id')->on('outlet_items');
+            $table->integer('qty');
             $table->timestamps();
             $table->softDeletes();
         });

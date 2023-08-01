@@ -6,15 +6,15 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Mutasi</h3>
+                    <h3>Adjustment</h3>
                 </div>
             </div>
 
             <div class="col-md-12 col-sm-12 mb-3">
                 <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="{{ route('mutation.create') }}">
+                    <li><a href="{{ route('adjustment.create') }}">
                             <button type="button" class="btn btn-info">Form
-                                Mutasi
+                                Adjustment
                             </button>
                         </a>
                     </li>
@@ -24,7 +24,7 @@
                 <div class="x_panel">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3><small>Mutasi yang dilakukan</small></h3>
+                            <h3><small>Barang yang rusak / hilang</small></h3>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -33,18 +33,16 @@
                             <tr class="headings">
                                 <th class="column-title">No</th>
                                 <th class="column-title">Nama Barang</th>
-                                <th class="column-title">Dikirim dari outlet</th>
-                                <th class="column-title">Mutasi ke outlet</th>
+                                <th class="column-title">Outlet</th>
                                 <th class="column-title">Sebanyak</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dataMutation as $key => $data)
+                            @foreach ($dataAdjustment as $key => $data)
                                 <tr class="">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->outlet_item->item->name }}</td>
                                     <td>{{ $data->outlet_item->outlet->name }}</td>
-                                    <td>{{ $data->outlet->name }}</td>
                                     <td>{{ $data->qty }}</td>
                                 </tr>
                             @endforeach

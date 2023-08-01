@@ -35,7 +35,7 @@
                             @endif
                             @csrf
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Jenis
+                                <label class="col-form-label col-md-3 col-sm-3 label-align"  >Jenis
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Persen
+                                <label class="col-form-label col-md-3 col-sm-3 label-align"  >Persen
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">

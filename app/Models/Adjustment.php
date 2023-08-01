@@ -11,4 +11,10 @@ class Adjustment extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'adjustments';
     protected $guarded = [];
+
+
+    public function outlet_item()
+    {
+        return $this->belongsTo(OutletItem::class, 'outlet_item_id', 'id');
+    }
 }

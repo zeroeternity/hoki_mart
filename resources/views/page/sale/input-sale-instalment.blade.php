@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Harga  <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align"  >Harga  <span class="required">*</span>
                                 </label>
                                 <div class="col-md-2 col-sm-2  form-group has-feedback">
                                     <input type="text" class="form-control has-feedback-left" required="required" id="inputSuccess2" placeholder="Harga">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Uang Muka  <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align"  >Uang Muka  <span class="required">*</span>
                                 </label>
                                 <div class="col-md-2 col-sm-2  form-group has-feedback">
                                     <input type="text" class="form-control" required="required"  id="inputSuccess3" placeholder="Uang Muka">

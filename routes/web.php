@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
 
         //warehouse - Adjustments
         Route::get('/warehouse/adjustment', [AdjustmentController::class, 'index'])->name('adjustment');
+        Route::get('/warehouse/adjustment/create', [AdjustmentController::class, 'create'])->name('adjustment.create');
         Route::get('/warehouse/adjustment/getdata', [AdjustmentController::class, 'getData'])->name('adjustment.getData');
         Route::get('/warehouse/adjustment/update', [AdjustmentController::class, 'update'])->name('adjustment.update');
 

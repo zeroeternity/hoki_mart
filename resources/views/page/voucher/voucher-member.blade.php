@@ -31,7 +31,7 @@
                             </div>
                             <div class="x_content">
                                 <div class="item form-group ">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Anggota
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align"  >Anggota
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 has-feedback-left">

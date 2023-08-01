@@ -31,7 +31,7 @@
                                         <option value=""></option>
                                         @foreach ($dataOutletItem as $outlet_item)
                                         <option value="{{ $outlet_item->item->id }}" {{ old('item_id') == $outlet_item->id ? "selected" : "" }}>{{$outlet_item->item->name}}</option>
-                                            
+
                                         @endforeach
                                     </select>
                                     <small class="text-danger">{{ $errors->first('item_id') }}</small>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Jumlah
+                                <label class="col-form-label col-md-3 col-sm-3 label-align"  >Jumlah
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-3 col-sm-3  form-group has-feedback">

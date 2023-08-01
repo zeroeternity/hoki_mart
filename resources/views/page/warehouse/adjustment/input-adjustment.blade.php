@@ -23,7 +23,7 @@
                         <form action="{{ route('adjustment.update') }}" method="get" enctype="multipart/form-data">
                             <br />
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Toko /
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Toko /
                                     Outlet <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tanggal
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Tanggal
                                     adjust <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Barang
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Barang
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Info <span
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Info <span
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-3 col-sm-3  form-group has-feedback">
@@ -79,7 +79,7 @@
 
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Barang
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Barang
                                     Rusak / Hilang
                                     <span class="required">*</span>
                                 </label>

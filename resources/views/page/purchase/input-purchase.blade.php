@@ -32,7 +32,7 @@
                                     </div>
                                 @endif
                                 <div class="item form-group ">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">No
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align"  >No
                                         Faktur
                                     </label>
                                     <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -308,7 +308,7 @@
                 input_purchase_price.value = total / qty;
                 calculateTotal(input_total);
             }
-          
+
             // make element hapus
             var hapus = document.createElement("a");
             // function appendchild
@@ -355,7 +355,7 @@
     </script>
 @push('addon-script')
 <script>
-      
+
     // Parse the JSON data from the data-member attribute and store it in a variable
     // Event listener for the member_id input field
 

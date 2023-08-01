@@ -42,7 +42,7 @@
                                             is-invalid
                                         @enderror" value="{{ $id }}" name="id" id="id" readonly hidden />
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Kode
+                                <label class="col-form-label col-md-3 col-sm-3 label-align"  >Kode
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="item form-group ">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Estate
+                                <label class="col-form-label col-md-3 col-sm-3 label-align"  >Estate
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 has-feedback-left">
