@@ -352,6 +352,7 @@
     </script>
     @push('addon-script')
         <script>
+            //Form Handler
             $('#purchase-form').submit(function(event) {
                 event.preventDefault();
                 $('#purchase-form button[type="submit"]').prop('disabled', true);

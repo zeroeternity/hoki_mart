@@ -24,7 +24,7 @@ class SaleController extends Controller
         $data = [
             'dataSale' => Sale::with('cashier', 'member')
                 ->orderBy('created_at', 'desc')
-                ->whereRelation('cashier','outlet_id', Auth::user()->outlet_id)
+                ->whereRelation('cashier', 'outlet_id', Auth::user()->outlet_id)
                 ->get(),
         ];
         return view('page.sale.sale', $data);
@@ -76,17 +76,17 @@ class SaleController extends Controller
                         'qty' => $item['qty'],
                         'sale_price' => $item['purchase_price'],
                     ]);
-                     // formula stock
-                     $stock = $item_outlet['minimum_stock'] - $item['qty'];
+                    // formula stock
+                    $stock = $item_outlet['minimum_stock'] - $item['qty'];
 
-                     // update stock from item
-                     $update_item = OutletItem::find($item_outlet['id']);
-                     $update_item->minimum_stock = $stock;
-                     $update_item->save();
+                    // update stock from item
+                    $update_item = OutletItem::find($item_outlet['id']);
+                    $update_item->minimum_stock = $stock;
+                    $update_item->save();
                 }
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
-                return redirect()->route('sale.view', [$sale->id]);
+                return response()->json(['id' => $sale->id], 200);
             } else {
                 $sale = new Sale();
 
@@ -107,7 +107,7 @@ class SaleController extends Controller
                 if ($total_sale > $receivable_limit_amount) {
                     Alert::error('Limit Melebihi Batas');
                     DB::rollback();
-                    return redirect()->route('sale.create');
+                    return response()->json(['error' => true, 'limit' => $receivable_limit_amount], 422);
                 }
 
                 $receivable->amount = $receivable_amount + $total_sale;
@@ -122,12 +122,11 @@ class SaleController extends Controller
                         'qty' => $item['qty'],
                         'sale_price' => $item['purchase_price'],
                     ]);
-
                 }
 
                 DB::commit();
                 Alert::success('Transaksi Penjualan Berhasil');
-                return redirect()->route('sale');
+                // return redirect()->route('sale');
             }
         } catch (\Exception $th) {
             throw $th;
@@ -139,8 +138,8 @@ class SaleController extends Controller
     public function view($id)
     {
         $data = Sale::with(['saleItem', 'saleItem.outletItem', 'cashier', 'member'])
-                    ->whereRelation('cashier','outlet_id', Auth::user()->outlet_id)
-                    ->find($id);
+            ->whereRelation('cashier', 'outlet_id', Auth::user()->outlet_id)
+            ->find($id);
         return view('page.sale.view-sale', compact('data'));
     }
 

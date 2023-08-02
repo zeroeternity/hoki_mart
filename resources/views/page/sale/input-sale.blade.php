@@ -4,8 +4,7 @@
 
     <div class="" role="main">
         <div class="">
-            <form action="{{ route('sale.store') }}" method="post" id="demo-form2" data-parsley-validate
-                  class="form-horizontal form-label-left">
+            <form id="sale-form" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                 @csrf
 
                 <div class="page-title">
@@ -23,24 +22,16 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>
-                                                    {{ $error }}
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                                <div class="alert alert-danger d-none">
+                                    <ul class="text-white" id="error-list">
+                                    </ul>
+                                </div>
                                 <div class="form-group row">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Metode Bayar <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 ">
-                                        <select name="payment_method" class="form-control"
-                                                onchange="paymentMethod(this);">
+                                        <select name="payment_method" class="form-control" onchange="paymentMethod(this);">
                                             <option value="0">Cash</option>
                                             <option value="1">Piutang</option>
                                             <option value="2">Voucher</option>
@@ -48,10 +39,9 @@
                                     </div>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback" id="paymentMethodPiutang">
                                         <input name="receivable" type="text" class="form-control has-feedback-left"
-                                               readonly="readonly"
-                                               id="paymentMethodPiutang">
+                                            readonly="readonly" id="paymentMethodPiutang">
                                         <span class="fa fa-money form-control-feedback left" aria-hidden="true"
-                                              id="paymentMethodPiutang"></span>
+                                            id="paymentMethodPiutang"></span>
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -60,8 +50,8 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select class="form-control select2 select2-danger"
-                                                data-dropdown-css-class="select2-danger" name="member_id"
-                                                data-member='{{ json_encode($users) }}'>
+                                            data-dropdown-css-class="select2-danger" name="member_id"
+                                            data-member='{{ json_encode($users) }}'>
                                             <option value=""></option>
                                             @foreach ($users as $key => $user)
                                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -71,27 +61,27 @@
                                 </div>
                                 <div class="item form-group" id="paymentMethodPiutangAndVoucher">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                           id="paymentMethodPiutangAndVoucher">Estate
+                                        id="paymentMethodPiutangAndVoucher">Estate
                                     </label>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback"
-                                         id="paymentMethodPiutangAndVoucher">
+                                        id="paymentMethodPiutangAndVoucher">
                                         <input name="estate_name" type="text" class="form-control" readonly="readonly"
-                                               placeholder="" id="paymentMethodPiutangAndVoucher">
+                                            placeholder="" id="paymentMethodPiutangAndVoucher">
                                     </div>
                                     <div class="col-md-3 col-sm-3  form-group has-feedback" id="paymentMethodVoucher">
                                         <div class="item form-group col-md-6 col-sm-6" id="paymentMethodVoucher">
                                             <label class="col-form-label label-align col-md-6 col-sm-6"
-                                                   id="paymentMethodVoucher">Istri :
+                                                id="paymentMethodVoucher">Istri :
                                             </label>
                                             <input type="text" class="form-control" readonly="readonly"
-                                                   id="paymentMethodVoucher">
+                                                id="paymentMethodVoucher">
                                         </div>
                                         <div class="item form-group col-md-6 col-sm-6" id="paymentMethodVoucher">
                                             <label class="col-form-label label-align col-md-6 col-sm-6"
-                                                   id="paymentMethodVoucher">Anak :
+                                                id="paymentMethodVoucher">Anak :
                                             </label>
                                             <input type="text" class="form-control" readonly="readonly"
-                                                   id="paymentMethodVoucher">
+                                                id="paymentMethodVoucher">
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +105,7 @@
                                 <i class="fa fa-plus px-2"></i>Add</a>
                             <!-- Search barang -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target=".bs-example-modal-lg"><i class="fa fa-search px-2"></i> Search Barang
+                                data-target=".bs-example-modal-lg"><i class="fa fa-search px-2"></i> Search Barang
                             </button>
                             <div class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -133,10 +123,9 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 ">
                                                     <select class="form-control select2 select2-danger"
-                                                            id="modal_select_item"
-                                                            data-dropdown-css-class="select2-danger"
-                                                            style="width: 100%;" name=""
-                                                            data-item='{{ json_encode($items_outlet) }}'>
+                                                        id="modal_select_item" data-dropdown-css-class="select2-danger"
+                                                        style="width: 100%;" name=""
+                                                        data-item='{{ json_encode($items_outlet) }}'>
                                                         <option value=""></option>
                                                         @foreach ($items_outlet as $key => $item)
                                                             <option value="{{ $item->id }}">{{ $item->name }}
@@ -158,33 +147,33 @@
                         <div class="card-box table-responsive">
                             <table class="table table-striped table-bordered" style="width:100%">
                                 <thead>
-                                <tr>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Satuan</th>
-                                    <th>PPN</th>
-                                    <th>Qty</th>
-                                    <th>Harga</th>
-                                    <th>Subtotal</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>Kode Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Satuan</th>
+                                        <th>PPN</th>
+                                        <th>Qty</th>
+                                        <th>Harga</th>
+                                        <th>Subtotal</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
 
                                 <tbody id="itemListSale"></tbody>
 
                                 <tfoot>
-                                <tr>
-                                    <th colspan="6" class="text-right">Total</th>
-                                    <th id="grand_total"></th>
-                                    <th></th>
-                                </tr>
+                                    <tr>
+                                        <th colspan="6" class="text-right">Total</th>
+                                        <th id="grand_total"></th>
+                                        <th></th>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
                         <div class="item form-group">
-                            <button type="submit" class='btn btn-block btn-success text-white' id="submit-btn">
+                            <button type="submit" class='btn btn-block btn-success text-white'>
                                 <span class="spinner-border spinner-border-sm d-none" role="status"
-                                      aria-hidden="true"></span>
+                                    aria-hidden="true"></span>
                                 <i class="fa fa-save px-2"></i>
                                 Submit Penjualan
                             </button>
@@ -201,6 +190,7 @@
         document.getElementById("paymentMethodPiutang").style.display = "none";
         document.getElementById("paymentMethodPiutangAndVoucher").style.display = "none";
         document.getElementById("paymentMethodVoucher").style.display = "none";
+
         function paymentMethod(that) {
             if (that.value == "1") {
                 document.getElementById("paymentMethodPiutang").style.display = "block";
@@ -305,7 +295,7 @@
             input_total.setAttribute("readonly", true);
 
             // ajax get data item
-            input_code.oninput = function () {
+            input_code.oninput = function() {
                 var item_code = input_code.value
                 $.ajax({
                     type: "POST",
@@ -314,7 +304,7 @@
                         "code": item_code,
                         "_token": "{{ csrf_token() }}",
                     },
-                    success: function (response) {
+                    success: function(response) {
                         input_id.value = response.id ?? ''
                         input_name.value = response.name ?? ''
                         input_unit.value = response.unit?.name ?? ''
@@ -326,7 +316,7 @@
             }
 
             // make oninput qty
-            input_qty.oninput = function () {
+            input_qty.oninput = function() {
                 var qty = input_qty.value;
                 var price = input_sale_price.value;
                 var row = i - 1;
@@ -336,13 +326,13 @@
                 calculateTotal(input_total);
             }
             // make oninput price
-            input_sale_price.oninput = function () {
+            input_sale_price.oninput = function() {
                 var qty = input_qty.value;
                 var price = input_sale_price.value;
                 input_total.value = qty * price;
             }
             // make oninput total
-            input_total.oninput = function () {
+            input_total.oninput = function() {
                 var qty = input_qty.value;
                 var total = input_total.value;
                 input_sale_price.value = total / qty;
@@ -363,7 +353,7 @@
             hapus.innerHTML =
                 '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
             // Action hapus
-            hapus.onclick = function () {
+            hapus.onclick = function() {
                 row.parentNode.removeChild(row);
                 input_total.value = 0;
                 calculateTotal(input_total);
@@ -386,10 +376,11 @@
         function calculateGrandTotal() {
             var grandTotal = 0;
             var totalInputs = document.querySelectorAll("input[name^='items'][name$='[total]']");
-            totalInputs.forEach(function (input) {
+            totalInputs.forEach(function(input) {
                 grandTotal += parseFloat(input.value) || 0;
             });
-            document.getElementById("grand_total").innerHTML = '<input name="grand_total" type="text" readonly class="form-control" value="' + grandTotal + '">';
+            document.getElementById("grand_total").innerHTML =
+                '<input name="grand_total" type="text" readonly class="form-control" value="' + grandTotal + '">';
         }
 
         // Parse the JSON data from the data-member attribute and store it in a variable
@@ -399,11 +390,71 @@
     </script>
     @push('addon-script')
         <script>
+            $('#sale-form').submit(function(event) {
+                event.preventDefault();
+                $('#sale-form button[type="submit"]').prop('disabled', true);
+                $('#spinner').removeClass('d-none');
+                var payment_method = ($('select[name="payment_method"]').val());
+
+                $.ajax({
+                    url: '/sale/store',
+                    type: 'POST',
+                    data: $('#sale-form').serialize(),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        if (payment_method == "0") {
+                            window.location.href = '/sale/view/'+response.id+'';
+                        } else {
+                            window.location.href = '/sale';
+
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        $('#sale-form button[type="submit"]').prop('disabled', false);
+                        $('#spinner').addClass('d-none');
+                        var errorDiv = $('.alert.alert-danger');
+                        var errorList = $('#error-list');
+                        errorList.empty();
+
+                        if (xhr.responseJSON.error == true) {
+                            $('#sale-form button[type="submit"]').prop('disabled', false);
+                            // Select the error div and the list element
+                            errorList.append('<li>Limit Anda Sisa Rp.' + xhr.responseJSON.limit + ' </li>');
+                            errorDiv.removeClass('d-none'); // Show the error div if it was hidden
+                            console.log(xhr.responseJSON.limit);
+                        }
+                        var errors = xhr.responseJSON.errors;
+
+                        // Select the error div and the list element
+
+                        // Clear any previous error messages
+
+                        // Add the new error messages to the list
+                        for (var field in errors) {
+                            errors[field].forEach(function(message) {
+                                errorList.append('<li>' + message + '</li>');
+
+                            });
+                        }
+
+                        // Show the error div if it was hidden
+                        errorDiv.removeClass('d-none');
+
+                        // Scroll to the top of the form to display the error messages
+                        $('html, body').animate({
+                            scrollTop: $('#purchase-form').offset().top
+                        }, 'slow');
+
+                    }
+                });
+            });
             // Parse the JSON data from the data-member attribute and store it in a variable
             // Event listener for the member_id input field
 
             // Modal Handler
-            $("#add_item").on('click', function () {
+            $("#add_item").on('click', function() {
                 var id = $("#modal_select_item").val();
 
                 var data_item = JSON.parse($('#modal_select_item').attr('data-item'));
@@ -493,7 +544,7 @@
                 input_total.setAttribute("id", 'items[' + i + '][total]');
                 input_total.setAttribute("class", "form-control");
                 input_total.setAttribute("readonly", true);
-                input_code.oninput = function () {
+                input_code.oninput = function() {
                     var item_code = input_code.value
                     $.ajax({
                         type: "POST",
@@ -502,7 +553,7 @@
                             "code": item_code,
                             "_token": "{{ csrf_token() }}",
                         },
-                        success: function (response) {
+                        success: function(response) {
                             input_id.value = response.id ?? ''
                             input_name.value = response.name ?? ''
                             input_unit.value = response.unit?.name ?? ''
@@ -518,7 +569,7 @@
 
                 // ajax get data item
                 // make oninput qty
-                input_qty.oninput = function () {
+                input_qty.oninput = function() {
                     var qty = input_qty.value;
                     var price = input_sale_price.value;
 
@@ -529,13 +580,13 @@
 
                 }
                 // make oninput price
-                input_sale_price.oninput = function () {
+                input_sale_price.oninput = function() {
                     var qty = input_qty.value;
                     var price = input_sale_price.value;
                     input_total.value = qty * price;
                 }
                 // make oninput total
-                input_total.oninput = function () {
+                input_total.oninput = function() {
                     var qty = input_qty.value;
                     var total = input_total.value;
                     input_sale_price.value = total / qty;
@@ -556,7 +607,7 @@
                 hapus.innerHTML =
                     '<a class="btn btn-danger text-white"><i class="fa fa-trash px-2"></i></a>';
                 // Action hapus
-                hapus.onclick = function () {
+                hapus.onclick = function() {
                     row.parentNode.removeChild(row);
                     input_total.value = 0;
                     calculateTotal(input_total);
@@ -631,7 +682,7 @@
             // })
             const membersData = JSON.parse($('select[name=member_id]').attr('data-member'));
             // Event listener for the member_id input field
-            $("select[name=member_id]").on('change', function () {
+            $("select[name=member_id]").on('change', function() {
                 var id = $(this).val();
                 // Find the corresponding member in the data based on the entered id
                 var foundData = membersData.find(member => member.id == id);
