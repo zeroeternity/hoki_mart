@@ -85,7 +85,7 @@
                 </li>
                 <li><a><i class="fa fa-ticket"></i> Voucher <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/">Voucher Barang</a></li>
+                        <li><a href="{{ route('voucher-item') }}">Voucher Barang</a></li>
                         <li><a href="{{ route('voucher-member') }}">Voucher Anggota</a></li>
                         <li><a href="/">Master Data Voucher</a></li>
                     </ul>

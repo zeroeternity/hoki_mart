@@ -22,6 +22,7 @@ class ItemController extends Controller
     {
         $data = [
             'dataItem'       => Item::with('group', 'ppnType', 'unit', 'purchaseItem', 'outletItem')
+                    ->where('status','1')
                     ->get()
                     ->map(fn ($item) => [
                     ...$item->toArray(),

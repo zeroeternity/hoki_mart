@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('item_id')->references('id')->on('items');
             $table->foreignId('outlet_id')->references('id')->on('outlets');
-            $table->integer('margin');
+            $table->integer('sale_price');
+            $table->decimal('margin');
             $table->timestamps();
         });
     }

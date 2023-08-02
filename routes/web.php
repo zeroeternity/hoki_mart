@@ -88,12 +88,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/warehouse/ppn/store', [PPNTypeController::class, 'store'])->name('ppn.store');
         Route::delete('/warehouse/ppn/destroy/{id}', [PPNTypeController::class, 'destroy'])->name('ppn.destroy');
 
-        //Voucher
-        Route::get('/voucher', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'index'])->name('voucher-member');
-        Route::post('/voucher/store', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'store'])->name('voucher-member.store');
-        Route::get('/voucher/edit/{id}', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'edit'])->name('voucher-member.edit');
-        Route::put('/voucher/update', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'update'])->name('voucher-member.update');
+        //Voucher Member
+        Route::get('/voucher-member', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'index'])->name('voucher-member');
+        Route::post('/voucher-member/store', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'store'])->name('voucher-member.store');
+        Route::get('/voucher-member/edit/{id}', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'edit'])->name('voucher-member.edit');
+        Route::put('/voucher-member/update', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'update'])->name('voucher-member.update');
 
+        //Voucher Item
+        Route::get('/voucher-item', [\App\Http\Controllers\Voucher\VoucherItemController::class, 'index'])->name('voucher-item');
+        Route::post('/voucher-item/store', [\App\Http\Controllers\Voucher\VoucherItemController::class, 'store'])->name('voucher-item.store');
+        Route::get('/voucher-item/edit/{id}', [\App\Http\Controllers\Voucher\VoucherItemController::class, 'edit'])->name('voucher-item.edit');
+        Route::put('/voucher-item/update', [\App\Http\Controllers\Voucher\VoucherItemController::class, 'update'])->name('voucher-item.update');
 
         //warehouse - Adjustments
         Route::get('/warehouse/adjustment', [AdjustmentController::class, 'index'])->name('adjustment');
