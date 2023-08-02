@@ -46,6 +46,13 @@ class PurchaseController extends Controller
                 'items.*.qty'            => 'required|numeric',
                 'items.*.purchase_price' => 'required|numeric',
                 'items'                 => 'required',
+            ],[
+                'supplier_id'           => 'Supplier Tidak Boleh Kosong',
+                'invoice_date'          => 'Tanggal Tidak Boleh Kosong',
+                'items.*.code'           => 'Item Code Tidak Boleh Kosong',
+                'items.*.qty'            => 'Jumlah Item Tidak Boleh Kosong',
+                'items.*.purchase_price' => 'Harga Beli Tidak Boleh Kosong',
+                'items'                 => 'Barang Tidak Boleh Kosong',
             ]);
 
             $supplier_id    = $request->supplier_id;
@@ -93,7 +100,7 @@ class PurchaseController extends Controller
 
             Alert::success('Transaksi Pembelian Berhasil');
 
-            return redirect()->route('purchase');
+            // return redirect()->route('purchase');
 
         } catch (\Exception $th) {
             throw $th;
