@@ -8,6 +8,7 @@ use App\Models\Adjustment;
 use App\Models\Item;
 use App\Models\OutletItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdjustmentController extends Controller
@@ -25,9 +26,8 @@ class AdjustmentController extends Controller
     public function create()
     {
         $data = [
-            'dataOutlet'  => Outlet::all(['id', 'name']),
             'dataItem'  => Item::all(['id', 'code', 'name']),
-            'dataOutletItem'  => OutletItem::all(['id', 'item_id', 'selling_price', 'minimum_stock']),
+            'dataOutletItem'  => OutletItem::where('outlet_id', Auth::user()->outlet_id)->get(['id', 'item_id', 'selling_price', 'minimum_stock']),
         ];
         return view('page.warehouse.adjustment.input-adjustment', $data);
     }
@@ -39,7 +39,7 @@ class AdjustmentController extends Controller
             'qty'       => 'required',
         ]);
 
-        $outlet_item_id           = $request->outlet_item_id;
+        $outlet_item_id           = Auth::user()->outlet_id;
         $qty                      = $request->qty;
 
         $data = OutletItem::find($outlet_item_id);
