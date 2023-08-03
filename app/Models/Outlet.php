@@ -16,4 +16,9 @@ class Outlet extends Model
     {
         return $this->hasMany(User::class, 'outlet_id', 'id');
     }
+
+    public function itemVoucher()
+    {
+        return $this->hasMany(ItemVoucher::class, 'outlet_id', 'id');
+    }
 }

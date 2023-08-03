@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('outlet_id')->references('id')->on('outlets');
             $table->integer('sale_price');
             $table->decimal('margin');
+            $table->enum('status', ['0', '1'])->default(1)->comment('0 = Not Active, 1 = Active');
             $table->timestamps();
         });
     }

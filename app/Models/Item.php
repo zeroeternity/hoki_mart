@@ -40,5 +40,14 @@ class Item extends Model
         return $this->hasMany(PurchaseItem::class, 'item_id', 'id');
     }
 
+    public function itemVoucher()
+    {
+        return $this->hasMany(ItemVoucher::class, 'item_id', 'id');
+    }
+
+    public function latestPurchaseItem()
+    {
+        return $this->purchaseItem()->one()->ofMany('created_at', 'max');
+    }
 
 }
