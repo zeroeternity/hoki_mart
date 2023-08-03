@@ -27,15 +27,14 @@ class ItemController extends Controller
                     ->map(fn ($item) => [
                     ...$item->toArray(),
                     'purchase_item' => $item->purchaseItem()->latest()->first(),
-                    'outlet_item'   => $item->outletItem()->latest()->first(),
+                    'outlet_item'   => $item->outletItem()->where('outlet_id', Auth::user()->outlet_id)->first(),
             ]),
-            'dataOutletItem' => OutletItem::with('outlet', 'item')->where('outlet_id', Auth::user()->outlet_id),
+            'dataOutletItem' => OutletItem::with('outlet', 'item')->where('outlet_id', Auth::user()->outlet_id)->get(),
             'dataUnit'       => Unit::orderBy('created_at', 'desc')->get(),
             'dataGroup'      => Group::orderBy('created_at', 'desc')->get(),
             'dataPPN'        => PPNType::orderBy('created_at', 'desc')->get(),
             'dataVoucher'    => Voucher::orderBy('created_at', 'desc')->get(),
         ];
-
         return view('page.warehouse.item.item', $data);
     }
 
