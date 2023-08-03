@@ -406,9 +406,13 @@
                     success: function(response) {
                         if (payment_method == "0") {
                             window.location.href = '/sale/view/'+response.id+'';
-                        } else {
+                        } else if (payment_method == "1") {
                             window.location.href = '/sale';
-
+                        }else if(payment_method == "2"){
+                            // For Voucher
+                        }
+                        else {
+                            console.error('payment method tidak dikenali');
                         }
                     },
                     error: function(xhr, textStatus, errorThrown) {
