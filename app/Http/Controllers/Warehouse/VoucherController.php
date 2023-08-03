@@ -9,7 +9,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class VoucherController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
             'dataVOucher'   => Voucher::orderBy('created_at', 'desc')->get()
         ];
@@ -17,7 +18,8 @@ class VoucherController extends Controller
         return view('page.warehouse.voucher.voucher', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'code'  => 'required|string',
             'name'  => 'required|string',

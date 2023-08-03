@@ -10,11 +10,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 class EstateController extends Controller
 {
 
-    public function create(){
+    public function create()
+    {
         return view('page.member.data-member.create-estate');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'code'      => 'required|string',
             'estate'    => 'required|string',
@@ -29,10 +31,11 @@ class EstateController extends Controller
 
         Alert::success('Estate Berhasil Ditambahkan');
 
-        return redirect()->route('member',['#estate']);
+        return redirect()->route('member', ['#estate']);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $dataEstate = Estate::find($id);
         $data = [
             'id'        => $dataEstate->id,
@@ -60,7 +63,7 @@ class EstateController extends Controller
 
         Alert::success('Estate Berhasil Diupdate');
 
-        return redirect()->route('member',['#estate']);
+        return redirect()->route('member', ['#estate']);
     }
 
     public function destroy($id)

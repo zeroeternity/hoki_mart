@@ -9,7 +9,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PPNTypeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
             'dataPPN'   => PPNType::orderBy('created_at', 'desc')->get()
         ];
@@ -17,7 +18,8 @@ class PPNTypeController extends Controller
         return view('page.warehouse.ppn.ppn', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'type'              => 'required|string',
             'percent'           => 'required|numeric|between:0,999.99',

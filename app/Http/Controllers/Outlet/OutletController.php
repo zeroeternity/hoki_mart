@@ -9,16 +9,18 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class OutletController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
             'dataOutlet'   => Outlet::orderBy('created_at', 'desc')->get()
         ];
         return view('page.master-data.outlet.outlet', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
-            'name'     => 'required|string',
+            'name'         => 'required|string',
             'location'     => 'required|string',
         ]);
         $name  = $request->name;

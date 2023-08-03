@@ -52,7 +52,7 @@ class MemberDashboardController extends Controller
         try {
             $sale_item = SaleItem::with('outletItem')->where('sale_id', $id)->get();
 
-            foreach ($sale_item as $item){
+            foreach ($sale_item as $item) {
                 $item_data = Item::find($item['outletItem']['item_id']);
                 $item_outlet = OutletItem::find($item['outletItem']['id']);
                 // formula stock

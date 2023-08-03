@@ -13,7 +13,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class VoucherMemberController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
             'users'   => User::with('estate', 'memberType')
                 ->where('role_id', 4)
@@ -23,7 +24,8 @@ class VoucherMemberController extends Controller
         ];
         return view('page.voucher.voucher-member', $data);
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         DB::beginTransaction();
         try {
             $request->validate([
@@ -37,9 +39,9 @@ class VoucherMemberController extends Controller
             $wife       = $request->wife;
             $child      = $request->child;
 
-            $amenability_employee = Amenability::where([['name', 'Pekerja'],['status', '1']])->first()->limit;
-            $amenability_wife = Amenability::where([['name', 'Istri'],['status', '1']])->first()->limit;
-            $amenability_child = Amenability::where([['name', 'Anak'],['status', '1']])->first()->limit;
+            $amenability_employee = Amenability::where([['name', 'Pekerja'], ['status', '1']])->first()->limit;
+            $amenability_wife = Amenability::where([['name', 'Istri'], ['status', '1']])->first()->limit;
+            $amenability_child = Amenability::where([['name', 'Anak'], ['status', '1']])->first()->limit;
 
             $total_amenability_employee = $amenability_employee * $employee;
             $total_amenability_wife = $amenability_wife * $wife;
@@ -65,7 +67,8 @@ class VoucherMemberController extends Controller
         }
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $dataMemberVoucher = MemberVoucher::find($id);
         $employee   = $dataMemberVoucher->employee;
         $wife       = $dataMemberVoucher->wife;
@@ -73,9 +76,9 @@ class VoucherMemberController extends Controller
 
         $user = User::with('estate')->where('id', $dataMemberVoucher->member_id)->first();
 
-        $amenability_employee = Amenability::where([['name', 'Pekerja'],['status', '1']])->first()->limit;
-        $amenability_wife = Amenability::where([['name', 'Istri'],['status', '1']])->first()->limit;
-        $amenability_child = Amenability::where([['name', 'Anak'],['status', '1']])->first()->limit;
+        $amenability_employee = Amenability::where([['name', 'Pekerja'], ['status', '1']])->first()->limit;
+        $amenability_wife = Amenability::where([['name', 'Istri'], ['status', '1']])->first()->limit;
+        $amenability_child = Amenability::where([['name', 'Anak'], ['status', '1']])->first()->limit;
 
         $total_amenability_employee = $employee / $amenability_employee;
         $total_amenability_wife = $wife / $amenability_wife;
@@ -88,15 +91,16 @@ class VoucherMemberController extends Controller
             'wife'          => $total_amenability_wife,
             'child'         => $total_amenability_child,
             'users'         => User::with('estate', 'memberType')
-                                ->where('role_id', 4)
-                                ->where('outlet_id', Auth::user()->outlet_id)
-                                ->get(),
+                ->where('role_id', 4)
+                ->where('outlet_id', Auth::user()->outlet_id)
+                ->get(),
         ];
 
-        return view('page.voucher.edit-voucher-member',$data);
+        return view('page.voucher.edit-voucher-member', $data);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         DB::beginTransaction();
         try {
             $request->validate([
@@ -114,9 +118,9 @@ class VoucherMemberController extends Controller
             $dataMemberVoucher->status = '0';
             $dataMemberVoucher->save();
 
-            $amenability_employee = Amenability::where([['name', 'Pekerja'],['status', '1']])->first()->limit;
-            $amenability_wife = Amenability::where([['name', 'Istri'],['status', '1']])->first()->limit;
-            $amenability_child = Amenability::where([['name', 'Anak'],['status', '1']])->first()->limit;
+            $amenability_employee = Amenability::where([['name', 'Pekerja'], ['status', '1']])->first()->limit;
+            $amenability_wife = Amenability::where([['name', 'Istri'], ['status', '1']])->first()->limit;
+            $amenability_child = Amenability::where([['name', 'Anak'], ['status', '1']])->first()->limit;
 
             $total_amenability_employee = $amenability_employee * $employee;
             $total_amenability_wife = $amenability_wife * $wife;

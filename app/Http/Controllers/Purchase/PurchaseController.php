@@ -19,8 +19,8 @@ class PurchaseController extends Controller
     {
         $data = [
             'dataPurchase'      => Purchase::with(['user', 'supplier', 'purchaseItem'])
-                                    ->orderBy('created_at', 'desc')
-                                    ->get(),
+                ->orderBy('created_at', 'desc')
+                ->get(),
         ];
         return view('page.purchase.purchase', $data);
     }
@@ -40,19 +40,19 @@ class PurchaseController extends Controller
         DB::beginTransaction();
         try {
             $request->validate([
-                'supplier_id'           => 'required',
-                'invoice_date'          => 'required|date',
+                'supplier_id'            => 'required',
+                'invoice_date'           => 'required|date',
                 'items.*.code'           => 'required|string',
                 'items.*.qty'            => 'required|numeric',
                 'items.*.purchase_price' => 'required|numeric',
-                'items'                 => 'required',
-            ],[
-                'supplier_id'           => 'Supplier Tidak Boleh Kosong',
-                'invoice_date'          => 'Tanggal Tidak Boleh Kosong',
+                'items'                  => 'required',
+            ], [
+                'supplier_id'            => 'Supplier Tidak Boleh Kosong',
+                'invoice_date'           => 'Tanggal Tidak Boleh Kosong',
                 'items.*.code'           => 'Item Code Tidak Boleh Kosong',
                 'items.*.qty'            => 'Jumlah Item Tidak Boleh Kosong',
                 'items.*.purchase_price' => 'Harga Beli Tidak Boleh Kosong',
-                'items'                 => 'Barang Tidak Boleh Kosong',
+                'items'                  => 'Barang Tidak Boleh Kosong',
             ]);
 
             $supplier_id    = $request->supplier_id;
@@ -74,7 +74,7 @@ class PurchaseController extends Controller
             foreach ($items as $item) {
                 // get item data
                 $item_data = Item::where('code', $item['code'])->first();
-                $item_outlet = OutletItem::where('id' , $item_data['id'])->first();
+                $item_outlet = OutletItem::where('id', $item_data['id'])->first();
                 // store purchase item
                 PurchaseItem::create([
                     'purchase_id'       => $purchase->id,
@@ -89,7 +89,7 @@ class PurchaseController extends Controller
                 // update stock from item
                 $update_item = OutletItem::find($item_outlet['id']);
                 $update_item->minimum_stock = $stock;
-                $update_item->selling_price = ($item['purchase_price']*$update_item->percent_non_margin/100)+$item['purchase_price'];
+                $update_item->selling_price = ($item['purchase_price'] * $update_item->percent_non_margin / 100) + $item['purchase_price'];
 
                 $update_item->save();
             }
@@ -117,9 +117,9 @@ class PurchaseController extends Controller
         // ->join('items', 'items.id', '=', 'purchase_items.item_id')
         // ->join('suppliers', 'suppliers.id', '=', 'purchases.supplier_id')
         // ->where('purchase_id', $id)->get();
-        $data = Purchase::with(['purchaseItem','purchaseItem.item','supplier'])->find($id);
+        $data = Purchase::with(['purchaseItem', 'purchaseItem.item', 'supplier'])->find($id);
 
-        return view('page.purchase.view-purchase',compact('data'));
+        return view('page.purchase.view-purchase', compact('data'));
     }
 
     public function return()

@@ -9,14 +9,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UnitController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
             'dataUnit'   => Unit::orderBy('created_at', 'desc')->get()
         ];
         return view('page.warehouse.unit.unit', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'name'     => 'required|string',
         ]);
@@ -30,7 +32,8 @@ class UnitController extends Controller
         return redirect()->route('item');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $dataUnit = Unit::find($id);
         $data = [
             'id'                => $dataUnit->id,

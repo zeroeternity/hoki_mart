@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class VoucherItemController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
             'items'   => Item::with('group', 'ppnType', 'unit', 'purchaseItem', 'outletItem')
-                ->where('status','1')
+                ->where('status', '1')
                 ->get()
                 ->map(fn ($item) => [
                     ...$item->toArray(),
@@ -21,5 +22,7 @@ class VoucherItemController extends Controller
         ];
         return view('page.voucher.voucher-item', $data);
     }
-    public function store(){}
+    public function store()
+    {
+    }
 }

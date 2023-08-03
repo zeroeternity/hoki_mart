@@ -22,13 +22,13 @@ class ItemController extends Controller
     {
         $data = [
             'dataItem'       => Item::with('group', 'ppnType', 'unit', 'purchaseItem', 'outletItem')
-                    ->where('status','1')
-                    ->get()
-                    ->map(fn ($item) => [
+                ->where('status', '1')
+                ->get()
+                ->map(fn ($item) => [
                     ...$item->toArray(),
                     'purchase_item' => $item->purchaseItem()->latest()->first(),
                     'outlet_item'   => $item->outletItem()->where('outlet_id', Auth::user()->outlet_id)->first(),
-            ]),
+                ]),
             'dataOutletItem' => OutletItem::with('outlet', 'item')->where('outlet_id', Auth::user()->outlet_id)->get(),
             'dataUnit'       => Unit::orderBy('created_at', 'desc')->get(),
             'dataGroup'      => Group::orderBy('created_at', 'desc')->get(),
@@ -155,9 +155,9 @@ class ItemController extends Controller
                 ->where('outlet_id', $outlet_id)
                 ->update(
                     [
-                        'selling_price'        =>$selling_price,
-                        'minimum_stock'        =>$minimum_stock,
-                        'percent_non_margin'   =>$percent_non_margin
+                        'selling_price'        => $selling_price,
+                        'minimum_stock'        => $minimum_stock,
+                        'percent_non_margin'   => $percent_non_margin
                     ]
                 );
 
@@ -168,6 +168,5 @@ class ItemController extends Controller
             DB::rollback();
             return $this->responseJSON([], 500);
         }
-
     }
 }

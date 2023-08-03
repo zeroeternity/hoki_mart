@@ -11,18 +11,21 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SupplierController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
             'dataSupplier'   => Supplier::orderBy('created_at', 'desc')->get()
         ];
         return view('page.master-data.supplier.supplier', $data);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('page.master-data.supplier.input-supplier');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'code'              => 'required|unique:suppliers,code',
             'name'              => 'required|string',
@@ -64,7 +67,8 @@ class SupplierController extends Controller
         return redirect()->route('supplier');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $dataSupplier = Supplier::find($id);
         $data = [
             'id'                => $dataSupplier->id,
@@ -85,7 +89,7 @@ class SupplierController extends Controller
     public function update(request $request)
     {
         $request->validate([
-            'code'              => ['required','string', Rule::unique('suppliers', 'code')->ignore($request->id, 'id')],
+            'code'              => ['required', 'string', Rule::unique('suppliers', 'code')->ignore($request->id, 'id')],
             'name'              => 'required|string',
             'address'           => 'required|string',
             'account_number'    => 'required|string',

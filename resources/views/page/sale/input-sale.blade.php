@@ -390,6 +390,7 @@
     </script>
     @push('addon-script')
         <script>
+            //Form Hander
             $('#sale-form').submit(function(event) {
                 event.preventDefault();
                 $('#sale-form button[type="submit"]').prop('disabled', true);
@@ -404,20 +405,25 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
+                        //Payment method cash
                         if (payment_method == "0") {
-                            window.location.href = '/sale/view/'+response.id+'';
+                            window.location.href = '/sale/view/' + response.id + '';
+                            //Payment method Piutang
+
                         } else if (payment_method == "1") {
                             window.location.href = '/sale';
-                        }else if(payment_method == "2"){
+                        } else if (payment_method == "2") {
                             // For Voucher
-                        }
-                        else {
+                        } else {
                             console.error('payment method tidak dikenali');
                         }
                     },
                     error: function(xhr, textStatus, errorThrown) {
                         $('#sale-form button[type="submit"]').prop('disabled', false);
                         $('#spinner').addClass('d-none');
+                        // Select the error div and the list element
+                        // Clear any previous error messages
+                        // Add the new error messages to the list
                         var errorDiv = $('.alert.alert-danger');
                         var errorList = $('#error-list');
                         errorList.empty();
@@ -429,13 +435,8 @@
                             errorDiv.removeClass('d-none'); // Show the error div if it was hidden
                             console.log(xhr.responseJSON.limit);
                         }
+
                         var errors = xhr.responseJSON.errors;
-
-                        // Select the error div and the list element
-
-                        // Clear any previous error messages
-
-                        // Add the new error messages to the list
                         for (var field in errors) {
                             errors[field].forEach(function(message) {
                                 errorList.append('<li>' + message + '</li>');
@@ -454,9 +455,6 @@
                     }
                 });
             });
-            // Parse the JSON data from the data-member attribute and store it in a variable
-            // Event listener for the member_id input field
-
             // Modal Handler
             $("#add_item").on('click', function() {
                 var id = $("#modal_select_item").val();
