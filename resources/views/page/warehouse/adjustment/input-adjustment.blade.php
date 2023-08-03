@@ -23,20 +23,6 @@
                         <form action="{{ route('adjustment.update') }}" method="get" enctype="multipart/form-data">
                             <br />
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" >Toko /
-                                    Outlet <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger" style="width: 100%;" name="outlet_id">
-                                        <option value=""></option>
-                                        @foreach ($dataOutlet as $key => $outlet)
-                                        <option value="{{ $outlet->id }}">{{ $outlet->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" >Tanggal
                                     adjust <span class="required">*</span>
                                 </label>

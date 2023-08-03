@@ -33,7 +33,6 @@
                             <tr class="headings">
                                 <th class="column-title">No</th>
                                 <th class="column-title">Nama Barang</th>
-                                <th class="column-title">Outlet</th>
                                 <th class="column-title">Sebanyak</th>
                             </tr>
                         </thead>
@@ -42,7 +41,6 @@
                                 <tr class="">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->outlet_item->item->name }}</td>
-                                    <td>{{ $data->outlet_item->outlet->name }}</td>
                                     <td>{{ $data->qty }}</td>
                                 </tr>
                             @endforeach
