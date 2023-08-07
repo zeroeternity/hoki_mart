@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('receivable__movements', function (Blueprint $table) {
+        Schema::create('sale_voucher_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("receivable_id")->references('id')->on('receivables');
-            $table->foreignId("sale_id")->references('id')->on('sales');
+            $table->foreignId('sale_id')->references('id')->on('sales');
+            $table->foreignId('item_voucher_id')->references('id')->on('item_vouchers');
+            $table->integer('qty');
+            $table->integer('sale_price');
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('receivable__movements');
+        Schema::dropIfExists('sale_voucher_items');
     }
 };

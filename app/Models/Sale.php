@@ -15,6 +15,8 @@ class Sale extends Model
 
     protected $table = 'sales';
     protected $guarded = [];
+    protected $appends = ['total', 'totalVoucher'];
+
 
     public function userCashier()
     {
@@ -38,8 +40,14 @@ class Sale extends Model
 
     public function items(): BelongsToMany
     {
-
         return $this->belongsToMany(Item::class, 'sale_items', 'sale_id', 'outlet_item_id',)
+            ->withPivot(['qty', 'sale_price'])
+            ->using(SaleItem::class);
+    }
+
+    public function voucherItem(): BelongsToMany
+    {
+        return $this->belongsToMany(ItemVoucher::class, 'sale_voucher_items', 'sale_id', 'item_voucher_id',)
             ->withPivot(['qty', 'sale_price'])
             ->using(SaleItem::class);
     }
@@ -49,10 +57,22 @@ class Sale extends Model
         return $this->hasMany(SaleItem::class, 'sale_id', 'id');
     }
 
+    public function saleVoucherItem()
+    {
+        return $this->hasMany(SaleVoucherItem::class, 'sale_id', 'id');
+    }
+
     protected function total(): Attribute
     {
         return new Attribute(
             get: fn() => $this->saleItem->sum('subtotal'),
+        );
+    }
+
+    protected function totalVoucher(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->saleVoucherItem->sum('subtotal'),
         );
     }
 }

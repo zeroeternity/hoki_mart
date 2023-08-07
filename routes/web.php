@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/sale/store', [SaleController::class, 'store'])->name('sale.store');
         Route::get('/sale/view/{id}', [SaleController::class, 'view'])->name('sale.view');
         Route::get('/sale/print', [SaleController::class, 'print'])->name('sale.print');
-        Route::post('/sale/getData', [SaleController::class, 'getData'])->name('sale.getData');
+        Route::post('/sale/getDataItem', [SaleController::class, 'getDataItem'])->name('sale.getDataItem');
         Route::post('/purchase/get-items-data', [PurchaseController::class, 'getItemData'])->name('purchase.getitemdata');
 
         //warehouse
@@ -87,6 +87,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/warehouse/ppn', [PPNTypeController::class, 'index'])->name('ppn');
         Route::post('/warehouse/ppn/store', [PPNTypeController::class, 'store'])->name('ppn.store');
         Route::delete('/warehouse/ppn/destroy/{id}', [PPNTypeController::class, 'destroy'])->name('ppn.destroy');
+
+        //Voucher Sale
+        Route::get('/voucher-sale', [\App\Http\Controllers\Voucher\VoucherSaleController::class, 'index'])->name('voucher-sale');
+        Route::get('/voucher-sale/create', [\App\Http\Controllers\Voucher\VoucherSaleController::class, 'create'])->name('voucher-sale.create');
+        Route::post('/voucher-sale/getDataItem', [\App\Http\Controllers\Voucher\VoucherSaleController::class, 'getDataItem'])->name('voucher-sale.getDataItem');
+        Route::post('/voucher-sale/store', [\App\Http\Controllers\Voucher\VoucherSaleController::class, 'store'])->name('voucher-sale.store');
+        Route::get('/voucher-sale/view/{id}', [\App\Http\Controllers\Voucher\VoucherSaleController::class, 'view'])->name('voucher-sale.view');
+        Route::get('/voucher-sale/print', [\App\Http\Controllers\Voucher\VoucherSaleController::class, 'print'])->name('voucher-sale.print');
 
         //Voucher Member
         Route::get('/voucher-member', [\App\Http\Controllers\Voucher\VoucherMemberController::class, 'index'])->name('voucher-member');

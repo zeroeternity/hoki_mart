@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Receivable extends Model
 {
     use HasFactory;
+    protected $table = 'receivables';
     protected $guarded = [];
 
     public function users()

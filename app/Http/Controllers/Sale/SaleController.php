@@ -24,6 +24,7 @@ class SaleController extends Controller
         $data = [
             'dataSale' => Sale::with('cashier', 'member')
                 ->orderBy('created_at', 'desc')
+                ->whereIn('payment_method', ['0', '1'])
                 ->whereRelation('cashier', 'outlet_id', Auth::user()->outlet_id)
                 ->get(),
         ];
@@ -40,7 +41,6 @@ class SaleController extends Controller
             'items_outlet' => Item::with('unit', 'ppnType', 'outletItem')->get(),
             'receivable' => Receivable::all(),
         ];
-        // dd($data['users']);
         return view('page.sale.input-sale', $data);
     }
 
@@ -153,7 +153,7 @@ class SaleController extends Controller
         return view('page.sale.input-sale-instalment');
     }
 
-    public function getData(Request $request)
+    public function getDataItem(Request $request)
     {
         $unit = Item::with('unit', 'ppnType', 'outletItem')
             ->where('code', $request->code)

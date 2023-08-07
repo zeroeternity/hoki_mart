@@ -24,6 +24,7 @@
                 <li><a><i class="fa fa-upload"></i> Penjualan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('sale') }}">Penjualan</a></li>
+                        <li><a href="{{ route('voucher-sale') }}">Penjualan Voucher</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-cubes"></i> Gudang <span class="fa fa-chevron-down"></span></a>
@@ -61,6 +62,14 @@
                         <li><a href="/">Posting jurnal penjualan admin</a></li>
                     </ul>
                 </li>
+                <li><a><i class="fa fa-ticket"></i> Voucher <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('voucher-sale') }}">Penjualan Voucher</a></li>
+                        <li><a href="{{ route('voucher-item') }}">Voucher Barang</a></li>
+                        <li><a href="{{ route('voucher-member') }}">Voucher Anggota</a></li>
+                        <li><a href="/">Master Data Voucher</a></li>
+                    </ul>
+                </li>
                 <li><a><i class="fa fa-cubes"></i> Gudang <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('item') }}">Data Barang</a></li>
@@ -81,13 +90,6 @@
                         <li><a href="{{ route('accountancy.trial') }}">Trial Balance</a></li>
                         <li><a href="{{ route('accountancy.calculation') }}">Penghitungan Hasil Usaha / PHU</a></li>
                         <li><a href="{{ route('accountancy.balance') }}">Neraca Keuangan</a></li>
-                    </ul>
-                </li>
-                <li><a><i class="fa fa-ticket"></i> Voucher <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="{{ route('voucher-item') }}">Voucher Barang</a></li>
-                        <li><a href="{{ route('voucher-member') }}">Voucher Anggota</a></li>
-                        <li><a href="/">Master Data Voucher</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-group"></i> Anggota <span class="fa fa-chevron-down"></span></a>
@@ -120,6 +122,14 @@
                         <li><a href="{{ route('sale') }}">Penjualan</a></li>
                         <li><a href="/">Posting jurnal penjualan</a></li>
                         <li><a href="/">Posting jurnal penjualan admin</a></li>
+                    </ul>
+                </li>
+                <li><a><i class="fa fa-ticket"></i> Voucher <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('voucher-sale') }}">Penjualan Voucher</a></li>
+                        <li><a href="{{ route('voucher-item') }}">Voucher Barang</a></li>
+                        <li><a href="{{ route('voucher-member') }}">Voucher Anggota</a></li>
+                        <li><a href="/">Master Data Voucher</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-cubes"></i> Gudang <span class="fa fa-chevron-down"></span></a>

@@ -20,4 +20,9 @@ class ItemVoucher extends Model
     {
         return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
     }
+
+    public function saleVoucherItem()
+    {
+        return $this->hasMany(SaleVoucherItem::class, 'item_voucher_id', 'id');
+    }
 }
