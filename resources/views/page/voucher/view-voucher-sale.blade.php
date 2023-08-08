@@ -25,7 +25,7 @@
                         <div class="x_title">
                             <h2>Detail Penjualan</h2>
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{ route('sale') }}">Penjualan</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('voucher-sale') }}">Penjualan</a></li>
                                 <li class="breadcrumb-item active">View Detail Penjualan</li>
                             </ol>
                             <div class="clearfix"></div>

@@ -24,12 +24,13 @@ class StoreSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'member_id' => ['sometimes', 'nullable',],
-            'payment_method' => ['required', 'string'],
-            'items' => ['required', 'array'],
-            'items.*.code' => ['required', 'string', Rule::exists('items', 'code')],
-            'items.*.qty' => 'required|numeric|gt:0',
-            'items.*.purchase_price' => 'required|numeric|gt:0',
+            'member_id'                 => ['sometimes', 'nullable',],
+            'payment_method'            => ['required', 'string'],
+            'total_qty'                 => ['required', 'numeric', 'gt:0', 'max:'. $this->input('total', PHP_INT_MAX)],
+            'items'                     => ['required', 'array'],
+            'items.*.code'              => ['required', 'string', Rule::exists('items', 'code')],
+            'items.*.qty'               => ['required', 'numeric', 'gt:0'],
+            'items.*.purchase_price'    => ['required', 'numeric', 'gt:0'],
         ];
     }
 }

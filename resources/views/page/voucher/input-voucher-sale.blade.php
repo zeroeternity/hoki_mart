@@ -7,6 +7,7 @@
             <form action="{{ route('voucher-sale.store') }}" method="post" data-parsley-validate
                   class="form-horizontal form-label-left">
                 @csrf
+
                 <div class="page-title">
                     <div class="title_left">
                         <h3>Voucher Penjualan</h3>
@@ -21,6 +22,17 @@
                                 <h2>Form Voucher Penjualan</h2>
                                 <div class="clearfix"></div>
                             </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>
+                                                {{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="x_content">
                                 <div class="alert alert-danger d-none">
                                     <ul class="text-white" id="error-list">
@@ -154,9 +166,10 @@
 
                                 <tfoot>
                                 <tr>
-                                    <th colspan="6" class="text-right">Total</th>
+                                    <th colspan="4" class="text-right">Total Qty</th>
+                                    <th id="total_qty"></th>
+                                    <th class="text-right">Grand Total</th>
                                     <th id="grand_total"></th>
-                                    <th></th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -338,6 +351,7 @@
             row.querySelector("input[name^='items'][name$='[total]']").value = total;
 
             calculateGrandTotal();
+            calculateQtyTotal();
         }
 
         // Function to calculate and display the Grand Total
@@ -351,10 +365,17 @@
                 '<input name="grand_total" type="text" readonly class="form-control" value="' + grandTotal + '">';
         }
 
-        // Parse the JSON data from the data-member attribute and store it in a variable
+        // Function to calculate and display the Grand Total Qty
+        function calculateQtyTotal() {
+            var grandTotalQty = 0;
+            var totalQty = document.querySelectorAll("input[name^='items'][name$='[qty]']");
+            totalQty.forEach(function (input) {
+                grandTotalQty += parseFloat(input.value) || 0;
+            });
+            document.getElementById("total_qty").innerHTML =
+                '<input name="total_qty" type="text" readonly class="form-control" value="' + grandTotalQty + '">';
+        }
 
-
-        // Modal Handler
     </script>
     @push('addon-script')
         <script>

@@ -21,6 +21,17 @@
                                 <h2>Form Penjualan</h2>
                                 <div class="clearfix"></div>
                             </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>
+                                                {{ $error }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="x_content">
                                 <div class="alert alert-danger d-none">
                                     <ul class="text-white" id="error-list">

@@ -70,9 +70,23 @@ class VoucherSaleController extends Controller
             $sale->confirm_at       = null;
             $sale->save();
 
+            $member_voucher = MemberVoucher::where('member_id', $member_id)->first();
+            $adjust_total_member_Voucher = $member_voucher['total'] - $request->total_qty;
+            $update_member_voucher = MemberVoucher::find($member_voucher['id']);
+            $update_member_voucher->total = $adjust_total_member_Voucher;
+            $update_member_voucher->save();
+
             foreach ($items as $item) {
                 // get item data
                 $item_voucher = ItemVoucher::with('items')->whereRelation('items', 'code', '=', $item['code'])->first();
+
+                $outlet_item = OutletItem::where('item_id', $item_voucher['item_id'])->first();
+
+                $adjust_stock = $outlet_item['minimum_stock'] - $item['qty'];
+
+                $update_stock = OutletItem::find($outlet_item['id']);
+                $update_stock->minimum_stock = $adjust_stock;
+                $update_stock->save();
 
                 // store voucher item
                 SaleVoucherItem::create([
@@ -82,6 +96,7 @@ class VoucherSaleController extends Controller
                     'sale_price'        => $item['purchase_price'],
                 ]);
             }
+
             DB::commit();
             Alert::success('Transaksi Penjualan Berhasil');
             return redirect()->route('voucher-sale');
