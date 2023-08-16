@@ -78,8 +78,8 @@
             <tr>
                 <td>{{$item->items->name}}</td>
                 <td align="center">{{ $item->pivot->qty }}</td>
-                <td align="right">{{ $item->pivot->sale_price }}</td>
-                <td align="right">{{$item->pivot->total}}</td>
+                <td align="right">{{number_format ($item->pivot->sale_price,0,',','.') }}</td>
+                <td align="right">{{number_format ($item->pivot->total,0,',','.') }}</td>
             </tr>
         @endforeach
         <tr>
@@ -88,7 +88,7 @@
         </tr>
         <tr>
             <td colspan="3" align="right">Total</td>
-            <td align="right">{{$total}}</td>
+            <td align="right">{{number_format ($total,0,',','.') }}</td>
         </tr>
         <tr>
             <td></td>
