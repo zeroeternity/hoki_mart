@@ -26,7 +26,7 @@ class StoreSaleRequest extends FormRequest
         return [
             'member_id'                 => ['sometimes', 'nullable',],
             'payment_method'            => ['required', 'string'],
-            'total_qty'                 => ['required', 'numeric', 'gt:0', 'max:'. $this->input('total', PHP_INT_MAX)],
+            'total_qty'                 => ['required_if:payment_method,1', 'numeric', 'gt:0', 'max:'. $this->input('total', PHP_INT_MAX)],
             'items'                     => ['required', 'array'],
             'items.*.code'              => ['required', 'string', Rule::exists('items', 'code')],
             'items.*.qty'               => ['required', 'numeric', 'gt:0'],

@@ -10,11 +10,21 @@
             </div>
             <div class="title_right">
                 <div class="form-group pull-right">
-                    <a href="{{ route('sale.print', ['id'=> request('id')]) }}">
+                    @if($data->status == 1)
+                        <a href="{{ route('sale.print', ['id'=> request('id')]) }}">
+                            <button type="button" class="btn btn-info">
+                                <li class="fa fa-print"></li>&nbsp;Print
+                            </button>
+                        </a>
+                    @elseif($data->status == 0)
                         <button type="button" class="btn btn-info">
-                            <li class="fa fa-print"></li>&nbsp;Print
+                           Menunggu Validasi Member
                         </button>
-                    </a>
+                    @elseif($data->status == 2)
+                        <button type="button" class="btn btn-info">
+                            Transaksi Dibatalkan Member
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>

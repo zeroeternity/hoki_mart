@@ -15,7 +15,8 @@ class OutletSeeder extends Seeder
     {
         Outlet::create([
             'name'      => 'Hoki Mart',
-            'location'  => 'Shamrock Group',
+            'location'  => 'Mainan, Lalang Sembawa, Kec. Sembawa, Kab. Banyuasin, Sumatera Selatan 30953',
+            'phone'     => '+62 822-8202-3993'
         ]);
     }
 }

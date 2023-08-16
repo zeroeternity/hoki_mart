@@ -54,7 +54,16 @@
 <body>
 <center>
     <img src="{{ asset('images/hoki-black.png') }}" class="center">
-    <br>
+    <p class="center">{{ $outlet_address }} <br> {{ $outlet_phone }}</p>
+    <p>Jenis Transaksi :
+        @if( $payment_method == 0)
+            Cash
+        @elseif( $payment_method == 1)
+            Piutang
+        @elseif( $payment_method == 2)
+            Voucher
+        @endif
+    </p>
     <p>Tanggal Transaksi: {{ $created_at }}</p>
     <p>-------------------------------------------------------------------------------------</p>
     <table>
@@ -78,16 +87,8 @@
             <td colspan="3">-----------------------------</td>
         </tr>
         <tr>
-            <td colspan="3" align="right">Sub Total</td>
-            <td align="right">{{$total}}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td colspan="3">-----------------------------</td>
-        </tr>
-        <tr>
             <td colspan="3" align="right">Total</td>
-            <td align="right">{{$subtotal}}</td>
+            <td align="right">{{$total}}</td>
         </tr>
         <tr>
             <td></td>
@@ -95,7 +96,8 @@
         </tr>
     </table>
     <p>-------------------------------------------------------------------------------------</p>
-
+    <p>Cashier: {{ $cashier }}</p>
+    <p>TERIMA KASIH</p>
 </center>
 
 </body>

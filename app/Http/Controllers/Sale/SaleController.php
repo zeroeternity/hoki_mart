@@ -165,11 +165,13 @@ class SaleController extends Controller
     {
         $id = $request->query('id');
 
-        $sale = Sale::with(['userCashier', 'userMember', 'items'])->find($id);
+        $sale = Sale::with(['userCashier.outlet', 'userMember', 'items'])->find($id);
 
         $data = [
             'id' => $sale->id,
             'cashier' => $sale->userCashier->name,
+            'outlet_address' => $sale->userCashier->outlet->location,
+            'outlet_phone' => $sale->userCashier->outlet->phone,
             'member' => $sale->userMember?->name,
             'payment_method' => $sale->payment_method,
             'status' => $sale->status,

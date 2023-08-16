@@ -124,13 +124,13 @@ class VoucherSaleController extends Controller
         $data = [
             'id' => $sale->id,
             'cashier' => $sale->userCashier->name,
+            'outlet_address' => $sale->userCashier->outlet->location,
+            'outlet_phone' => $sale->userCashier->outlet->phone,
             'member' => $sale->userMember?->name,
             'payment_method' => $sale->payment_method,
             'status' => $sale->status,
             'sale_item' => $sale->voucherItem,
-            'voucher' => 0, //voucher hard code
-            'total' => $sale->total,
-            'subtotal' => $sale->total - 0, //-voucher hard code
+            'total' => $sale->totalVoucher,
             'created_at' => $sale->created_at,
         ];
 

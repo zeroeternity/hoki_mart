@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('location');
+            $table->string('phone');
             $table->binary('photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
